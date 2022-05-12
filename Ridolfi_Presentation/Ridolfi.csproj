@@ -212,6 +212,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\Ninject.Web.Common.cs" />
+    <Compile Include="App_Start\PlatMensagens_Resources.Designer.cs" />
     <Compile Include="App_Start\Ridolfi_Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1921,6 +1922,21 @@
     <Content Include="Images\gallery\Rec_Parc.png" />
     <Content Include="Images\gallery\Rec_Sim.png" />
     <Content Include="Images\header.jpg" />
+    <Content Include="Images\icone_imagem.jpg" />
+    <Content Include="Images\icon_ambiente.png" />
+    <Content Include="Images\icon_board.png" />
+    <Content Include="Images\icon_car.jpg" />
+    <Content Include="Images\icon_fornecedor.jpg" />
+    <Content Include="Images\icon_log.png" />
+    <Content Include="Images\icon_material.jpg" />
+    <Content Include="Images\icon_morador.png" />
+    <Content Include="Images\icon_ponto.png" />
+    <Content Include="Images\icon_ponto_1.png" />
+    <Content Include="Images\icon_telefone.png" />
+    <Content Include="Images\icon_unidade.png" />
+    <Content Include="Images\icon_vaga.png" />
+    <Content Include="Images\Imagem_Teste.jpg" />
+    <Content Include="Images\Kanban_CRM.png" />
     <Content Include="Images\landing\avatar1.jpg" />
     <Content Include="Images\landing\avatar2.jpg" />
     <Content Include="Images\landing\avatar3.jpg" />
@@ -1953,6 +1969,9 @@
     <Content Include="Images\p_big2.jpg" />
     <Content Include="Images\p_big3.jpg" />
     <Content Include="Images\qrcodebase.png" />
+    <Content Include="Images\Tela_Kanban.jpg" />
+    <Content Include="Images\Tela_SD.jpg" />
+    <Content Include="Images\teste_1.jpg" />
     <Content Include="Images\zender_logo.png" />
     <Content Include="PdfViewer\build\pdf.js" />
     <Content Include="PdfViewer\build\pdf.worker.js" />
@@ -3511,6 +3530,15 @@
     <Content Include="Views\Shared\_Navigation.cshtml" />
     <Content Include="Views\Shared\_TopNavbar.cshtml" />
     <Content Include="Views\Shared\_SkinConfig.cshtml" />
+    <Content Include="Views\Shared\_Layout_Admin.cshtml" />
+    <Content Include="Views\Shared\_Layout_Limpo.cshtml" />
+    <Content Include="Views\Shared\_Navigation_Admin.cshtml" />
+    <Content Include="Views\Shared\_Navigation_Limpo.cshtml" />
+    <Content Include="Views\Shared\_RightSidebar.cshtml" />
+    <Content Include="Views\Shared\_RightSidebar_Admin.cshtml" />
+    <Content Include="Views\Shared\_TopNavbar2.cshtml" />
+    <Content Include="Views\Shared\_TopNavbar_Admin.cshtml" />
+    <Content Include="Views\Shared\_TopNavbar_Admin_Y.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -3551,6 +3579,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="App_Start\PlatMensagens_Resources.resx" />
     <EmbeddedResource Include="App_Start\Ridolfi_Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Ridolfi_Resources.Designer.cs</LastGenOutput>

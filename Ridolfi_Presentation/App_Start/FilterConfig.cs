@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace SB_Dashboard_Presentation
+namespace SMS_Presentation
 {
     public class FilterConfig
     {
@@ -9,5 +9,6 @@ namespace SB_Dashboard_Presentation
         {
             filters.Add(new HandleErrorAttribute());
         }
+
     }
 }

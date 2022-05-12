@@ -3,10 +3,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=0.9">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Master Data</title>
+    <title>ERPSys</title>
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
     <!-- Add local styles, mostly for plugins css file -->
@@ -15,7 +15,7 @@
      
     <!-- Add jQuery Style direct - used for jQGrid plugin -->
     <link href="@Url.Content("~/Scripts/plugins/jquery-ui/jquery-ui.min.css")" rel="stylesheet" type="text/css" />
-    <link rel="shortcut icon" href="~/Images/Logo_OnSuite.png">
+    <link rel="shortcut icon" href="~/Images/favicon_SystemBR.jpg">
 
     <link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet" />  
     <link href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.bootstrap.min.css" rel="stylesheet" />  
@@ -36,13 +36,13 @@
 
     <!-- Wrapper-->
     <!-- PageClass give you ability to specify custom style for specific view based on action -->
-    @*<div id="wrapper" class="@Html.PageClass()">*@
-    <div id="wrapper" class="gray-bg @ViewBag.SpecialClass"">
+    <div id="wrapper" class="@Html.PageClass()">
+
         <!-- Navigation -->
-        @*@Html.Partial("_Navigation")*@
+        @Html.Partial("_Navigation")
 
         <!-- Page wraper -->
-        @*<div id="page-wrapper" class="gray-bg @ViewBag.SpecialClass">*@
+        <div id="page-wrapper" class="gray-bg @ViewBag.SpecialClass">
 
             <!-- Top Navbar -->
             @Html.Partial("_TopNavbar")
@@ -53,7 +53,7 @@
             <!-- Footer -->
             @*@Html.Partial("_Footer")*@
 
-        @*</div>*@
+        </div>
         <!-- End page wrapper-->
 
         <!-- Right Sidebar -->

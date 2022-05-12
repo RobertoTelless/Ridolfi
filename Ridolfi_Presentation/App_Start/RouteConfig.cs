@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace SB_Dashboard_Presentation
+namespace SMS_Presentation
 {
     public class RouteConfig
     {

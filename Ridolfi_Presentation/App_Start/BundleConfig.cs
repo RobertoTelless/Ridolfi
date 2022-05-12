@@ -1,7 +1,7 @@
 using System.Web;
 using System.Web.Optimization;
 
-namespace SB_Dashboard_Presentation
+namespace SMS_Presentation
 {
     public class BundleConfig
     {

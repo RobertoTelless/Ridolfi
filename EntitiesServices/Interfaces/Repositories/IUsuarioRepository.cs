@@ -7,8 +7,23 @@ using EntitiesServices.Model;
 
 namespace ModelServices.Interfaces.Repositories
 {
-    public interface IUsuarioRepository : IRepositoryBase<USUARIO_SUGESTAO>
+    public interface IUsuarioRepository : IRepositoryBase<USUARIO>
     {
-        List<USUARIO_SUGESTAO> GetAllItens();
-}
+        USUARIO GetByEmail(String email, Int32 idAss);
+        USUARIO GetByLogin(String login, Int32 idAss);
+        USUARIO GetItemById(Int32 id);
+        List<USUARIO> GetAllUsuarios(Int32 idAss);
+        List<USUARIO> GetAllItens(Int32 idAss);
+        List<USUARIO> GetAllItensBloqueados(Int32 idAss);
+        List<USUARIO> GetAllItensAcessoHoje(Int32 idAss);
+        List<USUARIO> GetAllUsuariosAdm(Int32 idAss);
+        List<USUARIO> ExecuteFilter(Int32? perfilId, Int32? cargoId, String nome, String login, String email, Int32 idAss);
+        USUARIO GetAdministrador(Int32 idAss);
+        USUARIO GetComprador(Int32 idAss);
+        USUARIO GetAprovador(Int32 idAss);
+        USUARIO GetTecnico(Int32 idAss);
+        List<USUARIO> GetAllTecnicos(Int32 idAss);
+        USUARIO GetByEmailOnly(String email);
+        List<USUARIO> GetAllSistema();
+    }
 }
