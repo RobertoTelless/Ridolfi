@@ -1,0 +1,28 @@
+@using Inspinia_MVC5;
+@using Presentation.Extensions
+@using CrossCutting;
+<div class="row border-bottom">
+    <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="row">
+            <div class="form-group" style=" margin-left: 15px; margin-right: 15px;">
+                <div class="col-lg-1 col-md-1 col-xs-12">
+                    <img alt="image" src="~/Images/Logo_OnSuite.png" style = "width: auto; height: auto; max-height: 60px; max-width: 60px;" />
+                </div>
+                <div class="col-lg-3 col-md-3 col-xs-12">
+                    @*<h2 style="color: green; font-weight: bold">São Bento Engenharia Ltda</h2>*@
+                    <h2 style="color: green; font-weight: bold">Inspeção de Dados Mestres</h2>
+                </div>
+                <div class="col-lg-4 col-md-4 col-xs-12" style="vertical-align: middle; margin-top: 15px">
+                    @Html.ButtonLinkIndex(text: "Clientes", action: "MontarTelaCliente", controller: "MasterData", buttonClass: "success")
+                    @Html.ButtonLinkIndex(text: "Prestadores", action: "MontarTelaPrestador", controller: "MasterData", buttonClass: "success")
+                    @Html.ButtonLinkIndex(text: "Ordens de Serviço", action: "MontarTelaOrdemServico", controller: "MasterData", buttonClass: "success")
+                    @Html.ButtonLinkIndex(text: "Atendimentos", action: "MontarTelaAtendimento", controller: "MasterData", buttonClass: "success")
+                </div>                    
+                <div class="col-lg-4 col-md-4 col-xs-12" style="vertical-align: middle; margin-top: 15px">
+                    @Html.ButtonLinkIndex(text: "Tela Inicial", action: "Index", controller: "MasterData")
+                    @Html.ButtonLinkIndex(text: "Atualizar Dados", action: "AtualizarDados", controller: "MasterData")
+                </div>                    
+            </div>
+        </div>
+    </nav>
+</div>

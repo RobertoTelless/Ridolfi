@@ -1,0 +1,486 @@
+﻿@using Presentation.Extensions
+@using CrossCutting;
+@model EntitiesServices.Model.vwParcelamento
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-xs-12">
+            <div class="col-lg-12 col-md-12 col-xs-12 ibox float-e-margins">
+                <div class="ibox-title" style="background-color: gainsboro">
+                    <h3>Parcelamentos - Expansão</h3>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <li>
+                                <a href="#">Config option 1</a>
+                            </li>
+                            <li>
+                                <a href="#">Config option 2</a>
+                            </li>
+                        </ul>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content"  style="background-color: gainsboro; height: 900px">
+                    <div class="row">
+                        <div class="form-group">
+                            @Html.ButtonLinkIndex(text: "MontarTelaFluxoCaixa", action: "VoltarBase", controller: "Dashboard")
+                        </div>
+                    </div>
+                    <div class="row">
+                        @*<div class="col-lg-3">
+                            <div class="widget style1 red-bg" style=" margin-left: 8px; margin-top: 8px; margin-right: -8px; background-color: brown; height: 100px ">
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        <i class="fa fa-list-ul fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-8 text-right">
+                                        <span> Parcelamentos - Lançamentos </span>
+                                        <h2 class="font-bold">@ViewBag.ListaPCNum</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="widget style1 red-bg" style=" margin-left: 8px; margin-top: 8px; margin-right: -8px; background-color: brown; height: 100px ">
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        <i class="fa fa-usd fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-8 text-right">
+                                        <span> Parcelamentos (R$) </span>
+                                        <h2 class="font-bold">@CrossCutting.Formatters.DecimalFormatter(ViewBag.PCValor)</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>*@
+                        <div class="col-lg-3">
+                            <div class="col-lg-12 col-md-12 col-xs-12 ibox float-e-margins">
+                                <div class="ibox-title">
+                                    <span class="label label-primary pull-right">Hoje</span>
+                                    <h5>Parcelamentos</h5>
+                                </div>
+                                <div class="ibox-content">
+                                    <h1 class="no-margins">@ViewBag.ListaPCNum</h1>
+                                    <small>Lançamentos Filtrados</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="col-lg-12 col-md-12 col-xs-12 ibox float-e-margins">
+                                <div class="ibox-title">
+                                    <span class="label label-primary pull-right">Hoje</span>
+                                    <h5>Parcelamentos</h5>
+                                </div>
+                                <div class="ibox-content">
+                                    <h1 class="no-margins">@CrossCutting.Formatters.DecimalFormatter(ViewBag.PCValor)</h1>
+                                    <small>Total em R$</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-xs-12">
+                            <div class="col-lg-12 col-md-12 col-xs-12 ibox float-e-margins">
+                                <div class="ibox-title">
+                                    <h4>Exibição dos Dados e Informações de PARCELAMENTOS</h4>
+                                    <h4 style="color: brown">(Exibidos os 7 primeiros registros filtrados)</h4>
+                                    <div class="ibox-tools">
+                                        <a class="collapse-link">
+                                            <i class="fa fa-chevron-up"></i>
+                                        </a>
+                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                            <i class="fa fa-wrench"></i>
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-user">
+                                            <li>
+                                                <a href="#">Config option 1</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Config option 2</a>
+                                            </li>
+                                        </ul>
+                                        <a class="close-link">
+                                            <i class="fa fa-times"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="ibox-content">
+                                    <div class="row">
+                                        @if ((ViewBag.ListaPC as List<EntitiesServices.Model.vwParcelamento>).Count > 0)
+                                        {
+                                            <table class="table table-striped table-bordered table-hover">
+                                                <thead style="background-color:lightsteelblue">
+                                                    <tr>
+                                                        <th>Ordem de Serviço</th>
+                                                        <th>Cliente</th>
+                                                        <th>Valor (R$)</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (var cond in (ViewBag.ListaPC as List<EntitiesServices.Model.vwParcelamento>).OrderBy(p => p.Cliente).Take(7).ToList())
+                                                    {
+                                                        <tr>
+                                                            <td>@cond.Ordem_de_Servico</td>
+                                                            <td>@cond.Cliente</td>
+                                                            <td>@CrossCutting.Formatters.DecimalFormatter(cond.Valor_Bruto)</td>
+                                                       </tr>
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        }
+                                        <div class="form-group">
+                                            @Html.ButtonLinkIndex(text: "Ver Mais Informações", action: "VerTodosParcelamentos", controller: "Dashboard")
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @*<div class="col-lg-8 col-md-8 col-xs-12">
+                            <div class="col-lg-12 col-md-12 col-xs-12 ibox float-e-margins" style="border-bottom: solid; border-bottom-color: darkblue; border-bottom-width: 2px; border-left: solid; border-left-color: darkblue; border-left-width: 1px; border-right: solid; border-right-color: darkblue; border-right-width: 1px; border-top: solid; border-top-color: darkblue; border-top-width: 1px; height: 560px">
+                                <div class="ibox-title">
+                                    <h4>Gráfico do Indicador PARCELAMENTOS  -   Ano de Referência: @ViewBag.Ano</h4>
+                                    <div class="ibox-tools">
+                                        <a class="collapse-link">
+                                            <i class="fa fa-chevron-up"></i>
+                                        </a>
+                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                            <i class="fa fa-wrench"></i>
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-user">
+                                            <li>
+                                                <a href="#">Config option 1</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Config option 2</a>
+                                            </li>
+                                        </ul>
+                                        <a class="close-link">
+                                            <i class="fa fa-times"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="ibox-content">
+                                    <div class="row">
+                                        <canvas id="lineChart" height="120"></canvas>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <br />
+                                            @Html.ButtonLinkIndex(text: "<< Ano Anterior", action: "VoltarBase", controller: "Dashboard")
+                                            @Html.ButtonLinkIndex(text: "Ano Posterior >>", action: "VoltarBase", controller: "Dashboard")
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Styles {
+    <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+    <link href="~/Content/themes/base/all.css" rel="stylesheet" />  
+    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+    @Styles.Render("~/plugins/jasnyBootstrapStyles")
+    @Styles.Render("~/plugins/toastrStyles")
+    @Styles.Render("~/plugins/touchSpinStyles")
+    @Styles.Render("~/Content/plugins/iCheck/iCheckStyles")
+}
+
+@section Scripts {
+
+    @Scripts.Render("~/plugins/toastr")
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    @Scripts.Render("~/plugins/dataTables")
+    @Scripts.Render("~/bundles/inputmask")
+    @Scripts.Render("~/plugins/jasnyBootstrap")
+    @Scripts.Render("~/plugins/touchSpin")
+    @Scripts.Render("~/plugins/iCheck")
+    @Scripts.Render("~/plugins/sparkline")
+    @Scripts.Render("~/plugins/switchery")
+    @Scripts.Render("~/plugins/chartjs")
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.js"></script>
+    
+    
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('.dataTables-example').DataTable({
+                pageLength: 10,
+                dom: '<"html5buttons"B>lTfgitp',
+                buttons: [
+                    //{ extend: 'copy' },
+                    //{ extend: 'csv' },
+                    //{ extend: 'excel', title: 'ExampleFile' },
+                    //{ extend: 'pdf', title: 'ExampleFile' },
+
+                    {
+                        //extend: 'print',
+                        customize: function (win) {
+                            $(win.document.body).addClass('white-bg');
+                            $(win.document.body).css('font-size', '10px');
+
+                            $(win.document.body).find('table')
+                                .addClass('compact')
+                                .css('font-size', 'inherit');
+                        }
+                    }
+                ]
+
+            });
+
+        });
+
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $("#sparkline1").sparkline([34, 52, 25], {
+                type: 'line',
+                lineColor: '#17997f',
+                fillColor: '#1ab394',
+            });
+            $("#sparklineX").sparkline([5, 6, 7, 2, 0, -4, -2, 4], {
+                type: 'bar',
+                barColor: '#1ab394',
+                negBarColor: '#c6c6c6'
+            });
+
+            $("#sparkline3").sparkline([1, 1, 2], {
+                type: 'pie',
+                sliceColors: ['#1ab394', '#b3b3b3', '#e4f0fb']
+            });
+
+            $("#sparkline2").sparkline([34, 43, 43, 35, 44, 32, 15, 22, 46, 33, 86, 54, 73, 53, 12, 53, 23, 65, 23, 63, 53, 42, 34, 56, 76, 15, 54, 23, 44], {
+                type: 'line',
+                width: '100%',
+                height: '380',
+                lineColor: '#17997f',
+                fillColor: "#ffffff"
+            });
+
+            $("#sparkline5").sparkline([1, 1, 0, 1, -1, -1, 1, -1, 0, 0, 1, 1], {
+                type: 'tristate',
+                posBarColor: '#1ab394',
+                negBarColor: '#bfbfbf'
+            });
+
+
+            $("#sparkline6").sparkline([4, 6, 7, 7, 4, 3, 2, 1, 4, 4, 5, 6, 3, 4, 5, 8, 7, 6, 9, 3, 2, 4, 1, 5, 6, 4, 3, 7, ], {
+                type: 'discrete',
+                lineColor: '#1ab394'
+            });
+
+            $("#sparkline7").sparkline([52, 12, 44], {
+                type: 'pie',
+                height: '150px',
+                sliceColors: ['#1ab394', '#b3b3b3', '#e4f0fb']
+            });
+
+            $("#sparkline8").sparkline([5, 6, 7, 2, 0, 4, 2, 4, 5, 7, 2, 4, 12, 14, 4, 2, 14, 12, 7], {
+                type: 'bar',
+                barWidth: 8,
+                height: '150px',
+                barColor: '#1ab394',
+                negBarColor: '#c6c6c6'
+            });
+
+            $("#sparkline9").sparkline([34, 43, 43, 35, 44, 32, 15, 22, 46, 33, 86, 54, 73, 53, 12, 53, 23, 65, 23, 63, 53, 42, 34, 56, 76, 15, 54, 23, 44], {
+                type: 'line',
+                lineWidth: 1,
+                height: '150px',
+                lineColor: '#17997f',
+                fillColor: '#ffffff',
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('body').addClass('light-navbar');
+
+            var id = @Model.;
+
+            var data = {
+                id: id
+            }
+
+            $.ajax({
+                url: '../GetValorGrafico'
+                , type: 'POST'
+                , data: data
+                , success: function (r) {
+                    $("#linechart1").sparkline([r.m3, r.m2, r.m1], {
+                        type: 'line',
+                        width: '100%',
+                        height: '150',
+                        lineColor: '#1ab394',
+                        fillColor: "#ffffff"
+                    });
+                }
+            });
+        });
+    </script>
+
+
+    <script type="text/javascript">
+        $(function () {
+            $("#cpf").mask("999.999.999-99");
+            $("#cnpj").mask("99.999.999/9999-99");
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            var lineData = {
+                labels: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
+                datasets: [
+
+                    {
+                        label: "Valor (R$ x 1000)",
+                        backgroundColor: 'rgba(26,179,148,0.5)',
+                        borderColor: "rgba(26,179,148,0.7)",
+                        pointBackgroundColor: "rgba(26,179,148,1)",
+                        pointBorderColor: "#fff",
+                        data: [28, 48, 40, 19, 86, 27, 90, 78, 23, 33, 87, 56]
+                    }
+                ]
+            };
+
+            var lineOptions = {
+                responsive: true
+            };
+
+
+            var ctx = document.getElementById("lineChart").getContext("2d");
+            new Chart(ctx, { type: 'line', data: lineData, options: lineOptions });
+
+            var barData = {
+                labels: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho"],
+                datasets: [
+                    {
+                        label: "Dados 1",
+                        backgroundColor: 'rgba(220, 220, 220, 0.5)',
+                        pointBorderColor: "#fff",
+                        data: [65, 59, 80, 81, 56, 55, 40]
+                    },
+                    {
+                        label: "Dados 2",
+                        backgroundColor: 'rgba(26,179,148,0.5)',
+                        borderColor: "rgba(26,179,148,0.7)",
+                        pointBackgroundColor: "rgba(26,179,148,1)",
+                        pointBorderColor: "#fff",
+                        data: [28, 48, 40, 19, 86, 27, 90]
+                    }
+                ]
+            };
+
+            var barOptions = {
+                responsive: true
+            };
+
+
+            var ctx2 = document.getElementById("barChart").getContext("2d");
+            new Chart(ctx2, { type: 'bar', data: barData, options: barOptions });
+
+            var polarData = {
+                datasets: [{
+                    data: [
+                        300, 140, 200
+                    ],
+                    backgroundColor: [
+                        "#a3e1d4", "#dedede", "#b5b8cf"
+                    ],
+                    label: [
+                        "My Radar chart"
+                    ]
+                }],
+                labels: [
+                    "App", "Software", "Laptop"
+                ]
+            };
+
+            var polarOptions = {
+                segmentStrokeWidth: 2,
+                responsive: true
+
+            };
+
+            var ctx3 = document.getElementById("polarChart").getContext("2d");
+            new Chart(ctx3, { type: 'polarArea', data: polarData, options: polarOptions });
+
+            var doughnutData = {
+                labels: ["App", "Software", "Laptop"],
+                datasets: [{
+                    data: [300, 50, 100],
+                    backgroundColor: ["#a3e1d4", "#dedede", "#b5b8cf"]
+                }]
+            };
+
+
+            var doughnutOptions = {
+                responsive: true
+            };
+
+
+            var ctx4 = document.getElementById("doughnutChart").getContext("2d");
+            new Chart(ctx4, { type: 'doughnut', data: doughnutData, options: doughnutOptions });
+
+
+            var radarData = {
+                labels: ["Eating", "Drinking", "Sleeping", "Designing", "Coding", "Cycling", "Running"],
+                datasets: [
+                    {
+                        label: "My First dataset",
+                        backgroundColor: "rgba(220,220,220,0.2)",
+                        borderColor: "rgba(220,220,220,1)",
+                        data: [65, 59, 90, 81, 56, 55, 40]
+                    },
+                    {
+                        label: "My Second dataset",
+                        backgroundColor: "rgba(26,179,148,0.2)",
+                        borderColor: "rgba(26,179,148,1)",
+                        data: [28, 48, 40, 19, 96, 27, 100]
+                    }
+                ]
+            };
+
+            var radarOptions = {
+                responsive: true
+            };
+
+            var ctx5 = document.getElementById("radarChart").getContext("2d");
+            new Chart(ctx5, { type: 'radar', data: radarData, options: radarOptions });
+
+
+        });
+    </script>
+
+
+}
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+    </script>
+}
+
+

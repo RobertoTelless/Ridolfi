@@ -1,0 +1,545 @@
+﻿@using Presentation.Extensions
+@using CrossCutting;
+@model SB_Dashboard_Presentation.ViewModels.ModeloViewModel
+@{ Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+<style>
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Firefox */
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+</style>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div id="containerModalDesc">
+        <div class="modal fade" id="modalDesc" tabindex="-1" role="dialog" aria-labelledby="modalDesc" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalDesc">Descrição do Indicador</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div id="modalDescBody" class="modal-body">
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-xs-12">
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <div class="alert alert-danger">
+                    <button type="button" class="close" data-dismiss="alert">Fechar</button>
+                    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                </div>
+            }
+
+            <div class="row">
+                @*Abas*@
+                <div class="col-lg-12 col-md-12 col-xs-12">
+                    @using (Html.BeginForm("FiltrarGeralDashboardNovo", "Dashboard", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", @id = "pwd-container1" }))
+                    {
+                        @*Fluxo de Caixa*@
+                        <div class="form-group">
+                            <div class="col-lg-2 col-md-2 col-xs-2" style="border-bottom: solid; border-bottom-color: gainsboro; border-bottom-width: 1px; border-left: solid; border-left-color: gainsboro; border-left-width: 1px; border-right: solid; border-right-color: gainsboro; border-right-width: 1px; border-top: solid; border-top-color: gainsboro; border-top-width: 1px; background-color: darkgray", id="filtro">
+                                @using (Html.BeginForm("FiltrarGeralDashboard", "Dashboard", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal" }))
+                                {
+                                    <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">
+                                        <div class="col-lg-12 col-md-12 col-xs-12">
+                                            <br />
+                                            @Html.ButtonActionSubmit(text: "Aplicar Filtros")
+                                            @*@Html.ButtonActionSubmit(text: "Aplicar Filtros", type: "submit", buttonClass: "success", new {style="height: 80px; background-color: #1AB394"})*@
+                                            @Html.ButtonLinkIndex(text: "Default", controller: "Dashboard", action: "RetirarFiltro")
+                                            @*@Html.ButtonLinkIndex(text: "Default", action: "RetirarFiltro", controller: "Dashboard", buttonClass: "warning", routeValues: null, new {style="height: 80px" })*@
+                                        </div>
+                                    </div>
+                                    <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">
+                                        <div class="col-lg-12 col-md-12 col-xs-12">
+                                            @Html.Label("Data Inicial", new { style = "color: black"})                                                                
+                                            @Html.TextBoxFor(m => m.RecebimentoInicio,  "{0:dd/MM/yyyy}", new { @class = "form-control date-picker", autofocus = true, @id = "data5" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">
+                                        <div class="col-lg-12 col-md-12 col-xs-12">
+                                            @Html.Label("Data Final", new { style = "color: black"})                                                                
+                                            @Html.TextBoxFor(m => m.RecebimentoFinal,  "{0:dd/MM/yyyy}", new { @class = "form-control date-picker", autofocus = true, @id = "data6" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">
+                                        <div class="col-lg-12 col-md-12 col-xs-12">
+                                            @Html.Label("Centro Lucro", new { style = "color: black"})                                                                
+                                            @Html.DropDownListFor(m => m.CentroLucro, (SelectList)ViewBag.CentroLucro, "Selecionar", new { @class = "form-control", autofocus = true })
+                                        </div>
+                                    </div>
+                                    <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">
+                                        <div class="col-lg-12 col-md-12 col-xs-12">
+                                            @Html.Label("Liberado pagamento", new { style = "color: black"})                                                                
+                                            @Html.DropDownListFor(m => m.LiberadoPag, (SelectList)ViewBag.LiberadoPag, "Selecionar", new { @class = "form-control", autofocus = true })
+                                        </div>
+                                    </div>
+                                    <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">
+                                        <div class="col-lg-12 col-md-12 col-xs-12">
+                                            @Html.Label("Executando Positivo", new { style = "color: black"})                                                                
+                                            @Html.DropDownListFor(m => m.ExecPositivo, (SelectList)ViewBag.ExecPos, "Selecionar", new { @class = "form-control", autofocus = true })
+                                        </div>
+                                    </div>
+                                    <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">
+                                        <div class="col-lg-12 col-md-12 col-xs-12">
+                                            @Html.Label("Executando Negativo", new { style = "color: black"})                                                                
+                                            @Html.DropDownListFor(m => m.ExecNegativo, (SelectList)ViewBag.ExecNeg, "Selecionar", new { @class = "form-control", autofocus = true })
+                                        </div>
+                                    </div>
+                                    <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">
+                                        <div class="col-lg-12 col-md-12 col-xs-12">
+                                            @Html.Label("Parcelamento", new { style = "color: black"})                                                                
+                                            @Html.DropDownListFor(m => m.Parcelamento, (SelectList)ViewBag.Parcelamento, "Selecionar", new { @class = "form-control", autofocus = true })
+                                        </div>
+                                    </div>
+                                    <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">
+                                        <div class="col-lg-12 col-md-12 col-xs-12">
+                                            @Html.Label("Lanc. Pagar", new { style = "color: black"})                                                                
+                                            @Html.DropDownListFor(m => m.LancPagar, (SelectList)ViewBag.LancPagar, "Selecionar", new { @class = "form-control", autofocus = true })
+                                        </div>
+                                    </div>
+                                    <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">
+                                        <div class="col-lg-12 col-md-12 col-xs-12">
+                                            @Html.Label("Criticidade", new { style = "color: black"})                                                                
+                                            @Html.DropDownListFor(m => m.Criticidade, (SelectList)ViewBag.Criticidade, "Selecionar", new { @class = "form-control", autofocus = true })
+                                        </div>
+                                    </div>
+                                    <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">
+                                        <div class="col-lg-12 col-md-12 col-xs-12">
+                                            @Html.Label("Probabilidade", new { style = "color: black"})                                                                
+                                            @Html.DropDownListFor(m => m.Probabilidade, (SelectList)ViewBag.Probabilidade, "Selecionar", new { @class = "form-control", autofocus = true })
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                            <div class="col-lg-10 col-md-10 col-xs-10" style="border-bottom: solid; border-bottom-color: gainsboro; border-bottom-width: 1px; border-left: solid; border-left-color: gainsboro; border-left-width: 1px; border-right: solid; border-right-color: gainsboro; border-right-width: 1px; border-top: solid; border-top-color: gainsboro; border-top-width: 1px; background-color: gainsboro" >
+                                <div class="row">
+                                    <div class="form-group" style=" margin-left: -15px; margin-right: -15px; height: 30px">
+                                        <button type="button" class="btn btn-sm btn-primary" aria-label="-" style="margin-left: 15px;" onclick="FechaFiltro()">X</button>
+                                    </div>
+                                    <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">
+                                        <div class="col-lg-3" style=" margin-left: 5px; margin-top: 2px; margin-right: -4px; height: 200px", id="CR">
+                                            <div class="ibox float-e-margins">
+                                                <div class="ibox-title">
+                                                    <h5>Receitas (R$)</h5>
+                                                    @*<button type="button" class="btn btn-sm btn-danger" aria-label="-" style="margin-left: 120px; height: 20px; vertical-align: top" onclick="FecharCR()"></button>*@
+                                                    <button type="button" class="btn btn-sm btn-danger" aria-label="-" style="height: 20px; vertical-align: top; float: right" onclick="FecharCR()"></button>
+                                                  </div>
+                                                <div class="ibox-content">
+                                                    <h2 class="no-margins">@CrossCutting.Formatters.DecimalFormatter(ViewBag.Rec)</h2>
+                                                    <small style="cursor: pointer; text-decoration: underline; color: #337ab7;" onclick="mostrarDesc('Descrição do que significa este indicador')">Descrição</small>
+                                                    <br />
+                                                    <br />
+                                                    @if ((Int32)ViewBag.FalhaCR == 0)
+                                                    {
+                                                        @Html.ButtonLinkIndex(text: "Expandir", controller: "Dashboard", action: "VerReceitasExpansao", buttonClass: "white")
+                                                    }
+                                                    else
+                                                    {
+                                                        <br />
+                                                        <br />
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-3" style=" margin-left: 5px; margin-top: 2px; margin-right: -4px; height: 200px" id="CP">
+                                            <div class="ibox float-e-margins">
+                                                <div class="ibox-title">
+                                                    @*@if (ViewBag.FalhaCP == 0)
+	                                                {
+                                                        <span class="label label-success pull-right">Filtro</span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span class="label label-danger pull-right">Sem Retorno</span>
+                                                    }*@
+                                                    <h5>Despesas (R$)</h5>
+                                                    @*<button type="button" class="btn btn-sm btn-danger" aria-label="-" style="margin-left: 120px; height: 20px; vertical-align: top" onclick="FecharCP()"></button>*@
+                                                    <button type="button" class="btn btn-sm btn-danger" aria-label="-" style="height: 20px; vertical-align: top; float: right" onclick="FecharCP()"></button>
+                                                </div>
+                                                <div class="ibox-content">
+                                                    <h2 class="no-margins">@CrossCutting.Formatters.DecimalFormatter(ViewBag.Pag)</h2>
+                                                    <small style="cursor: pointer; text-decoration: underline; color: #337ab7;" onclick="mostrarDesc('Descrição do que significa este indicador')">Descrição</small>
+                                                    <br />
+                                                    <br />
+                                                    @if ((Int32)ViewBag.FalhaCP == 0)
+                                                    {
+                                                        @Html.ButtonLinkIndex(text: "Expandir", controller: "Dashboard", action: "VerDespesasExpansao", buttonClass: "white")
+                                                    }
+                                                    else
+                                                    {
+                                                        <br />
+                                                        <br />
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-3" style=" margin-left: 5px; margin-top: 2px; margin-right: -4px; height: 200px" id="EP" >
+                                            <div class="ibox float-e-margins">
+                                                <div class="ibox-title">
+                                                    @*<span class="label label-primary pull-right">Acumulado</span>*@
+                                                    <h5>Executando Positivo (R$)</h5>
+                                                    @*<button type="button" class="btn btn-sm btn-danger" aria-label="-" style="margin-left: 40px; height: 20px; vertical-align: top" onclick="FecharEP()"></button>*@
+                                                    <button type="button" class="btn btn-sm btn-danger" aria-label="-" style="height: 20px; vertical-align: top; float: right" onclick="FecharEP()"></button>
+                                                </div>
+                                                <div class="ibox-content">
+                                                    @if ((Int32)Session["ExibeExecPos"] == 1)
+                                                    {
+                                                        <h2 class="no-margins">@CrossCutting.Formatters.DecimalFormatter(ViewBag.ExecPositivo)</h2>
+                                                    }
+                                                    else
+                                                    {
+                                                        <h2 class="no-margins">0,00</h2>
+                                                    }
+                                                    <small style="cursor: pointer; text-decoration: underline; color: #337ab7;" onclick="mostrarDesc('Descrição do que significa este indicador')">Descrição</small>
+                                                    <br />
+                                                    <br />
+                                                    <br />
+                                                    <br />
+                                                </div>
+                                            </div>
+                                        </div>  
+                                                            
+                                        <div class="col-lg-3" style=" margin-left: 5px; margin-top: 2px; margin-right: -8px; height: 200px" id="EN">
+                                            <div class="ibox float-e-margins">
+                                                <div class="ibox-title">
+                                                    @*<span class="label label-primary pull-right">Acumulado</span>*@
+                                                    <h5>Executando Negativo (R$)</h5>
+                                                    @*<button type="button" class="btn btn-sm btn-danger" aria-label="-" style="margin-left: 35px; height: 20px; vertical-align: top" onclick="FecharEN()"></button>*@
+                                                    <button type="button" class="btn btn-sm btn-danger" aria-label="-" style="height: 20px; vertical-align: top; float: right" onclick="FecharEN()"></button>
+                                                </div>
+                                                <div class="ibox-content">
+                                                    @if ((Int32)Session["ExibeExecNeg"] == 1)
+                                                    {
+                                                        <h2 class="no-margins">@CrossCutting.Formatters.DecimalFormatter(ViewBag.ExecNegativo)</h2>
+                                                    }
+                                                    else
+                                                    {
+                                                        <h2 class="no-margins">0,00</h2>
+                                                    }
+                                                    <small style="cursor: pointer; text-decoration: underline; color: #337ab7;" onclick="mostrarDesc('Descrição do que significa este indicador')">Descrição</small>
+                                                    <br />
+                                                    <br />
+                                                    <br />
+                                                    <br />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">
+                                        <div class="col-lg-3" style=" margin-left: 5px; margin-top: -8px; margin-right: -4px; height: 200px" id="PC">
+                                            <div class="ibox float-e-margins">
+                                                <div class="ibox-title">
+                                                    <h5>Parcelamentos (R$)</h5>
+                                                    <button type="button" class="btn btn-sm btn-danger" aria-label="-" style="height: 20px; vertical-align: top; float: right" onclick="FecharPC()"></button>
+                                                </div>
+                                                <div class="ibox-content">
+                                                    @if ((Int32)Session["ExibeParc"] == 1)
+                                                    {
+                                                        <h2 class="no-margins">@CrossCutting.Formatters.DecimalFormatter(ViewBag.Pc)</h2>
+                                                    }
+                                                    else
+                                                    {
+                                                        <h2 class="no-margins">0,00</h2>
+                                                    }
+                                                    <small style="cursor: pointer; text-decoration: underline; color: #337ab7;" onclick="mostrarDesc('Descrição do que significa este indicador')">Descrição</small>
+                                                    <br />
+                                                    <br />
+                                                    @if ((Int32)ViewBag.FalhaPC == 0)
+                                                    {
+                                                        @Html.ButtonLinkIndex(text: "Expandir", controller: "Dashboard", action: "VerParcelamentosExpansao", buttonClass: "white")
+                                                    }
+                                                    else
+                                                    {
+                                                        <br />
+                                                        <br />
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-3" style=" margin-left: 5px; margin-top: -8px; margin-right: -4px; height: 200px" id="LP">
+                                            <div class="ibox float-e-margins">
+                                                <div class="ibox-title">
+                                                    @*@if (ViewBag.FalhaLP == 0)
+	                                                {
+                                                        <span class="label label-success pull-right">Filtro</span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span class="label label-danger pull-right">Sem Retorno</span>
+                                                    }*@
+                                                    <h5>Lançamentos a Pagar (R$)</h5>
+                                                    @*<button type="button" class="btn btn-sm btn-danger" aria-label="-" style="margin-left: 40px; height: 20px; vertical-align: top" onclick="FecharLP()"></button>*@
+                                                    <button type="button" class="btn btn-sm btn-danger" aria-label="-" style="height: 20px; vertical-align: top; float: right" onclick="FecharLP()"></button>
+                                                </div>
+                                                <div class="ibox-content">
+                                                    @if ((Int32)Session["ExibeLancPag"] == 1)
+                                                    {
+                                                        <h2 class="no-margins">@CrossCutting.Formatters.DecimalFormatter(ViewBag.Lp)</h2>
+                                                    }
+                                                    else
+                                                    {
+                                                        <h2 class="no-margins">0,00</h2>
+                                                    }
+                                                    <small style="cursor: pointer; text-decoration: underline; color: #337ab7;" onclick="mostrarDesc('Descrição do que significa este indicador')">Descrição</small>
+                                                    <br />
+                                                    <br />
+                                                    @if ((Int32)ViewBag.FalhaLP == 0)
+                                                    {
+                                                        @Html.ButtonLinkIndex(text: "Expandir", controller: "Dashboard", action: "VerLancamentosExpansao", buttonClass: "white")
+                                                    }
+                                                    else
+                                                    {
+                                                        <br />
+                                                        <br />
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                                        
+                                        <div class="col-lg-3" style=" margin-left: 5px; margin-top: -8px; margin-right: -4px; height: 200px" id="RE" >
+                                            <div class="ibox float-e-margins">
+                                                <div class="ibox-title">
+                                                    @*<span class="label label-primary pull-right">Acumulado</span>*@
+                                                    <h5>Resultado (R$)</h5>
+                                                    @*<button type="button" class="btn btn-sm btn-danger" aria-label="-" style="margin-left: 110px; height: 20px; vertical-align: top" onclick="FecharRE()"></button>*@
+                                                    <button type="button" class="btn btn-sm btn-danger" aria-label="-" style="height: 20px; vertical-align: top; float: right" onclick="FecharRE()"></button>
+                                                </div>
+                                                <div class="ibox-content">
+                                                    <h2 class="no-margins">@CrossCutting.Formatters.DecimalFormatter(ViewBag.Resultado)</h2>
+                                                    <small style="cursor: pointer; text-decoration: underline; color: #337ab7;" onclick="mostrarDesc('Descrição do que significa este indicador')">Descrição</small>
+                                                    <br />
+                                                    <br />
+                                                    <br />
+                                                    <br />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-3" style=" margin-left: 5px; margin-top: -8px; margin-right: -8px; height: 200px" id="SB">
+                                            <div class="ibox float-e-margins">
+                                                <div class="ibox-title">
+                                                    @*<span class="label label-primary pull-right">Acumulado</span>*@
+                                                    <h5>Saldo Bancário (R$)</h5>
+                                                    @*<button type="button" class="btn btn-sm btn-danger" aria-label="-" style="margin-left: 75px; height: 20px; vertical-align: top" onclick="FecharSB()"></button>*@
+                                                    <button type="button" class="btn btn-sm btn-danger" aria-label="-" style="height: 20px; vertical-align: top; float: right" onclick="FecharSB()"></button>
+                                                </div>
+                                                <div class="ibox-content">
+                                                    <h2 class="no-margins">@CrossCutting.Formatters.DecimalFormatter(ViewBag.SaldoBancario)</h2>
+                                                    <small style="cursor: pointer; text-decoration: underline; color: #337ab7;" onclick="mostrarDesc('Descrição do que significa este indicador')">Descrição</small>
+                                                    <br />
+                                                    <br />
+                                                    <br />
+                                                    <br />
+                                                </div>
+                                            </div>
+                                        </div>                                                   
+                                    </div>
+
+                                    <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">
+                                        <div class="col-lg-3" style=" margin-left: 5px; margin-top: -8px; margin-right: -4px; height: 200px" id="ST">
+                                            <div class="ibox float-e-margins">
+                                                <div class="ibox-title">
+                                                    @*<span class="label label-success pull-right">Filtro</span>*@
+                                                    <h5>Saldo Total (R$)</h5>
+                                                    @*<button type="button" class="btn btn-sm btn-danger" aria-label="-" style="margin-left: 100px; height: 20px; vertical-align: top" onclick="FecharST()"></button>*@
+                                                    <button type="button" class="btn btn-sm btn-danger" aria-label="-" style="height: 20px; vertical-align: top; float: right" onclick="FecharST()"></button>
+                                                </div>
+                                                <div class="ibox-content">
+                                                    <h2 class="no-margins">@CrossCutting.Formatters.DecimalFormatter(ViewBag.SaldoTotal)</h2>
+                                                    <small style="cursor: pointer; text-decoration: underline; color: #337ab7;" onclick="mostrarDesc('Descrição do que significa este indicador')">Descrição</small>
+                                                    <br />
+                                                    <br />
+                                                    <br />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    }
+                </div>
+            </div>
+        </div>
+</div>
+
+@section Styles {
+    <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+    <link href="~/Content/themes/base/all.css" rel="stylesheet" />  
+    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+    @Styles.Render("~/plugins/jasnyBootstrapStyles")
+    @Styles.Render("~/plugins/toastrStyles")
+    @Styles.Render("~/plugins/touchSpinStyles")
+    @Styles.Render("~/Content/plugins/iCheck/iCheckStyles")
+    @Styles.Render("~/Content/loadingDots.css")
+}
+
+@section Scripts {
+
+    @Scripts.Render("~/plugins/toastr")
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    @Scripts.Render("~/plugins/dataTables")
+    @Scripts.Render("~/bundles/inputmask")
+    @Scripts.Render("~/plugins/jasnyBootstrap")
+    @Scripts.Render("~/plugins/touchSpin")
+    @Scripts.Render("~/plugins/iCheck")
+    @Scripts.Render("~/plugins/sparkline")
+    @Scripts.Render("~/plugins/switchery")
+    @Scripts.Render("~/plugins/ionRange")
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.js"></script>
+    @Scripts.Render("~/plugins/chartjs")
+    @Scripts.Render("~/plugins/flot")
+    @Scripts.Render("~/plugins/sparkline")
+    
+   
+    <script>
+        function mostrarDesc(desc) {
+            $('#modalDescBody').html(desc);
+            $('#modalDesc').modal('show');
+        }
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('.i-checks').iCheck({
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green',
+            });
+
+        });
+    </script>
+    <script>
+        $("#ionrange_1").ionRangeSlider({
+            min: 0,
+            max: 10,
+            type: 'double',
+            prettify: false,
+            hasGrid: true
+        });
+    </script>
+    <script type="text/javascript">
+        $(".touchspin2").TouchSpin({
+            min: 0,
+            max: 1000,
+            step: 1,
+            buttondown_class: 'btn btn-white',
+            buttonup_class: 'btn btn-white'
+        });
+    </script>
+    <script type="text/javascript">
+        function FechaCard(val) {
+            if (val == '1') {
+                $("#CR").hide();
+            } else if (val == '2') {
+                $("#CR").hide();
+            } else if (val == '3') {
+                $("#CR").hide();
+            } else if (val == '4') {
+                $("#CR").hide();
+            } else if (val == '5') {
+                $("#filtro").hide();
+            }
+        }
+
+    </script>
+
+    <script type="text/javascript">
+        function FechaFiltro() {
+            $("#filtro").hide();
+        }
+        function FecharCR() {
+            $("#CR").hide();
+        }
+        function FecharCP() {
+            $("#CP").hide();
+        }
+        function FecharEP() {
+            $("#EP").hide();
+        }
+        function FecharEN() {
+            $("#EN").hide();
+        }
+        function FecharPC() {
+            $("#PC").hide();
+        }
+        function FecharLP() {
+            $("#LP").hide();
+        }
+        function FecharRE() {
+            $("#RE").hide();
+        }
+        function FecharSB() {
+            $("#SB").hide();
+        }
+        function FecharST() {
+            $("#ST").hide();
+        }
+</script>
+    <script type="text/javascript">
+        $(function () {
+            $("#data1").mask("99/99/9999");
+            $("#data2").mask("99/99/9999");
+            $("#data3").mask("99/99/9999");
+            $("#data4").mask("99/99/9999");
+            $("#data5").mask("99/99/9999");
+            $("#data6").mask("99/99/9999");
+            $("#data7").mask("99/99/9999");
+            $("#data8").mask("99/99/9999");
+        });
+    </script>
+    <script type="text/javascript" language="javascript">
+        $(function () {
+            $('.date-picker').datepicker(
+                {
+                    dateFormat: 'dd/mm/yy',
+                    dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
+                    dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S', 'D'],
+                    dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
+                    monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+                    monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+                    nextText: 'Proximo',
+                    prevText: 'Anterior',
+                    showOn: "focus"
+                }
+            )
+            .css("display", "normal")
+            .next("button").button({
+                icons: { primary: "ui-icon-calendar" },
+                label: "Selecione uma data",
+                text: false 
+            });
+        });
+    </script>  
+}
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+    </script>
+}
