@@ -16,7 +16,6 @@ namespace DataServices.Repositories
         {
             IQueryable<BANCO> query = Db.BANCO;
             query = query.Where(p => p.BANC_SG_CODIGO == conta.BANC_SG_CODIGO);
-            query = query.Where(p => p.ASSI_CD_ID == idAss);
             return query.FirstOrDefault();
         }
 
@@ -24,7 +23,6 @@ namespace DataServices.Repositories
         {
             IQueryable<BANCO> query = Db.BANCO.Where(p => p.BANC_IN_ATIVO == 1);
             query = query.Where(p => p.BANC_SG_CODIGO == codigo);
-            query = query.Include(p => p.CONTA_BANCO);
             return query.FirstOrDefault();
         }
 
@@ -32,23 +30,18 @@ namespace DataServices.Repositories
         {
             IQueryable<BANCO> query = Db.BANCO;
             query = query.Where(p => p.BANC_CD_ID == id);
-            query = query.Include(p => p.CONTA_BANCO);
             return query.FirstOrDefault();
         }
 
         public List<BANCO> GetAllItens(Int32 idAss)
         {
             IQueryable<BANCO> query = Db.BANCO.Where(p => p.BANC_IN_ATIVO == 1);
-            query = query.Where(p => p.ASSI_CD_ID == idAss);
-            query = query.Include(p => p.CONTA_BANCO);
             return query.ToList();
         }
 
         public List<BANCO> GetAllItensAdm(Int32 idAss)
         {
             IQueryable<BANCO> query = Db.BANCO;
-            query = query.Where(p => p.ASSI_CD_ID == idAss);
-            query = query.Include(p => p.CONTA_BANCO);
             return query.ToList();
         }
 
@@ -66,7 +59,6 @@ namespace DataServices.Repositories
             }
             if (query != null)
             {
-                query = query.Where(p => p.ASSI_CD_ID == idAss);
                 query = query.OrderBy(a => a.BANC_NM_NOME);
                 lista = query.ToList<BANCO>();
             }

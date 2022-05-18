@@ -53,13 +53,11 @@ namespace ApplicationServices.Services
 
                 // Completa objeto
                 item.DEPT_IN_ATIVO = 1;
-                item.ASSI_CD_ID = usuario.ASSI_CD_ID;
 
                 // Monta Log
                 LOG log = new LOG
                 {
                     LOG_DT_DATA = DateTime.Now,
-                    ASSI_CD_ID = usuario.ASSI_CD_ID,
                     USUA_CD_ID = usuario.USUA_CD_ID,
                     LOG_NM_OPERACAO = "AddDEPT",
                     LOG_IN_ATIVO = 1,
@@ -85,7 +83,6 @@ namespace ApplicationServices.Services
                 {
                     LOG_DT_DATA = DateTime.Now,
                     USUA_CD_ID = usuario.USUA_CD_ID,
-                    ASSI_CD_ID = usuario.ASSI_CD_ID,
                     LOG_NM_OPERACAO = "EditDEPT",
                     LOG_IN_ATIVO = 1,
                     LOG_TX_REGISTRO = Serialization.SerializeJSON<DEPARTAMENTO>(item),
@@ -119,10 +116,10 @@ namespace ApplicationServices.Services
             try
             {
                 // Verifica integridade referencial
-                if (item.ATENDIMENTO.Count > 0)
-                {
-                    return 1;
-                }
+                //if (item.ATENDIMENTO.Count > 0)
+                //{
+                //    return 1;
+                //}
 
                 // Acerta campos
                 item.DEPT_IN_ATIVO = 0;
@@ -132,7 +129,6 @@ namespace ApplicationServices.Services
                 {
                     LOG_DT_DATA = DateTime.Now,
                     USUA_CD_ID = usuario.USUA_CD_ID,
-                    ASSI_CD_ID = usuario.ASSI_CD_ID,
                     LOG_IN_ATIVO = 1,
                     LOG_NM_OPERACAO = "DeleDEPT",
                     LOG_TX_REGISTRO = "Departamento: " + item.DEPT_NM_NOME
@@ -161,7 +157,6 @@ namespace ApplicationServices.Services
                 {
                     LOG_DT_DATA = DateTime.Now,
                     USUA_CD_ID = usuario.USUA_CD_ID,
-                    ASSI_CD_ID = usuario.ASSI_CD_ID,
                     LOG_IN_ATIVO = 1,
                     LOG_NM_OPERACAO = "ReatDEPT",
                     LOG_TX_REGISTRO = "Deparatmento: " + item.DEPT_NM_NOME

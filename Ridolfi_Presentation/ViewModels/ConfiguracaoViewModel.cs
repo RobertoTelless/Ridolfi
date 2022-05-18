@@ -11,7 +11,6 @@ namespace ERP_CRM_Solution.ViewModels
     {
         [Key]
         public int CONF_CD_ID { get; set; }
-        public int ASSI_CD_ID { get; set; }
         [Required(ErrorMessage = "Campo FALHAS/DIA obrigatorio")]
         [RegularExpression(@"^([0-9]+)$", ErrorMessage = "Deve ser um valor inteiro positivo")]
         public Nullable<int> CONF_NR_FALHAS_DIA { get; set; }

@@ -11,7 +11,6 @@ namespace ERP_CRM_Solution.ViewModels
     {
         [Key]
         public int GRUP_CD_ID { get; set; }
-        public int ASSI_CD_ID { get; set; }
         public int USUA_CD_ID { get; set; }
         [Required(ErrorMessage = "Campo NOME obrigatorio")]
         [StringLength(50, MinimumLength = 2, ErrorMessage = "O NOME deve conter no minimo 2 e no máximo 50 caracteres.")]
@@ -35,7 +34,6 @@ namespace ERP_CRM_Solution.ViewModels
         public string MES { get; set; }
         public string ANO { get; set; }
 
-        public virtual ASSINANTE ASSINANTE { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GRUPO_CLIENTE> GRUPO_CLIENTE { get; set; }
         public virtual USUARIO USUARIO { get; set; }

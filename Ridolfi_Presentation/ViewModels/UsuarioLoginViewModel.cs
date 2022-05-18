@@ -12,7 +12,6 @@ namespace ERP_CRM_Solution.ViewModels
     {
         [Key]
         public int USUA_CD_ID { get; set; }
-        public int ASSI_CD_ID { get; set; }
         [Required(ErrorMessage = "Campo PERFIL obrigatorio")]
         public int PERF_CD_ID { get; set; }
         public Nullable<int> CAUS_CD_ID { get; set; }
@@ -115,7 +114,6 @@ namespace ERP_CRM_Solution.ViewModels
             }
         }
 
-        public virtual ASSINANTE ASSINANTE { get; set; }
         public virtual CARGO CARGO { get; set; }
         public virtual CATEGORIA_USUARIO CATEGORIA_USUARIO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

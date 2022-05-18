@@ -110,9 +110,10 @@
     <Compile Include="EntitiesServices\CargoService.cs" />
     <Compile Include="EntitiesServices\CategoriaClienteService.cs" />
     <Compile Include="EntitiesServices\CategoriaTelefoneService.cs" />
+    <Compile Include="EntitiesServices\ClienteCnpjService.cs" />
+    <Compile Include="EntitiesServices\ClienteService.cs" />
     <Compile Include="EntitiesServices\ConfiguracaoService.cs" />
     <Compile Include="EntitiesServices\DepartamentoService.cs" />
-    <Compile Include="EntitiesServices\EMailAgendaService.cs" />
     <Compile Include="EntitiesServices\GrupoService.cs" />
     <Compile Include="EntitiesServices\LogService.cs" />
     <Compile Include="EntitiesServices\MensagemService.cs" />
@@ -125,6 +126,7 @@
     <Compile Include="EntitiesServices\TelefoneService.cs" />
     <Compile Include="EntitiesServices\TemplateEMailService.cs" />
     <Compile Include="EntitiesServices\TemplateService.cs" />
+    <Compile Include="EntitiesServices\TemplateSMSService.cs" />
     <Compile Include="EntitiesServices\TipoPessoaService.cs" />
     <Compile Include="EntitiesServices\UsuarioService.cs" />
     <Compile Include="Interfaces\Entities\IAgendaService.cs" />
@@ -132,9 +134,10 @@
     <Compile Include="Interfaces\Entities\ICargoService.cs" />
     <Compile Include="Interfaces\Entities\ICategoriaClienteService.cs" />
     <Compile Include="Interfaces\Entities\ICategoriaTelefoneService.cs" />
+    <Compile Include="Interfaces\Entities\IClienteCnpjService.cs" />
+    <Compile Include="Interfaces\Entities\IClienteService.cs" />
     <Compile Include="Interfaces\Entities\IConfiguracaoService.cs" />
     <Compile Include="Interfaces\Entities\IDepartamentoService.cs" />
-    <Compile Include="Interfaces\Entities\IEMailAgendaService.cs" />
     <Compile Include="Interfaces\Entities\IGrupoService.cs" />
     <Compile Include="Interfaces\Entities\ILogService.cs" />
     <Compile Include="Interfaces\Entities\IMensagemService.cs" />
@@ -159,9 +162,13 @@
     <Compile Include="Interfaces\Repositories\ICategoriaNotificacaoRepository.cs" />
     <Compile Include="Interfaces\Repositories\ICategoriaTelefoneRepository.cs" />
     <Compile Include="Interfaces\Repositories\ICategoriaUsuarioRepository.cs" />
+    <Compile Include="Interfaces\Repositories\IClienteAnexoRepository.cs" />
+    <Compile Include="Interfaces\Repositories\IClienteCnpjRepository.cs" />
+    <Compile Include="Interfaces\Repositories\IClienteContatoRepository.cs" />
+    <Compile Include="Interfaces\Repositories\IClienteRepository.cs" />
     <Compile Include="Interfaces\Repositories\IConfiguracaoRepository.cs" />
     <Compile Include="Interfaces\Repositories\IDepartamentoRepository.cs" />
-    <Compile Include="Interfaces\Repositories\IEMailAgendaRepository.cs" />
+    <Compile Include="Interfaces\Repositories\IGrupoContatoRepository.cs" />
     <Compile Include="Interfaces\Repositories\IGrupoRepository.cs" />
     <Compile Include="Interfaces\Repositories\ILogRepository.cs" />
     <Compile Include="Interfaces\Repositories\IMensagemAnexoRepository.cs" />
@@ -215,10 +222,22 @@
     <Compile Include="Model\CATEGORIA_NOTIFICACAO.cs">
       <DependentUpon>DB_Ridolfi_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\CATEGORIA_TELEFONE.cs">
+      <DependentUpon>DB_Ridolfi_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\CATEGORIA_USUARIO.cs">
       <DependentUpon>DB_Ridolfi_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\CLIENTE.cs">
+      <DependentUpon>DB_Ridolfi_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\CLIENTE_ANEXO.cs">
+      <DependentUpon>DB_Ridolfi_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\CLIENTE_CONTATO.cs">
+      <DependentUpon>DB_Ridolfi_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\CLIENTE_QUADRO_SOCIETARIO.cs">
       <DependentUpon>DB_Ridolfi_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\CONFIGURACAO.cs">
@@ -269,6 +288,9 @@
     <Compile Include="Model\LOAS.cs">
       <DependentUpon>DB_Ridolfi_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\LOG.cs">
+      <DependentUpon>DB_Ridolfi_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\MENSAGEM_ANEXO.cs">
       <DependentUpon>DB_Ridolfi_Model.tt</DependentUpon>
     </Compile>
@@ -297,6 +319,9 @@
       <DependentUpon>DB_Ridolfi_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\PERFIL.cs">
+      <DependentUpon>DB_Ridolfi_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\PERIODICIDADE.cs">
       <DependentUpon>DB_Ridolfi_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\PERIODICIDADE_TAREFA.cs">
@@ -341,6 +366,9 @@
     <Compile Include="Model\TELEFONE.cs">
       <DependentUpon>DB_Ridolfi_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\TELEFONES.cs">
+      <DependentUpon>DB_Ridolfi_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\TEMPLATE.cs">
       <DependentUpon>DB_Ridolfi_Model.tt</DependentUpon>
     </Compile>
@@ -383,6 +411,7 @@
     <Compile Include="WorkingClasses\CNPJ.cs" />
     <Compile Include="WorkingClasses\Endereco.cs" />
     <Compile Include="WorkingClasses\FileQueue.cs" />
+    <Compile Include="WorkingClasses\MontagemGrupo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

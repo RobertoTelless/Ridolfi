@@ -34,8 +34,12 @@ namespace EntitiesServices.Model
         public virtual DbSet<CATEGORIA_AGENDA> CATEGORIA_AGENDA { get; set; }
         public virtual DbSet<CATEGORIA_CLIENTE> CATEGORIA_CLIENTE { get; set; }
         public virtual DbSet<CATEGORIA_NOTIFICACAO> CATEGORIA_NOTIFICACAO { get; set; }
+        public virtual DbSet<CATEGORIA_TELEFONE> CATEGORIA_TELEFONE { get; set; }
         public virtual DbSet<CATEGORIA_USUARIO> CATEGORIA_USUARIO { get; set; }
         public virtual DbSet<CLIENTE> CLIENTE { get; set; }
+        public virtual DbSet<CLIENTE_ANEXO> CLIENTE_ANEXO { get; set; }
+        public virtual DbSet<CLIENTE_CONTATO> CLIENTE_CONTATO { get; set; }
+        public virtual DbSet<CLIENTE_QUADRO_SOCIETARIO> CLIENTE_QUADRO_SOCIETARIO { get; set; }
         public virtual DbSet<CONFIGURACAO> CONFIGURACAO { get; set; }
         public virtual DbSet<CONTATO> CONTATO { get; set; }
         public virtual DbSet<DEPARTAMENTO> DEPARTAMENTO { get; set; }
@@ -47,6 +51,7 @@ namespace EntitiesServices.Model
         public virtual DbSet<GRUPO_CLIENTE> GRUPO_CLIENTE { get; set; }
         public virtual DbSet<HONORARIO> HONORARIO { get; set; }
         public virtual DbSet<LOAS> LOAS { get; set; }
+        public virtual DbSet<LOG> LOG { get; set; }
         public virtual DbSet<MENSAGEM_ANEXO> MENSAGEM_ANEXO { get; set; }
         public virtual DbSet<MENSAGENS> MENSAGENS { get; set; }
         public virtual DbSet<MENSAGENS_DESTINOS> MENSAGENS_DESTINOS { get; set; }
@@ -57,6 +62,7 @@ namespace EntitiesServices.Model
         public virtual DbSet<NOTIFICACAO_ANEXO> NOTIFICACAO_ANEXO { get; set; }
         public virtual DbSet<PARENTESCO> PARENTESCO { get; set; }
         public virtual DbSet<PERFIL> PERFIL { get; set; }
+        public virtual DbSet<PERIODICIDADE> PERIODICIDADE { get; set; }
         public virtual DbSet<PERIODICIDADE_TAREFA> PERIODICIDADE_TAREFA { get; set; }
         public virtual DbSet<PRECATORIO> PRECATORIO { get; set; }
         public virtual DbSet<PRECATORIO_ESTADO> PRECATORIO_ESTADO { get; set; }
@@ -71,6 +77,7 @@ namespace EntitiesServices.Model
         public virtual DbSet<TAREFA_NOTIFICACAO> TAREFA_NOTIFICACAO { get; set; }
         public virtual DbSet<TAREFA_VINCULO> TAREFA_VINCULO { get; set; }
         public virtual DbSet<TELEFONE> TELEFONE { get; set; }
+        public virtual DbSet<TELEFONES> TELEFONES { get; set; }
         public virtual DbSet<TEMPLATE> TEMPLATE { get; set; }
         public virtual DbSet<TEMPLATE_EMAIL> TEMPLATE_EMAIL { get; set; }
         public virtual DbSet<TEMPLATE_SMS> TEMPLATE_SMS { get; set; }

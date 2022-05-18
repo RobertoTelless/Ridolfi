@@ -19,7 +19,7 @@ namespace ModelServices.EntitiesServices
     public class LogService : ServiceBase<LOG>, ILogService
     {
         private readonly ILogRepository _logRepository;
-        protected ERP_CRMEntities Db = new ERP_CRMEntities();
+        protected DB_RidolfiEntities Db = new DB_RidolfiEntities();
 
         public LogService(ILogRepository logRepository) : base(logRepository)
         {

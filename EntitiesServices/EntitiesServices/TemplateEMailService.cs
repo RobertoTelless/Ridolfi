@@ -20,7 +20,7 @@ namespace ModelServices.EntitiesServices
     {
         private readonly ITemplateEMailRepository _baseRepository;
         private readonly ILogRepository _logRepository;
-        protected ERP_CRMEntities Db = new ERP_CRMEntities();
+        protected DB_RidolfiEntities Db = new DB_RidolfiEntities();
 
         public TemplateEMailService(ITemplateEMailRepository baseRepository, ILogRepository logRepository) : base(baseRepository)
         {

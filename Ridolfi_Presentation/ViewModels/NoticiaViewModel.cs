@@ -11,7 +11,6 @@ namespace ERP_CRM_Solution.ViewModels
     {
         [Key]
         public int NOTC_CD_ID { get; set; }
-        public int ASSI_CD_ID { get; set; }
         [Required(ErrorMessage = "Campo DATA DE EMISSÃO obrigatorio")]
         [DataType(DataType.Date, ErrorMessage = "DATA DE EMISSÂO Deve ser uma data válida")]
         public System.DateTime NOTC_DT_EMISSAO { get; set; }
@@ -39,6 +38,5 @@ namespace ERP_CRM_Solution.ViewModels
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<NOTICIA_COMENTARIO> NOTICIA_COMENTARIO { get; set; }
-        public virtual ASSINANTE ASSINANTE { get; set; }
     }
 }

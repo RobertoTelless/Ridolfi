@@ -22,7 +22,7 @@ namespace ModelServices.EntitiesServices
         private readonly ILogRepository _logRepository;
         private readonly IGrupoContatoRepository _contRepository;
         private readonly IClienteRepository _cliRepository;
-        protected ERP_CRMEntities Db = new ERP_CRMEntities();
+        protected DB_RidolfiEntities Db = new DB_RidolfiEntities();
 
         public GrupoService(IGrupoRepository baseRepository, ILogRepository logRepository, IGrupoContatoRepository contRepository, IClienteRepository cliRepository) : base(baseRepository)
         {

@@ -15,7 +15,6 @@ namespace DataServices.Repositories
         {
             IQueryable<USUARIO> query = Db.USUARIO.Where(p => p.USUA_IN_ATIVO == 1);
             query = query.Where(p => p.USUA_NM_EMAIL == email);
-            query = query.Where(p => p.ASSI_CD_ID == idAss);
             return query.FirstOrDefault();
         }
 
@@ -48,34 +47,6 @@ namespace DataServices.Repositories
         {
             IQueryable<USUARIO> query = Db.USUARIO.Where(p => p.USUA_IN_ATIVO == 1);
             query = query.Where(p => p.PERFIL.PERF_SG_SIGLA == "ADM");
-            query = query.Include(p => p.ASSINANTE);
-            query = query.Include(p => p.PERFIL);
-            return query.FirstOrDefault();
-        }
-
-        public USUARIO GetComprador(Int32 idAss)
-        {
-            IQueryable<USUARIO> query = Db.USUARIO.Where(p => p.USUA_IN_ATIVO == 1);
-            query = query.Where(p => p.USUA_IN_COMPRADOR == 1);
-            query = query.Include(p => p.ASSINANTE);
-            query = query.Include(p => p.PERFIL);
-            return query.FirstOrDefault();
-        }
-
-        public USUARIO GetAprovador(Int32 idAss)
-        {
-            IQueryable<USUARIO> query = Db.USUARIO.Where(p => p.USUA_IN_ATIVO == 1);
-            query = query.Where(p => p.USUA_IN_APROVADOR == 1);
-            query = query.Include(p => p.ASSINANTE);
-            query = query.Include(p => p.PERFIL);
-            return query.FirstOrDefault();
-        }
-
-        public USUARIO GetTecnico(Int32 idAss)
-        {
-            IQueryable<USUARIO> query = Db.USUARIO.Where(p => p.USUA_IN_ATIVO == 1);
-            query = query.Where(p => p.USUA_IN_TECNICO.Value == 1);
-            query = query.Include(p => p.ASSINANTE);
             query = query.Include(p => p.PERFIL);
             return query.FirstOrDefault();
         }
@@ -84,7 +55,6 @@ namespace DataServices.Repositories
         {
             IQueryable<USUARIO> query = Db.USUARIO.Where(p => p.USUA_IN_ATIVO == 1);
             query = query.Where(p => p.USUA_IN_BLOQUEADO == 0);
-            query = query.Where(p => p.ASSI_CD_ID == idAss);
             return query.ToList();
         }
 
@@ -92,7 +62,6 @@ namespace DataServices.Repositories
         {
             IQueryable<USUARIO> query = Db.USUARIO.Where(p => p.USUA_IN_ATIVO == 1);
             query = query.Where(p => p.USUA_IN_TECNICO.Value == 1);
-            query = query.Where(p => p.ASSI_CD_ID == idAss);
             return query.ToList();
         }
 
@@ -100,7 +69,6 @@ namespace DataServices.Repositories
         {
             IQueryable<USUARIO> query = Db.USUARIO.Where(p => p.USUA_IN_ATIVO == 1);
             query = query.Where(p => p.USUA_IN_BLOQUEADO == 1);
-            query = query.Where(p => p.ASSI_CD_ID == idAss);
             return query.ToList();
         }
 
@@ -109,21 +77,18 @@ namespace DataServices.Repositories
             IQueryable<USUARIO> query = Db.USUARIO.Where(p => p.USUA_IN_ATIVO == 1);
             query = query.Where(p => p.USUA_IN_BLOQUEADO == 0);
             query = query.Where(p => DbFunctions.TruncateTime(p.USUA_DT_ACESSO) == DbFunctions.TruncateTime(DateTime.Today.Date));
-            query = query.Where(p => p.ASSI_CD_ID == idAss);
             return query.ToList();
         }
 
         public List<USUARIO> GetAllUsuariosAdm(Int32 idAss)
         {
             IQueryable<USUARIO> query = Db.USUARIO.Where(p => p.USUA_IN_ATIVO == 1);
-            query = query.Where(p => p.ASSI_CD_ID == idAss);
             return query.ToList();
         }
 
         public List<USUARIO> GetAllUsuarios(Int32 idAss)
         {
             IQueryable<USUARIO> query = Db.USUARIO;
-            query = query.Where(p => p.ASSI_CD_ID == idAss);
             return query.ToList();
         }
 
@@ -160,7 +125,6 @@ namespace DataServices.Repositories
             //}
             if (query != null)
             {
-                query = query.Where(p => p.ASSI_CD_ID == idAss);
                 query = query.OrderBy(a => a.USUA_NM_NOME);
                 query = query.Include(p => p.PERFIL);
                 lista = query.ToList<USUARIO>();

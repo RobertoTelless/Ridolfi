@@ -23,7 +23,7 @@ namespace ModelServices.EntitiesServices
         private readonly ICategoriaAgendaRepository _tipoRepository;
         private readonly IAgendaAnexoRepository _anexoRepository;
 
-        protected ERP_CRMEntities Db = new ERP_CRMEntities();
+        protected DB_RidolfiEntities Db = new DB_RidolfiEntities();
 
         public AgendaService(IAgendaRepository baseRepository, ILogRepository logRepository, ICategoriaAgendaRepository tipoRepository, IAgendaAnexoRepository anexoRepository) : base(baseRepository)
         {

@@ -7,12 +7,12 @@ using EntitiesServices.Model;
 
 namespace ModelServices.Interfaces.Repositories
 {
-    public interface ITelefoneRepository : IRepositoryBase<TELEFONE>
+    public interface ITelefoneRepository : IRepositoryBase<TELEFONES>
     {
-        TELEFONE CheckExist(TELEFONE item, Int32 idAss);
-        TELEFONE GetItemById(Int32 id);
-        List<TELEFONE> GetAllItens(Int32 idAss);
-        List<TELEFONE> GetAllItensAdm(Int32 idAss);
-        List<TELEFONE> ExecuteFilter(Int32? catId, String nome, String telefone, String cidade, Int32? uf, String celular, String email, Int32 idAss);
+        TELEFONES CheckExist(TELEFONES item, Int32 idAss);
+        TELEFONES GetItemById(Int32 id);
+        List<TELEFONES> GetAllItens(Int32 idAss);
+        List<TELEFONES> GetAllItensAdm(Int32 idAss);
+        List<TELEFONES> ExecuteFilter(Int32? catId, String nome, String telefone, String cidade, Int32? uf, String celular, String email, Int32 idAss);
     }
 }

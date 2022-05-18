@@ -22,7 +22,7 @@ namespace ModelServices.EntitiesServices
         private readonly ILogRepository _logRepository;
         private readonly INotificacaoAnexoRepository _anexoRepository;
         private readonly ICategoriaNotificacaoRepository _catRepository;
-        protected ERP_CRMEntities Db = new ERP_CRMEntities();
+        protected DB_RidolfiEntities Db = new DB_RidolfiEntities();
 
         public NotificacaoService(INotificacaoRepository baseRepository, ILogRepository logRepository, INotificacaoAnexoRepository anexoRepository, ICategoriaNotificacaoRepository catRepository) : base(baseRepository)
         {
@@ -141,7 +141,6 @@ namespace ModelServices.EntitiesServices
                 try
                 {
                     item.USUARIO = null;
-                    item.ASSINANTE = null;
                     item.CATEGORIA_NOTIFICACAO = null;
                     NOTIFICACAO obj = _baseRepository.GetById(item.NOTI_CD_ID);
                     _baseRepository.Detach(obj);

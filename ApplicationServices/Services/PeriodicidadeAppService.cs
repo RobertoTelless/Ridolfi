@@ -50,7 +50,6 @@ namespace ApplicationServices.Services
                 LOG log = new LOG
                 {
                     LOG_DT_DATA = DateTime.Now,
-                    ASSI_CD_ID = usuario.ASSI_CD_ID,
                     USUA_CD_ID = usuario.USUA_CD_ID,
                     LOG_NM_OPERACAO = "AddPERI",
                     LOG_IN_ATIVO = 1,
@@ -75,7 +74,6 @@ namespace ApplicationServices.Services
                 LOG log = new LOG
                 {
                     LOG_DT_DATA = DateTime.Now,
-                    ASSI_CD_ID = usuario.ASSI_CD_ID,
                     USUA_CD_ID = usuario.USUA_CD_ID,
                     LOG_NM_OPERACAO = "EditPERI",
                     LOG_IN_ATIVO = 1,
@@ -98,10 +96,10 @@ namespace ApplicationServices.Services
             try
             {
                 // Checa integridade
-                if (item.CONTA_PAGAR.Count > 0)
-                {
-                    return 1;
-                }
+                //if (item.CONTA_PAGAR.Count > 0)
+                //{
+                //    return 1;
+                //}
 
                 // Acerta campos
                 item.PERI_IN_ATIVO = 0;
@@ -110,7 +108,6 @@ namespace ApplicationServices.Services
                 LOG log = new LOG
                 {
                     LOG_DT_DATA = DateTime.Now,
-                    ASSI_CD_ID = usuario.ASSI_CD_ID,
                     USUA_CD_ID = usuario.USUA_CD_ID,
                     LOG_IN_ATIVO = 1,
                     LOG_NM_OPERACAO = "DelPERI",
@@ -139,7 +136,6 @@ namespace ApplicationServices.Services
                 LOG log = new LOG
                 {
                     LOG_DT_DATA = DateTime.Now,
-                    ASSI_CD_ID = usuario.ASSI_CD_ID,
                     USUA_CD_ID = usuario.USUA_CD_ID,
                     LOG_IN_ATIVO = 1,
                     LOG_NM_OPERACAO = "ReatPERI",

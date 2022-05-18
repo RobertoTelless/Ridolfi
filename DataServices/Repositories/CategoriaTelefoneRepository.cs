@@ -23,14 +23,12 @@ namespace DataServices.Repositories
         public List<CATEGORIA_TELEFONE> GetAllItensAdm(Int32 idAss)
         {
             IQueryable<CATEGORIA_TELEFONE> query = Db.CATEGORIA_TELEFONE;
-            query = query.Where(p => p.ASSI_CD_ID == idAss);
             return query.ToList();
         }
 
         public List<CATEGORIA_TELEFONE> GetAllItens(Int32 idAss)
         {
             IQueryable<CATEGORIA_TELEFONE> query = Db.CATEGORIA_TELEFONE.Where(p => p.CATE_IN_ATIVO == 1);
-            query = query.Where(p => p.ASSI_CD_ID == idAss);
             return query.ToList();
         }
 

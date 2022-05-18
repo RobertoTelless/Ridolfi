@@ -12,7 +12,6 @@ namespace ERP_CRM_Solution.ViewModels
     {
         [Key]
         public int MENS_CD_ID { get; set; }
-        public int ASSI_CD_ID { get; set; }
         public int USUA_CD_ID { get; set; }
         public Nullable<int> TEMP_CD_ID { get; set; }
         public Nullable<int> MENS_IN_ATIVO { get; set; }
@@ -53,11 +52,6 @@ namespace ERP_CRM_Solution.ViewModels
         public String MODELO { get; set; }
         public string MENS_TX_TEXTO_LIMPO { get; set; }
 
-        public virtual ASSINANTE ASSINANTE { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CRM> CRM { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EMAIL_AGENDAMENTO> EMAIL_AGENDAMENTO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MENSAGEM_ANEXO> MENSAGEM_ANEXO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -65,6 +59,5 @@ namespace ERP_CRM_Solution.ViewModels
         public virtual TEMPLATE TEMPLATE { get; set; }
         public virtual USUARIO USUARIO { get; set; }
         public virtual TEMPLATE_SMS TEMPLATE_SMS { get; set; }
-        public virtual TEMPLATE_PROPOSTA TEMPLATE_PROPOSTA { get; set; }
     }
 }

@@ -26,10 +26,8 @@ namespace ERP_CRM_Solution.ViewModels
         public string TEMP_TX_CORPO { get; set; }
         public string TEMP_TX_DADOS { get; set; }
         public Nullable<System.DateTime> TEMP_DT_CRIACAO { get; set; }
-        public Nullable<int> ASSI_CD_ID { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MENSAGENS> MENSAGENS { get; set; }
-        public virtual ASSINANTE ASSINANTE { get; set; }
     }
 }

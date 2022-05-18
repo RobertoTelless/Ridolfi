@@ -122,17 +122,13 @@ namespace ApplicationServices.Services
                 {
                     item.USUARIO = null;
                 }
-                if (item.ASSINANTE != null)
-                {
-                    item.ASSINANTE = null;
-                }
                 if (item.PERIODICIDADE_TAREFA != null)
                 {
                     item.PERIODICIDADE_TAREFA = null;
                 }
 
                 // Verifica existencia prévia
-                if (_baseService.CheckExist(item, usuario.ASSI_CD_ID) != null)
+                if (_baseService.CheckExist(item, usuario.ASSI_CD_ID.Value) != null)
                 {
                     return 1;
                 }
@@ -148,7 +144,6 @@ namespace ApplicationServices.Services
                 {
                     LOG_DT_DATA = DateTime.Now,
                     USUA_CD_ID = usuario.USUA_CD_ID,
-                    ASSI_CD_ID = usuario.ASSI_CD_ID,
                     LOG_NM_OPERACAO = "AddTARE",
                     LOG_IN_ATIVO = 1,
                     LOG_TX_REGISTRO = Serialization.SerializeJSON<TAREFA>(item)
@@ -187,7 +182,6 @@ namespace ApplicationServices.Services
                 {
                     LOG_DT_DATA = DateTime.Now,
                     USUA_CD_ID = usuario.USUA_CD_ID,
-                    ASSI_CD_ID = usuario.ASSI_CD_ID,
                     LOG_NM_OPERACAO = "EditTARE",
                     LOG_IN_ATIVO = 1,
                     LOG_TX_REGISTRO = Serialization.SerializeJSON<TAREFA>(item),
@@ -264,7 +258,6 @@ namespace ApplicationServices.Services
                 {
                     LOG_DT_DATA = DateTime.Now,
                     USUA_CD_ID = usuario.USUA_CD_ID,
-                    ASSI_CD_ID = usuario.ASSI_CD_ID,
                     LOG_IN_ATIVO = 1,
                     LOG_NM_OPERACAO = "DelTARE",
                     LOG_TX_REGISTRO = Serialization.SerializeJSON<TAREFA>(item)
@@ -318,7 +311,6 @@ namespace ApplicationServices.Services
                 {
                     LOG_DT_DATA = DateTime.Now,
                     USUA_CD_ID = usuario.USUA_CD_ID,
-                    ASSI_CD_ID = usuario.ASSI_CD_ID,
                     LOG_IN_ATIVO = 1,
                     LOG_NM_OPERACAO = "ReatTARE",
                     //LOG_TX_REGISTRO = Serialization.SerializeJSON<TAREFA>(item)

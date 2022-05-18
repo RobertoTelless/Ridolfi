@@ -11,7 +11,6 @@ namespace ERP_CRM_Solution.ViewModels
     {
         [Key]
         public int TEEM_CD_ID { get; set; }
-        public Nullable<int> ASSI_CD_ID { get; set; }
         [Required(ErrorMessage = "Campo NOME obrigatorio")]
         [StringLength(50, MinimumLength = 1, ErrorMessage = "O NOME deve conter no minimo 1 caracteres e no máximo 50 caracteres.")]
         public string TEEM_NM_NOME { get; set; }
@@ -31,7 +30,6 @@ namespace ERP_CRM_Solution.ViewModels
         public string file { get; set; }
         public Int32 html { get; set; }
 
-        public virtual ASSINANTE ASSINANTE { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MENSAGENS> MENSAGENS { get; set; }
 

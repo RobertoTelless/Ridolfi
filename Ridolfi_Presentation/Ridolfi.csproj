@@ -231,6 +231,33 @@
     </Compile>
     <Compile Include="Helpers\HMTLHelperExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\AgendaViewModel.cs" />
+    <Compile Include="ViewModels\BancoViewModel.cs" />
+    <Compile Include="ViewModels\CargoViewModel.cs" />
+    <Compile Include="ViewModels\CategoriaClienteViewModel.cs" />
+    <Compile Include="ViewModels\ClienteContatoViewModel.cs" />
+    <Compile Include="ViewModels\ClienteViewModel.cs" />
+    <Compile Include="ViewModels\ConfiguracaoViewModel.cs" />
+    <Compile Include="ViewModels\DepartamentoViewModel.cs" />
+    <Compile Include="ViewModels\GrupoContatoViewModel.cs" />
+    <Compile Include="ViewModels\GrupoViewModel.cs" />
+    <Compile Include="ViewModels\LogViewModel.cs" />
+    <Compile Include="ViewModels\MensagemViewModel.cs" />
+    <Compile Include="ViewModels\MensagemWidgetViewModel.cs" />
+    <Compile Include="ViewModels\ModeloViewModel.cs" />
+    <Compile Include="ViewModels\NoticiaComentarioViewModel.cs" />
+    <Compile Include="ViewModels\NoticiaViewModel.cs" />
+    <Compile Include="ViewModels\NotificacaoAnexoViewModel.cs" />
+    <Compile Include="ViewModels\NotificacaoViewModel.cs" />
+    <Compile Include="ViewModels\TarefaAcompanhamentoViewModel.cs" />
+    <Compile Include="ViewModels\TarefaViewModel.cs" />
+    <Compile Include="ViewModels\TelefoneViewModel.cs" />
+    <Compile Include="ViewModels\TemplateEmailViewModel.cs" />
+    <Compile Include="ViewModels\TemplateSMSViewModel.cs" />
+    <Compile Include="ViewModels\TemplateViewModel.cs" />
+    <Compile Include="ViewModels\UsuarioAnexoViewModel.cs" />
+    <Compile Include="ViewModels\UsuarioLoginViewModel.cs" />
+    <Compile Include="ViewModels\UsuarioViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="amcharts4\charts.js" />
@@ -3545,7 +3572,6 @@
     <Folder Include="Filters\" />
     <Folder Include="Models\" />
     <Folder Include="TemplatesHTML\" />
-    <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

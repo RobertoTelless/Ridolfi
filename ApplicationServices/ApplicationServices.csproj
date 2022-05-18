@@ -105,9 +105,10 @@
     <Compile Include="Interfaces\ICargoAppService.cs" />
     <Compile Include="Interfaces\ICategoriaClienteAppService.cs" />
     <Compile Include="Interfaces\ICategoriaTelefoneAppService.cs" />
+    <Compile Include="Interfaces\IClienteAppService.cs" />
+    <Compile Include="Interfaces\IClienteCnpjAppService.cs" />
     <Compile Include="Interfaces\IConfiguracaoAppService.cs" />
     <Compile Include="Interfaces\IDepartamentoAppService.cs" />
-    <Compile Include="Interfaces\IEMailAgendaAppService.cs" />
     <Compile Include="Interfaces\IGrupoAppService.cs" />
     <Compile Include="Interfaces\ILogAppService.cs" />
     <Compile Include="Interfaces\IMensagemAppService.cs" />
@@ -128,9 +129,10 @@
     <Compile Include="Services\CargoAppService.cs" />
     <Compile Include="Services\CategoriaClienteAppService.cs" />
     <Compile Include="Services\CategoriaTelefoneAppService.cs" />
+    <Compile Include="Services\ClienteAppService.cs" />
+    <Compile Include="Services\ClienteCnpjAppService.cs" />
     <Compile Include="Services\ConfiguracaoAppService.cs" />
     <Compile Include="Services\DepartamentoAppService.cs" />
-    <Compile Include="Services\EMailAgendaAppService.cs" />
     <Compile Include="Services\GrupoAppService.cs" />
     <Compile Include="Services\LogAppService.cs" />
     <Compile Include="Services\MensagemAppService.cs" />

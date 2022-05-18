@@ -20,7 +20,7 @@ namespace ModelServices.EntitiesServices
     {
         private readonly ICategoriaTelefoneRepository _baseRepository;
         private readonly ILogRepository _logRepository;
-        protected ERP_CRMEntities Db = new ERP_CRMEntities();
+        protected DB_RidolfiEntities Db = new DB_RidolfiEntities();
 
         public CategoriaTelefoneService(ICategoriaTelefoneRepository baseRepository, ILogRepository logRepository) : base(baseRepository)
         {

@@ -20,7 +20,7 @@ namespace ModelServices.EntitiesServices
     {
         private readonly IPeriodicidadeRepository _baseRepository;
         private readonly ILogRepository _logRepository;
-        protected ERP_CRMEntities Db = new ERP_CRMEntities();
+        protected DB_RidolfiEntities Db = new DB_RidolfiEntities();
 
         public PeriodicidadeService(IPeriodicidadeRepository baseRepository, ILogRepository logRepository) : base(baseRepository)
         {

@@ -26,7 +26,7 @@ namespace ModelServices.EntitiesServices
         private readonly IMensagemAnexoRepository _anexoRepository;
         private readonly IMensagemDestinoRepository _destRepository;
         private readonly ITemplateSMSRepository _tsmsRepository;
-        protected ERP_CRMEntities Db = new ERP_CRMEntities();
+        protected DB_RidolfiEntities Db = new DB_RidolfiEntities();
 
         public MensagemService(IMensagemRepository baseRepository, ILogRepository logRepository, ITemplateRepository tempRepository, ICategoriaClienteRepository tipoRepository, IUFRepository ufRepository, IMensagemAnexoRepository anexoRepository, IMensagemDestinoRepository destRepository, ITemplateSMSRepository tsmsRepository) : base(baseRepository)
         {

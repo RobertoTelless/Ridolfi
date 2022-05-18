@@ -18,7 +18,6 @@ namespace DataServices.Repositories
         {
             IQueryable<GRUPO> query = Db.GRUPO;
             query = query.Where(p => p.GRUP_NM_NOME == conta.GRUP_NM_NOME);
-            query = query.Where(p => p.ASSI_CD_ID == idAss);
             return query.FirstOrDefault();
         }
 
@@ -32,14 +31,12 @@ namespace DataServices.Repositories
         public List<GRUPO> GetAllItens(Int32 idAss)
         {
             IQueryable<GRUPO> query = Db.GRUPO.Where(p => p.GRUP_IN_ATIVO == 1);
-            query = query.Where(p => p.ASSI_CD_ID == idAss);
             return query.ToList();
         }
 
         public List<GRUPO> GetAllItensAdm(Int32 idAss)
         {
             IQueryable<GRUPO> query = Db.GRUPO;
-            query = query.Where(p => p.ASSI_CD_ID == idAss);
             return query.ToList();
         }
 

@@ -23,7 +23,6 @@ namespace DataServices.Repositories
         {
             IQueryable<NOTICIA> query = Db.NOTICIA.Where(p => p.NOTC_IN_ATIVO == 1);
             query = query.Include(p => p.NOTICIA_COMENTARIO);
-            query = query.Where(p => p.ASSI_CD_ID == idAss);
             return query.ToList();
         }
 
@@ -31,7 +30,6 @@ namespace DataServices.Repositories
         {
             IQueryable<NOTICIA> query = Db.NOTICIA;
             query = query.Include(p => p.NOTICIA_COMENTARIO);
-            query = query.Where(p => p.ASSI_CD_ID == idAss);
             return query.ToList();
         }
 
@@ -40,7 +38,6 @@ namespace DataServices.Repositories
             IQueryable<NOTICIA> query = Db.NOTICIA;
             query = query.Where(p => DbFunctions.TruncateTime(p.NOTC_DT_VALIDADE) >= DbFunctions.TruncateTime(DateTime.Today));
             query = query.Include(p => p.NOTICIA_COMENTARIO);
-            query = query.Where(p => p.ASSI_CD_ID == idAss);
             query = query.Where(p => p.NOTC_IN_ATIVO == 1);
             query = query.OrderByDescending(p => p.NOTC_DT_DATA_AUTOR);
             return query.ToList();
@@ -72,7 +69,6 @@ namespace DataServices.Repositories
             }
             if (query != null)
             {
-                query = query.Where(p => p.ASSI_CD_ID == idAss);
                 query = query.OrderBy(a => a.NOTC_DT_EMISSAO);
                 lista = query.ToList<NOTICIA>();
             }

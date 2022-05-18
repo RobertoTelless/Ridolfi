@@ -106,11 +106,16 @@
     <Compile Include="Repositories\CargoRepository.cs" />
     <Compile Include="Repositories\CategoriaAgendaRepository.cs" />
     <Compile Include="Repositories\CategoriaClienteRepository.cs" />
+    <Compile Include="Repositories\CategoriaNotificacaoRepository.cs" />
     <Compile Include="Repositories\CategoriaTelefoneRepository.cs" />
     <Compile Include="Repositories\CategoriaUsuarioRepository.cs" />
+    <Compile Include="Repositories\ClienteAnexoRepository.cs" />
+    <Compile Include="Repositories\ClienteCnpjRepository.cs" />
+    <Compile Include="Repositories\ClienteContatoRepository.cs" />
+    <Compile Include="Repositories\ClienteRepository.cs" />
     <Compile Include="Repositories\ConfiguracaoRepository.cs" />
     <Compile Include="Repositories\DepartamentoRepository.cs" />
-    <Compile Include="Repositories\EMailAgendaRepository.cs" />
+    <Compile Include="Repositories\GrupoContatoRepository.cs" />
     <Compile Include="Repositories\GrupoRepository.cs" />
     <Compile Include="Repositories\LogRepository.cs" />
     <Compile Include="Repositories\MensagemAnexoRepository.cs" />

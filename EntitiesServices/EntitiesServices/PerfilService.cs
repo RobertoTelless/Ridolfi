@@ -21,7 +21,7 @@ namespace ModelServices.EntitiesServices
         private readonly IPerfilRepository _perfilRepository;
         private readonly ILogRepository _logRepository;
         private readonly IConfiguracaoRepository _configuracaoRepository;
-        protected ERP_CRMEntities Db = new ERP_CRMEntities();
+        protected DB_RidolfiEntities Db = new DB_RidolfiEntities();
 
         public PerfilService(IPerfilRepository perfilRepository, ILogRepository logRepository, IConfiguracaoRepository configuracaoRepository) : base(perfilRepository)
         {

@@ -23,7 +23,7 @@ namespace ModelServices.EntitiesServices
         private readonly ITipoTarefaRepository _tipoRepository;
         private readonly ITarefaAnexoRepository _anexoRepository;
         private readonly IUsuarioRepository _usuRepository;
-        protected ERP_CRMEntities Db = new ERP_CRMEntities();
+        protected DB_RidolfiEntities Db = new DB_RidolfiEntities();
 
         public TarefaService(ITarefaRepository baseRepository, ILogRepository logRepository, ITipoTarefaRepository tipoRepository, ITarefaAnexoRepository anexoRepository, IUsuarioRepository usuRepository) : base(baseRepository)
         {

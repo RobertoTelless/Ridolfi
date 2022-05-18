@@ -148,7 +148,6 @@ namespace ApplicationServices.Services
                 LOG log = new LOG
                 {
                     LOG_DT_DATA = DateTime.Now,
-                    ASSI_CD_ID = usuario.ASSI_CD_ID,
                     USUA_CD_ID = usuario.USUA_CD_ID,
                     LOG_NM_OPERACAO = "AddMENS",
                     LOG_IN_ATIVO = 1,
@@ -173,7 +172,6 @@ namespace ApplicationServices.Services
                 LOG log = new LOG
                 {
                     LOG_DT_DATA = DateTime.Now,
-                    ASSI_CD_ID = usuario.ASSI_CD_ID,
                     USUA_CD_ID = usuario.USUA_CD_ID,
                     LOG_NM_OPERACAO = "EditMENS",
                     LOG_IN_ATIVO = 1,
@@ -211,14 +209,12 @@ namespace ApplicationServices.Services
 
                 // Acerta campos
                 item.MENS_IN_ATIVO = 0;
-                item.ASSINANTE = null;
                 item.USUARIO = null;
 
                 // Monta Log
                 LOG log = new LOG
                 {
                     LOG_DT_DATA = DateTime.Now,
-                    ASSI_CD_ID = usuario.ASSI_CD_ID,
                     USUA_CD_ID = usuario.USUA_CD_ID,
                     LOG_IN_ATIVO = 1,
                     LOG_NM_OPERACAO = "DelMENS",
@@ -242,14 +238,12 @@ namespace ApplicationServices.Services
 
                 // Acerta campos
                 item.MENS_IN_ATIVO = 1;
-                item.ASSINANTE = null;
                 item.USUARIO = null;                
 
                 // Monta Log
                 LOG log = new LOG
                 {
                     LOG_DT_DATA = DateTime.Now,
-                    ASSI_CD_ID = usuario.ASSI_CD_ID,
                     USUA_CD_ID = usuario.USUA_CD_ID,
                     LOG_IN_ATIVO = 1,
                     LOG_NM_OPERACAO = "ReatMENS",

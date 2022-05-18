@@ -14,8 +14,6 @@ namespace ERP_CRM_Solution.ViewModels
         public int AGEN_CD_ID { get; set; }
         [Required(ErrorMessage = "Campo USUÁRIO obrigatorio")]
         public int USUA_CD_ID { get; set; }
-        [Required(ErrorMessage = "Campo ASSINANTE obrigatorio")]
-        public int ASSI_CD_ID { get; set; }
         [Required(ErrorMessage = "Campo CATEGORIA obrigatorio")]
         public Nullable<int> CAAG_CD_ID { get; set; }
         [Required(ErrorMessage = "Campo DATA obrigatorio")]
@@ -38,16 +36,10 @@ namespace ERP_CRM_Solution.ViewModels
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AGENDA_ANEXO> AGENDA_ANEXO { get; set; }
-        public virtual ASSINANTE ASSINANTE { get; set; }
         public virtual CATEGORIA_AGENDA CATEGORIA_AGENDA { get; set; }
         public virtual USUARIO USUARIO { get; set; }
         public virtual USUARIO USUARIO1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AGENDA_VINCULO> AGENDA_VINCULO { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ATENDIMENTO_AGENDA> ATENDIMENTO_AGENDA { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ORDEM_SERVICO_AGENDA> ORDEM_SERVICO_AGENDA { get; set; }
-        public virtual CRM CRM { get; set; }
     }
 }

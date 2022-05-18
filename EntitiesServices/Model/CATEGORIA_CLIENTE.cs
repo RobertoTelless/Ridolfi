@@ -14,8 +14,17 @@ namespace EntitiesServices.Model
     
     public partial class CATEGORIA_CLIENTE
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public CATEGORIA_CLIENTE()
+        {
+            this.CLIENTE = new HashSet<CLIENTE>();
+        }
+    
         public int CACL_CD_ID { get; set; }
         public string CACL_NM_NOME { get; set; }
         public Nullable<int> CACL_IN_ATIVO { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CLIENTE> CLIENTE { get; set; }
     }
 }

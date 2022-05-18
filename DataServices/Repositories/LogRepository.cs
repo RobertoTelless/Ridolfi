@@ -23,7 +23,6 @@ namespace DataServices.Repositories
         public List<LOG> GetAllItens(Int32 idAss)
         {
             IQueryable<LOG> query = Db.LOG.Where(p => p.LOG_IN_ATIVO == 1);
-            query = query.Where(p => p.ASSI_CD_ID == idAss);
             query = query.OrderByDescending(a => a.LOG_DT_DATA);
             return query.ToList();
         }
@@ -31,7 +30,6 @@ namespace DataServices.Repositories
         public List<LOG> GetAllItensDataCorrente(Int32 idAss)
         {
             IQueryable<LOG> query = Db.LOG.Where(p => p.LOG_IN_ATIVO == 1);
-            query = query.Where(p => p.ASSI_CD_ID == idAss);
             query = query.Where(p => DbFunctions.TruncateTime(p.LOG_DT_DATA) == DbFunctions.TruncateTime(DateTime.Today.Date));
             query = query.OrderByDescending(a => a.LOG_DT_DATA);
             return query.ToList();
@@ -41,7 +39,6 @@ namespace DataServices.Repositories
         {
             IQueryable<LOG> query = Db.LOG.Where(p => p.LOG_IN_ATIVO == 1);
             query = query.Where(p => DbFunctions.TruncateTime(p.LOG_DT_DATA).Value.Month == DbFunctions.TruncateTime(DateTime.Today.Date).Value.Month);
-            query = query.Where(p => p.ASSI_CD_ID == idAss);
             query = query.OrderByDescending(a => a.LOG_DT_DATA);
             return query.ToList();
         }
@@ -51,7 +48,6 @@ namespace DataServices.Repositories
             var currentMonth = DateTime.Today.Month;
             var previousMonth = DateTime.Today.AddMonths(-1).Month;
             IQueryable<LOG> query = Db.LOG.Where(p => p.LOG_IN_ATIVO == 1);
-            query = query.Where(p => p.ASSI_CD_ID == idAss);
             query = query.Where(p => DbFunctions.TruncateTime(p.LOG_DT_DATA).Value.Month == previousMonth);
             query = query.OrderByDescending(a => a.LOG_DT_DATA);
             return query.ToList();
@@ -62,7 +58,6 @@ namespace DataServices.Repositories
             IQueryable<LOG> query = Db.LOG.Where(p => p.LOG_IN_ATIVO == 1);
             query = query.Where(p => p.USUA_CD_ID == id);
             query = query.OrderByDescending(a => a.LOG_DT_DATA);
-            query = query.Where(p => p.ASSI_CD_ID == idAss);
             return query.ToList();
         }
 
@@ -84,7 +79,6 @@ namespace DataServices.Repositories
             }
             if (query != null)
             {
-                query = query.Where(p => p.ASSI_CD_ID == idAss);
                 query = query.OrderByDescending(a => a.LOG_DT_DATA);
                 lista = query.ToList<LOG>();
             }

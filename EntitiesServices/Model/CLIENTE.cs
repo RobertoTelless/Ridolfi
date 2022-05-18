@@ -17,6 +17,9 @@ namespace EntitiesServices.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public CLIENTE()
         {
+            this.CLIENTE_ANEXO = new HashSet<CLIENTE_ANEXO>();
+            this.CLIENTE_CONTATO = new HashSet<CLIENTE_CONTATO>();
+            this.CLIENTE_QUADRO_SOCIETARIO = new HashSet<CLIENTE_QUADRO_SOCIETARIO>();
             this.GRUPO_CLIENTE = new HashSet<GRUPO_CLIENTE>();
             this.MENSAGENS_DESTINOS = new HashSet<MENSAGENS_DESTINOS>();
         }
@@ -35,7 +38,14 @@ namespace EntitiesServices.Model
         public string CLIE_NR_VENCIMENTO { get; set; }
         public Nullable<int> CLIE_IN_PART { get; set; }
         public Nullable<int> CLIE_IN_ATIVO { get; set; }
+        public int CACL_CD_ID { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CLIENTE_ANEXO> CLIENTE_ANEXO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CLIENTE_CONTATO> CLIENTE_CONTATO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CLIENTE_QUADRO_SOCIETARIO> CLIENTE_QUADRO_SOCIETARIO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GRUPO_CLIENTE> GRUPO_CLIENTE { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -44,5 +54,6 @@ namespace EntitiesServices.Model
         public virtual PRECATORIO PRECATORIO { get; set; }
         public virtual VARA VARA { get; set; }
         public virtual TITULARIDADE TITULARIDADE { get; set; }
+        public virtual CATEGORIA_CLIENTE CATEGORIA_CLIENTE { get; set; }
     }
 }

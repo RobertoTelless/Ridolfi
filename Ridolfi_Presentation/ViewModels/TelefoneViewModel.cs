@@ -40,7 +40,6 @@ namespace ERP_CRM_Solution.ViewModels
         [StringLength(5000, ErrorMessage = "AS OBSERVAÇÕES deve conter no máximo 5000 caracteres.")]
         public string TELE_TX_OBSERVACOES { get; set; }
 
-        public virtual ASSINANTE ASSINANTE { get; set; }
         public virtual CATEGORIA_TELEFONE CATEGORIA_TELEFONE { get; set; }
         public virtual UF UF { get; set; }
     }

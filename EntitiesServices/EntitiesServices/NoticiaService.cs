@@ -21,7 +21,7 @@ namespace ModelServices.EntitiesServices
         private readonly INoticiaRepository _baseRepository;
         private readonly ILogRepository _logRepository;
         private readonly INoticiaComentarioRepository _comRepository;
-        protected ERP_CRMEntities Db = new ERP_CRMEntities();
+        protected DB_RidolfiEntities Db = new DB_RidolfiEntities();
 
         public NoticiaService(INoticiaRepository baseRepository, ILogRepository logRepository, INoticiaComentarioRepository comRepository) : base(baseRepository)
         {

@@ -17,7 +17,6 @@ namespace DataServices.Repositories
         {
             IQueryable<CARGO> query = Db.CARGO;
             query = query.Where(p => p.CARG_NM_NOME == conta.CARG_NM_NOME);
-            query = query.Where(p => p.ASSI_CD_ID == idAss);
             return query.FirstOrDefault();
         }
 
@@ -31,14 +30,12 @@ namespace DataServices.Repositories
         public List<CARGO> GetAllItensAdm(Int32 idAss)
         {
             IQueryable<CARGO> query = Db.CARGO;
-            query = query.Where(p => p.ASSI_CD_ID == idAss);
             return query.ToList();
         }
 
         public List<CARGO> GetAllItens(Int32 idAss)
         {
             IQueryable<CARGO> query = Db.CARGO.Where(p => p.CARG_IN_ATIVO == 1);
-            query = query.Where(p => p.ASSI_CD_ID == idAss);
             return query.ToList();
         }
 

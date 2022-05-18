@@ -77,7 +77,7 @@ namespace ApplicationServices.Services
             try
             {
                 // Verifica existencia prévia
-                if (_baseService.CheckExist(item, usuario.ASSI_CD_ID) != null)
+                if (_baseService.CheckExist(item, usuario.ASSI_CD_ID.Value) != null)
                 {
                     return 1;
                 }
@@ -91,7 +91,6 @@ namespace ApplicationServices.Services
                 {
                     LOG_DT_DATA = DateTime.Now,
                     USUA_CD_ID = usuario.USUA_CD_ID,
-                    ASSI_CD_ID = usuario.ASSI_CD_ID,
                     LOG_NM_OPERACAO = "AddTEEM",
                     LOG_IN_ATIVO = 1,
                     LOG_TX_REGISTRO = Serialization.SerializeJSON<TEMPLATE_EMAIL>(item)
@@ -116,7 +115,6 @@ namespace ApplicationServices.Services
                 {
                     LOG_DT_DATA = DateTime.Now,
                     USUA_CD_ID = usuario.USUA_CD_ID,
-                    ASSI_CD_ID = usuario.ASSI_CD_ID,
                     LOG_NM_OPERACAO = "EditTEEM",
                     LOG_IN_ATIVO = 1,
                     LOG_TX_REGISTRO = item.TEEM_SG_SIGLA + "|" + item.TEEM_NM_NOME,
@@ -150,7 +148,6 @@ namespace ApplicationServices.Services
                 {
                     LOG_DT_DATA = DateTime.Now,
                     USUA_CD_ID = usuario.USUA_CD_ID,
-                    ASSI_CD_ID = usuario.ASSI_CD_ID,
                     LOG_IN_ATIVO = 1,
                     LOG_NM_OPERACAO = "DelTEEM",
                     LOG_TX_REGISTRO = "Template: " + item.TEEM_NM_NOME
@@ -179,7 +176,6 @@ namespace ApplicationServices.Services
                 {
                     LOG_DT_DATA = DateTime.Now,
                     USUA_CD_ID = usuario.USUA_CD_ID,
-                    ASSI_CD_ID = usuario.ASSI_CD_ID,
                     LOG_IN_ATIVO = 1,
                     LOG_NM_OPERACAO = "ReatTEEM",
                     LOG_TX_REGISTRO = Serialization.SerializeJSON<TEMPLATE_EMAIL>(item)

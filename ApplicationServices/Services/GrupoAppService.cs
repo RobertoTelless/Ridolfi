@@ -65,13 +65,13 @@ namespace ApplicationServices.Services
             {
                 // Checa existencia
                 var conf = usuario.USUA_CD_ID;
-                if (_baseService.CheckExist(item, usuario.ASSI_CD_ID) != null)
+                if (_baseService.CheckExist(item, usuario.ASSI_CD_ID.Value) != null)
                 {
                     return 1;
                 }
 
                 // Checa contatos
-                List<CLIENTE> lista = _baseService.FiltrarContatos(grupo, usuario.ASSI_CD_ID);
+                List<CLIENTE> lista = _baseService.FiltrarContatos(grupo, usuario.ASSI_CD_ID.Value);
                 if (lista.Count == 0)
                 {
                     return 2;
@@ -85,7 +85,6 @@ namespace ApplicationServices.Services
                 LOG log = new LOG
                 {
                     LOG_DT_DATA = DateTime.Now,
-                    ASSI_CD_ID = usuario.ASSI_CD_ID,
                     USUA_CD_ID = usuario.USUA_CD_ID,
                     LOG_NM_OPERACAO = "AddGRUP",
                     LOG_IN_ATIVO = 1,
@@ -118,10 +117,6 @@ namespace ApplicationServices.Services
         {
             try
             {
-                if (itemAntes.ASSINANTE != null)
-                {
-                    itemAntes.ASSINANTE = null;
-                }
                 if (itemAntes.USUARIO != null)
                 {
                     itemAntes.USUARIO = null;
@@ -131,7 +126,6 @@ namespace ApplicationServices.Services
                 LOG log = new LOG
                 {
                     LOG_DT_DATA = DateTime.Now,
-                    ASSI_CD_ID = usuario.ASSI_CD_ID,
                     USUA_CD_ID = usuario.USUA_CD_ID,
                     LOG_NM_OPERACAO = "EditGRUP",
                     LOG_IN_ATIVO = 1,
@@ -174,7 +168,6 @@ namespace ApplicationServices.Services
                 LOG log = new LOG
                 {
                     LOG_DT_DATA = DateTime.Now,
-                    ASSI_CD_ID = usuario.ASSI_CD_ID,
                     USUA_CD_ID = usuario.USUA_CD_ID,
                     LOG_IN_ATIVO = 1,
                     LOG_NM_OPERACAO = "DelGRUP",
@@ -203,7 +196,6 @@ namespace ApplicationServices.Services
                 LOG log = new LOG
                 {
                     LOG_DT_DATA = DateTime.Now,
-                    ASSI_CD_ID = usuario.ASSI_CD_ID,
                     USUA_CD_ID = usuario.USUA_CD_ID,
                     LOG_IN_ATIVO = 1,
                     LOG_NM_OPERACAO = "ReatGRUP",

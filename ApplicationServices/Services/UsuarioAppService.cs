@@ -61,11 +61,6 @@ namespace ApplicationServices.Services
             return _usuarioService.GetAllItens(idAss);
         }
 
-        public List<USUARIO> GetAllTecnicos(Int32 idAss)
-        {
-            return _usuarioService.GetAllTecnicos(idAss);
-        }
-
         public List<CARGO> GetAllCargos(Int32 idAss)
         {
             return _usuarioService.GetAllCargos(idAss);
@@ -74,21 +69,6 @@ namespace ApplicationServices.Services
         public USUARIO GetAdministrador(Int32 idAss)
         {
             return _usuarioService.GetAdministrador(idAss);
-        }
-
-        public USUARIO GetComprador(Int32 idAss)
-        {
-            return _usuarioService.GetComprador(idAss);
-        }
-
-        public USUARIO GetTecnico(Int32 idAss)
-        {
-            return _usuarioService.GetTecnico(idAss);
-        }
-
-        public USUARIO GetAprovador(Int32 idAss)
-        {
-            return _usuarioService.GetAprovador(idAss);
         }
 
         public List<NOTIFICACAO> GetAllItensUser(Int32 id, Int32 idAss)
@@ -133,11 +113,11 @@ namespace ApplicationServices.Services
                 }
 
                 // Verifica existencia prévia
-                if (_usuarioService.GetByEmail(usuario.USUA_NM_EMAIL, usuarioLogado.ASSI_CD_ID) != null)
+                if (_usuarioService.GetByEmail(usuario.USUA_NM_EMAIL, usuarioLogado.ASSI_CD_ID.Value) != null)
                 {
                     return 3;
                 }
-                if (_usuarioService.GetByLogin(usuario.USUA_NM_LOGIN, usuarioLogado.ASSI_CD_ID) != null)
+                if (_usuarioService.GetByLogin(usuario.USUA_NM_LOGIN, usuarioLogado.ASSI_CD_ID.Value) != null)
                 {
                     return 4;
                 }
@@ -163,7 +143,6 @@ namespace ApplicationServices.Services
                 {
                     LOG_DT_DATA = DateTime.Now,
                     USUA_CD_ID = usuarioLogado.USUA_CD_ID,
-                    ASSI_CD_ID = usuarioLogado.ASSI_CD_ID,
                     LOG_NM_OPERACAO = "AddUSUA",
                     LOG_TX_REGISTRO = Serialization.SerializeJSON<USUARIO>(usuario),
                     LOG_IN_ATIVO = 1
@@ -197,11 +176,11 @@ namespace ApplicationServices.Services
                 }
 
                 // Verifica existencia prévia
-                if (_usuarioService.GetByEmail(usuario.USUA_NM_EMAIL, usuarioLogado.ASSI_CD_ID) != null)
+                if (_usuarioService.GetByEmail(usuario.USUA_NM_EMAIL, usuarioLogado.ASSI_CD_ID.Value) != null)
                 {
                     return 3;
                 }
-                if (_usuarioService.GetByLogin(usuario.USUA_NM_LOGIN, usuarioLogado.ASSI_CD_ID) != null)
+                if (_usuarioService.GetByLogin(usuario.USUA_NM_LOGIN, usuarioLogado.ASSI_CD_ID.Value) != null)
                 {
                     return 4;
                 }
@@ -227,7 +206,6 @@ namespace ApplicationServices.Services
                 {
                     LOG_DT_DATA = DateTime.Now,
                     USUA_CD_ID = usuarioLogado.USUA_CD_ID,
-                    ASSI_CD_ID = usuarioLogado.ASSI_CD_ID,
                     LOG_NM_OPERACAO = "AddUSUA",
                     LOG_TX_REGISTRO = Serialization.SerializeJSON<USUARIO>(usuario),
                     LOG_IN_ATIVO = 1
@@ -255,7 +233,7 @@ namespace ApplicationServices.Services
                 }
 
                 // Verifica existencia prévia
-                USUARIO usu = _usuarioService.GetByEmail(usuario.USUA_NM_EMAIL, usuarioLogado.ASSI_CD_ID);
+                USUARIO usu = _usuarioService.GetByEmail(usuario.USUA_NM_EMAIL, usuarioLogado.ASSI_CD_ID.Value);
                 if (usu != null)
                 {
                     if (usu.USUA_CD_ID != usuario.USUA_CD_ID)
@@ -263,7 +241,7 @@ namespace ApplicationServices.Services
                         return 2;
                     }
                 }
-                usu = _usuarioService.GetByLogin(usuario.USUA_NM_LOGIN, usuarioLogado.ASSI_CD_ID);
+                usu = _usuarioService.GetByLogin(usuario.USUA_NM_LOGIN, usuarioLogado.ASSI_CD_ID.Value);
                 if (usu != null)
                 {
                     if (usu.USUA_CD_ID != usuario.USUA_CD_ID)
@@ -281,7 +259,6 @@ namespace ApplicationServices.Services
                 {
                     LOG_DT_DATA = DateTime.Now,
                     USUA_CD_ID = usuarioLogado.USUA_CD_ID,
-                    ASSI_CD_ID = usuarioLogado.ASSI_CD_ID,
                     LOG_NM_OPERACAO = "EditUSUA",
                     LOG_TX_REGISTRO = Serialization.SerializeJSON<USUARIO>(usuario),
                     LOG_TX_REGISTRO_ANTES = Serialization.SerializeJSON<USUARIO>(usuarioAntes),
@@ -310,7 +287,7 @@ namespace ApplicationServices.Services
                 }
 
                 // Verifica existencia prévia
-                USUARIO usu = _usuarioService.GetByEmail(usuario.USUA_NM_EMAIL, usuarioLogado.ASSI_CD_ID);
+                USUARIO usu = _usuarioService.GetByEmail(usuario.USUA_NM_EMAIL, usuarioLogado.ASSI_CD_ID.Value);
                 if (usu != null)
                 {
                     if (usu.USUA_CD_ID != usuario.USUA_CD_ID)
@@ -407,7 +384,6 @@ namespace ApplicationServices.Services
                 {
                     LOG_DT_DATA = DateTime.Now,
                     USUA_CD_ID = usuarioLogado.USUA_CD_ID,
-                    ASSI_CD_ID = usuarioLogado.ASSI_CD_ID,
                     LOG_NM_OPERACAO = "BlqUSUA",
                     LOG_TX_REGISTRO = Serialization.SerializeJSON<USUARIO>(usuario),
                     LOG_IN_ATIVO = 1
@@ -434,7 +410,6 @@ namespace ApplicationServices.Services
                 LOG log = new LOG
                 {
                     LOG_DT_DATA = DateTime.Now,
-                    ASSI_CD_ID = usuarioLogado.ASSI_CD_ID,
                     USUA_CD_ID = usuarioLogado.USUA_CD_ID,
                     LOG_NM_OPERACAO = "DbqUSUA",
                     LOG_TX_REGISTRO = Serialization.SerializeJSON<USUARIO>(usuario),
@@ -509,7 +484,7 @@ namespace ApplicationServices.Services
                 Boolean retorno = _usuarioService.VerificarCredenciais(senha, usuario);
                 if (!retorno)
                 {
-                    if (usuario.USUA_NR_FALHAS <= _usuarioService.CarregaConfiguracao(usuario.ASSI_CD_ID).CONF_NR_FALHAS_DIA)
+                    if (usuario.USUA_NR_FALHAS <= _usuarioService.CarregaConfiguracao(usuario.ASSI_CD_ID.Value).CONF_NR_FALHAS_DIA)
                     {
                         if (usuario.USUA_DT_ULTIMA_FALHA != null)
                         {
@@ -530,7 +505,7 @@ namespace ApplicationServices.Services
                         }
 
                     }
-                    else if (usuario.USUA_NR_FALHAS > _usuarioService.CarregaConfiguracao(usuario.ASSI_CD_ID).CONF_NR_FALHAS_DIA)
+                    else if (usuario.USUA_NR_FALHAS > _usuarioService.CarregaConfiguracao(usuario.ASSI_CD_ID.Value).CONF_NR_FALHAS_DIA)
                     {
                         usuario.USUA_DT_BLOQUEADO = DateTime.Today.Date;
                         usuario.USUA_IN_BLOQUEADO = 1;
@@ -602,7 +577,6 @@ namespace ApplicationServices.Services
                 // Gera Notificação
                 NOTIFICACAO noti = new NOTIFICACAO();
                 noti.CANO_CD_ID = 1;
-                noti.ASSI_CD_ID = usuario.ASSI_CD_ID;
                 noti.NOTI_DT_EMISSAO = DateTime.Today;
                 noti.NOTI_DT_VALIDADE = DateTime.Today.Date.AddDays(30);
                 noti.NOTI_IN_VISTA = 0;
@@ -611,7 +585,6 @@ namespace ApplicationServices.Services
                 noti.NOTI_TX_TEXTO = "ATENÇÃO: A sua senha foi alterada em " + DateTime.Today.Date.ToLongDateString() + ".";
                 noti.USUA_CD_ID = usuario.USUA_CD_ID;
                 noti.NOTI_IN_STATUS = 1;
-                noti.NOTI_IN_NIVEL = 1;
                 Int32 volta1 = _notiService.Create(noti);
 
 
@@ -619,7 +592,6 @@ namespace ApplicationServices.Services
                 LOG log = new LOG
                 {
                     LOG_DT_DATA = DateTime.Now,
-                    ASSI_CD_ID = usuario.ASSI_CD_ID,
                     USUA_CD_ID = usuario.USUA_CD_ID,
                     LOG_NM_OPERACAO = "ChangePWD",
                     LOG_TX_REGISTRO = Serialization.SerializeJSON<USUARIO>(usuario),
@@ -674,14 +646,12 @@ namespace ApplicationServices.Services
             LOG log = new LOG();
             log.LOG_DT_DATA = DateTime.Now;
             log.LOG_NM_OPERACAO = "NewPWD";
-            log.ASSI_CD_ID = usuario.ASSI_CD_ID;
             log.LOG_TX_REGISTRO = senha;
             log.LOG_IN_ATIVO = 1;
 
             // Gera Notificação
             NOTIFICACAO noti = new NOTIFICACAO();
             noti.CANO_CD_ID = 1;
-            noti.ASSI_CD_ID = usuario.ASSI_CD_ID;
             noti.NOTI_DT_EMISSAO = DateTime.Today;
             noti.NOTI_DT_VALIDADE = DateTime.Today.Date.AddDays(30);
             noti.NOTI_IN_VISTA = 0;
@@ -690,7 +660,6 @@ namespace ApplicationServices.Services
             noti.NOTI_TX_TEXTO = "ATENÇÃO: Sua solicitação de nova senha foi atendida em " + DateTime.Today.Date.ToLongDateString() + ". Verifique no seu e-mail cadastrado no sistema.";
             noti.USUA_CD_ID = usuario.USUA_CD_ID;
             noti.NOTI_IN_STATUS = 1;
-            noti.NOTI_IN_NIVEL = 1;
             Int32 volta1 = _notiService.Create(noti);
 
             // Recupera template e-mail
@@ -707,7 +676,7 @@ namespace ApplicationServices.Services
             String emailBody = header + body + data;
 
             // Prepara e-mail e enviar
-            CONFIGURACAO conf = _usuarioService.CarregaConfiguracao(usuario.ASSI_CD_ID);
+            CONFIGURACAO conf = _usuarioService.CarregaConfiguracao(usuario.ASSI_CD_ID.Value);
             Email mensagem = new Email();
             mensagem.ASSUNTO = "Geração de Nova Senha";
             mensagem.CORPO = emailBody;

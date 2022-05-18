@@ -13,7 +13,7 @@ namespace DataServices.Repositories
 {
     public class RepositoryBase<TEntity> : IDisposable, IRepositoryBase<TEntity> where TEntity : class
     {
-        protected DB_EcoBaseEntities Db = new DB_EcoBaseEntities();
+        protected DB_RidolfiEntities Db = new DB_RidolfiEntities();
 
         public void Add(TEntity obj)
         {

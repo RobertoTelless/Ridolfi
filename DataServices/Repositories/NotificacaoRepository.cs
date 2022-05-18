@@ -21,7 +21,6 @@ namespace DataServices.Repositories
         public List<NOTIFICACAO> GetAllItens(Int32 idAss)
         {
             IQueryable<NOTIFICACAO> query = Db.NOTIFICACAO.Where(p => p.NOTI_IN_ATIVO == 1);
-            query = query.Where(p => p.ASSI_CD_ID == idAss);
             query = query.OrderByDescending(a => a.NOTI_DT_EMISSAO);
             return query.ToList();
         }
@@ -29,7 +28,6 @@ namespace DataServices.Repositories
         public List<NOTIFICACAO> GetAllItensAdm(Int32 idAss)
         {
             IQueryable<NOTIFICACAO> query = Db.NOTIFICACAO;
-            query = query.Where(p => p.ASSI_CD_ID == idAss);
             query = query.OrderByDescending(a => a.NOTI_DT_EMISSAO);
             return query.ToList();
         }
@@ -39,7 +37,6 @@ namespace DataServices.Repositories
             IQueryable<NOTIFICACAO> query = Db.NOTIFICACAO.Where(p => p.NOTI_IN_ATIVO == 1);
             query = query.Where(p => p.USUA_CD_ID == id);
             query = query.Where(p => DbFunctions.TruncateTime(p.NOTI_DT_VALIDADE) >= DbFunctions.TruncateTime(DateTime.Today));
-            query = query.Where(p => p.ASSI_CD_ID == idAss);
             query = query.Include(p => p.NOTIFICACAO_ANEXO);
             query = query.OrderByDescending(a => a.NOTI_DT_EMISSAO);
             return query.ToList();
@@ -51,7 +48,6 @@ namespace DataServices.Repositories
             query = query.Where(p => p.USUA_CD_ID == id);
             query = query.Where(p => DbFunctions.TruncateTime(p.NOTI_DT_VALIDADE) >= DbFunctions.TruncateTime(DateTime.Today));
             query = query.Where(p => p.NOTI_IN_VISTA == 0);
-            query = query.Where(p => p.ASSI_CD_ID == idAss);
             query = query.Include(p => p.NOTIFICACAO_ANEXO);
             query = query.OrderByDescending(a => a.NOTI_DT_EMISSAO);
             return query.ToList();
@@ -75,7 +71,6 @@ namespace DataServices.Repositories
             }
             if (query != null)
             {
-                query = query.Where(p => p.ASSI_CD_ID == idAss);
                 query = query.OrderBy(a => a.NOTI_DT_EMISSAO);
                 lista = query.ToList<NOTIFICACAO>();
             }

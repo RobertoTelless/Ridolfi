@@ -26,7 +26,7 @@ namespace ModelServices.EntitiesServices
         private readonly IUsuarioAnexoRepository _anexoRepository;
         private readonly INotificacaoRepository _notRepository;
         private readonly ICargoRepository _carRepository;
-        protected ERP_CRMEntities Db = new ERP_CRMEntities();
+        protected DB_RidolfiEntities Db = new DB_RidolfiEntities();
 
         public UsuarioService(IUsuarioRepository usuarioRepository, ILogRepository logRepository, IConfiguracaoRepository configuracaoRepository, IPerfilRepository perfRepository, ITemplateRepository tempRepository, IUsuarioAnexoRepository anexoRepository, INotificacaoRepository notRepository, ICargoRepository carRepository) : base(usuarioRepository)
         {
@@ -110,11 +110,6 @@ namespace ModelServices.EntitiesServices
             return _usuarioRepository.GetAllItens(idAss);
         }
 
-        public List<USUARIO> GetAllTecnicos(Int32 idAss)
-        {
-            return _usuarioRepository.GetAllTecnicos(idAss);
-        }
-
         public List<CARGO> GetAllCargos(Int32 idAss)
         {
             return _carRepository.GetAllItens(idAss);
@@ -128,21 +123,6 @@ namespace ModelServices.EntitiesServices
         public USUARIO GetAdministrador(Int32 idAss)
         {
             return _usuarioRepository.GetAdministrador(idAss);
-        }
-
-        public USUARIO GetComprador(Int32 idAss)
-        {
-            return _usuarioRepository.GetComprador(idAss);
-        }
-
-        public USUARIO GetTecnico(Int32 idAss)
-        {
-            return _usuarioRepository.GetTecnico(idAss);
-        }
-
-        public USUARIO GetAprovador(Int32 idAss)
-        {
-            return _usuarioRepository.GetAprovador(idAss);
         }
 
         public List<USUARIO> GetAllItensAcessoHoje(Int32 idAss)

@@ -27,14 +27,12 @@ namespace DataServices.Repositories
         public List<TEMPLATE> GetAllItensAdm(Int32 idAss)
         {
             IQueryable<TEMPLATE> query = Db.TEMPLATE;
-            query = query.Where(p => p.ASSI_CD_ID == idAss);
             return query.ToList();
         }
 
         public List<TEMPLATE> GetAllItens(Int32 idAss)
         {
             IQueryable<TEMPLATE> query = Db.TEMPLATE.Where(p => p.TEMP_IN_ATIVO == 1);
-            query = query.Where(p => p.ASSI_CD_ID == idAss);
             return query.ToList();
         }
 
@@ -42,7 +40,6 @@ namespace DataServices.Repositories
         {
             IQueryable<TEMPLATE> query = Db.TEMPLATE;
             query = query.Where(p => p.TEMP_SG_SIGLA == item.TEMP_SG_SIGLA);
-            query = query.Where(p => p.ASSI_CD_ID == idAss);
             return query.FirstOrDefault();
         }
 
@@ -64,7 +61,6 @@ namespace DataServices.Repositories
             }
             if (query != null)
             {
-                query = query.Where(p => p.ASSI_CD_ID == idAss);
                 query = query.OrderBy(a => a.TEMP_SG_SIGLA);
                 lista = query.ToList<TEMPLATE>();
             }

@@ -18,6 +18,7 @@ namespace EntitiesServices.Model
         public UF()
         {
             this.ENDERECO = new HashSet<ENDERECO>();
+            this.TELEFONES = new HashSet<TELEFONES>();
             this.TRF = new HashSet<TRF>();
         }
     
@@ -28,6 +29,8 @@ namespace EntitiesServices.Model
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ENDERECO> ENDERECO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TELEFONES> TELEFONES { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TRF> TRF { get; set; }
     }

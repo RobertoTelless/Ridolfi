@@ -17,8 +17,7 @@ namespace DataServices.Repositories
         {
             IQueryable<DEPARTAMENTO> query = Db.DEPARTAMENTO;
             query = query.Where(p => p.DEPT_NM_NOME == conta.DEPT_NM_NOME);
-            query = query.Where(p => p.ASSI_CD_ID == idAss);
-            return query.FirstOrDefault();
+           return query.FirstOrDefault();
         }
 
         public DEPARTAMENTO GetItemById(Int32 id)
@@ -31,14 +30,12 @@ namespace DataServices.Repositories
         public List<DEPARTAMENTO> GetAllItensAdm(Int32 idAss)
         {
             IQueryable<DEPARTAMENTO> query = Db.DEPARTAMENTO;
-            query = query.Where(p => p.ASSI_CD_ID == idAss);
             return query.ToList();
         }
 
         public List<DEPARTAMENTO> GetAllItens(Int32 idAss)
         {
             IQueryable<DEPARTAMENTO> query = Db.DEPARTAMENTO.Where(p => p.DEPT_IN_ATIVO == 1);
-            query = query.Where(p => p.ASSI_CD_ID == idAss);
             return query.ToList();
         }
 

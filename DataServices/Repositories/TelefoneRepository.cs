@@ -12,46 +12,40 @@ using CrossCutting;
 
 namespace DataServices.Repositories
 {
-    public class TelefoneRepository : RepositoryBase<TELEFONE>, ITelefoneRepository
+    public class TelefoneRepository : RepositoryBase<TELEFONES>, ITelefoneRepository
     {
-        public TELEFONE CheckExist(TELEFONE conta, Int32 idAss)
+        public TELEFONES CheckExist(TELEFONES conta, Int32 idAss)
         {
-            IQueryable<TELEFONE> query = Db.TELEFONE;
+            IQueryable<TELEFONES> query = Db.TELEFONES;
             query = query.Where(p => p.TELE_NM_NOME == conta.TELE_NM_NOME);
             query = query.Where(p => p.TELE_NR_TELEFONE == conta.TELE_NR_TELEFONE);
             query = query.Where(p => p.TELE_NM_CIDADE == conta.TELE_NM_CIDADE);
-            query = query.Where(p => p.ASSI_CD_ID == idAss);
             return query.FirstOrDefault();
         }
 
-        public TELEFONE GetItemById(Int32 id)
+        public TELEFONES GetItemById(Int32 id)
         {
-            IQueryable<TELEFONE> query = Db.TELEFONE;
+            IQueryable<TELEFONES> query = Db.TELEFONES;
             query = query.Where(p => p.TELE_CD_ID == id);
-            query = query.Include(p => p.ASSINANTE);
             return query.FirstOrDefault();
         }
 
-        public List<TELEFONE> GetAllItens(Int32 idAss)
+        public List<TELEFONES> GetAllItens(Int32 idAss)
         {
-            IQueryable<TELEFONE> query = Db.TELEFONE.Where(p => p.TELE_IN_ATIVO == 1);
-            query = query.Where(p => p.ASSI_CD_ID == idAss);
-            query = query.Include(p => p.ASSINANTE);
+            IQueryable<TELEFONES> query = Db.TELEFONES.Where(p => p.TELE_IN_ATIVO == 1);
             return query.ToList();
         }
 
-        public List<TELEFONE> GetAllItensAdm(Int32 idAss)
+        public List<TELEFONES> GetAllItensAdm(Int32 idAss)
         {
-            IQueryable<TELEFONE> query = Db.TELEFONE;
-            query = query.Where(p => p.ASSI_CD_ID == idAss);
-            query = query.Include(p => p.ASSINANTE);
+            IQueryable<TELEFONES> query = Db.TELEFONES;
             return query.ToList();
         }
 
-        public List<TELEFONE> ExecuteFilter(Int32? catId, String nome, String telefone, String cidade, Int32? uf, String celular, String email, Int32 idAss)
+        public List<TELEFONES> ExecuteFilter(Int32? catId, String nome, String telefone, String cidade, Int32? uf, String celular, String email, Int32 idAss)
         {
-            List<TELEFONE> lista = new List<TELEFONE>();
-            IQueryable<TELEFONE> query = Db.TELEFONE;
+            List<TELEFONES> lista = new List<TELEFONES>();
+            IQueryable<TELEFONES> query = Db.TELEFONES;
             if (catId != null)
             {
                 query = query.Where(p => p.CATE_CD_ID == catId);
@@ -82,9 +76,8 @@ namespace DataServices.Repositories
             }
             if (query != null)
             {
-                query = query.Where(p => p.ASSI_CD_ID == idAss);
                 query = query.OrderBy(a => a.TELE_NM_NOME);
-                lista = query.ToList<TELEFONE>();
+                lista = query.ToList<TELEFONES>();
             }
             return lista;
         }

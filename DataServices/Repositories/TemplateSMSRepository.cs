@@ -14,7 +14,6 @@ namespace DataServices.Repositories
         public TEMPLATE_SMS GetByCode(String code, Int32 idAss)
         {
             IQueryable<TEMPLATE_SMS> query = Db.TEMPLATE_SMS.Where(p => p.TSMS_SG_SIGLA == code);
-            query = query.Where(p => p.ASSI_CD_ID == idAss);
             return query.FirstOrDefault();
         }
 
@@ -28,14 +27,12 @@ namespace DataServices.Repositories
         public List<TEMPLATE_SMS> GetAllItensAdm(Int32 idAss)
         {
             IQueryable<TEMPLATE_SMS> query = Db.TEMPLATE_SMS;
-            query = query.Where(p => p.ASSI_CD_ID == idAss);
             return query.ToList();
         }
 
         public List<TEMPLATE_SMS> GetAllItens(Int32 idAss)
         {
             IQueryable<TEMPLATE_SMS> query = Db.TEMPLATE_SMS.Where(p => p.TSMS_IN_ATIVO == 1);
-            query = query.Where(p => p.ASSI_CD_ID == idAss);
             return query.ToList();
         }
 
@@ -43,7 +40,6 @@ namespace DataServices.Repositories
         {
             IQueryable<TEMPLATE_SMS> query = Db.TEMPLATE_SMS;
             query = query.Where(p => p.TSMS_SG_SIGLA == item.TSMS_SG_SIGLA);
-            query = query.Where(p => p.ASSI_CD_ID == idAss);
             return query.FirstOrDefault();
         }
 
@@ -65,7 +61,6 @@ namespace DataServices.Repositories
             }
             if (query != null)
             {
-                query = query.Where(p => p.ASSI_CD_ID == idAss);
                 query = query.OrderBy(a => a.TSMS_SG_SIGLA);
                 lista = query.ToList<TEMPLATE_SMS>();
             }

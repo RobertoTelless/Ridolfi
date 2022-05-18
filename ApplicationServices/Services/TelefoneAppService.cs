@@ -12,7 +12,7 @@ using System.Text.RegularExpressions;
 
 namespace ApplicationServices.Services
 {
-    public class TelefoneAppService : AppServiceBase<TELEFONE>, ITelefoneAppService
+    public class TelefoneAppService : AppServiceBase<TELEFONES>, ITelefoneAppService
     {
         private readonly ITelefoneService _baseService;
 
@@ -21,9 +21,9 @@ namespace ApplicationServices.Services
             _baseService = baseService;
         }
 
-        public List<TELEFONE> GetAllItens(Int32 idAss)
+        public List<TELEFONES> GetAllItens(Int32 idAss)
         {
-            List<TELEFONE> lista = _baseService.GetAllItens(idAss);
+            List<TELEFONES> lista = _baseService.GetAllItens(idAss);
             return lista;
         }
 
@@ -38,21 +38,21 @@ namespace ApplicationServices.Services
             return _baseService.GetUFbySigla(sigla);
         }
 
-        public List<TELEFONE> GetAllItensAdm(Int32 idAss)
+        public List<TELEFONES> GetAllItensAdm(Int32 idAss)
         {
-            List<TELEFONE> lista = _baseService.GetAllItensAdm(idAss);
+            List<TELEFONES> lista = _baseService.GetAllItensAdm(idAss);
             return lista;
         }
 
-        public TELEFONE GetItemById(Int32 id)
+        public TELEFONES GetItemById(Int32 id)
         {
-            TELEFONE item = _baseService.GetItemById(id);
+            TELEFONES item = _baseService.GetItemById(id);
             return item;
         }
 
-        public TELEFONE CheckExist(TELEFONE conta, Int32 idAss)
+        public TELEFONES CheckExist(TELEFONES conta, Int32 idAss)
         {
-            TELEFONE item = _baseService.CheckExist(conta, idAss);
+            TELEFONES item = _baseService.CheckExist(conta, idAss);
             return item;
         }
 
@@ -62,11 +62,11 @@ namespace ApplicationServices.Services
             return lista;
         }
 
-        public Int32 ExecuteFilter(Int32? catId, String nome, String telefone, String cidade, Int32? uf, String celular, String email, Int32 idAss, out List<TELEFONE> objeto)
+        public Int32 ExecuteFilter(Int32? catId, String nome, String telefone, String cidade, Int32? uf, String celular, String email, Int32 idAss, out List<TELEFONES> objeto)
         {
             try
             {
-                objeto = new List<TELEFONE>();
+                objeto = new List<TELEFONES>();
                 Int32 volta = 0;
 
                 // Processa filtro
@@ -83,19 +83,18 @@ namespace ApplicationServices.Services
             }
         }
 
-        public Int32 ValidateCreate(TELEFONE item, USUARIO usuario)
+        public Int32 ValidateCreate(TELEFONES item, USUARIO usuario)
         {
             try
             {
                 // Verifica existencia prévia
-                if (_baseService.CheckExist(item, usuario.ASSI_CD_ID) != null)
+                if (_baseService.CheckExist(item, usuario.ASSI_CD_ID.Value) != null)
                 {
                     return 1;
                 }
 
                 // Completa objeto
                 item.TELE_IN_ATIVO = 1;
-                item.ASSI_CD_ID = usuario.ASSI_CD_ID;
 
                 // Checa endereço
                 if (String.IsNullOrEmpty(item.TELE_NM_ENDERECO))
@@ -123,11 +122,10 @@ namespace ApplicationServices.Services
                 LOG log = new LOG
                 {
                     LOG_DT_DATA = DateTime.Now,
-                    ASSI_CD_ID = usuario.ASSI_CD_ID,
                     USUA_CD_ID = usuario.USUA_CD_ID,
                     LOG_NM_OPERACAO = "AddTELE",
                     LOG_IN_ATIVO = 1,
-                    LOG_TX_REGISTRO = Serialization.SerializeJSON<TELEFONE>(item)
+                    LOG_TX_REGISTRO = Serialization.SerializeJSON<TELEFONES>(item)
                 };
 
                 // Persiste
@@ -141,7 +139,7 @@ namespace ApplicationServices.Services
         }
 
 
-        public Int32 ValidateEdit(TELEFONE item, TELEFONE itemAntes, USUARIO usuario)
+        public Int32 ValidateEdit(TELEFONES item, TELEFONES itemAntes, USUARIO usuario)
         {
             try
             {
@@ -171,12 +169,11 @@ namespace ApplicationServices.Services
                 LOG log = new LOG
                 {
                     LOG_DT_DATA = DateTime.Now,
-                    ASSI_CD_ID = usuario.ASSI_CD_ID,
                     USUA_CD_ID = usuario.USUA_CD_ID,
                     LOG_NM_OPERACAO = "EditTELE",
                     LOG_IN_ATIVO = 1,
-                    LOG_TX_REGISTRO = Serialization.SerializeJSON<TELEFONE>(item),
-                    LOG_TX_REGISTRO_ANTES = Serialization.SerializeJSON<TELEFONE>(itemAntes)
+                    LOG_TX_REGISTRO = Serialization.SerializeJSON<TELEFONES>(item),
+                    LOG_TX_REGISTRO_ANTES = Serialization.SerializeJSON<TELEFONES>(itemAntes)
                 };
 
                 // Persiste
@@ -188,7 +185,7 @@ namespace ApplicationServices.Services
             }
         }
 
-        public Int32 ValidateEdit(TELEFONE item, TELEFONE itemAntes)
+        public Int32 ValidateEdit(TELEFONES item, TELEFONES itemAntes)
         {
             try
             {
@@ -223,7 +220,7 @@ namespace ApplicationServices.Services
             }
         }
 
-        public Int32 ValidateDelete(TELEFONE item, USUARIO usuario)
+        public Int32 ValidateDelete(TELEFONES item, USUARIO usuario)
         {
             try
             {
@@ -235,11 +232,10 @@ namespace ApplicationServices.Services
                 LOG log = new LOG
                 {
                     LOG_DT_DATA = DateTime.Now,
-                    ASSI_CD_ID = usuario.ASSI_CD_ID,
                     USUA_CD_ID = usuario.USUA_CD_ID,
                     LOG_IN_ATIVO = 1,
                     LOG_NM_OPERACAO = "DelTELE",
-                    LOG_TX_REGISTRO = Serialization.SerializeJSON<TELEFONE>(item)
+                    LOG_TX_REGISTRO = Serialization.SerializeJSON<TELEFONES>(item)
                 };
 
                 // Persiste
@@ -251,7 +247,7 @@ namespace ApplicationServices.Services
             }
         }
 
-        public Int32 ValidateReativar(TELEFONE item, USUARIO usuario)
+        public Int32 ValidateReativar(TELEFONES item, USUARIO usuario)
         {
             try
             {
@@ -264,11 +260,10 @@ namespace ApplicationServices.Services
                 LOG log = new LOG
                 {
                     LOG_DT_DATA = DateTime.Now,
-                    ASSI_CD_ID = usuario.ASSI_CD_ID,
                     USUA_CD_ID = usuario.USUA_CD_ID,
                     LOG_IN_ATIVO = 1,
                     LOG_NM_OPERACAO = "ReatTELE",
-                    LOG_TX_REGISTRO = Serialization.SerializeJSON<TELEFONE>(item)
+                    LOG_TX_REGISTRO = Serialization.SerializeJSON<TELEFONES>(item)
                 };
 
                 // Persiste

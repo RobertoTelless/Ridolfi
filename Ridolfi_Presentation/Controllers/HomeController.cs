@@ -6,21 +6,17 @@ using System.Web.Mvc;
 using ApplicationServices.Interfaces;
 using EntitiesServices.Model;
 using System.Globalization;
-using EntitiesServices.Work_Classes;
 using AutoMapper;
 using System.IO;
 
-namespace ERP_Condominios_Solution.Controllers
+namespace ERP_CRM_Solution.Controllers
 {
     public class HomeController : Controller
     {
         public ActionResult Index()
         {
-            Session["ListaCliente"] = null;
-            Session["ListaPrestador"] = null;
-            Session["ListaOS"] = null;
-            Session["ListaAT"] = null;
-            return RedirectToAction("Index", "MasterData");
+            //return RedirectToAction("Login", "ControleAcesso");
+            return RedirectToAction("CarregarLandingPage", "BaseAdmin");
         }
 
         public ActionResult About()

@@ -18,7 +18,6 @@ namespace DataServices.Repositories
         {
             IQueryable<MENSAGENS> query = Db.MENSAGENS;
             query = query.Where(p => p.MENS_DT_CRIACAO == conta.MENS_DT_CRIACAO);
-            query = query.Where(p => p.ASSI_CD_ID == idAss);
             return query.FirstOrDefault();
         }
 
@@ -33,7 +32,6 @@ namespace DataServices.Repositories
         public List<MENSAGENS> GetAllItens(Int32 idAss)
         {
             IQueryable<MENSAGENS> query = Db.MENSAGENS.Where(p => p.MENS_IN_ATIVO == 1);
-            query = query.Where(p => p.ASSI_CD_ID == idAss);
             query = query.OrderBy(a => a.MENS_DT_CRIACAO);
             return query.ToList();
         }
@@ -41,7 +39,6 @@ namespace DataServices.Repositories
         public List<MENSAGENS> GetAllItensAdm(Int32 idAss)
         {
             IQueryable<MENSAGENS> query = Db.MENSAGENS;
-            query = query.Where(p => p.ASSI_CD_ID == idAss);
             query = query.OrderBy(a => a.MENS_DT_CRIACAO);
             return query.ToList();
         }
@@ -65,7 +62,6 @@ namespace DataServices.Repositories
             }
             if (query != null)
             {
-                query = query.Where(p => p.ASSI_CD_ID == idAss);
                 query = query.Where(p => p.MENS_IN_TIPO == 2);
                 query = query.OrderBy(a => a.MENS_DT_ENVIO);
                 lista = query.ToList<MENSAGENS>();
@@ -91,7 +87,6 @@ namespace DataServices.Repositories
             }
             if (query != null)
             {
-                query = query.Where(p => p.ASSI_CD_ID == idAss);
                 query = query.Where(p => p.MENS_IN_TIPO == 1);
                 query = query.OrderBy(a => a.MENS_DT_ENVIO);
                 lista = query.ToList<MENSAGENS>();

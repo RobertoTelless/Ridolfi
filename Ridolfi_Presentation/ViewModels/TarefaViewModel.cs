@@ -40,7 +40,6 @@ namespace ERP_CRM_Solution.ViewModels
         public Nullable<int> PETA_CD_ID { get; set; }
         public Nullable<int> TARE_NR_PERIODICIDADE_QUANTIDADE { get; set; }
 
-        public virtual ASSINANTE ASSINANTE { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TAREFA_ACOMPANHAMENTO> TAREFA_ACOMPANHAMENTO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
