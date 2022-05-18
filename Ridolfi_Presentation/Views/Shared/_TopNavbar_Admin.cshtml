@@ -188,7 +188,7 @@
                     <i class="fa fa-phone"></i>  <span class="label label-warning">@((Int32)Session["NumTelefones"])</span>
                 </a>
                 <ul class="dropdown-menu dropdown-messages">
-                    @foreach (var cond in (((List<TELEFONE>)Session["Telefones"]) as List<EntitiesServices.Model.TELEFONE>).Take(3))
+                    @foreach (var cond in (((List<TELEFONES>)Session["Telefones"]) as List<EntitiesServices.Model.TELEFONES>).Take(3))
                     {
                         <li>
                             <div class="dropdown-messages-box">
