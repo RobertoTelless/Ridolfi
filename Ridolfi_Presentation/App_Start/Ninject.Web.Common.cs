@@ -129,10 +129,10 @@ namespace Presentation.Start
             kernel.Bind<IUsuarioAnexoRepository>().To<UsuarioAnexoRepository>();
             kernel.Bind<IUFRepository>().To<UFRepository>();
             kernel.Bind<ICategoriaClienteRepository>().To<CategoriaClienteRepository>();
-            kernel.Bind<IClienteRepository>().To<ClienteRepository>();
-            kernel.Bind<IClienteAnexoRepository>().To<ClienteAnexoRepository>();
-            kernel.Bind<IClienteContatoRepository>().To<ClienteContatoRepository>();
-            kernel.Bind<IClienteCnpjRepository>().To<ClienteCnpjRepository>();
+            //kernel.Bind<IClienteRepository>().To<ClienteRepository>();
+            //kernel.Bind<IClienteAnexoRepository>().To<ClienteAnexoRepository>();
+            //kernel.Bind<IClienteContatoRepository>().To<ClienteContatoRepository>();
+            //kernel.Bind<IClienteCnpjRepository>().To<ClienteCnpjRepository>();
             kernel.Bind<ICargoRepository>().To<CargoRepository>();
             kernel.Bind<IMensagemRepository>().To<MensagemRepository>();
             kernel.Bind<IMensagemDestinoRepository>().To<MensagemDestinoRepository>();

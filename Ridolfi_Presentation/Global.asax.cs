@@ -7,7 +7,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using MvcMapping.Mappers;
 
-namespace SB_Dashboard_Presentation
+namespace ERP_CRM_Solution
 {
     public class MvcApplication : System.Web.HttpApplication
     {

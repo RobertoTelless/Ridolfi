@@ -11,7 +11,7 @@ using EntitiesServices.Work_Classes;
 using AutoMapper;
 using ERP_CRM_Solution.ViewModels;
 using System.IO;
-using Correios.Net;
+using Correios;
 using Canducci.Zip;
 using iTextSharp.text;
 using iTextSharp.text.pdf;

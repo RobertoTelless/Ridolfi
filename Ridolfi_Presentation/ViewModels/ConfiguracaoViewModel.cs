@@ -38,6 +38,5 @@ namespace ERP_CRM_Solution.ViewModels
         [StringLength(50, ErrorMessage = "A SENHA DO SMS deve conter no máximo 50.")]
         public string CONF_SG_SENHA_SMS { get; set; }
 
-        public virtual ASSINANTE ASSINANTE { get; set; }
     }
 }
