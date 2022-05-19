@@ -3693,14 +3693,13 @@
     <Content Include="Views\Telefone\EditarTelefone.cshtml" />
     <Content Include="Views\Telefone\VerTelefone.cshtml" />
     <Content Include="Views\Telefone\VerCardsTelefone.cshtml" />
+    <Content Include="Views\TabelasAuxiliares\MontarTelaCargo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Filters\" />
     <Folder Include="Models\" />
     <Folder Include="TemplatesHTML\" />
-    <Folder Include="Views\Log\" />
-    <Folder Include="Views\TabelaAuxiliar\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -14,6 +14,7 @@ namespace ERP_CRM_Solution.ViewModels
         public int USUA_CD_ID { get; set; }
         [Required(ErrorMessage = "Campo PERFIL obrigatorio")]
         public int PERF_CD_ID { get; set; }
+        public Nullable<int> ASSI_CD_ID { get; set; }
         public Nullable<int> CAUS_CD_ID { get; set; }
         public Nullable<int> CARG_CD_ID { get; set; }
         [StringLength(50, MinimumLength = 1, ErrorMessage = "O NOME deve ter no minimo 1 e no máximo 50 caracteres.")]
