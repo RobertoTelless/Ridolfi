@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // As informações gerais sobre um assembly são controladas através do seguinte
 // conjunto de atributos a seguir. Altere esses valores de atributo para modificar as informações
 // associadas a um assembly.
-[assembly: AssemblyTitle("SB_Dashboard_Presentation")]
+[assembly: AssemblyTitle("ERP_CRM_Solution")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("SB_Dashboard_Presentation")]
-[assembly: AssemblyCopyright("Copyright ©  2021")]
+[assembly: AssemblyProduct("ERP_CRM_Solution")]
+[assembly: AssemblyCopyright("Copyright ©  2022")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

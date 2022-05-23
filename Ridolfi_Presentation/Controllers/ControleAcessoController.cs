@@ -239,7 +239,6 @@ namespace ERP_CRM_Solution.Controllers
                     ModelState.AddModelError("", PlatMensagens_Resources.ResourceManager.GetString("M0074", CultureInfo.CurrentCulture));
                     return View(vm);
                 }
-                ViewBag.Message = PlatMensagens_Resources.ResourceManager.GetString("M0075", CultureInfo.CurrentCulture);
                 Session["UserCredentials"] = null;
                 return RedirectToAction("Login", "ControleAcesso");
             }

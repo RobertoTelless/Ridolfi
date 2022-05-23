@@ -12,8 +12,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SB_Dashboard_Presentation</RootNamespace>
-    <AssemblyName>SB_Dashboard_Presentation</AssemblyName>
+    <RootNamespace>SMS_Presentation</RootNamespace>
+    <AssemblyName>SMS_Presentation</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -1182,6 +1182,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Imagens\1\Usuario\1\Fotos\FotoOficial_2.jpg" />
+    <Content Include="Imagens\Base\LogoRidolfi.jpg" />
     <Content Include="Imagens\Base\FotoBase.jpg" />
     <Content Include="Imagens\Base\FotoOficial_2.jpeg" />
     <Content Include="Imagens\Base\icone_imagem.jpg" />
@@ -3694,10 +3696,12 @@
     <Content Include="Views\Telefone\VerTelefone.cshtml" />
     <Content Include="Views\Telefone\VerCardsTelefone.cshtml" />
     <Content Include="Views\TabelasAuxiliares\MontarTelaCargo.cshtml" />
+    <Content Include="Views\TabelasAuxiliares\MontarTelaCatAgenda.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Filters\" />
+    <Folder Include="Imagens\1\Usuario\1\Anexos\" />
     <Folder Include="Models\" />
     <Folder Include="TemplatesHTML\" />
   </ItemGroup>

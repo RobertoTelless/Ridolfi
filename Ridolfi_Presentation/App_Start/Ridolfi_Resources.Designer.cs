@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SB_Dashboard_Presentation.App_Start {
+namespace SMS_Presentation.App_Start {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace SB_Dashboard_Presentation.App_Start {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SB_Dashboard_Presentation.App_Start.Ridolfi_Resources", typeof(Ridolfi_Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SMS_Presentation.App_Start.Ridolfi_Resources", typeof(Ridolfi_Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

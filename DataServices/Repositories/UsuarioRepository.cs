@@ -15,6 +15,7 @@ namespace DataServices.Repositories
         {
             IQueryable<USUARIO> query = Db.USUARIO.Where(p => p.USUA_IN_ATIVO == 1);
             query = query.Where(p => p.USUA_NM_EMAIL == email);
+            query = query.Include(p => p.NOTIFICACAO);
             return query.FirstOrDefault();
         }
 
@@ -30,6 +31,7 @@ namespace DataServices.Repositories
             IQueryable<USUARIO> query = Db.USUARIO.Where(p => p.USUA_IN_ATIVO == 1);
             query = query.Where(p => p.USUA_NM_LOGIN == login);
             //query = query.Where(p => p.ASSI_CD_ID == idAss);
+            query = query.Include(p => p.NOTIFICACAO);
             return query.FirstOrDefault();
         }
 

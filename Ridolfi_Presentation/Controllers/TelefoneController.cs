@@ -319,7 +319,6 @@ namespace ERP_CRM_Solution.Controllers
             TELEFONES item = new TELEFONES();
             TelefoneViewModel vm = Mapper.Map<TELEFONES, TelefoneViewModel>(item);
             vm.TELE_IN_ATIVO = 1;
-            vm.ASSI_CD_ID = usuario.ASSI_CD_ID;
             return View(vm);
         }
 

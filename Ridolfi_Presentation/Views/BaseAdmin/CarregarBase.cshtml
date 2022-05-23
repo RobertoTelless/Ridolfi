@@ -28,9 +28,9 @@
                         </div>
                         <p class="font-bold">@((String)Session["NomeGreeting"])</p>
 
-                        <div class="text-center">
+                        @*<div class="text-center">
                             @Html.ButtonLinkIndex(text: "Perfil", action: "MontarTelaPerfilUsuario", controller: "Usuario", buttonClass: "btn btn-xs btn-white")
-                        </div>
+                        </div>*@
                     </div>
                 </div>
 
@@ -88,6 +88,7 @@
                         </div>
                     </div>
                     @Html.ButtonLinkIndex(text: "Administração", action: "MontarTelaDashboardAdministracao", controller: "Usuario", buttonClass: "primary")
+                    @Html.ButtonLinkIndex(text: "Cadastros", action: "CarregarDesenvolvimento", controller: "BaseAdmin", buttonClass: "primary")
                 </div>
 
                 <div class="col-lg-4 col-md-4 col-sm-12">

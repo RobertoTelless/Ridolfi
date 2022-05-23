@@ -315,19 +315,44 @@ namespace ERP_CRM_Solution.Controllers
             }
             Int32 idAss = (Int32)Session["IdAssinante"];
 
+            // Mensagens
+            if (Session["MensUsuario"] != null)
+            {
+                if ((Int32)Session["MensUsuario"] == 2)
+                {
+                    ModelState.AddModelError("", PlatMensagens_Resources.ResourceManager.GetString("M0011", CultureInfo.CurrentCulture));
+                }
+                if ((Int32)Session["MensUsuario"] == 3)
+                {
+                    ModelState.AddModelError("", PlatMensagens_Resources.ResourceManager.GetString("M0009", CultureInfo.CurrentCulture));
+                }
+                if ((Int32)Session["MensUsuario"] == 4)
+                {
+                    ModelState.AddModelError("", PlatMensagens_Resources.ResourceManager.GetString("M0001", CultureInfo.CurrentCulture));
+                }
+                if ((Int32)Session["MensUsuario"] == 5)
+                {
+                    ModelState.AddModelError("", PlatMensagens_Resources.ResourceManager.GetString("M0110", CultureInfo.CurrentCulture));
+                }
+                if ((Int32)Session["MensUsuario"] == 6)
+                {
+                    ModelState.AddModelError("", PlatMensagens_Resources.ResourceManager.GetString("M0111", CultureInfo.CurrentCulture));
+                }
+                if ((Int32)Session["MensUsuario"] == 9)
+                {
+                    ModelState.AddModelError("", PlatMensagens_Resources.ResourceManager.GetString("M0045", CultureInfo.CurrentCulture));
+                }
+                if ((Int32)Session["MensUsuario"] == 50)
+                {
+                    ModelState.AddModelError("", PlatMensagens_Resources.ResourceManager.GetString("M0051", CultureInfo.CurrentCulture));
+                }
+            }
+            Session["MensUsuario"] = 0;
+
             // Prepara listas
             ViewBag.Perfis = new SelectList((List<PERFIL>)Session["Perfis"], "PERF_CD_ID", "PERF_NM_NOME");
             ViewBag.Cargos = new SelectList(baseApp.GetAllCargos(idAss).OrderBy(p => p.CARG_NM_NOME), "CARG_CD_ID", "CARG_NM_NOME");
             ViewBag.Deptos = new SelectList(depApp.GetAllItens(idAss).OrderBy(x => x.DEPT_NM_NOME).ToList<DEPARTAMENTO>(), "DEPT_CD_ID", "DEPT_NM_NOME");
-
-            //Verifica possibilidade
-            Int32 num = baseApp.GetAllItens(idAss).Count;
-            Int32 cc = (Int32)Session["NumUsuarios"];
-            if ((Int32)Session["NumUsuarios"] <= num)
-            {
-                Session["MensUsuario"] = 50;
-                return RedirectToAction("MontarTelaUsuario", "Usuario");
-            }
 
             // Prepara view
             USUARIO item = new USUARIO();
@@ -366,6 +391,7 @@ namespace ERP_CRM_Solution.Controllers
                     {
                         Session["MensUsuario"] = 3;
                         return RedirectToAction("MontarTelaUsuario");
+                        return View(vm);
                     }
                     if (volta == 2)
                     {
@@ -767,14 +793,6 @@ namespace ERP_CRM_Solution.Controllers
                 return RedirectToAction("Login", "ControleAcesso");
             }
             Int32 idAss = (Int32)Session["IdAssinante"];
-
-            //Verifica possibilidade
-            Int32 num = baseApp.GetAllItens(idAss).Count;
-            if ((Int32)Session["NumUsuarios"] <= num)
-            {
-                Session["MensUsuario"] = 50;
-                return RedirectToAction("MontarTelaUsuario", "Usuario");
-            }
 
             // Executar
             USUARIO item = baseApp.GetItemById(id);
@@ -1765,7 +1783,7 @@ namespace ERP_CRM_Solution.Controllers
 
         public JsonResult GetDadosGraficoOperacao()
         {
-            List<ModeloViewModel> listaCP1 = (List<ModeloViewModel>)Session["ListaOpLog"];
+            List<ModeloViewModel> listaCP1 = (List<ModeloViewModel>)Session["ListaLogOp"];
             List<String> op = new List<String>();
             List<Int32> valor = new List<Int32>();
             op.Add(" ");

@@ -186,7 +186,7 @@ namespace ERP_CRM_Solution.Controllers
             Session["NumAgendasHoje"] = ((List<AGENDA>)Session["AgendasHoje"]).Count;
 
             Session["Telefones"] = telApp.GetAllItens(usu.ASSI_CD_ID.Value);
-            Session["NumTelefones"] = ((List<TELEFONE>)Session["Telefones"]).Count;
+            Session["NumTelefones"] = ((List<TELEFONES>)Session["Telefones"]).Count;
             Session["Logs"] = usu.LOG.Count;
 
             String frase = String.Empty;
