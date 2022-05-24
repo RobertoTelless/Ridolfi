@@ -300,6 +300,8 @@
     <Compile Include="ViewModels\AgendaViewModel.cs" />
     <Compile Include="ViewModels\BancoViewModel.cs" />
     <Compile Include="ViewModels\CargoViewModel.cs" />
+    <Compile Include="ViewModels\ParentescoViewModel.cs" />
+    <Compile Include="ViewModels\EscolaridadeViewModel.cs" />
     <Compile Include="ViewModels\CategoriaClienteViewModel.cs" />
     <Compile Include="ViewModels\ClienteContatoViewModel.cs" />
     <Compile Include="ViewModels\ClienteViewModel.cs" />
@@ -1182,7 +1184,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Imagens\1\Noticias\1\Fotos\_124820819_dsc01277.jpg" />
     <Content Include="Imagens\1\Usuario\1\Fotos\FotoOficial_2.jpg" />
+    <Content Include="Imagens\1\Usuario\2\Fotos\image_2021-04-08_13-28-54.png" />
+    <Content Include="Imagens\1\Usuario\3\Fotos\a2.jpg" />
     <Content Include="Imagens\Base\LogoRidolfi.jpg" />
     <Content Include="Imagens\Base\FotoBase.jpg" />
     <Content Include="Imagens\Base\FotoOficial_2.jpeg" />
@@ -2782,11 +2787,14 @@
     <Content Include="amcharts4\themes\moonrisekingdom.js.map" />
     <Content Include="amcharts4\themes\patterns.js.map" />
     <Content Include="amcharts4\themes\spiritedaway.js.map" />
+    <Content Include="Imagens\1\Agenda\2\Anexos\UsuarioLista_23052022.pdf" />
+    <Content Include="Imagens\1\Tarefa\1\Anexos\power_system.pdf" />
     <None Include="Properties\PublishProfiles\DBMasterData - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\ModelosDashboard - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\on-suite-dashboards - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\on-suite-dashboards - ReadOnly - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\on-suite-dashboards - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\RidolfiSys - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\SB-Dashboards - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\characterCount.js" />
@@ -3697,11 +3705,33 @@
     <Content Include="Views\Telefone\VerCardsTelefone.cshtml" />
     <Content Include="Views\TabelasAuxiliares\MontarTelaCargo.cshtml" />
     <Content Include="Views\TabelasAuxiliares\MontarTelaCatAgenda.cshtml" />
+    <Content Include="Views\TabelasAuxiliares\MontarTelaEscolaridade.cshtml" />
+    <Content Include="Views\TabelasAuxiliares\IncluirEscolaridade.cshtml" />
+    <Content Include="Views\TabelasAuxiliares\EditarEscolaridade.cshtml" />
+    <Content Include="Views\TabelasAuxiliares\MontarTelaParentesco.cshtml" />
+    <Content Include="Views\TabelasAuxiliares\IncluirParentesco.cshtml" />
+    <Content Include="Views\TabelasAuxiliares\EditarParentesco.cshtml" />
+    <Content Include="Views\BaseAdmin\MontarTelaDashboardCadastros.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Filters\" />
+    <Folder Include="Imagens\1\Agenda\1\Anexos\" />
+    <Folder Include="Imagens\1\Agenda\3\Anexos\" />
+    <Folder Include="Imagens\1\Agenda\4\Anexos\" />
+    <Folder Include="Imagens\1\Agenda\5\Anexos\" />
+    <Folder Include="Imagens\1\Agenda\6\Anexos\" />
+    <Folder Include="Imagens\1\Notificacao\10\Anexos\" />
+    <Folder Include="Imagens\1\Notificacao\11\Anexos\" />
+    <Folder Include="Imagens\1\Notificacao\12\Anexos\" />
+    <Folder Include="Imagens\1\Notificacao\1\Anexos\" />
+    <Folder Include="Imagens\1\Notificacao\2\Anexos\" />
+    <Folder Include="Imagens\1\Notificacao\3\Anexos\" />
+    <Folder Include="Imagens\1\Notificacao\9\Anexos\" />
+    <Folder Include="Imagens\1\Tarefa\2\Anexos\" />
     <Folder Include="Imagens\1\Usuario\1\Anexos\" />
+    <Folder Include="Imagens\1\Usuario\2\Anexos\" />
+    <Folder Include="Imagens\1\Usuario\3\Anexos\" />
     <Folder Include="Models\" />
     <Folder Include="TemplatesHTML\" />
   </ItemGroup>

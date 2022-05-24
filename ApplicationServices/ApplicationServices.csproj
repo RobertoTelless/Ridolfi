@@ -163,6 +163,9 @@
     <Compile Include="Interfaces\IAppServiceBase.cs" />
     <Compile Include="Interfaces\IBancoAppService.cs" />
     <Compile Include="Interfaces\ICargoAppService.cs" />
+    <Compile Include="Interfaces\IBeneficiarioAppService.cs" />
+    <Compile Include="Interfaces\IParentescoAppService.cs" />
+    <Compile Include="Interfaces\IEscolaridadeAppService.cs" />
     <Compile Include="Interfaces\ICategoriaClienteAppService.cs" />
     <Compile Include="Interfaces\ICategoriaTelefoneAppService.cs" />
     <Compile Include="Interfaces\IClienteAppService.cs" />
@@ -187,6 +190,9 @@
     <Compile Include="Services\AppServiceBase.cs" />
     <Compile Include="Services\BancoAppService.cs" />
     <Compile Include="Services\CargoAppService.cs" />
+    <Compile Include="Services\BeneficiarioAppService.cs" />
+    <Compile Include="Services\ParentescoAppService.cs" />
+    <Compile Include="Services\EscolaridadeAppService.cs" />
     <Compile Include="Services\CategoriaClienteAppService.cs" />
     <Compile Include="Services\CategoriaTelefoneAppService.cs" />
     <Compile Include="Services\ClienteAppService.cs" />

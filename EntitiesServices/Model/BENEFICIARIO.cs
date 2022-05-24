@@ -18,6 +18,8 @@ namespace EntitiesServices.Model
         public BENEFICIARIO()
         {
             this.PRECATORIO = new HashSet<PRECATORIO>();
+            this.BENEFICIARIO_ANEXO = new HashSet<BENEFICIARIO_ANEXO>();
+            this.BENEFICIARIO_ANOTACOES = new HashSet<BENEFICIARIO_ANOTACOES>();
         }
     
         public int BENE_CD_ID { get; set; }
@@ -40,5 +42,9 @@ namespace EntitiesServices.Model
         public virtual TIPO_PESSOA TIPO_PESSOA { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PRECATORIO> PRECATORIO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BENEFICIARIO_ANEXO> BENEFICIARIO_ANEXO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BENEFICIARIO_ANOTACOES> BENEFICIARIO_ANOTACOES { get; set; }
     }
 }

@@ -91,6 +91,8 @@ namespace Presentation.Start
             kernel.Bind<IBancoAppService>().To<BancoAppService>();
             kernel.Bind<IDepartamentoAppService>().To<DepartamentoAppService>();
             kernel.Bind<IPeriodicidadeAppService>().To<PeriodicidadeAppService>();
+            kernel.Bind<IEscolaridadeAppService>().To<EscolaridadeAppService>();
+            kernel.Bind<IParentescoAppService>().To<ParentescoAppService>();
 
             kernel.Bind(typeof(IServiceBase<>)).To(typeof(ServiceBase<>));
             kernel.Bind<IUsuarioService>().To<UsuarioService>();
@@ -115,6 +117,8 @@ namespace Presentation.Start
             kernel.Bind<IBancoService>().To<BancoService>();
             kernel.Bind<IDepartamentoService>().To<DepartamentoService>();
             kernel.Bind<IPeriodicidadeService>().To<PeriodicidadeService>();
+            kernel.Bind<IEscolaridadeService>().To<EscolaridadeService>();
+            kernel.Bind<IParentescoService>().To<ParentescoService>();
 
             kernel.Bind(typeof(IRepositoryBase<>)).To(typeof(RepositoryBase<>));
             kernel.Bind<IConfiguracaoRepository>().To<ConfiguracaoRepository>();
@@ -156,6 +160,8 @@ namespace Presentation.Start
             kernel.Bind<IPeriodicidadeRepository>().To<PeriodicidadeRepository>();
             kernel.Bind<IBancoRepository>().To<BancoRepository>();
             kernel.Bind<IDepartamentoRepository>().To<DepartamentoRepository>();
+            kernel.Bind<IEscolaridadeRepository>().To<EscolaridadeRepository>();
+            kernel.Bind<IParentescoRepository>().To<ParentescoRepository>();
 
         }
     }

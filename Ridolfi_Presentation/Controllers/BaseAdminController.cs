@@ -100,6 +100,28 @@ namespace ERP_CRM_Solution.Controllers
             return Json(hash);
         }
 
+        public ActionResult MontarTelaDashboardCadastros()
+        {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            USUARIO usuario = (USUARIO)Session["UserCredentials"];
+            Int32 idAss = (Int32)Session["IdAssinante"];
+            UsuarioViewModel vm = Mapper.Map<USUARIO, UsuarioViewModel>(usuario);
+
+            // Carrega valores dos cadastros
+
+
+
+
+
+
+
+
+            return View(vm);
+        }
+       
         public ActionResult CarregarBase()
         {
             if ((String)Session["Ativa"] == null)

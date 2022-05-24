@@ -143,6 +143,11 @@
         <AssociationConnector Association="DB_RidolfiModel.FKVARA689447" ManuallyRouted="false" />
         <AssociationConnector Association="DB_RidolfiModel.FK_USUARIO_ANEXO_USUARIO" ManuallyRouted="false" />
         <AssociationConnector Association="DB_RidolfiModel.FK_CLIENTE_CATEGORIA_CLIENTE" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.BENEFICIARIO_ANEXO" Width="1.5" PointX="3" PointY="47.5" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.BENEFICIARIO_ANOTACOES" Width="1.5" PointX="5.25" PointY="46.125" />
+        <AssociationConnector Association="DB_RidolfiModel.FK_BENEFICIARIO_ANEXO_BENEFICIARIO" />
+        <AssociationConnector Association="DB_RidolfiModel.FK_BENEFICIARIO_ANOTACOES_BENEFICIARIO" />
+        <AssociationConnector Association="DB_RidolfiModel.FK_BENEFICIARIO_ANOTACOES_USUARIO" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

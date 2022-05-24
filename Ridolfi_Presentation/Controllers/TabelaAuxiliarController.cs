@@ -38,6 +38,8 @@ namespace ERP_CRM_Solution.Controllers
         private readonly ICategoriaClienteAppService ccApp;
         private readonly ICargoAppService caApp;
         private readonly IDepartamentoAppService depApp;
+        private readonly IEscolaridadeAppService escApp;
+        private readonly IParentescoAppService parApp;
 
         private String msg;
         private Exception exception;
@@ -50,12 +52,20 @@ namespace ERP_CRM_Solution.Controllers
         DEPARTAMENTO objetoDEP = new DEPARTAMENTO();
         DEPARTAMENTO objetoDEPAntes = new DEPARTAMENTO();
         List<DEPARTAMENTO> listaMasterDEP = new List<DEPARTAMENTO>();
+        ESCOLARIDADE objetoESC = new ESCOLARIDADE();
+        ESCOLARIDADE objetoESCAntes = new ESCOLARIDADE();
+        List<ESCOLARIDADE> listaMasterESC = new List<ESCOLARIDADE>();
+        PARENTESCO objetoPAR = new PARENTESCO();
+        PARENTESCO objetoPARAntes = new PARENTESCO();
+        List<PARENTESCO> listaMasterPAR = new List<PARENTESCO>();
 
-        public TabelasAuxiliaresController(ICategoriaClienteAppService ccApps, ICargoAppService caApps, IDepartamentoAppService depApps)
+        public TabelasAuxiliaresController(ICategoriaClienteAppService ccApps, ICargoAppService caApps, IDepartamentoAppService depApps, IEscolaridadeAppService escApps, IParentescoAppService parApps)
         {
             ccApp = ccApps;
             caApp = caApps;
             depApp = depApps;
+            escApp = escApps;
+            parApp = parApps;
         }
 
         [HttpGet]
@@ -1056,7 +1066,659 @@ namespace ERP_CRM_Solution.Controllers
             return RedirectToAction("MontarTelaDepartamento");
         }
 
+        [HttpGet]
+        public ActionResult MontarTelaEscolaridade()
+        {
+            // Verifica se tem usuario logado
+            USUARIO usuario = new USUARIO();
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            if ((USUARIO)Session["UserCredentials"] != null)
+            {
+                usuario = (USUARIO)Session["UserCredentials"];
 
+                // Verfifica permissão
+                if (usuario.PERFIL.PERF_SG_SIGLA == "VIS")
+                {
+                    Session["MensPermissao"] = 2;
+                    return RedirectToAction("CarregarBase", "BaseAdmin");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            Int32 idAss = (Int32)Session["IdAssinante"];
+
+
+            // Carrega listas
+            if ((List<ESCOLARIDADE>)Session["ListaEscolaridade"] == null)
+            {
+                listaMasterESC = escApp.GetAllItens(idAss);
+                Session["ListaEscolaridade"] = listaMasterESC;
+            }
+            ViewBag.Listas = (List<ESCOLARIDADE>)Session["ListaEscolaridade"];
+            Session["Escolaridade"] = null;
+
+            // Indicadores
+            ViewBag.Perfil = usuario.PERFIL.PERF_SG_SIGLA;
+
+            if (Session["MensEscolaridade"] != null)
+            {
+                if ((Int32)Session["MensEscolaridade"] == 2)
+                {
+                    ModelState.AddModelError("", PlatMensagens_Resources.ResourceManager.GetString("M0011", CultureInfo.CurrentCulture));
+                }
+                if ((Int32)Session["MensEscolaridade"] == 3)
+                {
+                    ModelState.AddModelError("", PlatMensagens_Resources.ResourceManager.GetString("M0141", CultureInfo.CurrentCulture));
+                }
+                if ((Int32)Session["MensEscolaridade"] == 4)
+                {
+                    ModelState.AddModelError("", PlatMensagens_Resources.ResourceManager.GetString("M0142", CultureInfo.CurrentCulture));
+                }
+            }
+
+            // Abre view
+            Session["VoltaEscolaridade"] = 1;
+            objetoESC = new ESCOLARIDADE();
+            return View(objetoESC);
+        }
+
+        public ActionResult RetirarFiltroEscolaridade()
+        {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            Int32 idAss = (Int32)Session["IdAssinante"];
+            Session["ListaEscolaridade"] = null;
+            return RedirectToAction("MontarTelaEscolaridade");
+        }
+
+        public ActionResult MostrarTudoEscolaridade()
+        {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            Int32 idAss = (Int32)Session["IdAssinante"];
+            listaMasterESC = escApp.GetAllItensAdm(idAss);
+            Session["ListaEscolaridade"] = listaMasterESC;
+            return RedirectToAction("MontarTelaEscolaridade");
+        }
+
+        public ActionResult VoltarBaseEscolaridade()
+        {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            Int32 idAss = (Int32)Session["IdAssinante"];
+            return RedirectToAction("MontarTelaEscolaridade");
+        }
+
+        [HttpGet]
+        public ActionResult IncluirEscolaridade()
+        {
+            // Verifica se tem usuario logado
+            USUARIO usuario = new USUARIO();
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            if ((USUARIO)Session["UserCredentials"] != null)
+            {
+                usuario = (USUARIO)Session["UserCredentials"];
+
+                // Verfifica permissão
+                if (usuario.PERFIL.PERF_SG_SIGLA != "ADM" & usuario.PERFIL.PERF_SG_SIGLA != "GER")
+                {
+                    Session["MensEscolaridade"] = 2;
+                    return RedirectToAction("MontarTelaEscolaridade");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            Int32 idAss = (Int32)Session["IdAssinante"];
+
+            // Prepara listas
+
+            // Prepara view
+            ESCOLARIDADE item = new ESCOLARIDADE();
+            EscolaridadeViewModel vm = Mapper.Map<ESCOLARIDADE, EscolaridadeViewModel>(item);
+            vm.ESCO_IN_ATIVO = 1;
+            return View(vm);
+        }
+
+        [HttpPost]
+        public ActionResult IncluirEscolaridade(EscolaridadeViewModel vm)
+        {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            Int32 idAss = (Int32)Session["IdAssinante"];
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    // Executa a operação
+                    ESCOLARIDADE item = Mapper.Map<EscolaridadeViewModel, ESCOLARIDADE>(vm);
+                    USUARIO usuario = (USUARIO)Session["UserCredentials"];
+                    Int32 volta = escApp.ValidateCreate(item, usuario);
+
+                    // Verifica retorno
+                    if (volta == 1)
+                    {
+                        Session["MensEscolaridade"] = 3;
+                        return RedirectToAction("MontarTelaEscolaridade");
+                    }
+
+                    // Sucesso
+                    listaMasterESC = new List<ESCOLARIDADE>();
+                    Session["ListaEscolaridade"] = null;
+                    Session["IdEscolaridade"] = item.ESCO_CD_ID;
+                    return RedirectToAction("MontarTelaEscolaridade");
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.Message = ex.Message;
+                    return View(vm);
+                }
+            }
+            else
+            {
+                return View(vm);
+            }
+        }
+
+        [HttpGet]
+        public ActionResult EditarEscolaridade(Int32 id)
+        {
+
+            // Verifica se tem usuario logado
+            USUARIO usuario = new USUARIO();
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            if ((USUARIO)Session["UserCredentials"] != null)
+            {
+                usuario = (USUARIO)Session["UserCredentials"];
+
+                // Verfifica permissão
+                if (usuario.PERFIL.PERF_SG_SIGLA != "ADM" & usuario.PERFIL.PERF_SG_SIGLA != "GER")
+                {
+                    Session["MensEscolaridade"] = 2;
+                    return RedirectToAction("MontarTelaEscolaridade");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            Int32 idAss = (Int32)Session["IdAssinante"];
+
+            ESCOLARIDADE item = escApp.GetItemById(id);
+            Session["Escolaridade"] = item;
+
+            // Indicadores
+
+            // Mensagens
+            if (Session["MensEscolaridade"] != null)
+            {
+
+
+            }
+
+            objetoESCAntes = item;
+            Session["IdEscolaridade"] = id;
+            EscolaridadeViewModel vm = Mapper.Map<ESCOLARIDADE, EscolaridadeViewModel>(item);
+            return View(vm);
+        }
+
+        [HttpPost]
+        public ActionResult EditarEscolaridade(EscolaridadeViewModel vm)
+        {
+            Int32 idAss = (Int32)Session["IdAssinante"];
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    // Executa a operação
+                    USUARIO usuario = (USUARIO)Session["UserCredentials"];
+                    ESCOLARIDADE item = Mapper.Map<EscolaridadeViewModel, ESCOLARIDADE>(vm);
+                    Int32 volta = escApp.ValidateEdit(item, objetoESCAntes, usuario);
+
+                    // Verifica retorno
+
+                    // Sucesso
+                    listaMasterESC = new List<ESCOLARIDADE>();
+                    Session["ListaEscolaridade"] = null;
+                    return RedirectToAction("MontarTelaEscolaridade");
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.Message = ex.Message;
+                    return View(vm);
+                }
+            }
+            else
+            {
+                return View(vm);
+            }
+        }
+
+        public ActionResult VoltarAnexoEscolaridade()
+        {
+
+            return RedirectToAction("EditarEscolaridade", new { id = (Int32)Session["IdEscolaridade"] });
+        }
+
+        [HttpGet]
+        public ActionResult ExcluirEscolaridade(Int32 id)
+        {
+            // Verifica se tem usuario logado
+            USUARIO usuario = new USUARIO();
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            if ((USUARIO)Session["UserCredentials"] != null)
+            {
+                usuario = (USUARIO)Session["UserCredentials"];
+
+                // Verfifica permissão
+                if (usuario.PERFIL.PERF_SG_SIGLA != "ADM" & usuario.PERFIL.PERF_SG_SIGLA != "GER")
+                {
+                    Session["MensEscolaridade"] = 2;
+                    return RedirectToAction("MontarTelaEscolaridade");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            Int32 idAss = (Int32)Session["IdAssinante"];
+
+            ESCOLARIDADE item = escApp.GetItemById(id);
+            objetoESCAntes = (ESCOLARIDADE)Session["Escolaridade"];
+            item.ESCO_IN_ATIVO = 0;
+            Int32 volta = escApp.ValidateDelete(item, usuario);
+            if (volta == 1)
+            {
+                Session["MensEscolaridade"] = 4;
+                return RedirectToAction("MontarTelaEscolaridade");
+            }
+            Session["ListaEscolaridade"] = null;
+            return RedirectToAction("MontarTelaEscolaridade");
+        }
+
+        [HttpGet]
+        public ActionResult ReativarEscolaridade(Int32 id)
+        {
+            // Verifica se tem usuario logado
+            USUARIO usuario = new USUARIO();
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            if ((USUARIO)Session["UserCredentials"] != null)
+            {
+                usuario = (USUARIO)Session["UserCredentials"];
+
+                // Verfifica permissão
+                if (usuario.PERFIL.PERF_SG_SIGLA != "ADM" & usuario.PERFIL.PERF_SG_SIGLA != "GER")
+                {
+                    Session["MensEscolaridade"] = 2;
+                    return RedirectToAction("MontarTelaEscolaridade");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            Int32 idAss = (Int32)Session["IdAssinante"];
+
+            ESCOLARIDADE item = escApp.GetItemById(id);
+            objetoESCAntes = (ESCOLARIDADE)Session["Escolaridade"];
+            item.ESCO_IN_ATIVO = 1;
+            Int32 volta = escApp.ValidateReativar(item, usuario);
+            Session["ListaEscolaridade"] = null;
+            return RedirectToAction("MontarTelaEscolaridade");
+        }
+
+        [HttpGet]
+        public ActionResult MontarTelaParentesco()
+        {
+            // Verifica se tem usuario logado
+            USUARIO usuario = new USUARIO();
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            if ((USUARIO)Session["UserCredentials"] != null)
+            {
+                usuario = (USUARIO)Session["UserCredentials"];
+
+                // Verfifica permissão
+                if (usuario.PERFIL.PERF_SG_SIGLA == "VIS")
+                {
+                    Session["MensPermissao"] = 2;
+                    return RedirectToAction("CarregarBase", "BaseAdmin");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            Int32 idAss = (Int32)Session["IdAssinante"];
+
+
+            // Carrega listas
+            if ((List<PARENTESCO>)Session["ListaParentesco"] == null)
+            {
+                listaMasterPAR = parApp.GetAllItens(idAss);
+                Session["ListaParentesco"] = listaMasterPAR;
+            }
+            ViewBag.Listas = (List<PARENTESCO>)Session["ListaParentesco"];
+            Session["Parentesco"] = null;
+
+            // Indicadores
+            ViewBag.Perfil = usuario.PERFIL.PERF_SG_SIGLA;
+
+            if (Session["MensParentesco"] != null)
+            {
+                if ((Int32)Session["MensParentesco"] == 2)
+                {
+                    ModelState.AddModelError("", PlatMensagens_Resources.ResourceManager.GetString("M0011", CultureInfo.CurrentCulture));
+                }
+                if ((Int32)Session["MensParentesco"] == 3)
+                {
+                    ModelState.AddModelError("", PlatMensagens_Resources.ResourceManager.GetString("M0143", CultureInfo.CurrentCulture));
+                }
+                if ((Int32)Session["MensParentesco"] == 4)
+                {
+                    ModelState.AddModelError("", PlatMensagens_Resources.ResourceManager.GetString("M0144", CultureInfo.CurrentCulture));
+                }
+            }
+
+            // Abre view
+            Session["VoltaParentesco"] = 1;
+            objetoPAR = new PARENTESCO();
+            return View(objetoPAR);
+        }
+
+        public ActionResult RetirarFiltroParentesco()
+        {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            Int32 idAss = (Int32)Session["IdAssinante"];
+            Session["ListaParentesco"] = null;
+            return RedirectToAction("MontarTelaParentesco");
+        }
+
+        public ActionResult MostrarTudoParentesco()
+        {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            Int32 idAss = (Int32)Session["IdAssinante"];
+            listaMasterPAR = parApp.GetAllItensAdm(idAss);
+            Session["ListaParentesco"] = listaMasterPAR;
+            return RedirectToAction("MontarTelaParentesco");
+        }
+
+        public ActionResult VoltarBaseParentesco()
+        {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            Int32 idAss = (Int32)Session["IdAssinante"];
+            return RedirectToAction("MontarTelaParentesco");
+        }
+
+        [HttpGet]
+        public ActionResult IncluirParentesco()
+        {
+            // Verifica se tem usuario logado
+            USUARIO usuario = new USUARIO();
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            if ((USUARIO)Session["UserCredentials"] != null)
+            {
+                usuario = (USUARIO)Session["UserCredentials"];
+
+                // Verfifica permissão
+                if (usuario.PERFIL.PERF_SG_SIGLA != "ADM" & usuario.PERFIL.PERF_SG_SIGLA != "GER")
+                {
+                    Session["MensParentesco"] = 2;
+                    return RedirectToAction("MontarTelaParentesco");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            Int32 idAss = (Int32)Session["IdAssinante"];
+
+            // Prepara listas
+
+            // Prepara view
+            PARENTESCO item = new PARENTESCO();
+            ParentescoViewModel vm = Mapper.Map<PARENTESCO, ParentescoViewModel>(item);
+            vm.PARE_IN_ATIVO = 1;
+            return View(vm);
+        }
+
+        [HttpPost]
+        public ActionResult IncluirParentesco(ParentescoViewModel vm)
+        {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            Int32 idAss = (Int32)Session["IdAssinante"];
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    // Executa a operação
+                    PARENTESCO item = Mapper.Map<ParentescoViewModel, PARENTESCO>(vm);
+                    USUARIO usuario = (USUARIO)Session["UserCredentials"];
+                    Int32 volta = parApp.ValidateCreate(item, usuario);
+
+                    // Verifica retorno
+                    if (volta == 1)
+                    {
+                        Session["MensParentesco"] = 3;
+                        return RedirectToAction("MontarTelaParentesco");
+                    }
+
+                    // Sucesso
+                    listaMasterPAR = new List<PARENTESCO>();
+                    Session["ListaParentesco"] = null;
+                    Session["IdParentesco"] = item.PARE_CD_ID;
+                    return RedirectToAction("MontarTelaParentesco");
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.Message = ex.Message;
+                    return View(vm);
+                }
+            }
+            else
+            {
+                return View(vm);
+            }
+        }
+
+        [HttpGet]
+        public ActionResult EditarParentesco(Int32 id)
+        {
+
+            // Verifica se tem usuario logado
+            USUARIO usuario = new USUARIO();
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            if ((USUARIO)Session["UserCredentials"] != null)
+            {
+                usuario = (USUARIO)Session["UserCredentials"];
+
+                // Verfifica permissão
+                if (usuario.PERFIL.PERF_SG_SIGLA != "ADM" & usuario.PERFIL.PERF_SG_SIGLA != "GER")
+                {
+                    Session["MensParentesco"] = 2;
+                    return RedirectToAction("MontarTelaParentesco");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            Int32 idAss = (Int32)Session["IdAssinante"];
+
+            PARENTESCO item = parApp.GetItemById(id);
+            Session["Parentesco"] = item;
+
+            // Indicadores
+
+            // Mensagens
+            if (Session["MensParentesco"] != null)
+            {
+
+
+            }
+
+            objetoPARAntes = item;
+            Session["IdParentesco"] = id;
+            ParentescoViewModel vm = Mapper.Map<PARENTESCO, ParentescoViewModel>(item);
+            return View(vm);
+        }
+
+        [HttpPost]
+        public ActionResult EditarParentesco(ParentescoViewModel vm)
+        {
+            Int32 idAss = (Int32)Session["IdAssinante"];
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    // Executa a operação
+                    USUARIO usuario = (USUARIO)Session["UserCredentials"];
+                    PARENTESCO item = Mapper.Map<ParentescoViewModel, PARENTESCO>(vm);
+                    Int32 volta = parApp.ValidateEdit(item, objetoPARAntes, usuario);
+
+                    // Verifica retorno
+
+                    // Sucesso
+                    listaMasterPAR = new List<PARENTESCO>();
+                    Session["ListaParentesco"] = null;
+                    return RedirectToAction("MontarTelaParentesco");
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.Message = ex.Message;
+                    return View(vm);
+                }
+            }
+            else
+            {
+                return View(vm);
+            }
+        }
+
+        public ActionResult VoltarAnexoParentesco()
+        {
+
+            return RedirectToAction("EditarParentesco", new { id = (Int32)Session["IdParentesco"] });
+        }
+
+        [HttpGet]
+        public ActionResult ExcluirParentesco(Int32 id)
+        {
+            // Verifica se tem usuario logado
+            USUARIO usuario = new USUARIO();
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            if ((USUARIO)Session["UserCredentials"] != null)
+            {
+                usuario = (USUARIO)Session["UserCredentials"];
+
+                // Verfifica permissão
+                if (usuario.PERFIL.PERF_SG_SIGLA != "ADM" & usuario.PERFIL.PERF_SG_SIGLA != "GER")
+                {
+                    Session["MensParentesco"] = 2;
+                    return RedirectToAction("MontarTelaParentesco");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            Int32 idAss = (Int32)Session["IdAssinante"];
+
+            PARENTESCO item = parApp.GetItemById(id);
+            objetoPARAntes = (PARENTESCO)Session["Parentesco"];
+            item.PARE_IN_ATIVO = 0;
+            Int32 volta = parApp.ValidateDelete(item, usuario);
+            if (volta == 1)
+            {
+                Session["MensParentesco"] = 4;
+                return RedirectToAction("MontarTelaParentesco");
+            }
+            Session["ListaParentesco"] = null;
+            return RedirectToAction("MontarTelaParentesco");
+        }
+
+        [HttpGet]
+        public ActionResult ReativarParentesco(Int32 id)
+        {
+            // Verifica se tem usuario logado
+            USUARIO usuario = new USUARIO();
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            if ((USUARIO)Session["UserCredentials"] != null)
+            {
+                usuario = (USUARIO)Session["UserCredentials"];
+
+                // Verfifica permissão
+                if (usuario.PERFIL.PERF_SG_SIGLA != "ADM" & usuario.PERFIL.PERF_SG_SIGLA != "GER")
+                {
+                    Session["MensEscolaridade"] = 2;
+                    return RedirectToAction("MontarTelaEscolaridade");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            Int32 idAss = (Int32)Session["IdAssinante"];
+
+            PARENTESCO item = parApp.GetItemById(id);
+            objetoPARAntes = (PARENTESCO)Session["Parentesco"];
+            item.PARE_IN_ATIVO = 1;
+            Int32 volta = parApp.ValidateReativar(item, usuario);
+            Session["ListaParentesco"] = null;
+            return RedirectToAction("MontarTelaParentesco");
+        }
 
 
     }

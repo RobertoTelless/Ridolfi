@@ -35,6 +35,8 @@ namespace MvcMapping.Mappers
             CreateMap<CargoViewModel, CARGO>();
             CreateMap<BancoViewModel, BANCO>();
             CreateMap<DepartamentoViewModel, DEPARTAMENTO>();
+            CreateMap<EscolaridadeViewModel, ESCOLARIDADE>();
+            CreateMap<ParentescoViewModel, PARENTESCO>();
 
         }
     }

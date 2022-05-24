@@ -69,6 +69,29 @@
           <Property Name="BENE_VL_RENDA_ESTIMADA" Type="decimal" Precision="20" Scale="2" />
           <Property Name="BENE_IN_ATIVO" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="BENEFICIARIO_ANEXO">
+          <Key>
+            <PropertyRef Name="BEAN_CD_ID" />
+          </Key>
+          <Property Name="BEAN_CD_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BENE_CD_ID" Type="int" Nullable="false" />
+          <Property Name="BEAN_NM_TITULO" Type="varchar" MaxLength="150" />
+          <Property Name="BEAN_DT_ANEXO" Type="date" />
+          <Property Name="BEAN_IN_TIPO" Type="int" />
+          <Property Name="BEAN_AQ_ARQUIVO" Type="varchar" MaxLength="250" />
+          <Property Name="BEAN_IN_ATIVO" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BENEFICIARIO_ANOTACOES">
+          <Key>
+            <PropertyRef Name="BECO_CD_ID" />
+          </Key>
+          <Property Name="BECO_CD_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BENE_CD_ID" Type="int" Nullable="false" />
+          <Property Name="BECO_DT_COMENTARIO" Type="datetime" />
+          <Property Name="USUA_CD_ID" Type="int" />
+          <Property Name="BECO_TX_TEXTO" Type="text" />
+          <Property Name="BECO_IN_ATIVO" Type="int" />
+        </EntityType>
         <EntityType Name="CARGO">
           <Key>
             <PropertyRef Name="CARG_CD_ID" />
@@ -892,6 +915,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_BENEFICIARIO_ANEXO_BENEFICIARIO">
+          <End Role="BENEFICIARIO" Type="Self.BENEFICIARIO" Multiplicity="1" />
+          <End Role="BENEFICIARIO_ANEXO" Type="Self.BENEFICIARIO_ANEXO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BENEFICIARIO">
+              <PropertyRef Name="BENE_CD_ID" />
+            </Principal>
+            <Dependent Role="BENEFICIARIO_ANEXO">
+              <PropertyRef Name="BENE_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BENEFICIARIO_ANOTACOES_BENEFICIARIO">
+          <End Role="BENEFICIARIO" Type="Self.BENEFICIARIO" Multiplicity="1" />
+          <End Role="BENEFICIARIO_ANOTACOES" Type="Self.BENEFICIARIO_ANOTACOES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BENEFICIARIO">
+              <PropertyRef Name="BENE_CD_ID" />
+            </Principal>
+            <Dependent Role="BENEFICIARIO_ANOTACOES">
+              <PropertyRef Name="BENE_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BENEFICIARIO_ANOTACOES_USUARIO">
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="0..1" />
+          <End Role="BENEFICIARIO_ANOTACOES" Type="Self.BENEFICIARIO_ANOTACOES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="USUA_CD_ID" />
+            </Principal>
+            <Dependent Role="BENEFICIARIO_ANOTACOES">
+              <PropertyRef Name="USUA_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_CLIENTE_ANEXO_CLIENTE">
           <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="1" />
           <End Role="CLIENTE_ANEXO" Type="Self.CLIENTE_ANEXO" Multiplicity="*" />
@@ -1702,6 +1761,8 @@
           <EntitySet Name="AGENDA_VINCULO" EntityType="Self.AGENDA_VINCULO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BANCO" EntityType="Self.BANCO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BENEFICIARIO" EntityType="Self.BENEFICIARIO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BENEFICIARIO_ANEXO" EntityType="Self.BENEFICIARIO_ANEXO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BENEFICIARIO_ANOTACOES" EntityType="Self.BENEFICIARIO_ANOTACOES" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CARGO" EntityType="Self.CARGO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CATEGORIA_AGENDA" EntityType="Self.CATEGORIA_AGENDA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CATEGORIA_CLIENTE" EntityType="Self.CATEGORIA_CLIENTE" Schema="dbo" store:Type="Tables" />
@@ -1785,6 +1846,18 @@
           <AssociationSet Name="FK_AGENDA_VINCULO_USUARIO" Association="Self.FK_AGENDA_VINCULO_USUARIO">
             <End Role="USUARIO" EntitySet="USUARIO" />
             <End Role="AGENDA_VINCULO" EntitySet="AGENDA_VINCULO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BENEFICIARIO_ANEXO_BENEFICIARIO" Association="Self.FK_BENEFICIARIO_ANEXO_BENEFICIARIO">
+            <End Role="BENEFICIARIO" EntitySet="BENEFICIARIO" />
+            <End Role="BENEFICIARIO_ANEXO" EntitySet="BENEFICIARIO_ANEXO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BENEFICIARIO_ANOTACOES_BENEFICIARIO" Association="Self.FK_BENEFICIARIO_ANOTACOES_BENEFICIARIO">
+            <End Role="BENEFICIARIO" EntitySet="BENEFICIARIO" />
+            <End Role="BENEFICIARIO_ANOTACOES" EntitySet="BENEFICIARIO_ANOTACOES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BENEFICIARIO_ANOTACOES_USUARIO" Association="Self.FK_BENEFICIARIO_ANOTACOES_USUARIO">
+            <End Role="USUARIO" EntitySet="USUARIO" />
+            <End Role="BENEFICIARIO_ANOTACOES" EntitySet="BENEFICIARIO_ANOTACOES" />
           </AssociationSet>
           <AssociationSet Name="FK_CLIENTE_ANEXO_CLIENTE" Association="Self.FK_CLIENTE_ANEXO_CLIENTE">
             <End Role="CLIENTE" EntitySet="CLIENTE" />
@@ -2137,6 +2210,8 @@
           <NavigationProperty Name="ESCOLARIDADE" Relationship="Self.FKBENEFICIAR821804" FromRole="BENEFICIARIO" ToRole="ESCOLARIDADE" />
           <NavigationProperty Name="TIPO_PESSOA" Relationship="Self.FKBENEFICIAR947372" FromRole="BENEFICIARIO" ToRole="TIPO_PESSOA" />
           <NavigationProperty Name="PRECATORIO" Relationship="Self.FKPRECATORIO759277" FromRole="BENEFICIARIO" ToRole="PRECATORIO" />
+          <NavigationProperty Name="BENEFICIARIO_ANEXO" Relationship="DB_RidolfiModel.FK_BENEFICIARIO_ANEXO_BENEFICIARIO" FromRole="BENEFICIARIO" ToRole="BENEFICIARIO_ANEXO" />
+          <NavigationProperty Name="BENEFICIARIO_ANOTACOES" Relationship="DB_RidolfiModel.FK_BENEFICIARIO_ANOTACOES_BENEFICIARIO" FromRole="BENEFICIARIO" ToRole="BENEFICIARIO_ANOTACOES" />
         </EntityType>
         <EntityType Name="CARGO">
           <Key>
@@ -2995,6 +3070,7 @@
           <NavigationProperty Name="TAREFA_VINCULO" Relationship="Self.FK_TAREFA_VINCULO_USUARIO" FromRole="USUARIO" ToRole="TAREFA_VINCULO" />
           <NavigationProperty Name="USUARIO_ANEXO" Relationship="Self.FK_USUARIO_ANEXO_USUARIO" FromRole="USUARIO" ToRole="USUARIO_ANEXO" />
           <Property Name="ASSI_CD_ID" Type="Int32" />
+          <NavigationProperty Name="BENEFICIARIO_ANOTACOES" Relationship="DB_RidolfiModel.FK_BENEFICIARIO_ANOTACOES_USUARIO" FromRole="USUARIO" ToRole="BENEFICIARIO_ANOTACOES" />
         </EntityType>
         <EntityType Name="USUARIO_ANEXO">
           <Key>
@@ -4242,6 +4318,20 @@
             <End Role="CATEGORIA_CLIENTE" EntitySet="CATEGORIA_CLIENTE" />
             <End Role="CLIENTE" EntitySet="CLIENTE" />
           </AssociationSet>
+          <EntitySet Name="BENEFICIARIO_ANEXO" EntityType="DB_RidolfiModel.BENEFICIARIO_ANEXO" />
+          <EntitySet Name="BENEFICIARIO_ANOTACOES" EntityType="DB_RidolfiModel.BENEFICIARIO_ANOTACOES" />
+          <AssociationSet Name="FK_BENEFICIARIO_ANEXO_BENEFICIARIO" Association="DB_RidolfiModel.FK_BENEFICIARIO_ANEXO_BENEFICIARIO">
+            <End Role="BENEFICIARIO" EntitySet="BENEFICIARIO" />
+            <End Role="BENEFICIARIO_ANEXO" EntitySet="BENEFICIARIO_ANEXO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BENEFICIARIO_ANOTACOES_BENEFICIARIO" Association="DB_RidolfiModel.FK_BENEFICIARIO_ANOTACOES_BENEFICIARIO">
+            <End Role="BENEFICIARIO" EntitySet="BENEFICIARIO" />
+            <End Role="BENEFICIARIO_ANOTACOES" EntitySet="BENEFICIARIO_ANOTACOES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BENEFICIARIO_ANOTACOES_USUARIO" Association="DB_RidolfiModel.FK_BENEFICIARIO_ANOTACOES_USUARIO">
+            <End Role="USUARIO" EntitySet="USUARIO" />
+            <End Role="BENEFICIARIO_ANOTACOES" EntitySet="BENEFICIARIO_ANOTACOES" />
+          </AssociationSet>
         </EntityContainer>
         <Association Name="FK_CLIENTE_CATEGORIA_CLIENTE">
           <End Type="DB_RidolfiModel.CATEGORIA_CLIENTE" Role="CATEGORIA_CLIENTE" Multiplicity="1" />
@@ -4252,6 +4342,68 @@
             </Principal>
             <Dependent Role="CLIENTE">
               <PropertyRef Name="CACL_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="BENEFICIARIO_ANEXO">
+          <Key>
+            <PropertyRef Name="BEAN_CD_ID" />
+          </Key>
+          <Property Name="BEAN_CD_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BENE_CD_ID" Type="Int32" Nullable="false" />
+          <Property Name="BEAN_NM_TITULO" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="BEAN_DT_ANEXO" Type="DateTime" Precision="0" />
+          <Property Name="BEAN_IN_TIPO" Type="Int32" />
+          <Property Name="BEAN_AQ_ARQUIVO" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="BEAN_IN_ATIVO" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BENEFICIARIO" Relationship="DB_RidolfiModel.FK_BENEFICIARIO_ANEXO_BENEFICIARIO" FromRole="BENEFICIARIO_ANEXO" ToRole="BENEFICIARIO" />
+        </EntityType>
+        <EntityType Name="BENEFICIARIO_ANOTACOES">
+          <Key>
+            <PropertyRef Name="BECO_CD_ID" />
+          </Key>
+          <Property Name="BECO_CD_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BENE_CD_ID" Type="Int32" Nullable="false" />
+          <Property Name="BECO_DT_COMENTARIO" Type="DateTime" Precision="3" />
+          <Property Name="USUA_CD_ID" Type="Int32" />
+          <Property Name="BECO_TX_TEXTO" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="BECO_IN_ATIVO" Type="Int32" />
+          <NavigationProperty Name="BENEFICIARIO" Relationship="DB_RidolfiModel.FK_BENEFICIARIO_ANOTACOES_BENEFICIARIO" FromRole="BENEFICIARIO_ANOTACOES" ToRole="BENEFICIARIO" />
+          <NavigationProperty Name="USUARIO" Relationship="DB_RidolfiModel.FK_BENEFICIARIO_ANOTACOES_USUARIO" FromRole="BENEFICIARIO_ANOTACOES" ToRole="USUARIO" />
+        </EntityType>
+        <Association Name="FK_BENEFICIARIO_ANEXO_BENEFICIARIO">
+          <End Type="DB_RidolfiModel.BENEFICIARIO" Role="BENEFICIARIO" Multiplicity="1" />
+          <End Type="DB_RidolfiModel.BENEFICIARIO_ANEXO" Role="BENEFICIARIO_ANEXO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BENEFICIARIO">
+              <PropertyRef Name="BENE_CD_ID" />
+            </Principal>
+            <Dependent Role="BENEFICIARIO_ANEXO">
+              <PropertyRef Name="BENE_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BENEFICIARIO_ANOTACOES_BENEFICIARIO">
+          <End Type="DB_RidolfiModel.BENEFICIARIO" Role="BENEFICIARIO" Multiplicity="1" />
+          <End Type="DB_RidolfiModel.BENEFICIARIO_ANOTACOES" Role="BENEFICIARIO_ANOTACOES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BENEFICIARIO">
+              <PropertyRef Name="BENE_CD_ID" />
+            </Principal>
+            <Dependent Role="BENEFICIARIO_ANOTACOES">
+              <PropertyRef Name="BENE_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BENEFICIARIO_ANOTACOES_USUARIO">
+          <End Type="DB_RidolfiModel.USUARIO" Role="USUARIO" Multiplicity="0..1" />
+          <End Type="DB_RidolfiModel.BENEFICIARIO_ANOTACOES" Role="BENEFICIARIO_ANOTACOES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="USUA_CD_ID" />
+            </Principal>
+            <Dependent Role="BENEFICIARIO_ANOTACOES">
+              <PropertyRef Name="USUA_CD_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -5138,6 +5290,31 @@
                 <ScalarProperty Name="TRF1_CD_ID" ColumnName="TRF1_CD_ID" />
                 <ScalarProperty Name="VARA_NM_NOME" ColumnName="VARA_NM_NOME" />
                 <ScalarProperty Name="VARA_IN_ATIVO" ColumnName="VARA_IN_ATIVO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BENEFICIARIO_ANEXO">
+            <EntityTypeMapping TypeName="DB_RidolfiModel.BENEFICIARIO_ANEXO">
+              <MappingFragment StoreEntitySet="BENEFICIARIO_ANEXO">
+                <ScalarProperty Name="BEAN_IN_ATIVO" ColumnName="BEAN_IN_ATIVO" />
+                <ScalarProperty Name="BEAN_AQ_ARQUIVO" ColumnName="BEAN_AQ_ARQUIVO" />
+                <ScalarProperty Name="BEAN_IN_TIPO" ColumnName="BEAN_IN_TIPO" />
+                <ScalarProperty Name="BEAN_DT_ANEXO" ColumnName="BEAN_DT_ANEXO" />
+                <ScalarProperty Name="BEAN_NM_TITULO" ColumnName="BEAN_NM_TITULO" />
+                <ScalarProperty Name="BENE_CD_ID" ColumnName="BENE_CD_ID" />
+                <ScalarProperty Name="BEAN_CD_ID" ColumnName="BEAN_CD_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BENEFICIARIO_ANOTACOES">
+            <EntityTypeMapping TypeName="DB_RidolfiModel.BENEFICIARIO_ANOTACOES">
+              <MappingFragment StoreEntitySet="BENEFICIARIO_ANOTACOES">
+                <ScalarProperty Name="BECO_IN_ATIVO" ColumnName="BECO_IN_ATIVO" />
+                <ScalarProperty Name="BECO_TX_TEXTO" ColumnName="BECO_TX_TEXTO" />
+                <ScalarProperty Name="USUA_CD_ID" ColumnName="USUA_CD_ID" />
+                <ScalarProperty Name="BECO_DT_COMENTARIO" ColumnName="BECO_DT_COMENTARIO" />
+                <ScalarProperty Name="BENE_CD_ID" ColumnName="BENE_CD_ID" />
+                <ScalarProperty Name="BECO_CD_ID" ColumnName="BECO_CD_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
