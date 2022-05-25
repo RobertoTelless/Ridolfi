@@ -68,6 +68,7 @@
           <Property Name="BENE_VL_RENDA" Type="decimal" Precision="20" Scale="2" />
           <Property Name="BENE_VL_RENDA_ESTIMADA" Type="decimal" Precision="20" Scale="2" />
           <Property Name="BENE_IN_ATIVO" Type="int" Nullable="false" />
+          <Property Name="BENE_DT_CADASTRO" Type="date" />
         </EntityType>
         <EntityType Name="BENEFICIARIO_ANEXO">
           <Key>
@@ -2212,6 +2213,7 @@
           <NavigationProperty Name="PRECATORIO" Relationship="Self.FKPRECATORIO759277" FromRole="BENEFICIARIO" ToRole="PRECATORIO" />
           <NavigationProperty Name="BENEFICIARIO_ANEXO" Relationship="DB_RidolfiModel.FK_BENEFICIARIO_ANEXO_BENEFICIARIO" FromRole="BENEFICIARIO" ToRole="BENEFICIARIO_ANEXO" />
           <NavigationProperty Name="BENEFICIARIO_ANOTACOES" Relationship="DB_RidolfiModel.FK_BENEFICIARIO_ANOTACOES_BENEFICIARIO" FromRole="BENEFICIARIO" ToRole="BENEFICIARIO_ANOTACOES" />
+          <Property Name="BENE_DT_CADASTRO" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="CARGO">
           <Key>
@@ -4467,6 +4469,7 @@
           <EntitySetMapping Name="BENEFICIARIO">
             <EntityTypeMapping TypeName="DB_RidolfiModel.BENEFICIARIO">
               <MappingFragment StoreEntitySet="BENEFICIARIO">
+                <ScalarProperty Name="BENE_DT_CADASTRO" ColumnName="BENE_DT_CADASTRO" />
                 <ScalarProperty Name="BENE_CD_ID" ColumnName="BENE_CD_ID" />
                 <ScalarProperty Name="TIPE_CD_ID" ColumnName="TIPE_CD_ID" />
                 <ScalarProperty Name="SEXO_CD_ID" ColumnName="SEXO_CD_ID" />

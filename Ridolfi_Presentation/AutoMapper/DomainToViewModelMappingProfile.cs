@@ -37,6 +37,8 @@ namespace MvcMapping.Mappers
             CreateMap<DEPARTAMENTO, DepartamentoViewModel>();
             CreateMap<ESCOLARIDADE, EscolaridadeViewModel>();
             CreateMap<PARENTESCO, ParentescoViewModel>();
+            CreateMap<BENEFICIARIO, BeneficiarioViewModel>();
+            CreateMap<BENEFICIARIO_ANOTACOES, BeneficiarioComentarioViewModel>();
 
         }
     }
