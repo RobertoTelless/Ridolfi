@@ -35,6 +35,7 @@ namespace ERP_CRM_Solution.Controllers
         private readonly ITipoPessoaAppService tpApp;
         private readonly IClienteAppService cliApp;
         private readonly ITelefoneAppService telApp;
+        private readonly IBeneficiarioAppService benApp;
 
         private String msg;
         private Exception exception;
@@ -43,7 +44,7 @@ namespace ERP_CRM_Solution.Controllers
         List<USUARIO> listaMaster = new List<USUARIO>();
         String extensao;
 
-        public BaseAdminController(IUsuarioAppService baseApps, ILogAppService logApps, INoticiaAppService notApps, ITarefaAppService tarApps, INotificacaoAppService notfApps, IUsuarioAppService usuApps, IAgendaAppService ageApps, IConfiguracaoAppService confApps, ITipoPessoaAppService tpApps, ITelefoneAppService telApps)
+        public BaseAdminController(IUsuarioAppService baseApps, ILogAppService logApps, INoticiaAppService notApps, ITarefaAppService tarApps, INotificacaoAppService notfApps, IUsuarioAppService usuApps, IAgendaAppService ageApps, IConfiguracaoAppService confApps, ITipoPessoaAppService tpApps, ITelefoneAppService telApps, IBeneficiarioAppService benApps)
         {
             baseApp = baseApps;
             logApp = logApps;
@@ -55,6 +56,7 @@ namespace ERP_CRM_Solution.Controllers
             confApp = confApps;
             tpApp = tpApps;
             telApp = telApps;
+            benApp = benApps;
         }
 
         public ActionResult CarregarAdmin()
@@ -111,17 +113,54 @@ namespace ERP_CRM_Solution.Controllers
             UsuarioViewModel vm = Mapper.Map<USUARIO, UsuarioViewModel>(usuario);
 
             // Carrega valores dos cadastros
+            List<BENEFICIARIO> bene = benApp.GetAllItens();
+            Int32 beneficiarios = bene.Count;
+            Int32 honorarios = 0;
+            Int32 precatorios = 0;
+            Int32 clientes = 0;
+            Int32 trf = 0;
 
+            Session["Beneficiarios"] = beneficiarios;
+            Session["Honorarios"] = honorarios;
+            Session["Precatorios"] = precatorios;
+            Session["Clientes"] = clientes;
+            Session["Trf"] = trf;
 
+            ViewBag.Beneficiarios = beneficiarios;
+            ViewBag.Honorarios = honorarios;
+            ViewBag.Precatorios = precatorios;
+            ViewBag.Clientes = clientes;
+            ViewBag.Trf = trf;
 
-
-
-
-
-
+            Session["BeneFisica"] = bene.Where(p => p.TIPE_CD_ID == 1).ToList().Count;
+            Session["BeneJuridica"] = bene.Where(p => p.TIPE_CD_ID == 2).ToList().Count;
             return View(vm);
         }
-       
+
+        public JsonResult GetDadosGraficoBeneficiarioTipo()
+        {
+            List<String> desc = new List<String>();
+            List<Int32> quant = new List<Int32>();
+            List<String> cor = new List<String>();
+
+            Int32 q1 = (Int32)Session["BeneFisica"];
+            Int32 q2 = (Int32)Session["BeneJuridica"];
+
+
+            desc.Add("Pessoa Física");
+            quant.Add(q1);
+            cor.Add("#359E18");
+            desc.Add("Pessoa Jurídica");
+            quant.Add(q2);
+            cor.Add("#FFAE00");
+
+            Hashtable result = new Hashtable();
+            result.Add("labels", desc);
+            result.Add("valores", quant);
+            result.Add("cores", cor);
+            return Json(result);
+        }
+
         public ActionResult CarregarBase()
         {
             if ((String)Session["Ativa"] == null)
@@ -213,7 +252,16 @@ namespace ERP_CRM_Solution.Controllers
             Session["Logs"] = usu.LOG.Count;
 
             String frase = String.Empty;
-            String nome = usu.USUA_NM_NOME.Substring(0, usu.USUA_NM_NOME.IndexOf(" "));
+            String nome = String.Empty;
+            Int32 loc = usu.USUA_NM_NOME.IndexOf(" ");
+            if (usu.USUA_NM_NOME.IndexOf(" ") != -1)
+            {
+                nome = usu.USUA_NM_NOME.Substring(0, usu.USUA_NM_NOME.IndexOf(" "));
+            }
+            else
+            {
+                nome = usu.USUA_NM_NOME;
+            }
             Session["NomeGreeting"] = nome;
             if (DateTime.Now.Hour <= 12)
             {

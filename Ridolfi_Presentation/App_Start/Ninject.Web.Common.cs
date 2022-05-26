@@ -167,6 +167,7 @@ namespace Presentation.Start
             kernel.Bind<IBeneficiarioRepository>().To<BeneficiarioRepository>();
             kernel.Bind<IBeneficiarioAnexoRepository>().To<BeneficiarioAnexoRepository>();
             kernel.Bind<IBeneficiarioComentarioRepository>().To<BeneficiarioComentarioRepository>();
+            kernel.Bind<IEstadoCivilRepository>().To<EstadoCivilRepository>();
 
         }
     }

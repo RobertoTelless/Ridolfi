@@ -21,15 +21,15 @@ namespace ApplicationServices.Services
             _baseService = baseService;
         }
 
-        public List<ESCOLARIDADE> GetAllItens(Int32 idAss)
+        public List<ESCOLARIDADE> GetAllItens()
         {
-            List<ESCOLARIDADE> lista = _baseService.GetAllItens(idAss);
+            List<ESCOLARIDADE> lista = _baseService.GetAllItens();
             return lista;
         }
 
-        public List<ESCOLARIDADE> GetAllItensAdm(Int32 idAss)
+        public List<ESCOLARIDADE> GetAllItensAdm()
         {
-            List<ESCOLARIDADE> lista = _baseService.GetAllItensAdm(idAss);
+            List<ESCOLARIDADE> lista = _baseService.GetAllItensAdm();
             return lista;
         }
 
@@ -39,9 +39,9 @@ namespace ApplicationServices.Services
             return item;
         }
 
-        public ESCOLARIDADE CheckExist(ESCOLARIDADE conta, Int32 idAss)
+        public ESCOLARIDADE CheckExist(ESCOLARIDADE conta)
         {
-            ESCOLARIDADE item = _baseService.CheckExist(conta, idAss);
+            ESCOLARIDADE item = _baseService.CheckExist(conta);
             return item;
         }
 
@@ -50,7 +50,7 @@ namespace ApplicationServices.Services
             try
             {
                 // Verifica existencia prévia
-                if (_baseService.CheckExist(item, usuario.ASSI_CD_ID.Value) != null)
+                if (_baseService.CheckExist(item) != null)
                 {
                     return 1;
                 }

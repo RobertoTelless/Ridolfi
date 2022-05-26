@@ -14,10 +14,10 @@ namespace ApplicationServices.Interfaces
         Int32 ValidateDelete(PARENTESCO item, USUARIO usuario);
         Int32 ValidateReativar(PARENTESCO item, USUARIO usuario);
 
-        PARENTESCO CheckExist(PARENTESCO item, Int32 idAss);
-        List<PARENTESCO> GetAllItens(Int32 idAss);
+        PARENTESCO CheckExist(PARENTESCO item);
+        List<PARENTESCO> GetAllItens();
         PARENTESCO GetItemById(Int32 id);
-        List<PARENTESCO> GetAllItensAdm(Int32 idAss);
+        List<PARENTESCO> GetAllItensAdm();
 
     }
 }

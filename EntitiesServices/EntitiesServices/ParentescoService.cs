@@ -29,9 +29,9 @@ namespace ModelServices.EntitiesServices
 
         }
 
-        public PARENTESCO CheckExist(PARENTESCO conta, Int32 idAss)
+        public PARENTESCO CheckExist(PARENTESCO conta)
         {
-            PARENTESCO item = _baseRepository.CheckExist(conta, idAss);
+            PARENTESCO item = _baseRepository.CheckExist(conta);
             return item;
         }
 
@@ -41,14 +41,14 @@ namespace ModelServices.EntitiesServices
             return item;
         }
 
-        public List<PARENTESCO> GetAllItens(Int32 idAss)
+        public List<PARENTESCO> GetAllItens()
         {
-            return _baseRepository.GetAllItens(idAss);
+            return _baseRepository.GetAllItens();
         }
 
-        public List<PARENTESCO> GetAllItensAdm(Int32 idAss)
+        public List<PARENTESCO> GetAllItensAdm()
         {
-            return _baseRepository.GetAllItensAdm(idAss);
+            return _baseRepository.GetAllItensAdm();
         }
 
         public Int32 Create(PARENTESCO item, LOG log)

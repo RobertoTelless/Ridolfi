@@ -9,12 +9,13 @@
         <div class="col-lg-12 col-md-12 col-sm-12">
             @*Atalhos*@
             <div class="row">
-                <h3 style="color:olivedrab; font-weight:bold">Dashboard - Financeiro</h3>
+                <h3 style="color:olivedrab; font-weight:bold">Dashboard - Cadastros</h3>
                 <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">
                     <br />
                     <div class="col-lg-12 col-md-12 col-xs-12">
                         @Html.ButtonLinkIndex(text: "Beneficiários", action: "MontarTelaBeneficiario", controller: "Beneficiario", buttonClass: "success")
                         @Html.ButtonLinkIndex(text: "Honorários", action: "CarregarDesenvolvimento", controller: "BaseAdmin", buttonClass: "success")
+                        @Html.ButtonLinkIndex(text: "Dashboard Inicial", action: "CarregarBase", controller: "BaseAdmin", buttonClass: "warning")
                     </div>
                     <br /><br />
                 </div>
@@ -59,6 +60,10 @@
                                 <div class="col-xs-4">
                                     <small class="stats-label">Precatórios</small>
                                     <h4>@ViewBag.Precatorios</h4>
+                                </div>
+                                <div class="col-xs-4">
+                                    <small class="stats-label">Tribunais</small>
+                                    <h4>@ViewBag.Trf</h4>
                                 </div>
                             </div>
                         </div>
@@ -129,6 +134,21 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-lg-2">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title"  style="background-color:goldenrod; color:brown">
+                            <span class="label label-success pull-right">Hoje</span>
+                            <h5>Tribunais</h5>
+                        </div>
+                        <div class="ibox-content">
+                            <h1 class="no-margins">@ViewBag.Trf</h1>
+                            <small>Tribunais</small>
+                            <br />
+                            <br />
+                            @Html.ButtonLinkIndex(text: "Ver", controller: "TRF", action: "MontarTelaTRF", buttonClass: "white")
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="row">
                 <div class="col-lg-3 col-md-3 col-xs-12">
@@ -138,7 +158,7 @@
                         </div>
                         <div class="ibox-content">
                             <div class="row">
-                                <canvas id="doughnutChartBT" height="150"></canvas>
+                                <canvas id="doughnutChartBenefTipo" height="300"></canvas>
                             </div>
                         </div>
                     </div>
@@ -150,7 +170,7 @@
                         </div>
                         <div class="ibox-content">
                             <div class="row">
-                                <canvas id="doughnutChartHT" height="150"></canvas>
+                                <canvas id="doughnutChartHT" height="300"></canvas>
                             </div>
                         </div>
                     </div>
@@ -190,7 +210,7 @@
         $(document).ready(function () {
 
             $.ajax({
-                url: '../Beneficiario/GetDadosGraficoBeneficiarioTipo'
+                url: '../BaseAdmin/GetDadosGraficoBeneficiarioTipo'
                 , type: 'POST'
                 , success: function (result) {
                 var doughnutData = {
@@ -203,7 +223,7 @@
                 var doughnutOptions = {
                    responsive: true
                 };
-                var ctx4 = document.getElementById("doughnutChartBT").getContext("2d");
+                var ctx4 = document.getElementById("doughnutChartBenefTipo").getContext("2d");
                 new Chart(ctx4, { type: 'doughnut', data: doughnutData, options: doughnutOptions });
               }
             });

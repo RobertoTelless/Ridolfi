@@ -29,9 +29,9 @@ namespace ModelServices.EntitiesServices
 
         }
 
-        public ESCOLARIDADE CheckExist(ESCOLARIDADE conta, Int32 idAss)
+        public ESCOLARIDADE CheckExist(ESCOLARIDADE conta)
         {
-            ESCOLARIDADE item = _baseRepository.CheckExist(conta, idAss);
+            ESCOLARIDADE item = _baseRepository.CheckExist(conta);
             return item;
         }
 
@@ -41,14 +41,14 @@ namespace ModelServices.EntitiesServices
             return item;
         }
 
-        public List<ESCOLARIDADE> GetAllItens(Int32 idAss)
+        public List<ESCOLARIDADE> GetAllItens()
         {
-            return _baseRepository.GetAllItens(idAss);
+            return _baseRepository.GetAllItens();
         }
 
-        public List<ESCOLARIDADE> GetAllItensAdm(Int32 idAss)
+        public List<ESCOLARIDADE> GetAllItensAdm()
         {
-            return _baseRepository.GetAllItensAdm(idAss);
+            return _baseRepository.GetAllItensAdm();
         }
 
         public Int32 Create(ESCOLARIDADE item, LOG log)

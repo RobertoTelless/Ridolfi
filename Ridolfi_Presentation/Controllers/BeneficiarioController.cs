@@ -60,7 +60,7 @@ namespace ERP_CRM_Solution.Controllers
             {
                 return RedirectToAction("Login", "ControleAcesso");
             }
-            return RedirectToAction("CarregarBase", "BaseAdmin");
+            return RedirectToAction("MontarTelaDashboardCadastros", "BaseAdmin");
         }
 
         [HttpGet]
@@ -589,7 +589,7 @@ namespace ERP_CRM_Solution.Controllers
             {
                 return RedirectToAction("Login", "ControleAcesso");
             }
-            Int32 idNot = (Int32)Session["IdTrans"];
+            Int32 idNot = (Int32)Session["IdBeneficiario"];
             Int32 idAss = (Int32)Session["IdAssinante"];
 
             if (file == null)
@@ -649,7 +649,7 @@ namespace ERP_CRM_Solution.Controllers
             {
                 return RedirectToAction("Login", "ControleAcesso");
             }
-            Int32 idNot = (Int32)Session["IdTrans"];
+            Int32 idNot = (Int32)Session["IdBeneficiario"];
             Int32 idAss = (Int32)Session["IdAssinante"];
 
             if (file == null)

@@ -14,10 +14,10 @@ namespace ApplicationServices.Interfaces
         Int32 ValidateDelete(ESCOLARIDADE item, USUARIO usuario);
         Int32 ValidateReativar(ESCOLARIDADE item, USUARIO usuario);
 
-        ESCOLARIDADE CheckExist(ESCOLARIDADE item, Int32 idAss);
-        List<ESCOLARIDADE> GetAllItens(Int32 idAss);
+        ESCOLARIDADE CheckExist(ESCOLARIDADE item);
+        List<ESCOLARIDADE> GetAllItens();
         ESCOLARIDADE GetItemById(Int32 id);
-        List<ESCOLARIDADE> GetAllItensAdm(Int32 idAss);
+        List<ESCOLARIDADE> GetAllItensAdm();
 
     }
 }

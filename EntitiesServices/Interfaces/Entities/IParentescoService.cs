@@ -16,9 +16,9 @@ namespace ModelServices.Interfaces.EntitiesServices
         Int32 Edit(PARENTESCO perfil);
         Int32 Delete(PARENTESCO perfil, LOG log);
 
-        PARENTESCO CheckExist(PARENTESCO item, Int32 idAss);
+        PARENTESCO CheckExist(PARENTESCO item);
         PARENTESCO GetItemById(Int32 id);
-        List<PARENTESCO> GetAllItens(Int32 idAss);
-        List<PARENTESCO> GetAllItensAdm(Int32 idAss);
+        List<PARENTESCO> GetAllItens();
+        List<PARENTESCO> GetAllItensAdm();
     }
 }

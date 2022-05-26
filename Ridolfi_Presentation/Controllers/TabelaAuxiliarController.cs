@@ -1096,7 +1096,7 @@ namespace ERP_CRM_Solution.Controllers
             // Carrega listas
             if ((List<ESCOLARIDADE>)Session["ListaEscolaridade"] == null)
             {
-                listaMasterESC = escApp.GetAllItens(idAss);
+                listaMasterESC = escApp.GetAllItens();
                 Session["ListaEscolaridade"] = listaMasterESC;
             }
             ViewBag.Listas = (List<ESCOLARIDADE>)Session["ListaEscolaridade"];
@@ -1145,7 +1145,7 @@ namespace ERP_CRM_Solution.Controllers
                 return RedirectToAction("Login", "ControleAcesso");
             }
             Int32 idAss = (Int32)Session["IdAssinante"];
-            listaMasterESC = escApp.GetAllItensAdm(idAss);
+            listaMasterESC = escApp.GetAllItensAdm();
             Session["ListaEscolaridade"] = listaMasterESC;
             return RedirectToAction("MontarTelaEscolaridade");
         }
@@ -1423,7 +1423,7 @@ namespace ERP_CRM_Solution.Controllers
             // Carrega listas
             if ((List<PARENTESCO>)Session["ListaParentesco"] == null)
             {
-                listaMasterPAR = parApp.GetAllItens(idAss);
+                listaMasterPAR = parApp.GetAllItens();
                 Session["ListaParentesco"] = listaMasterPAR;
             }
             ViewBag.Listas = (List<PARENTESCO>)Session["ListaParentesco"];
@@ -1472,7 +1472,7 @@ namespace ERP_CRM_Solution.Controllers
                 return RedirectToAction("Login", "ControleAcesso");
             }
             Int32 idAss = (Int32)Session["IdAssinante"];
-            listaMasterPAR = parApp.GetAllItensAdm(idAss);
+            listaMasterPAR = parApp.GetAllItensAdm();
             Session["ListaParentesco"] = listaMasterPAR;
             return RedirectToAction("MontarTelaParentesco");
         }

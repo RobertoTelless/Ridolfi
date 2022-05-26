@@ -16,9 +16,9 @@ namespace ModelServices.Interfaces.EntitiesServices
         Int32 Edit(ESCOLARIDADE perfil);
         Int32 Delete(ESCOLARIDADE perfil, LOG log);
 
-        ESCOLARIDADE CheckExist(ESCOLARIDADE item, Int32 idAss);
+        ESCOLARIDADE CheckExist(ESCOLARIDADE item);
         ESCOLARIDADE GetItemById(Int32 id);
-        List<ESCOLARIDADE> GetAllItens(Int32 idAss);
-        List<ESCOLARIDADE> GetAllItensAdm(Int32 idAss);
+        List<ESCOLARIDADE> GetAllItens();
+        List<ESCOLARIDADE> GetAllItensAdm();
     }
 }

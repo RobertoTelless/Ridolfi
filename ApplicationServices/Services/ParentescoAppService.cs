@@ -21,15 +21,15 @@ namespace ApplicationServices.Services
             _baseService = baseService;
         }
 
-        public List<PARENTESCO> GetAllItens(Int32 idAss)
+        public List<PARENTESCO> GetAllItens()
         {
-            List<PARENTESCO> lista = _baseService.GetAllItens(idAss);
+            List<PARENTESCO> lista = _baseService.GetAllItens();
             return lista;
         }
 
-        public List<PARENTESCO> GetAllItensAdm(Int32 idAss)
+        public List<PARENTESCO> GetAllItensAdm()
         {
-            List<PARENTESCO> lista = _baseService.GetAllItensAdm(idAss);
+            List<PARENTESCO> lista = _baseService.GetAllItensAdm();
             return lista;
         }
 
@@ -39,9 +39,9 @@ namespace ApplicationServices.Services
             return item;
         }
 
-        public PARENTESCO CheckExist(PARENTESCO conta, Int32 idAss)
+        public PARENTESCO CheckExist(PARENTESCO conta)
         {
-            PARENTESCO item = _baseService.CheckExist(conta, idAss);
+            PARENTESCO item = _baseService.CheckExist(conta);
             return item;
         }
 
@@ -50,7 +50,7 @@ namespace ApplicationServices.Services
             try
             {
                 // Verifica existencia prévia
-                if (_baseService.CheckExist(item, usuario.ASSI_CD_ID.Value) != null)
+                if (_baseService.CheckExist(item) != null)
                 {
                     return 1;
                 }
