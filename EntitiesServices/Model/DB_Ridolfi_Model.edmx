@@ -337,9 +337,10 @@
           <Property Name="HOAT_CD_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="HONO_CD_ID" Type="int" Nullable="false" />
           <Property Name="USUA_CD_ID" Type="int" Nullable="false" />
-          <Property Name="HOAT_DT_DATA" Type="datetime" Nullable="false" />
+          <Property Name="HOAT_DT_DATA" Type="datetime" />
           <Property Name="HOAT_TX_TEXTO" Type="text" Nullable="false" />
           <Property Name="HOAT_IN_ATIVO" Type="int" Nullable="false" />
+          <Property Name="HOAT_DT_COMENTARIO" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="LOAS">
           <Key>
@@ -4539,11 +4540,12 @@
           <Property Name="HOAT_CD_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="HONO_CD_ID" Type="Int32" Nullable="false" />
           <Property Name="USUA_CD_ID" Type="Int32" Nullable="false" />
-          <Property Name="HOAT_DT_DATA" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="HOAT_DT_DATA" Type="DateTime" Precision="3" />
           <Property Name="HOAT_TX_TEXTO" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="HOAT_IN_ATIVO" Type="Int32" Nullable="false" />
           <NavigationProperty Name="HONORARIO" Relationship="DB_RidolfiModel.FK_HONORARIO_ANOTACOES_HONORARIO" FromRole="HONORARIO_ANOTACOES" ToRole="HONORARIO" />
           <NavigationProperty Name="USUARIO" Relationship="DB_RidolfiModel.FK_HONORARIO_ANOTACOES_USUARIO" FromRole="HONORARIO_ANOTACOES" ToRole="USUARIO" />
+          <Property Name="HOAT_DT_COMENTARIO" Type="DateTime" Nullable="false" Precision="0" />
         </EntityType>
         <Association Name="FK_HONORARIO_ANEXO_HONORARIO">
           <End Type="DB_RidolfiModel.HONORARIO" Role="HONORARIO" Multiplicity="1" />
@@ -5511,6 +5513,7 @@
           <EntitySetMapping Name="HONORARIO_ANOTACOES">
             <EntityTypeMapping TypeName="DB_RidolfiModel.HONORARIO_ANOTACOES">
               <MappingFragment StoreEntitySet="HONORARIO_ANOTACOES">
+                <ScalarProperty Name="HOAT_DT_COMENTARIO" ColumnName="HOAT_DT_COMENTARIO" />
                 <ScalarProperty Name="HOAT_IN_ATIVO" ColumnName="HOAT_IN_ATIVO" />
                 <ScalarProperty Name="HOAT_TX_TEXTO" ColumnName="HOAT_TX_TEXTO" />
                 <ScalarProperty Name="HOAT_DT_DATA" ColumnName="HOAT_DT_DATA" />

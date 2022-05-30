@@ -176,7 +176,7 @@ namespace ApplicationServices.Services
                     USUA_CD_ID = usuario.USUA_CD_ID,
                     LOG_IN_ATIVO = 1,
                     LOG_NM_OPERACAO = "DelHONO",
-                    LOG_TX_REGISTRO = Serialization.SerializeJSON<HONORARIO>(item)
+                    LOG_TX_REGISTRO = item.HONO_NM_NOME
                 };
 
                 // Persiste
@@ -204,7 +204,7 @@ namespace ApplicationServices.Services
                     USUA_CD_ID = usuario.USUA_CD_ID,
                     LOG_IN_ATIVO = 1,
                     LOG_NM_OPERACAO = "ReatHONO",
-                    LOG_TX_REGISTRO = Serialization.SerializeJSON<HONORARIO>(item)
+                    LOG_TX_REGISTRO = item.HONO_NM_NOME
                 };
 
                 // Persiste

@@ -643,7 +643,7 @@ namespace SMS_Presentation.Controllers
             {
                 return RedirectToAction("Login", "ControleAcesso");
             }
-            Int32 id = (Int32)Session["IdBeneficiario"];
+            Int32 id = (Int32)Session["IdHonorario"];
             HONORARIO item = tranApp.GetItemById(id);
             USUARIO usuarioLogado = (USUARIO)Session["UserCredentials"];
             HONORARIO_ANOTACOES coment = new HONORARIO_ANOTACOES();
@@ -663,7 +663,7 @@ namespace SMS_Presentation.Controllers
             {
                 return RedirectToAction("Login", "ControleAcesso");
             }
-            Int32 idNot = (Int32)Session["IdBeneficiario"];
+            Int32 idNot = (Int32)Session["IdHonorario"];
             if (ModelState.IsValid)
             {
                 try
