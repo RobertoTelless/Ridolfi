@@ -14,7 +14,10 @@
                     <br />
                     <div class="col-lg-12 col-md-12 col-xs-12">
                         @Html.ButtonLinkIndex(text: "Beneficiários", action: "MontarTelaBeneficiario", controller: "Beneficiario", buttonClass: "success")
-                        @Html.ButtonLinkIndex(text: "Honorários", action: "CarregarDesenvolvimento", controller: "BaseAdmin", buttonClass: "success")
+                        @Html.ButtonLinkIndex(text: "Honorários", action: "MontarTelaHonorario", controller: "Honorario", buttonClass: "success")
+                        @Html.ButtonLinkIndex(text: "TRFs & Varas", action: "CarregarDesenvolvimento", controller: "BaseAdmin", buttonClass: "success")
+                        @Html.ButtonLinkIndex(text: "Clientes", action: "CarregarDesenvolvimento", controller: "BaseAdmin", buttonClass: "success")
+                        @Html.ButtonLinkIndex(text: "Precatórios", action: "CarregarDesenvolvimento", controller: "BaseAdmin", buttonClass: "success")
                         @Html.ButtonLinkIndex(text: "Dashboard Inicial", action: "CarregarBase", controller: "BaseAdmin", buttonClass: "warning")
                     </div>
                     <br /><br />
@@ -48,7 +51,7 @@
                                     <h4>@ViewBag.Beneficiarios</h4>
                                 </div>
                                 <div class="col-xs-4">
-                                    <small class="stats-label">Honorários</small>
+                                    <small class="stats-label">Advogados</small>
                                     <h4>@ViewBag.Honorarios</h4>
                                 </div>
                                 <div class="col-xs-4">
@@ -93,11 +96,11 @@
                     <div class="ibox float-e-margins">
                         <div class="ibox-title"  style="background-color:cornflowerblue; color:darkblue">
                             <span class="label label-success pull-right">Hoje</span>
-                            <h5>Honorários</h5>
+                            <h5>Advogados</h5>
                         </div>
                         <div class="ibox-content">
                             <h1 class="no-margins">@ViewBag.Honorarios</h1>
-                            <small>Honorários</small>
+                            <small>Advogados</small>
                             <br />
                             <br />
                             @Html.ButtonLinkIndex(text: "Ver", controller: "Honorario", action: "MontarTelaHonorario", buttonClass: "white")
@@ -166,11 +169,11 @@
                 <div class="col-lg-3 col-md-3 col-xs-12">
                     <div class="col-lg-12 col-md-12 col-xs-12 ibox float-e-margins" style="border-bottom: solid; border-bottom-color: darkblue; border-bottom-width: 2px; border-left: solid; border-left-color: darkblue; border-left-width: 1px; border-right: solid; border-right-color: darkblue; border-right-width: 1px; border-top: solid; border-top-color: darkblue; border-top-width: 1px">
                         <div class="ibox-title">
-                            <h4>Honorário por Tipo</h4>
+                            <h4>Advogado por Tipo</h4>
                         </div>
                         <div class="ibox-content">
                             <div class="row">
-                                <canvas id="doughnutChartHT" height="300"></canvas>
+                                <canvas id="doughnutChartHonoTipo" height="300"></canvas>
                             </div>
                         </div>
                     </div>
@@ -233,7 +236,7 @@
         $(document).ready(function () {
 
             $.ajax({
-                url: '../Honorario/GetDadosGraficoHonorarioTipo'
+                url: '../BaseAdmin/GetDadosGraficoHonorarioTipo'
                 , type: 'POST'
                 , success: function (result) {
                 var doughnutData = {
@@ -246,7 +249,7 @@
                 var doughnutOptions = {
                    responsive: true
                 };
-                var ctx4 = document.getElementById("doughnutChartHT").getContext("2d");
+                var ctx4 = document.getElementById("doughnutChartHonoTipo").getContext("2d");
                 new Chart(ctx4, { type: 'doughnut', data: doughnutData, options: doughnutOptions });
               }
             });

@@ -23,8 +23,6 @@ namespace ModelServices.Interfaces.EntitiesServices
         List<HONORARIO> ExecuteFilter(Int32? tipo, String cpf, String cnpj, String razao, String nome);
 
         List<TIPO_PESSOA> GetAllTiposPessoa();
-        List<UF> GetAllUF();
-        UF GetUFbySigla(String sigla);
 
         HONORARIO_ANEXO GetAnexoById(Int32 id);
         HONORARIO_ANOTACOES GetComentarioById(Int32 id);

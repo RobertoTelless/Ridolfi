@@ -289,7 +289,7 @@ namespace SMS_Presentation.Controllers
             Session["Honorario"] = item;
             Session["IdHonorario"] = id;
             Session["VoltaComent"] = 2;
-            BeneficiarioViewModel vm = Mapper.Map<BENEFICIARIO, BeneficiarioViewModel>(item);
+            BeneficiarioViewModel vm = Mapper.Map<HONORARIO, BeneficiarioViewModel>(item);
             return View(vm);
         }
 

@@ -36,6 +36,7 @@ namespace ERP_CRM_Solution.Controllers
         private readonly IClienteAppService cliApp;
         private readonly ITelefoneAppService telApp;
         private readonly IBeneficiarioAppService benApp;
+        private readonly IHonorarioAppService honApp;
 
         private String msg;
         private Exception exception;
@@ -44,7 +45,7 @@ namespace ERP_CRM_Solution.Controllers
         List<USUARIO> listaMaster = new List<USUARIO>();
         String extensao;
 
-        public BaseAdminController(IUsuarioAppService baseApps, ILogAppService logApps, INoticiaAppService notApps, ITarefaAppService tarApps, INotificacaoAppService notfApps, IUsuarioAppService usuApps, IAgendaAppService ageApps, IConfiguracaoAppService confApps, ITipoPessoaAppService tpApps, ITelefoneAppService telApps, IBeneficiarioAppService benApps)
+        public BaseAdminController(IUsuarioAppService baseApps, ILogAppService logApps, INoticiaAppService notApps, ITarefaAppService tarApps, INotificacaoAppService notfApps, IUsuarioAppService usuApps, IAgendaAppService ageApps, IConfiguracaoAppService confApps, ITipoPessoaAppService tpApps, ITelefoneAppService telApps, IBeneficiarioAppService benApps, IHonorarioAppService honApps)
         {
             baseApp = baseApps;
             logApp = logApps;
@@ -57,6 +58,7 @@ namespace ERP_CRM_Solution.Controllers
             tpApp = tpApps;
             telApp = telApps;
             benApp = benApps;
+            honApp = honApps;
         }
 
         public ActionResult CarregarAdmin()
@@ -115,7 +117,8 @@ namespace ERP_CRM_Solution.Controllers
             // Carrega valores dos cadastros
             List<BENEFICIARIO> bene = benApp.GetAllItens();
             Int32 beneficiarios = bene.Count;
-            Int32 honorarios = 0;
+            List<HONORARIO> hono = honApp.GetAllItens();
+            Int32 honorarios = hono.Count;
             Int32 precatorios = 0;
             Int32 clientes = 0;
             Int32 trf = 0;
@@ -134,6 +137,8 @@ namespace ERP_CRM_Solution.Controllers
 
             Session["BeneFisica"] = bene.Where(p => p.TIPE_CD_ID == 1).ToList().Count;
             Session["BeneJuridica"] = bene.Where(p => p.TIPE_CD_ID == 2).ToList().Count;
+            Session["HonoFisica"] = hono.Where(p => p.TIPE_CD_ID == 1).ToList().Count;
+            Session["HonoJuridica"] = hono.Where(p => p.TIPE_CD_ID == 2).ToList().Count;
             return View(vm);
         }
 
@@ -145,6 +150,30 @@ namespace ERP_CRM_Solution.Controllers
 
             Int32 q1 = (Int32)Session["BeneFisica"];
             Int32 q2 = (Int32)Session["BeneJuridica"];
+
+
+            desc.Add("Pessoa Física");
+            quant.Add(q1);
+            cor.Add("#359E18");
+            desc.Add("Pessoa Jurídica");
+            quant.Add(q2);
+            cor.Add("#FFAE00");
+
+            Hashtable result = new Hashtable();
+            result.Add("labels", desc);
+            result.Add("valores", quant);
+            result.Add("cores", cor);
+            return Json(result);
+        }
+
+        public JsonResult GetDadosGraficoHonorarioTipo()
+        {
+            List<String> desc = new List<String>();
+            List<Int32> quant = new List<Int32>();
+            List<String> cor = new List<String>();
+
+            Int32 q1 = (Int32)Session["HonoFisica"];
+            Int32 q2 = (Int32)Session["HonoJuridica"];
 
 
             desc.Add("Pessoa Física");

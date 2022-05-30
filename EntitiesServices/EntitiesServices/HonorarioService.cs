@@ -71,6 +71,11 @@ namespace ModelServices.EntitiesServices
             return _comRepository.GetItemById(id);
         }
 
+        public List<HONORARIO> ExecuteFilter(Int32? tipo, String cpf, String cnpj, String razao, String nome)
+        {
+            return _baseRepository.ExecuteFilter(tipo, cpf, cnpj, razao, nome);
+        }
+
         public Int32 Create(HONORARIO item, LOG log)
         {
             using (DbContextTransaction transaction = Db.Database.BeginTransaction(IsolationLevel.ReadCommitted))
