@@ -148,6 +148,11 @@
         <AssociationConnector Association="DB_RidolfiModel.FK_BENEFICIARIO_ANEXO_BENEFICIARIO" />
         <AssociationConnector Association="DB_RidolfiModel.FK_BENEFICIARIO_ANOTACOES_BENEFICIARIO" />
         <AssociationConnector Association="DB_RidolfiModel.FK_BENEFICIARIO_ANOTACOES_USUARIO" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.HONORARIO_ANEXO" Width="1.5" PointX="3" PointY="100.625" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.HONORARIO_ANOTACOES" Width="1.5" PointX="8.25" PointY="48.375" />
+        <AssociationConnector Association="DB_RidolfiModel.FK_HONORARIO_ANEXO_HONORARIO" />
+        <AssociationConnector Association="DB_RidolfiModel.FK_HONORARIO_ANOTACOES_HONORARIO" />
+        <AssociationConnector Association="DB_RidolfiModel.FK_HONORARIO_ANOTACOES_USUARIO" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

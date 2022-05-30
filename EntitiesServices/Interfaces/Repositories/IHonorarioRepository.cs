@@ -10,10 +10,10 @@ namespace ModelServices.Interfaces.Repositories
 {
     public interface IHonorarioRepository : IRepositoryBase<HONORARIO>
     {
-        HONORARIO CheckExist(HONORARIO item, Int32 idAss);
+        HONORARIO CheckExist(HONORARIO item);
         HONORARIO GetItemById(Int32 id);
-        List<HONORARIO> GetAllItens(Int32 idAss);
-        List<HONORARIO> GetAllItensAdm(Int32 idAss);
+        List<HONORARIO> GetAllItens();
+        List<HONORARIO> GetAllItensAdm();
         List<HONORARIO> ExecuteFilter(Int32? tipo, String cpf, String cnpj, String razao, String nome);
     }
 }

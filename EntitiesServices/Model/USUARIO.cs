@@ -31,6 +31,7 @@ namespace EntitiesServices.Model
             this.TAREFA_VINCULO = new HashSet<TAREFA_VINCULO>();
             this.USUARIO_ANEXO = new HashSet<USUARIO_ANEXO>();
             this.BENEFICIARIO_ANOTACOES = new HashSet<BENEFICIARIO_ANOTACOES>();
+            this.HONORARIO_ANOTACOES = new HashSet<HONORARIO_ANOTACOES>();
         }
     
         public int USUA_CD_ID { get; set; }
@@ -108,5 +109,7 @@ namespace EntitiesServices.Model
         public virtual ICollection<USUARIO_ANEXO> USUARIO_ANEXO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BENEFICIARIO_ANOTACOES> BENEFICIARIO_ANOTACOES { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HONORARIO_ANOTACOES> HONORARIO_ANOTACOES { get; set; }
     }
 }

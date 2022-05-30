@@ -162,6 +162,9 @@
     <Compile Include="Interfaces\IAgendaAppService.cs" />
     <Compile Include="Interfaces\IAppServiceBase.cs" />
     <Compile Include="Interfaces\IBancoAppService.cs" />
+    <Compile Include="Interfaces\IHonorarioAppService.cs" />
+    <Compile Include="Interfaces\ITabelaIRRFAppService.cs" />
+    <Compile Include="Interfaces\ITabelaIPCAAppService.cs" />
     <Compile Include="Interfaces\ICargoAppService.cs" />
     <Compile Include="Interfaces\IBeneficiarioAppService.cs" />
     <Compile Include="Interfaces\IParentescoAppService.cs" />
@@ -189,6 +192,9 @@
     <Compile Include="Services\AgendaAppService.cs" />
     <Compile Include="Services\AppServiceBase.cs" />
     <Compile Include="Services\BancoAppService.cs" />
+    <Compile Include="Services\HonorarioAppService.cs" />
+    <Compile Include="Services\TabelaIRRFAppService.cs" />
+    <Compile Include="Services\TabelaIPCAAppService.cs" />
     <Compile Include="Services\CargoAppService.cs" />
     <Compile Include="Services\BeneficiarioAppService.cs" />
     <Compile Include="Services\ParentescoAppService.cs" />

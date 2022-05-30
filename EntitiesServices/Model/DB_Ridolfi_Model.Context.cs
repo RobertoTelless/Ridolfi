@@ -92,5 +92,7 @@ namespace EntitiesServices.Model
         public virtual DbSet<VARA> VARA { get; set; }
         public virtual DbSet<BENEFICIARIO_ANEXO> BENEFICIARIO_ANEXO { get; set; }
         public virtual DbSet<BENEFICIARIO_ANOTACOES> BENEFICIARIO_ANOTACOES { get; set; }
+        public virtual DbSet<HONORARIO_ANEXO> HONORARIO_ANEXO { get; set; }
+        public virtual DbSet<HONORARIO_ANOTACOES> HONORARIO_ANOTACOES { get; set; }
     }
 }

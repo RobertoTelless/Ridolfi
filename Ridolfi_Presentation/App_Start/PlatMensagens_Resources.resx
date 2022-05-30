@@ -489,4 +489,7 @@
   <data name="M0145" xml:space="preserve">
     <value>Impossível excluir esse beneficiário. Ele está vinculado a outras informações</value>
   </data>
+  <data name="M0146" xml:space="preserve">
+    <value>Impossível excluir esse advogado. Ele está vinculado a outras informações</value>
+  </data>
 </root>

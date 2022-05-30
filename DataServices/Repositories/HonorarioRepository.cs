@@ -10,7 +10,7 @@ namespace DataServices.Repositories
 {
     public class HonorarioRepository : RepositoryBase<HONORARIO>, IHonorarioRepository
     {
-        public HONORARIO CheckExist(HONORARIO conta, Int32 idAss)
+        public HONORARIO CheckExist(HONORARIO conta)
         {
             IQueryable<HONORARIO> query = Db.HONORARIO;
             query = query.Where(p => p.HONO_NM_NOME == conta.HONO_NM_NOME || p.HONO_NM_RAZAO_SOCIAL == conta.HONO_NM_RAZAO_SOCIAL);
@@ -24,13 +24,13 @@ namespace DataServices.Repositories
             return query.FirstOrDefault();
         }
 
-        public List<HONORARIO> GetAllItens(Int32 idAss)
+        public List<HONORARIO> GetAllItens()
         {
             IQueryable<HONORARIO> query = Db.HONORARIO.Where(p => p.HONO_IN_ATIVO == 1);
             return query.ToList();
         }
 
-        public List<HONORARIO> GetAllItensAdm(Int32 idAss)
+        public List<HONORARIO> GetAllItensAdm()
         {
             IQueryable<HONORARIO> query = Db.HONORARIO;
             return query.ToList();

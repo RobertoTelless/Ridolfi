@@ -312,9 +312,34 @@
           <Property Name="TIPE_CD_ID" Type="int" Nullable="false" />
           <Property Name="HONO_NR_CPF" Type="varchar" MaxLength="20" />
           <Property Name="HONO_NR_CNPJ" Type="varchar" MaxLength="20" />
+          <Property Name="HONO_NR_OAB" Type="varchar" MaxLength="20" />
           <Property Name="HONO_NM_NOME" Type="varchar" MaxLength="350" />
           <Property Name="HONO_NM_RAZAO_SOCIAL" Type="varchar" MaxLength="350" />
           <Property Name="HONO_IN_ATIVO" Type="int" Nullable="false" />
+          <Property Name="HONO_DT_CADASTRO" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HONORARIO_ANEXO">
+          <Key>
+            <PropertyRef Name="HOAN_CD_ID" />
+          </Key>
+          <Property Name="HOAN_CD_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HONO_CD_ID" Type="int" Nullable="false" />
+          <Property Name="HOAN_NM_TITULO" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="HOAN_IN_TIPO" Type="int" Nullable="false" />
+          <Property Name="HOAN_DT_ANEXO" Type="date" Nullable="false" />
+          <Property Name="HOAN_AQ_ARQUIVO" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="HOAN_IN_ATIVO" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HONORARIO_ANOTACOES">
+          <Key>
+            <PropertyRef Name="HOAT_CD_ID" />
+          </Key>
+          <Property Name="HOAT_CD_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HONO_CD_ID" Type="int" Nullable="false" />
+          <Property Name="USUA_CD_ID" Type="int" Nullable="false" />
+          <Property Name="HOAT_DT_DATA" Type="datetime" Nullable="false" />
+          <Property Name="HOAT_TX_TEXTO" Type="text" Nullable="false" />
+          <Property Name="HOAT_IN_ATIVO" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="LOAS">
           <Key>
@@ -1033,6 +1058,54 @@
             </Principal>
             <Dependent Role="GRUPO">
               <PropertyRef Name="USUA_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HONORARIO_ANEXO_HONORARIO">
+          <End Role="HONORARIO" Type="Self.HONORARIO" Multiplicity="1" />
+          <End Role="HONORARIO_ANEXO" Type="Self.HONORARIO_ANEXO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HONORARIO">
+              <PropertyRef Name="HONO_CD_ID" />
+            </Principal>
+            <Dependent Role="HONORARIO_ANEXO">
+              <PropertyRef Name="HONO_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HONORARIO_ANOTACOES_HONORARIO">
+          <End Role="HONORARIO" Type="Self.HONORARIO" Multiplicity="1" />
+          <End Role="HONORARIO_ANOTACOES" Type="Self.HONORARIO_ANOTACOES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HONORARIO">
+              <PropertyRef Name="HONO_CD_ID" />
+            </Principal>
+            <Dependent Role="HONORARIO_ANOTACOES">
+              <PropertyRef Name="HONO_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HONORARIO_ANOTACOES_USUARIO">
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+          <End Role="HONORARIO_ANOTACOES" Type="Self.HONORARIO_ANOTACOES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="USUA_CD_ID" />
+            </Principal>
+            <Dependent Role="HONORARIO_ANOTACOES">
+              <PropertyRef Name="USUA_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HONORARIO_TIPO_PESSOA">
+          <End Role="TIPO_PESSOA" Type="Self.TIPO_PESSOA" Multiplicity="1" />
+          <End Role="HONORARIO" Type="Self.HONORARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO_PESSOA">
+              <PropertyRef Name="TIPE_CD_ID" />
+            </Principal>
+            <Dependent Role="HONORARIO">
+              <PropertyRef Name="TIPE_CD_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1784,6 +1857,8 @@
           <EntitySet Name="GRUPO" EntityType="Self.GRUPO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GRUPO_CLIENTE" EntityType="Self.GRUPO_CLIENTE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HONORARIO" EntityType="Self.HONORARIO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HONORARIO_ANEXO" EntityType="Self.HONORARIO_ANEXO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HONORARIO_ANOTACOES" EntityType="Self.HONORARIO_ANOTACOES" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LOAS" EntityType="Self.LOAS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LOG" EntityType="Self.LOG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MENSAGEM_ANEXO" EntityType="Self.MENSAGEM_ANEXO" Schema="dbo" store:Type="Tables" />
@@ -1887,6 +1962,22 @@
           <AssociationSet Name="FK_GRUPO_USUARIO" Association="Self.FK_GRUPO_USUARIO">
             <End Role="USUARIO" EntitySet="USUARIO" />
             <End Role="GRUPO" EntitySet="GRUPO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HONORARIO_ANEXO_HONORARIO" Association="Self.FK_HONORARIO_ANEXO_HONORARIO">
+            <End Role="HONORARIO" EntitySet="HONORARIO" />
+            <End Role="HONORARIO_ANEXO" EntitySet="HONORARIO_ANEXO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HONORARIO_ANOTACOES_HONORARIO" Association="Self.FK_HONORARIO_ANOTACOES_HONORARIO">
+            <End Role="HONORARIO" EntitySet="HONORARIO" />
+            <End Role="HONORARIO_ANOTACOES" EntitySet="HONORARIO_ANOTACOES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HONORARIO_ANOTACOES_USUARIO" Association="Self.FK_HONORARIO_ANOTACOES_USUARIO">
+            <End Role="USUARIO" EntitySet="USUARIO" />
+            <End Role="HONORARIO_ANOTACOES" EntitySet="HONORARIO_ANOTACOES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HONORARIO_TIPO_PESSOA" Association="Self.FK_HONORARIO_TIPO_PESSOA">
+            <End Role="TIPO_PESSOA" EntitySet="TIPO_PESSOA" />
+            <End Role="HONORARIO" EntitySet="HONORARIO" />
           </AssociationSet>
           <AssociationSet Name="FK_LOG_USUARIO" Association="Self.FK_LOG_USUARIO">
             <End Role="USUARIO" EntitySet="USUARIO" />
@@ -2472,6 +2563,10 @@
           <Property Name="HONO_IN_ATIVO" Type="Int32" Nullable="false" />
           <NavigationProperty Name="TIPO_PESSOA" Relationship="Self.FKHONORARIO606369" FromRole="HONORARIO" ToRole="TIPO_PESSOA" />
           <NavigationProperty Name="PRECATORIO" Relationship="Self.FKPRECATORIO440783" FromRole="HONORARIO" ToRole="PRECATORIO" />
+          <Property Name="HONO_DT_CADASTRO" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="HONORARIO_ANEXO" Relationship="DB_RidolfiModel.FK_HONORARIO_ANEXO_HONORARIO" FromRole="HONORARIO" ToRole="HONORARIO_ANEXO" />
+          <NavigationProperty Name="HONORARIO_ANOTACOES" Relationship="DB_RidolfiModel.FK_HONORARIO_ANOTACOES_HONORARIO" FromRole="HONORARIO" ToRole="HONORARIO_ANOTACOES" />
+          <Property Name="HONO_NR_OAB" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="LOAS">
           <Key>
@@ -3073,6 +3168,7 @@
           <NavigationProperty Name="USUARIO_ANEXO" Relationship="Self.FK_USUARIO_ANEXO_USUARIO" FromRole="USUARIO" ToRole="USUARIO_ANEXO" />
           <Property Name="ASSI_CD_ID" Type="Int32" />
           <NavigationProperty Name="BENEFICIARIO_ANOTACOES" Relationship="DB_RidolfiModel.FK_BENEFICIARIO_ANOTACOES_USUARIO" FromRole="USUARIO" ToRole="BENEFICIARIO_ANOTACOES" />
+          <NavigationProperty Name="HONORARIO_ANOTACOES" Relationship="DB_RidolfiModel.FK_HONORARIO_ANOTACOES_USUARIO" FromRole="USUARIO" ToRole="HONORARIO_ANOTACOES" />
         </EntityType>
         <EntityType Name="USUARIO_ANEXO">
           <Key>
@@ -4334,6 +4430,20 @@
             <End Role="USUARIO" EntitySet="USUARIO" />
             <End Role="BENEFICIARIO_ANOTACOES" EntitySet="BENEFICIARIO_ANOTACOES" />
           </AssociationSet>
+          <EntitySet Name="HONORARIO_ANEXO" EntityType="DB_RidolfiModel.HONORARIO_ANEXO" />
+          <EntitySet Name="HONORARIO_ANOTACOES" EntityType="DB_RidolfiModel.HONORARIO_ANOTACOES" />
+          <AssociationSet Name="FK_HONORARIO_ANEXO_HONORARIO" Association="DB_RidolfiModel.FK_HONORARIO_ANEXO_HONORARIO">
+            <End Role="HONORARIO" EntitySet="HONORARIO" />
+            <End Role="HONORARIO_ANEXO" EntitySet="HONORARIO_ANEXO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HONORARIO_ANOTACOES_HONORARIO" Association="DB_RidolfiModel.FK_HONORARIO_ANOTACOES_HONORARIO">
+            <End Role="HONORARIO" EntitySet="HONORARIO" />
+            <End Role="HONORARIO_ANOTACOES" EntitySet="HONORARIO_ANOTACOES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HONORARIO_ANOTACOES_USUARIO" Association="DB_RidolfiModel.FK_HONORARIO_ANOTACOES_USUARIO">
+            <End Role="USUARIO" EntitySet="USUARIO" />
+            <End Role="HONORARIO_ANOTACOES" EntitySet="HONORARIO_ANOTACOES" />
+          </AssociationSet>
         </EntityContainer>
         <Association Name="FK_CLIENTE_CATEGORIA_CLIENTE">
           <End Type="DB_RidolfiModel.CATEGORIA_CLIENTE" Role="CATEGORIA_CLIENTE" Multiplicity="1" />
@@ -4405,6 +4515,68 @@
               <PropertyRef Name="USUA_CD_ID" />
             </Principal>
             <Dependent Role="BENEFICIARIO_ANOTACOES">
+              <PropertyRef Name="USUA_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="HONORARIO_ANEXO">
+          <Key>
+            <PropertyRef Name="HOAN_CD_ID" />
+          </Key>
+          <Property Name="HOAN_CD_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HONO_CD_ID" Type="Int32" Nullable="false" />
+          <Property Name="HOAN_NM_TITULO" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="HOAN_IN_TIPO" Type="Int32" Nullable="false" />
+          <Property Name="HOAN_DT_ANEXO" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="HOAN_AQ_ARQUIVO" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="HOAN_IN_ATIVO" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="HONORARIO" Relationship="DB_RidolfiModel.FK_HONORARIO_ANEXO_HONORARIO" FromRole="HONORARIO_ANEXO" ToRole="HONORARIO" />
+        </EntityType>
+        <EntityType Name="HONORARIO_ANOTACOES">
+          <Key>
+            <PropertyRef Name="HOAT_CD_ID" />
+          </Key>
+          <Property Name="HOAT_CD_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HONO_CD_ID" Type="Int32" Nullable="false" />
+          <Property Name="USUA_CD_ID" Type="Int32" Nullable="false" />
+          <Property Name="HOAT_DT_DATA" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="HOAT_TX_TEXTO" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="HOAT_IN_ATIVO" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="HONORARIO" Relationship="DB_RidolfiModel.FK_HONORARIO_ANOTACOES_HONORARIO" FromRole="HONORARIO_ANOTACOES" ToRole="HONORARIO" />
+          <NavigationProperty Name="USUARIO" Relationship="DB_RidolfiModel.FK_HONORARIO_ANOTACOES_USUARIO" FromRole="HONORARIO_ANOTACOES" ToRole="USUARIO" />
+        </EntityType>
+        <Association Name="FK_HONORARIO_ANEXO_HONORARIO">
+          <End Type="DB_RidolfiModel.HONORARIO" Role="HONORARIO" Multiplicity="1" />
+          <End Type="DB_RidolfiModel.HONORARIO_ANEXO" Role="HONORARIO_ANEXO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HONORARIO">
+              <PropertyRef Name="HONO_CD_ID" />
+            </Principal>
+            <Dependent Role="HONORARIO_ANEXO">
+              <PropertyRef Name="HONO_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HONORARIO_ANOTACOES_HONORARIO">
+          <End Type="DB_RidolfiModel.HONORARIO" Role="HONORARIO" Multiplicity="1" />
+          <End Type="DB_RidolfiModel.HONORARIO_ANOTACOES" Role="HONORARIO_ANOTACOES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HONORARIO">
+              <PropertyRef Name="HONO_CD_ID" />
+            </Principal>
+            <Dependent Role="HONORARIO_ANOTACOES">
+              <PropertyRef Name="HONO_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HONORARIO_ANOTACOES_USUARIO">
+          <End Type="DB_RidolfiModel.USUARIO" Role="USUARIO" Multiplicity="1" />
+          <End Type="DB_RidolfiModel.HONORARIO_ANOTACOES" Role="HONORARIO_ANOTACOES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="USUA_CD_ID" />
+            </Principal>
+            <Dependent Role="HONORARIO_ANOTACOES">
               <PropertyRef Name="USUA_CD_ID" />
             </Dependent>
           </ReferentialConstraint>
@@ -4718,6 +4890,8 @@
           <EntitySetMapping Name="HONORARIO">
             <EntityTypeMapping TypeName="DB_RidolfiModel.HONORARIO">
               <MappingFragment StoreEntitySet="HONORARIO">
+                <ScalarProperty Name="HONO_NR_OAB" ColumnName="HONO_NR_OAB" />
+                <ScalarProperty Name="HONO_DT_CADASTRO" ColumnName="HONO_DT_CADASTRO" />
                 <ScalarProperty Name="HONO_CD_ID" ColumnName="HONO_CD_ID" />
                 <ScalarProperty Name="TIPE_CD_ID" ColumnName="TIPE_CD_ID" />
                 <ScalarProperty Name="HONO_NR_CPF" ColumnName="HONO_NR_CPF" />
@@ -5318,6 +5492,31 @@
                 <ScalarProperty Name="BECO_DT_COMENTARIO" ColumnName="BECO_DT_COMENTARIO" />
                 <ScalarProperty Name="BENE_CD_ID" ColumnName="BENE_CD_ID" />
                 <ScalarProperty Name="BECO_CD_ID" ColumnName="BECO_CD_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HONORARIO_ANEXO">
+            <EntityTypeMapping TypeName="DB_RidolfiModel.HONORARIO_ANEXO">
+              <MappingFragment StoreEntitySet="HONORARIO_ANEXO">
+                <ScalarProperty Name="HOAN_IN_ATIVO" ColumnName="HOAN_IN_ATIVO" />
+                <ScalarProperty Name="HOAN_AQ_ARQUIVO" ColumnName="HOAN_AQ_ARQUIVO" />
+                <ScalarProperty Name="HOAN_DT_ANEXO" ColumnName="HOAN_DT_ANEXO" />
+                <ScalarProperty Name="HOAN_IN_TIPO" ColumnName="HOAN_IN_TIPO" />
+                <ScalarProperty Name="HOAN_NM_TITULO" ColumnName="HOAN_NM_TITULO" />
+                <ScalarProperty Name="HONO_CD_ID" ColumnName="HONO_CD_ID" />
+                <ScalarProperty Name="HOAN_CD_ID" ColumnName="HOAN_CD_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HONORARIO_ANOTACOES">
+            <EntityTypeMapping TypeName="DB_RidolfiModel.HONORARIO_ANOTACOES">
+              <MappingFragment StoreEntitySet="HONORARIO_ANOTACOES">
+                <ScalarProperty Name="HOAT_IN_ATIVO" ColumnName="HOAT_IN_ATIVO" />
+                <ScalarProperty Name="HOAT_TX_TEXTO" ColumnName="HOAT_TX_TEXTO" />
+                <ScalarProperty Name="HOAT_DT_DATA" ColumnName="HOAT_DT_DATA" />
+                <ScalarProperty Name="USUA_CD_ID" ColumnName="USUA_CD_ID" />
+                <ScalarProperty Name="HONO_CD_ID" ColumnName="HONO_CD_ID" />
+                <ScalarProperty Name="HOAT_CD_ID" ColumnName="HOAT_CD_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

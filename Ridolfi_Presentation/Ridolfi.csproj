@@ -284,6 +284,7 @@
     <Compile Include="Controllers\ConfiguracaoController.cs" />
     <Compile Include="Controllers\ControleAcessoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HonorarioController.cs" />
     <Compile Include="Controllers\NoticiaController.cs" />
     <Compile Include="Controllers\NotificacaoController.cs" />
     <Compile Include="Controllers\TabelaAuxiliarController.cs" />
@@ -300,6 +301,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\AgendaViewModel.cs" />
     <Compile Include="ViewModels\BancoViewModel.cs" />
+    <Compile Include="ViewModels\HonorarioViewModel.cs" />
+    <Compile Include="ViewModels\HonorarioComentarioViewModel.cs" />
+    <Compile Include="ViewModels\TabelaIRRFViewModel.cs" />
+    <Compile Include="ViewModels\TabelaIPCAViewModel.cs" />
     <Compile Include="ViewModels\CargoViewModel.cs" />
     <Compile Include="ViewModels\BeneficiarioViewModel.cs" />
     <Compile Include="ViewModels\BeneficiarioComentarioViewModel.cs" />
@@ -3723,6 +3728,12 @@
     <Content Include="Views\Beneficiario\VerCardsBeneficiario.cshtml" />
     <Content Include="Views\Beneficiario\VerAnexoBeneficiario.cshtml" />
     <Content Include="Views\Beneficiario\IncluirComentario.cshtml" />
+    <Content Include="Views\Honorario\MontarTelaHonorario.cshtml" />
+    <Content Include="Views\Honorario\IncluirHonorario.cshtml" />
+    <Content Include="Views\Honorario\VerHonorario.cshtml" />
+    <Content Include="Views\Honorario\EditarHonorario.cshtml" />
+    <Content Include="Views\Honorario\VerAnexoHonorario.cshtml" />
+    <Content Include="Views\Honorario\IncluirComentario.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

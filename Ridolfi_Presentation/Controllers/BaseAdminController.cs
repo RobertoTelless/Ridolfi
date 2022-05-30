@@ -204,6 +204,7 @@ namespace ERP_CRM_Solution.Controllers
             Session["VoltaMensagem"] = 0;
             Session["VoltaAgendaCRMCalend"] = 0;
             Session["MensBeneficiario"] = 0;
+            Session["MensHonorario"] = 0;
 
             USUARIO usu = new USUARIO();
             UsuarioViewModel vm = new UsuarioViewModel();

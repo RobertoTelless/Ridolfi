@@ -94,6 +94,9 @@ namespace Presentation.Start
             kernel.Bind<IEscolaridadeAppService>().To<EscolaridadeAppService>();
             kernel.Bind<IParentescoAppService>().To<ParentescoAppService>();
             kernel.Bind<IBeneficiarioAppService>().To<BeneficiarioAppService>();
+            kernel.Bind<ITabelaIPCAAppService>().To<TabelaIPCAAppService>();
+            kernel.Bind<ITabelaIRRFAppService>().To<TabelaIRRFAppService>();
+            kernel.Bind<IHonorarioAppService>().To<HonorarioAppService>();
 
             kernel.Bind(typeof(IServiceBase<>)).To(typeof(ServiceBase<>));
             kernel.Bind<IUsuarioService>().To<UsuarioService>();
@@ -121,6 +124,9 @@ namespace Presentation.Start
             kernel.Bind<IEscolaridadeService>().To<EscolaridadeService>();
             kernel.Bind<IParentescoService>().To<ParentescoService>();
             kernel.Bind<IBeneficiarioService>().To<BeneficiarioService>();
+            kernel.Bind<ITabelaIPCAService>().To<TabelaIPCAService>();
+            kernel.Bind<ITabelaIRRFService>().To<TabelaIRRFService>();
+            kernel.Bind<IHonorarioService>().To<HonorarioService>();
 
             kernel.Bind(typeof(IRepositoryBase<>)).To(typeof(RepositoryBase<>));
             kernel.Bind<IConfiguracaoRepository>().To<ConfiguracaoRepository>();
@@ -168,6 +174,11 @@ namespace Presentation.Start
             kernel.Bind<IBeneficiarioAnexoRepository>().To<BeneficiarioAnexoRepository>();
             kernel.Bind<IBeneficiarioComentarioRepository>().To<BeneficiarioComentarioRepository>();
             kernel.Bind<IEstadoCivilRepository>().To<EstadoCivilRepository>();
+            kernel.Bind<ITabelaIPCARepository>().To<TabelaIPCARepository>();
+            kernel.Bind<ITabelaIRRFRepository>().To<TabelaIRRFRepository>();
+            kernel.Bind<IHonorarioAnexoRepository>().To<HonorarioAnexoRepository>();
+            kernel.Bind<IHonorarioComentarioRepository>().To<HonorarioComentarioRepository>();
+            kernel.Bind<IHonorarioRepository>().To<HonorarioRepository>();
 
         }
     }

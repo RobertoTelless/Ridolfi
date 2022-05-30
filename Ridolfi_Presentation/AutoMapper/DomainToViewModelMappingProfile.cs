@@ -39,6 +39,10 @@ namespace MvcMapping.Mappers
             CreateMap<PARENTESCO, ParentescoViewModel>();
             CreateMap<BENEFICIARIO, BeneficiarioViewModel>();
             CreateMap<BENEFICIARIO_ANOTACOES, BeneficiarioComentarioViewModel>();
+            CreateMap<TABELA_IPCA, TabelaIPCAViewModel>();
+            CreateMap<TABELA_IRRF, TabelaIRRFViewModel>();
+            CreateMap<HONORARIO_ANOTACOES, HonorarioComentarioViewModel>();
+            CreateMap<HONORARIO, HonorarioViewModel>();
 
         }
     }
