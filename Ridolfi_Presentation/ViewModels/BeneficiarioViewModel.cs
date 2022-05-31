@@ -31,6 +31,21 @@ namespace ERP_CRM_Solution.ViewModels
         public Nullable<decimal> BENE_VL_RENDA_ESTIMADA { get; set; }
         public int BENE_IN_ATIVO { get; set; }
         public Nullable<System.DateTime> BENE_DT_CADASTRO { get; set; }
+        [StringLength(20, ErrorMessage = "O CPF deve conter no máximo 20 caracteres.")]
+        [CustomValidationCPF(ErrorMessage = "CPF inválido")]
+        public string BENE_NR_CPF { get; set; }
+        [StringLength(20, ErrorMessage = "O RG deve conter no máximo 20 caracteres.")]
+        public string BENE_NR_RG { get; set; }
+        [StringLength(20, ErrorMessage = "O TELEFONE deve conter no máximo 20 caracteres.")]
+        public string BENE_NR_TELEFONE { get; set; }
+        [StringLength(20, ErrorMessage = "O CELULAR deve conter no máximo 20 caracteres.")]
+        public string BENE_NR_CELULAR { get; set; }
+        [StringLength(150, ErrorMessage = "O E-MAIL deve conter no máximo 150 caracteres.")]
+        [RegularExpression("^[a-zA-Z0-9_\\.-]+@([a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$", ErrorMessage = "Deve ser um e-mail válido")]
+        public string BENE_EM_EMAIL { get; set; }
+        [StringLength(20, ErrorMessage = "O CNPJ deve conter no máximo 20 caracteres.")]
+        [CustomValidationCNPJ(ErrorMessage = "CNPJ inválido")]
+        public string BENE_NR_CNPJ { get; set; }
 
         public virtual ESTADO_CIVIL ESTADO_CIVIL { get; set; }
         public virtual PARENTESCO PARENTESCO { get; set; }

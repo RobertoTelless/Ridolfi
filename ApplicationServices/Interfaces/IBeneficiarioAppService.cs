@@ -19,7 +19,7 @@ namespace ApplicationServices.Interfaces
         BENEFICIARIO GetItemById(Int32 id);
         List<BENEFICIARIO> GetAllItens();
         List<BENEFICIARIO> GetAllItensAdm();
-        Int32 ExecuteFilter(Int32? tipo, Int32? sexo, Int32? estado, Int32? escolaridade, Int32? parentesco, String razao, String nome, DateTime? dataNasc, out List<BENEFICIARIO> objeto);
+        Int32 ExecuteFilter(Int32? tipo, Int32? sexo, Int32? estado, Int32? escolaridade, Int32? parentesco, String razao, String nome, DateTime? dataNasc, String cpf, String cnpj, out List<BENEFICIARIO> objeto);
 
         List<ESCOLARIDADE> GetAllEscolaridade();
         List<PARENTESCO> GetAllParentesco();

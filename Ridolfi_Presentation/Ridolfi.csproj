@@ -2801,6 +2801,7 @@
     <Content Include="Imagens\1\Tarefa\1\Anexos\power_system.pdf" />
     <Content Include="Imagens\1\Beneficiarios\2\Anexos\AgendaLista_23052022.pdf" />
     <Content Include="Imagens\1\Honorarios\3\Anexos\NPAG.pdf" />
+    <Content Include="Imagens\1\Beneficiarios\4\Anexos\K_C_Agrawal.pdf" />
     <None Include="Properties\PublishProfiles\DBMasterData - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\ModelosDashboard - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\on-suite-dashboards - FTP.pubxml" />
@@ -3737,6 +3738,8 @@
     <Content Include="Views\Honorario\EditarHonorario.cshtml" />
     <Content Include="Views\Honorario\VerAnexoHonorario.cshtml" />
     <Content Include="Views\Honorario\IncluirComentario.cshtml" />
+    <Content Include="Views\Beneficiario\EnviarEMailBeneficiario.cshtml" />
+    <Content Include="Views\Beneficiario\EnviarSMSBeneficiario.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

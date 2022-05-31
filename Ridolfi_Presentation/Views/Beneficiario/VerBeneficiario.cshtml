@@ -48,6 +48,8 @@
                                     @using (Html.BeginForm("VerBeneficiario", "Beneficiario", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", @id = "pwd-container1" }))
                                     {
                                         <div class="form-group">
+                                            @Html.ButtonLinkIndex(text: "Enviar E-Mail", action: "EnviarEmailBeneficiario", controller: "Beneficiario")
+                                            @Html.ButtonLinkIndex(text: "Enviar SMS", action: "EnviarSMSBeneficiario", controller: "Beneficiario")
                                             @Html.ButtonLinkIndex(text: "Voltar", action: "VoltarBaseBeneficiario", controller: "Beneficiario")
                                         </div>
                                         <div class="row">
@@ -72,6 +74,38 @@
                                                         @Html.ValidationMessageFor(m => m.MOME_NM_RAZAO_SOCIAL, "", new { @style = "color:red" })
                                                     </div>
                                                 }
+                                            </div>
+                                            <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">
+                                                @if (Model.TIPE_CD_ID == 1)
+                                                {
+                                                    <div class="col-lg-2 col-md-2 col-xs-12"  id="PF">
+                                                        CPF
+                                                        @Html.TextBoxFor(m => m.BENE_NR_CPF, new { @class = "form-control", autofocus = true, @id = "cpf", @readonly="readonly" })
+                                                    </div>
+                                                    <div class="col-lg-2 col-md-2 col-xs-12" id="PF1">
+                                                        RG
+                                                        @Html.TextBoxFor(m => m.BENE_NR_RG, new { @class = "form-control", autofocus = true, @readonly="readonly" })
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    <div class="col-lg-2 col-md-2 col-xs-12"  id="PJ1">
+                                                        CNPJ
+                                                        @Html.TextBoxFor(m => m.BENE_NR_CNPJ, new { @class = "form-control", autofocus = true, @id = "cnpj", @readonly="readonly" })
+                                                    </div>
+                                                }
+                                                <div class="col-lg-2 col-md-2 col-xs-12">
+                                                    Telefone
+                                                    @Html.TextBoxFor(m => m.BENE_NR_TELEFONE, new { @class = "form-control", autofocus = true, @id = "tel", @readonly="readonly" })
+                                                </div>
+                                                <div class="col-lg-2 col-md-2 col-xs-12">
+                                                    Celular
+                                                    @Html.TextBoxFor(m => m.BENE_NR_CELULAR, new { @class = "form-control", autofocus = true, @id = "cel", @readonly="readonly" })
+                                                </div>
+                                                <div class="col-lg-4 col-md-4 col-xs-12">
+                                                    E-Mail
+                                                    @Html.TextBoxFor(m => m.BENE_EM_EMAIL, new { @class = "form-control", autofocus = true, @readonly="readonly" })
+                                                </div>
                                             </div>
                                             @if (Model.TIPE_CD_ID == 1)
                                             {

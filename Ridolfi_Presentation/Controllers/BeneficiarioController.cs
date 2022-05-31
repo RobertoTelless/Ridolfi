@@ -159,7 +159,7 @@ namespace ERP_CRM_Solution.Controllers
                 // Executa a operação
                 List<BENEFICIARIO> listaObj = new List<BENEFICIARIO>();
                 Session["FiltroBeneficiario"] = item;
-                Int32 volta = tranApp.ExecuteFilter(item.TIPE_CD_ID, item.SEXO_CD_ID, item.ESCI_CD_ID, item.ESCO_CD_ID, item.PARE_CD_ID, item.MOME_NM_RAZAO_SOCIAL, item.BENE_NM_NOME, item.BENE_DT_NASCIMENTO, out listaObj);
+                Int32 volta = tranApp.ExecuteFilter(item.TIPE_CD_ID, item.SEXO_CD_ID, item.ESCI_CD_ID, item.ESCO_CD_ID, item.PARE_CD_ID, item.MOME_NM_RAZAO_SOCIAL, item.BENE_NM_NOME, item.BENE_DT_NASCIMENTO, item.BENE_NR_CPF, item.BENE_NR_CNPJ, out listaObj);
 
                 // Verifica retorno
                 if (volta == 1)
@@ -1233,6 +1233,294 @@ namespace ERP_CRM_Solution.Controllers
 
             return RedirectToAction("VoltarAnexoBeneficiario");
         }
+
+        [HttpGet]
+        [ValidateInput(false)]
+        public ActionResult EnviarEMailBeneficiario()
+        {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            Int32 idAss = (Int32)Session["IdAssinante"];
+            USUARIO usuario = (USUARIO)Session["UserCredentials"];
+
+            if (Session["MensMensagem"] != null)
+            {
+                if ((Int32)Session["MensMensagem"] == 66)
+                {
+                    ModelState.AddModelError("", PlatMensagens_Resources.ResourceManager.GetString("M0026", CultureInfo.CurrentCulture));
+                }
+            }
+
+            // recupera beneficiario
+            BENEFICIARIO cli = tranApp.GetItemById((Int32)Session["IdBeneficiario"]);
+            Session["Beneficiario"] = cli;
+
+            // Prepara mensagem
+            String header = "Prezado <b>" + cli.BENE_NM_NOME + "</b>";
+            String body = String.Empty;
+            String footer = "<b>" + "Atenciosamente" + "</b>";
+
+            // Monta vm
+            MensagemViewModel vm = new MensagemViewModel();
+            vm.MENS_DT_CRIACAO = DateTime.Now;
+            vm.MENS_IN_ATIVO = 1;
+            vm.NOME = cli.BENE_NM_NOME;
+            vm.ID = (Int32)Session["IdBeneficiario"];
+            vm.MODELO = cli.BENE_EM_EMAIL;
+            vm.USUA_CD_ID = usuario.USUA_CD_ID;
+            vm.MENS_NM_CABECALHO = header;
+            vm.MENS_NM_RODAPE = footer;
+            vm.MENS_IN_TIPO = 1;
+            vm.ID = cli.BENE_CD_ID;
+            return View(vm);
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult EnviarEMailBeneficiario(MensagemViewModel vm)
+        {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            Int32 idAss = (Int32)Session["IdAssinante"];
+
+            if (ModelState.IsValid)
+            {
+                Int32 idNot = (Int32)Session["IdBeneficiario"];
+                try
+                {
+                    // Checa corpo da mensagem
+                    if (String.IsNullOrEmpty(vm.MENS_TX_TEXTO))
+                    {
+                        Session["MensMensagem"] = 66;
+                        return RedirectToAction("EnviarEMailCliente");
+                    }
+
+                    // Executa a operação
+                    USUARIO usuarioLogado = (USUARIO)Session["UserCredentials"];
+                    Int32 volta = ProcessaEnvioEMailBeneficiario(vm, usuarioLogado);
+
+                    // Verifica retorno
+                    if (volta == 1)
+                    {
+
+                    }
+
+                    // Sucesso
+                    return RedirectToAction("VoltarAnexoBeneficiario");
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.Message = ex.Message;
+                    return View(vm);
+                }
+            }
+            else
+            {
+                return View(vm);
+            }
+        }
+
+        [ValidateInput(false)]
+        public Int32 ProcessaEnvioEMailBeneficiario(MensagemViewModel vm, USUARIO usuario)
+        {
+            // Recupera cliente
+            Int32 idAss = (Int32)Session["IdAssinante"];
+            BENEFICIARIO cont = (BENEFICIARIO)Session["Beneficiario"];
+
+            // Processa e-mail
+            CONFIGURACAO conf = confApp.GetItemById(1);
+
+            // Prepara cabeçalho
+            String cab = "Prezado Sr(a). <b>" + cont.BENE_NM_NOME + "</b>";
+
+            // Prepara rodape
+            String rod = "<b>" + "Atenciosamente"+ "</b>";
+
+            // Prepara corpo do e-mail e trata link
+            String corpo = vm.MENS_TX_TEXTO + "<br /><br />";
+            StringBuilder str = new StringBuilder();
+            str.AppendLine(corpo);
+            if (!String.IsNullOrEmpty(vm.MENS_NM_LINK))
+            {
+                if (!vm.MENS_NM_LINK.Contains("www."))
+                {
+                    vm.MENS_NM_LINK = "www." + vm.MENS_NM_LINK;
+                }
+                if (!vm.MENS_NM_LINK.Contains("http://"))
+                {
+                    vm.MENS_NM_LINK = "http://" + vm.MENS_NM_LINK;
+                }
+                str.AppendLine("<a href='" + vm.MENS_NM_LINK + "'>Clique aqui para maiores informações</a>");
+            }
+            String body = str.ToString();
+            String emailBody = cab + "<br /><br />" + body + "<br /><br />" + rod;
+
+            // Monta e-mail
+            NetworkCredential net = new NetworkCredential(conf.CONF_NM_EMAIL_EMISSOO, conf.CONF_NM_SENHA_EMISSOR);
+            Email mensagem = new Email();
+            mensagem.ASSUNTO = "Contato";
+            mensagem.CORPO = emailBody;
+            mensagem.DEFAULT_CREDENTIALS = false;
+            mensagem.EMAIL_DESTINO = cont.BENE_EM_EMAIL;
+            mensagem.EMAIL_EMISSOR = conf.CONF_NM_EMAIL_EMISSOO;
+            mensagem.ENABLE_SSL = true;
+            mensagem.NOME_EMISSOR = "Ridolfi";
+            mensagem.PORTA = conf.CONF_NM_PORTA_SMTP;
+            mensagem.PRIORIDADE = System.Net.Mail.MailPriority.High;
+            mensagem.SENHA_EMISSOR = conf.CONF_NM_SENHA_EMISSOR;
+            mensagem.SMTP = conf.CONF_NM_HOST_SMTP;
+            mensagem.IS_HTML = true;
+            mensagem.NETWORK_CREDENTIAL = net;
+
+            // Envia mensagem
+            try
+            {
+                Int32 voltaMail = CommunicationPackage.SendEmail(mensagem);
+            }
+            catch (Exception ex)
+            {
+                String erro = ex.Message;
+            }
+            return 0;
+        }
+
+        [HttpGet]
+        public ActionResult EnviarSMSBeneficiario()
+        {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            BENEFICIARIO cont = tranApp.GetItemById((Int32)Session["IdBeneficiario"]);
+            Session["Beneficiario"] = cont;
+            ViewBag.Beneficiario = cont;
+            MensagemViewModel mens = new MensagemViewModel();
+            mens.NOME = cont.BENE_NM_NOME;
+            mens.ID = (Int32)Session["IdBeneficiario"];
+            mens.MODELO = cont.BENE_NR_CELULAR;
+            mens.MENS_DT_CRIACAO = DateTime.Today.Date;
+            mens.MENS_IN_TIPO = 2;
+            return View(mens);
+        }
+
+        [HttpPost]
+        public ActionResult EnviarSMSBeneficiario(MensagemViewModel vm)
+        {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            Int32 idNot = (Int32)Session["IdBeneficiario"];
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    // Executa a operação
+                    USUARIO usuarioLogado = (USUARIO)Session["UserCredentials"];
+                    Int32 volta = ProcessaEnvioSMSBeneficiario(vm, usuarioLogado);
+
+                    // Verifica retorno
+                    if (volta == 1)
+                    {
+
+                    }
+
+                    // Sucesso
+                    return RedirectToAction("VoltarAnexoBeneficiario");
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.Message = ex.Message;
+                    return View(vm);
+                }
+            }
+            else
+            {
+                return View(vm);
+            }
+        }
+
+        [ValidateInput(false)]
+        public Int32 ProcessaEnvioSMSBeneficiario(MensagemViewModel vm, USUARIO usuario)
+        {
+            // Recupera contatos
+            Int32 idAss = (Int32)Session["IdAssinante"];
+            BENEFICIARIO cont = (BENEFICIARIO)Session["Beneficiario"];
+
+            // Processa SMS
+            CONFIGURACAO conf = confApp.GetItemById(1);
+
+            // Monta token
+            String text = conf.CONF_SG_LOGIN_SMS + ":" + conf.CONF_SG_SENHA_SMS;
+            byte[] textBytes = Encoding.UTF8.GetBytes(text);
+            String token = Convert.ToBase64String(textBytes);
+            String auth = "Basic " + token;
+
+            // Prepara texto
+            String texto = vm.MENS_TX_SMS;
+
+            // Prepara corpo do SMS e trata link
+            StringBuilder str = new StringBuilder();
+            str.AppendLine(vm.MENS_TX_SMS);
+            if (!String.IsNullOrEmpty(vm.LINK))
+            {
+                if (!vm.LINK.Contains("www."))
+                {
+                    vm.LINK = "www." + vm.LINK;
+                }
+                if (!vm.LINK.Contains("http://"))
+                {
+                    vm.LINK = "http://" + vm.LINK;
+                }
+                str.AppendLine("<a href='" + vm.LINK + "'>Clique aqui para maiores informações</a>");
+                texto += "  " + vm.LINK;
+            }
+            String body = str.ToString();
+            String smsBody = body;
+            String erro = null;
+
+            // inicia processo
+            String resposta = String.Empty;
+
+            // Monta destinatarios
+            try
+            {
+                String listaDest = "55" + Regex.Replace(cont.BENE_NR_CELULAR, "[^a-zA-Z0-9_.]+", "", RegexOptions.Compiled).ToString();
+                var httpWebRequest = (HttpWebRequest)WebRequest.Create("https://api-v2.smsfire.com.br/sms/send/bulk");
+                httpWebRequest.Headers["Authorization"] = auth;
+                httpWebRequest.ContentType = "application/json";
+                httpWebRequest.Method = "POST";
+                String customId = Cryptography.GenerateRandomPassword(8);
+                String data = String.Empty;
+                String json = String.Empty;
+
+                using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+                {
+                    json = String.Concat("{\"destinations\": [{\"to\": \"", listaDest, "\", \"text\": \"", texto, "\", \"customId\": \"" + customId + "\", \"from\": \"Ridolfi\"}]}");
+                    streamWriter.Write(json);
+                }
+
+                var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+                using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                {
+                    var result = streamReader.ReadToEnd();
+                    resposta = result;
+                }
+            }
+            catch (Exception ex)
+            {
+                erro = ex.Message;
+            }
+            return 0;
+        }
+
+
+
+
     }
 
 }

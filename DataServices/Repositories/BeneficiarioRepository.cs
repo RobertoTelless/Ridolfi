@@ -13,7 +13,14 @@ namespace DataServices.Repositories
         public BENEFICIARIO CheckExist(BENEFICIARIO conta)
         {
             IQueryable<BENEFICIARIO> query = Db.BENEFICIARIO;
-            query = query.Where(p => p.BENE_NM_NOME == conta.BENE_NM_NOME || p.MOME_NM_RAZAO_SOCIAL == conta.MOME_NM_RAZAO_SOCIAL);
+            if (conta.BENE_NR_CNPJ != null)
+            {
+                query = query.Where(p => p.BENE_NR_CNPJ == conta.BENE_NR_CNPJ);
+            }
+            if (conta.BENE_NR_CPF != null)
+            {
+                query = query.Where(p => p.BENE_NR_CPF == conta.BENE_NR_CPF);
+            }
             return query.FirstOrDefault();
         }
 
@@ -36,7 +43,7 @@ namespace DataServices.Repositories
             return query.ToList();
         }
 
-        public List<BENEFICIARIO> ExecuteFilter(Int32? tipo, Int32? sexo, Int32? estado, Int32? escolaridade, Int32? parentesco, String razao, String nome, DateTime? dataNasc)
+        public List<BENEFICIARIO> ExecuteFilter(Int32? tipo, Int32? sexo, Int32? estado, Int32? escolaridade, Int32? parentesco, String razao, String nome, DateTime? dataNasc, String cpf, String cnpj)
         {
             List<BENEFICIARIO> lista = new List<BENEFICIARIO>();
             IQueryable<BENEFICIARIO> query = Db.BENEFICIARIO;
@@ -67,6 +74,14 @@ namespace DataServices.Repositories
             if (!String.IsNullOrEmpty(nome))
             {
                 query = query.Where(p => p.BENE_NM_NOME.Contains(nome));
+            }
+            if (!String.IsNullOrEmpty(cpf))
+            {
+                query = query.Where(p => p.BENE_NR_CPF.Contains(cpf));
+            }
+            if (!String.IsNullOrEmpty(cnpj))
+            {
+                query = query.Where(p => p.BENE_NR_CNPJ.Contains(cnpj));
             }
             if (dataNasc != null)
             {

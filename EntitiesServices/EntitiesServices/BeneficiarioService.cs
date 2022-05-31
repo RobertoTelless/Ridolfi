@@ -111,9 +111,9 @@ namespace ModelServices.EntitiesServices
             return _comRepository.GetItemById(id);
         }
 
-        public List<BENEFICIARIO> ExecuteFilter(Int32? tipo, Int32? sexo, Int32? estado, Int32? escolaridade, Int32? parentesco, String razao, String nome, DateTime? dataNasc)
+        public List<BENEFICIARIO> ExecuteFilter(Int32? tipo, Int32? sexo, Int32? estado, Int32? escolaridade, Int32? parentesco, String razao, String nome, DateTime? dataNasc, String cpf, String cnpj)
         {
-            return _baseRepository.ExecuteFilter(tipo, sexo, estado, escolaridade, parentesco, razao, nome, dataNasc);
+            return _baseRepository.ExecuteFilter(tipo, sexo, estado, escolaridade, parentesco, razao, nome, dataNasc, cpf, cnpj);
         }
 
         public Int32 Create(BENEFICIARIO item, LOG log)

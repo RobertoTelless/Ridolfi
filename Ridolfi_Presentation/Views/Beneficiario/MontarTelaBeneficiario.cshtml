@@ -85,6 +85,10 @@
                                 Razão Social
                                 @Html.TextBoxFor(m => m.MOME_NM_RAZAO_SOCIAL, new { @class = "form-control", autofocus = true })
                             </div>
+                            <div class="col-lg-2 col-md-2 col-xs-12">
+                                CPF
+                                @Html.TextBoxFor(m => m.BENE_NR_CPF, new { @class = "form-control", autofocus = true })
+                            </div>
                         </div>
                         <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">
                             <div class="col-lg-12 col-md-12 col-xs-12">
@@ -125,8 +129,12 @@
                                         <th>Nome</th>
                                         <th>Razão Social</th>
                                         <th>Tipo Pessoa</th>
-                                        <th>Data Nasc</th>
-                                        <th>Renda (R$)</th>
+                                        <th>CNPJ</th>
+                                        <th>CPF</th>
+                                        <th>RG</th>
+                                        <th>Telefone</th>
+                                        <th>Celular</th>
+                                        <th>E-Mail</th>
                                         <th class="td-one-action">Ações</th>
                                     </tr>
                                 </thead>
@@ -137,22 +145,12 @@
                                             <td>@cond.BENE_NM_NOME</td>
                                             <td>@cond.MOME_NM_RAZAO_SOCIAL</td>
                                             <td>@cond.TIPO_PESSOA.TIPE_NM_NOME</td>
-                                            @if (cond.BENE_DT_NASCIMENTO != null)
-                                            {
-                                                <td>@cond.BENE_DT_NASCIMENTO.Value.ToShortDateString()</td>
-                                            }
-                                            else
-                                            {
-                                                <td>-</td>
-                                            }
-                                            @if (cond.BENE_VL_RENDA != null)
-                                            {
-                                                <td>@CrossCutting.Formatters.DecimalFormatter(cond.BENE_VL_RENDA.Value)</td>
-                                            }
-                                            else
-                                            {
-                                                <td>-</td>
-                                            }
+                                            <td>@cond.BENE_NR_CNPJ</td>
+                                            <td>@cond.BENE_NR_CPF</td>
+                                            <td>@cond.BENE_NR_RG</td>
+                                            <td>@cond.BENE_NR_TELEFONE</td>
+                                            <td>@cond.BENE_NR_CELULAR</td>
+                                            <td>@cond.BENE_EM_EMAIL</td>
                                             <td class="td-one-action">
                                                 @if (ViewBag.Perfil != "VIS")
                                                 {
