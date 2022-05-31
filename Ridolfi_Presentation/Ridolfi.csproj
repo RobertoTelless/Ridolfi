@@ -1192,6 +1192,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Imagens\1\Honorarios\2\Anexos\1_17729_02.jpg" />
     <Content Include="Imagens\1\Noticias\1\Fotos\_124820819_dsc01277.jpg" />
     <Content Include="Imagens\1\Usuario\1\Fotos\FotoOficial_2.jpg" />
     <Content Include="Imagens\1\Usuario\2\Fotos\image_2021-04-08_13-28-54.png" />
@@ -2798,6 +2799,8 @@
     <Content Include="amcharts4\themes\spiritedaway.js.map" />
     <Content Include="Imagens\1\Agenda\2\Anexos\UsuarioLista_23052022.pdf" />
     <Content Include="Imagens\1\Tarefa\1\Anexos\power_system.pdf" />
+    <Content Include="Imagens\1\Beneficiarios\2\Anexos\AgendaLista_23052022.pdf" />
+    <Content Include="Imagens\1\Honorarios\3\Anexos\NPAG.pdf" />
     <None Include="Properties\PublishProfiles\DBMasterData - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\ModelosDashboard - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\on-suite-dashboards - FTP.pubxml" />
@@ -3743,6 +3746,9 @@
     <Folder Include="Imagens\1\Agenda\4\Anexos\" />
     <Folder Include="Imagens\1\Agenda\5\Anexos\" />
     <Folder Include="Imagens\1\Agenda\6\Anexos\" />
+    <Folder Include="Imagens\1\Beneficiarios\1\Anexos\" />
+    <Folder Include="Imagens\1\Beneficiarios\3\Anexos\" />
+    <Folder Include="Imagens\1\Honorarios\1\Anexos\" />
     <Folder Include="Imagens\1\Notificacao\10\Anexos\" />
     <Folder Include="Imagens\1\Notificacao\11\Anexos\" />
     <Folder Include="Imagens\1\Notificacao\12\Anexos\" />

@@ -64,6 +64,11 @@
           <Property Name="PARE_CD_ID" Type="int" />
           <Property Name="BENE_NM_NOME" Type="varchar" MaxLength="250" />
           <Property Name="MOME_NM_RAZAO_SOCIAL" Type="varchar" MaxLength="250" />
+          <Property Name="BENE_NR_CPF" Type="varchar" MaxLength="20" />
+          <Property Name="BENE_NR_RG" Type="varchar" MaxLength="20" />
+          <Property Name="BENE_NR_TELEFONE" Type="varchar" MaxLength="20" />
+          <Property Name="BENE_NR_CELULAR" Type="varchar" MaxLength="20" />
+          <Property Name="BENE_EM_EMAIL" Type="varchar" MaxLength="150" />
           <Property Name="BENE_DT_NASCIMENTO" Type="date" />
           <Property Name="BENE_VL_RENDA" Type="decimal" Precision="20" Scale="2" />
           <Property Name="BENE_VL_RENDA_ESTIMADA" Type="decimal" Precision="20" Scale="2" />
@@ -2306,6 +2311,11 @@
           <NavigationProperty Name="BENEFICIARIO_ANEXO" Relationship="DB_RidolfiModel.FK_BENEFICIARIO_ANEXO_BENEFICIARIO" FromRole="BENEFICIARIO" ToRole="BENEFICIARIO_ANEXO" />
           <NavigationProperty Name="BENEFICIARIO_ANOTACOES" Relationship="DB_RidolfiModel.FK_BENEFICIARIO_ANOTACOES_BENEFICIARIO" FromRole="BENEFICIARIO" ToRole="BENEFICIARIO_ANOTACOES" />
           <Property Name="BENE_DT_CADASTRO" Type="DateTime" Precision="0" />
+          <Property Name="BENE_NR_CPF" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="BENE_NR_RG" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="BENE_NR_TELEFONE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="BENE_NR_CELULAR" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="BENE_EM_EMAIL" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="CARGO">
           <Key>
@@ -4643,6 +4653,11 @@
           <EntitySetMapping Name="BENEFICIARIO">
             <EntityTypeMapping TypeName="DB_RidolfiModel.BENEFICIARIO">
               <MappingFragment StoreEntitySet="BENEFICIARIO">
+                <ScalarProperty Name="BENE_EM_EMAIL" ColumnName="BENE_EM_EMAIL" />
+                <ScalarProperty Name="BENE_NR_CELULAR" ColumnName="BENE_NR_CELULAR" />
+                <ScalarProperty Name="BENE_NR_TELEFONE" ColumnName="BENE_NR_TELEFONE" />
+                <ScalarProperty Name="BENE_NR_RG" ColumnName="BENE_NR_RG" />
+                <ScalarProperty Name="BENE_NR_CPF" ColumnName="BENE_NR_CPF" />
                 <ScalarProperty Name="BENE_DT_CADASTRO" ColumnName="BENE_DT_CADASTRO" />
                 <ScalarProperty Name="BENE_CD_ID" ColumnName="BENE_CD_ID" />
                 <ScalarProperty Name="TIPE_CD_ID" ColumnName="TIPE_CD_ID" />

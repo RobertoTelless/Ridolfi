@@ -35,6 +35,11 @@ namespace EntitiesServices.Model
         public Nullable<decimal> BENE_VL_RENDA_ESTIMADA { get; set; }
         public int BENE_IN_ATIVO { get; set; }
         public Nullable<System.DateTime> BENE_DT_CADASTRO { get; set; }
+        public string BENE_NR_CPF { get; set; }
+        public string BENE_NR_RG { get; set; }
+        public string BENE_NR_TELEFONE { get; set; }
+        public string BENE_NR_CELULAR { get; set; }
+        public string BENE_EM_EMAIL { get; set; }
     
         public virtual ESTADO_CIVIL ESTADO_CIVIL { get; set; }
         public virtual PARENTESCO PARENTESCO { get; set; }
