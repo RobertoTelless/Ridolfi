@@ -46,6 +46,8 @@ namespace ERP_CRM_Solution.ViewModels
         [StringLength(20, ErrorMessage = "O CNPJ deve conter no máximo 20 caracteres.")]
         [CustomValidationCNPJ(ErrorMessage = "CNPJ inválido")]
         public string BENE_NR_CNPJ { get; set; }
+        [StringLength(100, ErrorMessage = "O NOME DO PARENTE deve conter no máximo 100 caracteres.")]
+        public string BENE_NM_PARENTESCO { get; set; }
 
         public virtual ESTADO_CIVIL ESTADO_CIVIL { get; set; }
         public virtual PARENTESCO PARENTESCO { get; set; }

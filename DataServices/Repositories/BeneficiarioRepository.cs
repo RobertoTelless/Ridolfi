@@ -43,7 +43,7 @@ namespace DataServices.Repositories
             return query.ToList();
         }
 
-        public List<BENEFICIARIO> ExecuteFilter(Int32? tipo, Int32? sexo, Int32? estado, Int32? escolaridade, Int32? parentesco, String razao, String nome, DateTime? dataNasc, String cpf, String cnpj)
+        public List<BENEFICIARIO> ExecuteFilter(Int32? tipo, Int32? sexo, Int32? estado, Int32? escolaridade, Int32? parentesco, String razao, String nome, DateTime? dataNasc, String cpf, String cnpj, String parente)
         {
             List<BENEFICIARIO> lista = new List<BENEFICIARIO>();
             IQueryable<BENEFICIARIO> query = Db.BENEFICIARIO;
@@ -82,6 +82,10 @@ namespace DataServices.Repositories
             if (!String.IsNullOrEmpty(cnpj))
             {
                 query = query.Where(p => p.BENE_NR_CNPJ.Contains(cnpj));
+            }
+            if (!String.IsNullOrEmpty(parente))
+            {
+                query = query.Where(p => p.BENE_NM_PARENTESCO.Contains(parente));
             }
             if (dataNasc != null)
             {

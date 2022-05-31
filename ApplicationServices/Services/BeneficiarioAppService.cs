@@ -100,7 +100,7 @@ namespace ApplicationServices.Services
             return lista;
         }
 
-        public Int32 ExecuteFilter(Int32? tipo, Int32? sexo, Int32? estado, Int32? escolaridade, Int32? parentesco, String razao, String nome, DateTime? dataNasc, String cpf, String cnpj, out List<BENEFICIARIO> objeto)
+        public Int32 ExecuteFilter(Int32? tipo, Int32? sexo, Int32? estado, Int32? escolaridade, Int32? parentesco, String razao, String nome, DateTime? dataNasc, String cpf, String cnpj, String parente, out List<BENEFICIARIO> objeto)
         {
             try
             {
@@ -108,7 +108,7 @@ namespace ApplicationServices.Services
                 Int32 volta = 0;
 
                 // Processa filtro
-                objeto = _baseService.ExecuteFilter(tipo, sexo, estado, escolaridade, parentesco, razao, nome, dataNasc, cpf, cnpj);
+                objeto = _baseService.ExecuteFilter(tipo, sexo, estado, escolaridade, parentesco, razao, nome, dataNasc, cpf, cnpj, parente);
                 if (objeto.Count == 0)
                 {
                     volta = 1;

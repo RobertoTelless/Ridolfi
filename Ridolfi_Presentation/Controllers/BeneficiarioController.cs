@@ -159,7 +159,7 @@ namespace ERP_CRM_Solution.Controllers
                 // Executa a operação
                 List<BENEFICIARIO> listaObj = new List<BENEFICIARIO>();
                 Session["FiltroBeneficiario"] = item;
-                Int32 volta = tranApp.ExecuteFilter(item.TIPE_CD_ID, item.SEXO_CD_ID, item.ESCI_CD_ID, item.ESCO_CD_ID, item.PARE_CD_ID, item.MOME_NM_RAZAO_SOCIAL, item.BENE_NM_NOME, item.BENE_DT_NASCIMENTO, item.BENE_NR_CPF, item.BENE_NR_CNPJ, out listaObj);
+                Int32 volta = tranApp.ExecuteFilter(item.TIPE_CD_ID, item.SEXO_CD_ID, item.ESCI_CD_ID, item.ESCO_CD_ID, item.PARE_CD_ID, item.MOME_NM_RAZAO_SOCIAL, item.BENE_NM_NOME, item.BENE_DT_NASCIMENTO, item.BENE_NR_CPF, item.BENE_NR_CNPJ, item.BENE_NM_PARENTESCO, out listaObj);
 
                 // Verifica retorno
                 if (volta == 1)

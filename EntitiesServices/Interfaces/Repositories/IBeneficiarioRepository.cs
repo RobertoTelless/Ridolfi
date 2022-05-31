@@ -14,6 +14,6 @@ namespace ModelServices.Interfaces.Repositories
         BENEFICIARIO GetItemById(Int32 id);
         List<BENEFICIARIO> GetAllItens();
         List<BENEFICIARIO> GetAllItensAdm();
-        List<BENEFICIARIO> ExecuteFilter(Int32? tipo, Int32? sexo, Int32? estado, Int32? escolaridade, Int32? parentesco, String razao, String nome, DateTime? dataNasc, String cpf, String cnpj);
+        List<BENEFICIARIO> ExecuteFilter(Int32? tipo, Int32? sexo, Int32? estado, Int32? escolaridade, Int32? parentesco, String razao, String nome, DateTime? dataNasc, String cpf, String cnpj, String parente);
     }
 }

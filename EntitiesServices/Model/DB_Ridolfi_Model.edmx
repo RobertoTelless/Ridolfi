@@ -70,6 +70,7 @@
           <Property Name="BENE_NR_TELEFONE" Type="varchar" MaxLength="20" />
           <Property Name="BENE_NR_CELULAR" Type="varchar" MaxLength="20" />
           <Property Name="BENE_EM_EMAIL" Type="varchar" MaxLength="150" />
+          <Property Name="BENE_NM_PARENTESCO" Type="varchar" MaxLength="100" />
           <Property Name="BENE_DT_NASCIMENTO" Type="date" />
           <Property Name="BENE_VL_RENDA" Type="decimal" Precision="20" Scale="2" />
           <Property Name="BENE_VL_RENDA_ESTIMADA" Type="decimal" Precision="20" Scale="2" />
@@ -2318,6 +2319,7 @@
           <Property Name="BENE_NR_CELULAR" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="BENE_EM_EMAIL" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="BENE_NR_CNPJ" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="BENE_NM_PARENTESCO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="CARGO">
           <Key>
@@ -4655,6 +4657,7 @@
           <EntitySetMapping Name="BENEFICIARIO">
             <EntityTypeMapping TypeName="DB_RidolfiModel.BENEFICIARIO">
               <MappingFragment StoreEntitySet="BENEFICIARIO">
+                <ScalarProperty Name="BENE_NM_PARENTESCO" ColumnName="BENE_NM_PARENTESCO" />
                 <ScalarProperty Name="BENE_NR_CNPJ" ColumnName="BENE_NR_CNPJ" />
                 <ScalarProperty Name="BENE_EM_EMAIL" ColumnName="BENE_EM_EMAIL" />
                 <ScalarProperty Name="BENE_NR_CELULAR" ColumnName="BENE_NR_CELULAR" />
