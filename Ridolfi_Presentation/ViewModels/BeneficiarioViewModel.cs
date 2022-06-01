@@ -38,8 +38,20 @@ namespace ERP_CRM_Solution.ViewModels
         public string BENE_NR_RG { get; set; }
         [StringLength(20, ErrorMessage = "O TELEFONE deve conter no máximo 20 caracteres.")]
         public string BENE_NR_TELEFONE { get; set; }
+        [StringLength(20, ErrorMessage = "O TELEFONE deve conter no máximo 20 caracteres.")]
+        public string BENE_NR_TELEFONE2 { get; set; }
+        [StringLength(20, ErrorMessage = "O TELEFONE deve conter no máximo 20 caracteres.")]
+        public string BENE_NR_TELEFONE3 { get; set; }
+        [StringLength(20, ErrorMessage = "O TELEFONE deve conter no máximo 20 caracteres.")]
+        public string BENE_NR_TELEFONE4 { get; set; }
         [StringLength(20, ErrorMessage = "O CELULAR deve conter no máximo 20 caracteres.")]
         public string BENE_NR_CELULAR { get; set; }
+        [StringLength(20, ErrorMessage = "O CELULAR deve conter no máximo 20 caracteres.")]
+        public string BENE_NR_CELULAR2 { get; set; }
+        [StringLength(20, ErrorMessage = "O CELULAR deve conter no máximo 20 caracteres.")]
+        public string BENE_NR_CELULAR3 { get; set; }
+        [StringLength(20, ErrorMessage = "O CELULAR deve conter no máximo 20 caracteres.")]
+        public string BENE_NR_CELULAR4 { get; set; }
         [StringLength(150, ErrorMessage = "O E-MAIL deve conter no máximo 150 caracteres.")]
         [RegularExpression("^[a-zA-Z0-9_\\.-]+@([a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$", ErrorMessage = "Deve ser um e-mail válido")]
         public string BENE_EM_EMAIL { get; set; }

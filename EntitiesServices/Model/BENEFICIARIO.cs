@@ -42,6 +42,12 @@ namespace EntitiesServices.Model
         public string BENE_EM_EMAIL { get; set; }
         public string BENE_NR_CNPJ { get; set; }
         public string BENE_NM_PARENTESCO { get; set; }
+        public string BENE_NR_TELEFONE2 { get; set; }
+        public string BENE_NR_TELEFONE3 { get; set; }
+        public string BENE_NR_TELEFONE4 { get; set; }
+        public string BENE_NR_CELULAR2 { get; set; }
+        public string BENE_NR_CELULAR3 { get; set; }
+        public string BENE_NR_CELULAR4 { get; set; }
     
         public virtual ESTADO_CIVIL ESTADO_CIVIL { get; set; }
         public virtual PARENTESCO PARENTESCO { get; set; }
