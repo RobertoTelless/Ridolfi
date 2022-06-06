@@ -179,6 +179,11 @@ namespace Presentation.Start
             kernel.Bind<IHonorarioAnexoRepository>().To<HonorarioAnexoRepository>();
             kernel.Bind<IHonorarioComentarioRepository>().To<HonorarioComentarioRepository>();
             kernel.Bind<IHonorarioRepository>().To<HonorarioRepository>();
+            kernel.Bind<IContatoRepository>().To<ContatoRepository>();
+            kernel.Bind<IEnderecoRepository>().To<EnderecoRepository>();
+            kernel.Bind<IEMailRepository>().To<EMailRepository>();
+            kernel.Bind<ITelefoneBenefRepository>().To<TelefoneBenefRepository>();
+            kernel.Bind<ITipoTelefoneBaseRepository>().To<TipoTelefoneBaseRepository>();
 
         }
     }

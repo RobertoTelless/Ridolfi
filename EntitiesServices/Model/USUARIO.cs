@@ -20,7 +20,9 @@ namespace EntitiesServices.Model
             this.AGENDA = new HashSet<AGENDA>();
             this.AGENDA1 = new HashSet<AGENDA>();
             this.AGENDA_VINCULO = new HashSet<AGENDA_VINCULO>();
+            this.BENEFICIARIO_ANOTACOES = new HashSet<BENEFICIARIO_ANOTACOES>();
             this.GRUPO = new HashSet<GRUPO>();
+            this.HONORARIO_ANOTACOES = new HashSet<HONORARIO_ANOTACOES>();
             this.LOG = new HashSet<LOG>();
             this.MENSAGENS = new HashSet<MENSAGENS>();
             this.NOTICIA_COMENTARIO = new HashSet<NOTICIA_COMENTARIO>();
@@ -30,8 +32,6 @@ namespace EntitiesServices.Model
             this.TAREFA_NOTIFICACAO = new HashSet<TAREFA_NOTIFICACAO>();
             this.TAREFA_VINCULO = new HashSet<TAREFA_VINCULO>();
             this.USUARIO_ANEXO = new HashSet<USUARIO_ANEXO>();
-            this.BENEFICIARIO_ANOTACOES = new HashSet<BENEFICIARIO_ANOTACOES>();
-            this.HONORARIO_ANOTACOES = new HashSet<HONORARIO_ANOTACOES>();
         }
     
         public int USUA_CD_ID { get; set; }
@@ -83,11 +83,15 @@ namespace EntitiesServices.Model
         public virtual ICollection<AGENDA> AGENDA1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AGENDA_VINCULO> AGENDA_VINCULO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BENEFICIARIO_ANOTACOES> BENEFICIARIO_ANOTACOES { get; set; }
         public virtual CARGO CARGO { get; set; }
         public virtual CATEGORIA_USUARIO CATEGORIA_USUARIO { get; set; }
         public virtual DEPARTAMENTO DEPARTAMENTO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GRUPO> GRUPO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HONORARIO_ANOTACOES> HONORARIO_ANOTACOES { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LOG> LOG { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -107,9 +111,5 @@ namespace EntitiesServices.Model
         public virtual ICollection<TAREFA_VINCULO> TAREFA_VINCULO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<USUARIO_ANEXO> USUARIO_ANEXO { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BENEFICIARIO_ANOTACOES> BENEFICIARIO_ANOTACOES { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HONORARIO_ANOTACOES> HONORARIO_ANOTACOES { get; set; }
     }
 }

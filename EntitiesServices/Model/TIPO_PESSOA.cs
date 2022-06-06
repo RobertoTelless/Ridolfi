@@ -19,6 +19,7 @@ namespace EntitiesServices.Model
         {
             this.BENEFICIARIO = new HashSet<BENEFICIARIO>();
             this.HONORARIO = new HashSet<HONORARIO>();
+            this.HONORARIO1 = new HashSet<HONORARIO>();
         }
     
         public int TIPE_CD_ID { get; set; }
@@ -29,5 +30,7 @@ namespace EntitiesServices.Model
         public virtual ICollection<BENEFICIARIO> BENEFICIARIO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HONORARIO> HONORARIO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HONORARIO> HONORARIO1 { get; set; }
     }
 }

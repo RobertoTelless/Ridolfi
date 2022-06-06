@@ -28,8 +28,27 @@ namespace ApplicationServices.Interfaces
         UF GetUFbySigla(String sigla);
         List<SEXO> GetAllSexo();
         List<ESTADO_CIVIL> GetAllEstadoCivil();
+        List<TIPO_TELEFONE_BASE> GetAllTipoTelefone();
 
         BENEFICIARIO_ANEXO GetAnexoById(Int32 id);
         BENEFICIARIO_ANOTACOES GetComentarioById(Int32 id);
+
+        CONTATO GetContatoById(Int32 id);
+        Int32 ValidateEditContato(CONTATO item);
+        Int32 ValidateCreateContato(CONTATO item);
+
+        EMAIL GetEMailById(Int32 id);
+        Int32 ValidateEditEMail(EMAIL item);
+        Int32 ValidateCreateEMail(EMAIL item);
+
+        ENDERECO GetEnderecoById(Int32 id);
+        Int32 ValidateEditEndereco(ENDERECO item);
+        Int32 ValidateCreateEndereco(ENDERECO item);
+
+        TELEFONE GetTelefoneById(Int32 id);
+        Int32 ValidateEditTelefone(TELEFONE item);
+        Int32 ValidateCreateTelefone(TELEFONE item);
+
+
     }
 }

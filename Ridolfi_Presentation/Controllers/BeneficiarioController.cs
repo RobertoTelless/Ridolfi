@@ -275,7 +275,7 @@ namespace ERP_CRM_Solution.Controllers
                         }
                         Session["FileQueueTrans"] = null;
                     }
-                    return RedirectToAction("MontarTelaBeneficiario");
+                    return RedirectToAction("VoltarAnexoBeneficiario");
                 }
                 catch (Exception ex)
                 {
@@ -1519,7 +1519,395 @@ namespace ERP_CRM_Solution.Controllers
         }
 
 
+        [HttpGet]
+        public ActionResult EditarEndereco(Int32 id)
+        {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            // Prepara view
+            ViewBag.UF = new SelectList(tranApp.GetAllUF(), "UF_CD_ID", "UF_NM_NOME");
 
+            ENDERECO item = tranApp.GetEnderecoById(id);
+            EnderecoViewModel vm = Mapper.Map<ENDERECO, EnderecoViewModel>(item);
+            return View(vm);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditarEndereco(EnderecoViewModel vm)
+        {
+            ViewBag.UF = new SelectList(tranApp.GetAllUF(), "UF_CD_ID", "UF_NM_NOME");
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    // Executa a operação
+                    USUARIO usuarioLogado = (USUARIO)Session["UserCredentials"];
+                    ENDERECO item = Mapper.Map<EnderecoViewModel, ENDERECO>(vm);
+                    Int32 volta = tranApp.ValidateEditEndereco(item);
+
+                    // Verifica retorno
+                    return RedirectToAction("VoltarAnexoBeneficiario");
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.Message = ex.Message;
+                    return View(vm);
+                }
+            }
+            else
+            {
+                return View(vm);
+            }
+        }
+
+        [HttpGet]
+        public ActionResult ExcluirEndereco(Int32 id)
+        {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            ENDERECO item = tranApp.GetEnderecoById(id);
+            item.ENDE_IN_ATIVO = 0;
+            Int32 volta = tranApp.ValidateEditEndereco(item);
+            return RedirectToAction("VoltarAnexoBeneficiario");
+        }
+
+        [HttpGet]
+        public ActionResult ReativarEndereco(Int32 id)
+        {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            ENDERECO item = tranApp.GetEnderecoById(id);
+            item.ENDE_IN_ATIVO = 1;
+            Int32 volta = tranApp.ValidateEditEndereco(item);
+            return RedirectToAction("VoltarAnexoBeneficiario");
+        }
+
+        [HttpGet]
+        public ActionResult IncluirEndereco()
+        {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+
+            // Prepara view
+            ViewBag.UF = new SelectList(tranApp.GetAllUF(), "UF_CD_ID", "UF_NM_NOME");
+
+            ENDERECO item = new ENDERECO();
+            EnderecoViewModel vm = Mapper.Map<ENDERECO, EnderecoViewModel>(item);
+            vm.BENE_CD_ID = (Int32)Session["IdBeneficiario"];
+            vm.ENDE_IN_ATIVO = 1;
+            return View(vm);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult IncluirEndereco(EnderecoViewModel vm)
+        {
+            ViewBag.UF = new SelectList(tranApp.GetAllUF(), "UF_CD_ID", "UF_NM_NOME");
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    // Executa a operação
+                    ENDERECO item = Mapper.Map<EnderecoViewModel, ENDERECO>(vm);
+                    Int32 volta = tranApp.ValidateCreateEndereco(item);
+                    // Verifica retorno
+                    return RedirectToAction("VoltarAnexoBeneficiario");
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.Message = ex.Message;
+                    return View(vm);
+                }
+            }
+            else
+            {
+                return View(vm);
+            }
+        }
+
+        [HttpGet]
+        public ActionResult EditarEMail(Int32 id)
+        {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            // Prepara view
+
+            EMAIL item = tranApp.GetEMailById(id);
+            EMailViewModel vm = Mapper.Map<EMAIL, EMailViewModel>(item);
+            return View(vm);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditarEMail(EMailViewModel vm)
+        {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    // Executa a operação
+                    USUARIO usuarioLogado = (USUARIO)Session["UserCredentials"];
+                    EMAIL item = Mapper.Map<EMailViewModel, EMAIL>(vm);
+                    Int32 volta = tranApp.ValidateEditEMail(item);
+
+                    // Verifica retorno
+                    return RedirectToAction("VoltarAnexoBeneficiario");
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.Message = ex.Message;
+                    return View(vm);
+                }
+            }
+            else
+            {
+                return View(vm);
+            }
+        }
+
+        [HttpGet]
+        public ActionResult ExcluirEMail(Int32 id)
+        {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            EMAIL item = tranApp.GetEMailById(id);
+            item.EMAI_IN_ATIVO = 0;
+            Int32 volta = tranApp.ValidateEditEMail(item);
+            return RedirectToAction("VoltarAnexoBeneficiario");
+        }
+
+        [HttpGet]
+        public ActionResult ReativarEMail(Int32 id)
+        {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            EMAIL item = tranApp.GetEMailById(id);
+            item.EMAI_IN_ATIVO = 1;
+            Int32 volta = tranApp.ValidateEditEMail(item);
+            return RedirectToAction("VoltarAnexoBeneficiario");
+        }
+
+        [HttpGet]
+        public ActionResult IncluirEMail()
+        {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+
+            // Prepara view
+            EMAIL item = new EMAIL();
+            EMailViewModel vm = Mapper.Map<EMAIL, EMailViewModel>(item);
+            vm.BENE_CD_ID = (Int32)Session["IdBeneficiario"];
+            vm.EMAI_IN_ATIVO = 1;
+            return View(vm);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult IncluirEMail(EMailViewModel vm)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    // Executa a operação
+                    EMAIL item = Mapper.Map<EMailViewModel, EMAIL>(vm);
+                    Int32 volta = tranApp.ValidateCreateEMail(item);
+                    // Verifica retorno
+                    return RedirectToAction("VoltarAnexoBeneficiario");
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.Message = ex.Message;
+                    return View(vm);
+                }
+            }
+            else
+            {
+                return View(vm);
+            }
+        }
+
+        [HttpPost]
+        public JsonResult PesquisaCEP_Javascript(String cep, int tipoEnd)
+        {
+            // Chama servico ECT
+            ZipCodeLoad zipLoad = new ZipCodeLoad();
+            ZipCodeInfo end = new ZipCodeInfo();
+            ZipCode zipCode = null;
+            cep = CrossCutting.ValidarNumerosDocumentos.RemoveNaoNumericos(cep);
+            if (ZipCode.TryParse(cep, out zipCode))
+            {
+                end = zipLoad.Find(zipCode);
+            }
+
+            // Atualiza
+            var hash = new Hashtable();
+            hash.Add("ENDE_NM_ENDERECO", end.Address);
+            hash.Add("ENDE_NM_BAIRRO", end.District);
+            hash.Add("ENDE_NM_CIDADE", end.City);
+            hash.Add("UF_CD_ID", tranApp.GetUFbySigla(end.Uf).UF_CD_ID);
+            hash.Add("ENDE_NR_CEP", cep);
+
+            // Retorna
+            Session["VoltaCEP"] = 2;
+            return Json(hash);
+        }
+
+        [HttpGet]
+        public ActionResult VerContato(Int32 id)
+        {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            // Prepara view
+            CONTATO item = tranApp.GetContatoById(id);
+            ContatoViewModel vm = Mapper.Map<CONTATO, ContatoViewModel>(item);
+            return View(vm);
+        }
+
+        [HttpGet]
+        public ActionResult EditarTelefone(Int32 id)
+        {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            // Prepara view
+            ViewBag.Tipo = new SelectList(tranApp.GetAllTipoTelefone(), "TITE_CD_ID", "TITE_NM_NOME");
+
+            TELEFONE item = tranApp.GetTelefoneById(id);
+            TelefoneBenefViewModel vm = Mapper.Map<TELEFONE, TelefoneBenefViewModel>(item);
+            return View(vm);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditarTelefone(TelefoneBenefViewModel vm)
+        {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            ViewBag.Tipo = new SelectList(tranApp.GetAllTipoTelefone(), "TITE_CD_ID", "TITE_NM_NOME");
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    // Executa a operação
+                    USUARIO usuarioLogado = (USUARIO)Session["UserCredentials"];
+                    TELEFONE item = Mapper.Map<TelefoneBenefViewModel, TELEFONE>(vm);
+                    Int32 volta = tranApp.ValidateEditTelefone(item);
+
+                    // Verifica retorno
+                    return RedirectToAction("VoltarAnexoBeneficiario");
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.Message = ex.Message;
+                    return View(vm);
+                }
+            }
+            else
+            {
+                return View(vm);
+            }
+        }
+
+        [HttpGet]
+        public ActionResult ExcluirTelefone(Int32 id)
+        {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            TELEFONE item = tranApp.GetTelefoneById(id);
+            item.TELE_IN_ATIVO = 0;
+            Int32 volta = tranApp.ValidateEditTelefone(item);
+            return RedirectToAction("VoltarAnexoBeneficiario");
+        }
+
+        [HttpGet]
+        public ActionResult ReativarTelefone(Int32 id)
+        {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            TELEFONE item = tranApp.GetTelefoneById(id);
+            item.TELE_IN_ATIVO = 1;
+            Int32 volta = tranApp.ValidateEditTelefone(item);
+            return RedirectToAction("VoltarAnexoBeneficiario");
+        }
+
+        [HttpGet]
+        public ActionResult IncluirTelefone()
+        {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+
+            // Prepara view
+            ViewBag.Tipo = new SelectList(tranApp.GetAllTipoTelefone(), "TITE_CD_ID", "TITE_NM_NOME");
+            TELEFONE item = new TELEFONE();
+            TelefoneBenefViewModel vm = Mapper.Map<TELEFONE, TelefoneBenefViewModel>(item);
+            vm.BENE_CD_ID = (Int32)Session["IdBeneficiario"];
+            vm.TELE_IN_ATIVO = 1;
+            return View(vm);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult IncluirTelefone(TelefoneBenefViewModel vm)
+        {
+            ViewBag.Tipo = new SelectList(tranApp.GetAllTipoTelefone(), "TITE_CD_ID", "TITE_NM_NOME");
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    // Executa a operação
+                    TELEFONE item = Mapper.Map<TelefoneBenefViewModel, TELEFONE>(vm);
+                    Int32 volta = tranApp.ValidateCreateTelefone(item);
+                    // Verifica retorno
+                    return RedirectToAction("VoltarAnexoBeneficiario");
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.Message = ex.Message;
+                    return View(vm);
+                }
+            }
+            else
+            {
+                return View(vm);
+            }
+        }
 
     }
 

@@ -301,6 +301,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\AgendaViewModel.cs" />
     <Compile Include="ViewModels\BancoViewModel.cs" />
+    <Compile Include="ViewModels\TelefoneBenefViewModel.cs" />
+    <Compile Include="ViewModels\EnderecoViewModel.cs" />
+    <Compile Include="ViewModels\EMailViewModel.cs" />
+    <Compile Include="ViewModels\ContatoViewModel.cs" />
     <Compile Include="ViewModels\HonorarioViewModel.cs" />
     <Compile Include="ViewModels\HonorarioComentarioViewModel.cs" />
     <Compile Include="ViewModels\TabelaIRRFViewModel.cs" />
@@ -3740,6 +3744,13 @@
     <Content Include="Views\Honorario\IncluirComentario.cshtml" />
     <Content Include="Views\Beneficiario\EnviarEMailBeneficiario.cshtml" />
     <Content Include="Views\Beneficiario\EnviarSMSBeneficiario.cshtml" />
+    <Content Include="Views\Beneficiario\EditarEndereco.cshtml" />
+    <Content Include="Views\Beneficiario\IncluirEndereco.cshtml" />
+    <Content Include="Views\Beneficiario\EditarEMail.cshtml" />
+    <Content Include="Views\Beneficiario\IncluirEMail.cshtml" />
+    <Content Include="Views\Beneficiario\EditarTelefone.cshtml" />
+    <Content Include="Views\Beneficiario\IncluirTelefone.cshtml" />
+    <Content Include="Views\Beneficiario\VerContato.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

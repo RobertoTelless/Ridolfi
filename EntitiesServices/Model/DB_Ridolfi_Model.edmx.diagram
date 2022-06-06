@@ -4,72 +4,76 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="6bbae2ba3eff43ca9f95f988ca2fd6e2" Name="Diagram1">
-        <EntityTypeShape EntityType="DB_RidolfiModel.AGENDA" Width="1.5" PointX="5.25" PointY="20.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.AGENDA_ANEXO" Width="1.5" PointX="7.5" PointY="16.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.AGENDA_VINCULO" Width="1.5" PointX="13.5" PointY="26" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.BANCO" Width="1.5" PointX="0.75" PointY="57.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.BENEFICIARIO" Width="1.5" PointX="0.75" PointY="64" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.CARGO" Width="1.5" PointX="0.75" PointY="25.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.CATEGORIA_AGENDA" Width="1.5" PointX="3" PointY="17.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.CATEGORIA_CLIENTE" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.CATEGORIA_NOTIFICACAO" Width="1.5" PointX="9" PointY="14.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.CATEGORIA_TELEFONE" Width="1.5" PointX="3.75" PointY="97.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.CATEGORIA_USUARIO" Width="1.5" PointX="0.75" PointY="21.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.CLIENTE" Width="1.5" PointX="5.25" PointY="71.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.CLIENTE_ANEXO" Width="1.5" PointX="7.5" PointY="69" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.CLIENTE_CONTATO" Width="1.5" PointX="7.5" PointY="72.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.CLIENTE_QUADRO_SOCIETARIO" Width="1.5" PointX="7.5" PointY="75.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.CONFIGURACAO" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.CONTATO" Width="1.5" PointX="5.25" PointY="66.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.DEPARTAMENTO" Width="1.5" PointX="0.75" PointY="28.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.EMAIL" Width="1.5" PointX="5.25" PointY="77.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.ENDERECO" Width="1.5" PointX="8.25" PointY="79.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.ESCOLARIDADE" Width="1.5" PointX="1.5" PointY="60.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.ESTADO_CIVIL" Width="1.5" PointX="1.5" PointY="54.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.GRUPO" Width="1.5" PointX="5.25" PointY="26.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.GRUPO_CLIENTE" Width="1.5" PointX="7.5" PointY="26.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.HONORARIO" Width="1.5" PointX="0.75" PointY="71.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.LOAS" Width="1.5" PointX="5.25" PointY="80.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.LOG" Width="1.5" PointX="5.25" PointY="29.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.MENSAGEM_ANEXO" Width="1.5" PointX="10.5" PointY="17.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.MENSAGENS" Width="1.5" PointX="8.25" PointY="20.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.MENSAGENS_DESTINOS" Width="1.5" PointX="10.5" PointY="26.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.NATUREZA" Width="1.5" PointX="0.75" PointY="84.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.NOTICIA" Width="1.5" PointX="6" PointY="41.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.NOTICIA_COMENTARIO" Width="1.5" PointX="8.25" PointY="29.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.NOTIFICACAO" Width="1.5" PointX="11.25" PointY="21.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.NOTIFICACAO_ANEXO" Width="1.5" PointX="13.5" PointY="21.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.PARENTESCO" Width="1.5" PointX="1.5" PointY="76.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.PERFIL" Width="1.5" PointX="0.75" PointY="30.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.PERIODICIDADE" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.PERIODICIDADE_TAREFA" Width="1.5" PointX="9" PointY="33.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.PRECATORIO" Width="1.5" PointX="3" PointY="63.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.PRECATORIO_ESTADO" Width="1.5" PointX="0.75" PointY="87.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.QUALIFICACAO" Width="1.5" PointX="3" PointY="51" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.QUEM_DESLIGOU" Width="1.5" PointX="3" PointY="57.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.SEXO" Width="1.5" PointX="1.5" PointY="78.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.TABELA_IPCA" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.TABELA_IRRF" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.TAREFA" Width="1.5" PointX="11.25" PointY="30.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.TAREFA_ACOMPANHAMENTO" Width="1.5" PointX="13.5" PointY="29.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.TAREFA_ANEXO" Width="1.5" PointX="13.5" PointY="35.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.TAREFA_NOTIFICACAO" Width="1.5" PointX="16.5" PointY="27.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.TAREFA_VINCULO" Width="1.5" PointX="16.5" PointY="24.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.TELEFONE" Width="1.5" PointX="8.25" PointY="65" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.TELEFONES" Width="1.5" PointX="6" PointY="89.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.TEMPLATE" Width="1.5" PointX="6" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.TEMPLATE_EMAIL" Width="1.5" PointX="6" PointY="34" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.TEMPLATE_SMS" Width="1.5" PointX="6" PointY="38" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.TIPO_PESSOA" Width="1.5" PointX="1.5" PointY="81.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.TIPO_TAREFA" Width="1.5" PointX="9" PointY="36.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.TIPO_TELEFONE" Width="1.5" PointX="6" PointY="63.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.TITULARIDADE" Width="1.5" PointX="3" PointY="84.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.TRF" Width="1.5" PointX="3" PointY="90.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.UF" Width="1.5" PointX="0.75" PointY="90.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.USUARIO" Width="1.5" PointX="3" PointY="20" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.USUARIO_ANEXO" Width="1.5" PointX="5.25" PointY="53.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.VARA" Width="1.5" PointX="3" PointY="93.875" IsExpanded="true" />
+      <Diagram DiagramId="14416d2f77c541d9aab0788268b64b0d" Name="Diagram1">
+        <EntityTypeShape EntityType="DB_RidolfiModel.AGENDA" Width="1.5" PointX="5.25" PointY="27.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.AGENDA_ANEXO" Width="1.5" PointX="7.5" PointY="37.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.AGENDA_VINCULO" Width="1.5" PointX="13.5" PointY="28.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.BANCO" Width="1.5" PointX="0.75" PointY="71.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.BENEFICIARIO" Width="1.5" PointX="6" PointY="44.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.BENEFICIARIO_ANEXO" Width="1.5" PointX="8.25" PointY="46.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.BENEFICIARIO_ANOTACOES" Width="1.5" PointX="8.25" PointY="28.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.CARGO" Width="1.5" PointX="0.75" PointY="28.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.CATEGORIA_AGENDA" Width="1.5" PointX="3" PointY="40.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.CATEGORIA_CLIENTE" Width="1.5" PointX="3" PointY="67.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.CATEGORIA_NOTIFICACAO" Width="1.5" PointX="9" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.CATEGORIA_TELEFONE" Width="1.5" PointX="3.75" PointY="91.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.CATEGORIA_USUARIO" Width="1.5" PointX="0.75" PointY="25.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.CLIENTE" Width="1.5" PointX="5.25" PointY="75.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.CLIENTE_ANEXO" Width="1.5" PointX="7.5" PointY="74.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.CLIENTE_CONTATO" Width="1.5" PointX="7.5" PointY="77.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.CLIENTE_QUADRO_SOCIETARIO" Width="1.5" PointX="7.5" PointY="80.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.CONFIGURACAO" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.CONTATO" Width="1.5" PointX="11.25" PointY="49" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.DEPARTAMENTO" Width="1.5" PointX="0.75" PointY="31.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.EMAIL" Width="1.5" PointX="8.25" PointY="53.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.ENDERECO" Width="1.5" PointX="8.25" PointY="64.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.ESCOLARIDADE" Width="1.5" PointX="3.75" PointY="44.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.ESTADO_CIVIL" Width="1.5" PointX="3.75" PointY="46.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.GRUPO" Width="1.5" PointX="5.25" PointY="33.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.GRUPO_CLIENTE" Width="1.5" PointX="7.5" PointY="33.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.HONORARIO" Width="1.5" PointX="6" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.HONORARIO_ANEXO" Width="1.5" PointX="8.25" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.HONORARIO_ANOTACOES" Width="1.5" PointX="8.25" PointY="24.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.LOAS" Width="1.5" PointX="10.25" PointY="76.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.LOG" Width="1.5" PointX="5.25" PointY="40.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.MENSAGEM_ANEXO" Width="1.5" PointX="7.5" PointY="20.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.MENSAGENS" Width="1.5" PointX="5.25" PointY="20.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.MENSAGENS_DESTINOS" Width="1.5" PointX="10.5" PointY="33.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.NATUREZA" Width="1.5" PointX="0.75" PointY="74.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.NOTICIA" Width="1.5" PointX="9" PointY="41" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.NOTICIA_COMENTARIO" Width="1.5" PointX="11.25" PointY="28.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.NOTIFICACAO" Width="1.5" PointX="11.25" PointY="24" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.NOTIFICACAO_ANEXO" Width="1.5" PointX="13.5" PointY="24.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.PARENTESCO" Width="1.5" PointX="3.75" PointY="49.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.PERFIL" Width="1.5" PointX="0.75" PointY="34.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.PERIODICIDADE" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.PERIODICIDADE_TAREFA" Width="1.5" PointX="11" PointY="37.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.PRECATORIO" Width="1.5" PointX="3" PointY="70.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.PRECATORIO_ESTADO" Width="1.5" PointX="0.75" PointY="77.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.QUALIFICACAO" Width="1.5" PointX="9" PointY="57.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.QUEM_DESLIGOU" Width="1.5" PointX="9" PointY="60.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.SEXO" Width="1.5" PointX="3.75" PointY="51.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.TABELA_IPCA" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.TABELA_IRRF" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.TAREFA" Width="1.5" PointX="13.25" PointY="32.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.TAREFA_ACOMPANHAMENTO" Width="1.5" PointX="16.5" PointY="30.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.TAREFA_ANEXO" Width="1.5" PointX="15.5" PointY="36.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.TAREFA_NOTIFICACAO" Width="1.5" PointX="16.5" PointY="26.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.TAREFA_VINCULO" Width="1.5" PointX="19.5" PointY="30.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.TELEFONE" Width="1.5" PointX="8.25" PointY="49.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.TELEFONES" Width="1.5" PointX="6" PointY="84.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.TEMPLATE" Width="1.5" PointX="3" PointY="18.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.TEMPLATE_EMAIL" Width="1.5" PointX="3" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.TEMPLATE_SMS" Width="1.5" PointX="3" PointY="37.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.TIPO_PESSOA" Width="1.5" PointX="3.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.TIPO_TAREFA" Width="1.5" PointX="11" PointY="46.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.TIPO_TELEFONE" Width="1.5" PointX="6" PointY="53.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.TITULARIDADE" Width="1.5" PointX="3" PointY="81.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.TRF" Width="1.5" PointX="3" PointY="84.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.UF" Width="1.5" PointX="0.75" PointY="84.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.USUARIO" Width="1.5" PointX="3" PointY="23.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.USUARIO_ANEXO" Width="1.5" PointX="5.25" PointY="64.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.VARA" Width="1.5" PointX="3" PointY="87.875" IsExpanded="true" />
         <AssociationConnector Association="DB_RidolfiModel.FK_AGENDA_ANEXO_AGENDA" ManuallyRouted="false" />
         <AssociationConnector Association="DB_RidolfiModel.FK_AGENDA_CATEGORIA_AGENDA" ManuallyRouted="false" />
         <AssociationConnector Association="DB_RidolfiModel.FK_AGENDA_USUARIO" ManuallyRouted="false" />
@@ -77,13 +81,21 @@
         <AssociationConnector Association="DB_RidolfiModel.FK_AGENDA_VINCULO_AGENDA" ManuallyRouted="false" />
         <AssociationConnector Association="DB_RidolfiModel.FK_AGENDA_VINCULO_USUARIO" ManuallyRouted="false" />
         <AssociationConnector Association="DB_RidolfiModel.FKPRECATORIO67525" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_RidolfiModel.FK_BENEFICIARIO_ANEXO_BENEFICIARIO" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_RidolfiModel.FK_BENEFICIARIO_ANOTACOES_BENEFICIARIO" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_RidolfiModel.FK_CONTATO_BENEFICIARIO" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_RidolfiModel.FK_EMAIL_BENEFICIARIO" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_RidolfiModel.FK_ENDERECO_BENEFICIARIO" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_RidolfiModel.FK_TELEFONE_BENEFICIARIO" ManuallyRouted="false" />
         <AssociationConnector Association="DB_RidolfiModel.FKBENEFICIAR118091" ManuallyRouted="false" />
         <AssociationConnector Association="DB_RidolfiModel.FKBENEFICIAR279825" ManuallyRouted="false" />
         <AssociationConnector Association="DB_RidolfiModel.FKBENEFICIAR583709" ManuallyRouted="false" />
         <AssociationConnector Association="DB_RidolfiModel.FKBENEFICIAR821804" ManuallyRouted="false" />
         <AssociationConnector Association="DB_RidolfiModel.FKBENEFICIAR947372" ManuallyRouted="false" />
         <AssociationConnector Association="DB_RidolfiModel.FKPRECATORIO759277" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_RidolfiModel.FK_BENEFICIARIO_ANOTACOES_USUARIO" ManuallyRouted="false" />
         <AssociationConnector Association="DB_RidolfiModel.FK_USUARIO_CARGO" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_RidolfiModel.FK_CLIENTE_CATEGORIA_CLIENTE" ManuallyRouted="false" />
         <AssociationConnector Association="DB_RidolfiModel.FK_NOTIFICACAO_CATEGORIA_NOTIFICACAO" ManuallyRouted="false" />
         <AssociationConnector Association="DB_RidolfiModel.FK_TELEFONES_CATEGORIA_TELEFONE" ManuallyRouted="false" />
         <AssociationConnector Association="DB_RidolfiModel.FK_USUARIO_CATEGORIA_USUARIO" ManuallyRouted="false" />
@@ -96,18 +108,19 @@
         <AssociationConnector Association="DB_RidolfiModel.FKCLIENTE370631" ManuallyRouted="false" />
         <AssociationConnector Association="DB_RidolfiModel.FKCLIENTE745716" ManuallyRouted="false" />
         <AssociationConnector Association="DB_RidolfiModel.FKCLIENTE824441" ManuallyRouted="false" />
-        <AssociationConnector Association="DB_RidolfiModel.FKCONTATO35427" ManuallyRouted="false" />
         <AssociationConnector Association="DB_RidolfiModel.FKCONTATO7123" ManuallyRouted="false" />
         <AssociationConnector Association="DB_RidolfiModel.FKCONTATO77904" ManuallyRouted="false" />
         <AssociationConnector Association="DB_RidolfiModel.FK_USUARIO_DEPARTAMENTO" ManuallyRouted="false" />
-        <AssociationConnector Association="DB_RidolfiModel.FKEMAIL394158" ManuallyRouted="false" />
         <AssociationConnector Association="DB_RidolfiModel.FKENDERECO270407" ManuallyRouted="false" />
-        <AssociationConnector Association="DB_RidolfiModel.FKENDERECO789208" ManuallyRouted="false" />
         <AssociationConnector Association="DB_RidolfiModel.FK_GRUPO_CLIENTE_GRUPO" ManuallyRouted="false" />
         <AssociationConnector Association="DB_RidolfiModel.FK_GRUPO_USUARIO" ManuallyRouted="false" />
         <AssociationConnector Association="DB_RidolfiModel.FK_MENSAGENS_DESTINOS_GRUPO" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_RidolfiModel.FK_HONORARIO_ANEXO_HONORARIO" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_RidolfiModel.FK_HONORARIO_ANOTACOES_HONORARIO" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_RidolfiModel.FK_HONORARIO_TIPO_PESSOA" ManuallyRouted="false" />
         <AssociationConnector Association="DB_RidolfiModel.FKHONORARIO606369" ManuallyRouted="false" />
         <AssociationConnector Association="DB_RidolfiModel.FKPRECATORIO440783" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_RidolfiModel.FK_HONORARIO_ANOTACOES_USUARIO" ManuallyRouted="false" />
         <AssociationConnector Association="DB_RidolfiModel.FKLOAS131655" ManuallyRouted="false" />
         <AssociationConnector Association="DB_RidolfiModel.FKLOAS859013" ManuallyRouted="false" />
         <AssociationConnector Association="DB_RidolfiModel.FKLOAS974412" ManuallyRouted="false" />
@@ -127,7 +140,6 @@
         <AssociationConnector Association="DB_RidolfiModel.FK_TAREFA_PERIODICIDADE_TAREFA" ManuallyRouted="false" />
         <AssociationConnector Association="DB_RidolfiModel.FKPRECATORIO966532" ManuallyRouted="false" />
         <AssociationConnector Association="DB_RidolfiModel.FKPRECATORIO966598" ManuallyRouted="false" />
-        <AssociationConnector Association="DB_RidolfiModel.FKTELEFONE349636" ManuallyRouted="false" />
         <AssociationConnector Association="DB_RidolfiModel.FK_TAREFA_ACOMPANHAMENTO_TAREFA" ManuallyRouted="false" />
         <AssociationConnector Association="DB_RidolfiModel.FK_TAREFA_ANEXO_TAREFA" ManuallyRouted="false" />
         <AssociationConnector Association="DB_RidolfiModel.FK_TAREFA_NOTIFICACAO_TAREFA" ManuallyRouted="false" />
@@ -142,17 +154,8 @@
         <AssociationConnector Association="DB_RidolfiModel.FKTRF126253" ManuallyRouted="false" />
         <AssociationConnector Association="DB_RidolfiModel.FKVARA689447" ManuallyRouted="false" />
         <AssociationConnector Association="DB_RidolfiModel.FK_USUARIO_ANEXO_USUARIO" ManuallyRouted="false" />
-        <AssociationConnector Association="DB_RidolfiModel.FK_CLIENTE_CATEGORIA_CLIENTE" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.BENEFICIARIO_ANEXO" Width="1.5" PointX="3" PointY="47.5" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.BENEFICIARIO_ANOTACOES" Width="1.5" PointX="5.25" PointY="46.125" />
-        <AssociationConnector Association="DB_RidolfiModel.FK_BENEFICIARIO_ANEXO_BENEFICIARIO" />
-        <AssociationConnector Association="DB_RidolfiModel.FK_BENEFICIARIO_ANOTACOES_BENEFICIARIO" />
-        <AssociationConnector Association="DB_RidolfiModel.FK_BENEFICIARIO_ANOTACOES_USUARIO" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.HONORARIO_ANEXO" Width="1.5" PointX="3" PointY="100.625" />
-        <EntityTypeShape EntityType="DB_RidolfiModel.HONORARIO_ANOTACOES" Width="1.5" PointX="8.25" PointY="48.375" />
-        <AssociationConnector Association="DB_RidolfiModel.FK_HONORARIO_ANEXO_HONORARIO" />
-        <AssociationConnector Association="DB_RidolfiModel.FK_HONORARIO_ANOTACOES_HONORARIO" />
-        <AssociationConnector Association="DB_RidolfiModel.FK_HONORARIO_ANOTACOES_USUARIO" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.TIPO_TELEFONE_BASE" Width="1.5" PointX="5.375" PointY="3.875" />
+        <AssociationConnector Association="DB_RidolfiModel.FK_TELEFONE_TIPO_TELEFONE_BASE" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

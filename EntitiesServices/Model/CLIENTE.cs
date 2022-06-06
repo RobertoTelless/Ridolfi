@@ -25,6 +25,7 @@ namespace EntitiesServices.Model
         }
     
         public int CLIE_CD_ID { get; set; }
+        public int CACL_CD_ID { get; set; }
         public int PREC_CD_ID { get; set; }
         public int TRF1_CD_ID { get; set; }
         public int VARA_CD_ID { get; set; }
@@ -38,8 +39,8 @@ namespace EntitiesServices.Model
         public string CLIE_NR_VENCIMENTO { get; set; }
         public Nullable<int> CLIE_IN_PART { get; set; }
         public Nullable<int> CLIE_IN_ATIVO { get; set; }
-        public int CACL_CD_ID { get; set; }
     
+        public virtual CATEGORIA_CLIENTE CATEGORIA_CLIENTE { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CLIENTE_ANEXO> CLIENTE_ANEXO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -54,6 +55,5 @@ namespace EntitiesServices.Model
         public virtual PRECATORIO PRECATORIO { get; set; }
         public virtual VARA VARA { get; set; }
         public virtual TITULARIDADE TITULARIDADE { get; set; }
-        public virtual CATEGORIA_CLIENTE CATEGORIA_CLIENTE { get; set; }
     }
 }

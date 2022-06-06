@@ -29,9 +29,25 @@ namespace ModelServices.Interfaces.EntitiesServices
         UF GetUFbySigla(String sigla);
         List<SEXO> GetAllSexo();
         List<ESTADO_CIVIL> GetAllEstadoCivil();
+        List<TIPO_TELEFONE_BASE> GetAllTipoTelefone();
 
         BENEFICIARIO_ANEXO GetAnexoById(Int32 id);
         BENEFICIARIO_ANOTACOES GetComentarioById(Int32 id);
 
+        CONTATO GetContatoById(Int32 id);
+        Int32 EditContato(CONTATO item);
+        Int32 CreateContato(CONTATO item);
+
+        EMAIL GetEMailById(Int32 id);
+        Int32 EditEMail(EMAIL item);
+        Int32 CreateEMail(EMAIL item);
+
+        ENDERECO GetEnderecoById(Int32 id);
+        Int32 EditEndereco(ENDERECO item);
+        Int32 CreateEndereco(ENDERECO item);
+
+        TELEFONE GetTelefoneById(Int32 id);
+        Int32 EditTelefone(TELEFONE item);
+        Int32 CreateTelefone(TELEFONE item);
     }
 }

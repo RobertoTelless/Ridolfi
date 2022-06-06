@@ -17,27 +17,28 @@ namespace EntitiesServices.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public HONORARIO()
         {
-            this.PRECATORIO = new HashSet<PRECATORIO>();
             this.HONORARIO_ANEXO = new HashSet<HONORARIO_ANEXO>();
             this.HONORARIO_ANOTACOES = new HashSet<HONORARIO_ANOTACOES>();
+            this.PRECATORIO = new HashSet<PRECATORIO>();
         }
     
         public int HONO_CD_ID { get; set; }
         public int TIPE_CD_ID { get; set; }
         public string HONO_NR_CPF { get; set; }
         public string HONO_NR_CNPJ { get; set; }
+        public string HONO_NR_OAB { get; set; }
         public string HONO_NM_NOME { get; set; }
         public string HONO_NM_RAZAO_SOCIAL { get; set; }
         public int HONO_IN_ATIVO { get; set; }
         public System.DateTime HONO_DT_CADASTRO { get; set; }
-        public string HONO_NR_OAB { get; set; }
     
-        public virtual TIPO_PESSOA TIPO_PESSOA { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PRECATORIO> PRECATORIO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HONORARIO_ANEXO> HONORARIO_ANEXO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HONORARIO_ANOTACOES> HONORARIO_ANOTACOES { get; set; }
+        public virtual TIPO_PESSOA TIPO_PESSOA { get; set; }
+        public virtual TIPO_PESSOA TIPO_PESSOA1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PRECATORIO> PRECATORIO { get; set; }
     }
 }

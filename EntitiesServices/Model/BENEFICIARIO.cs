@@ -17,9 +17,13 @@ namespace EntitiesServices.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public BENEFICIARIO()
         {
-            this.PRECATORIO = new HashSet<PRECATORIO>();
             this.BENEFICIARIO_ANEXO = new HashSet<BENEFICIARIO_ANEXO>();
             this.BENEFICIARIO_ANOTACOES = new HashSet<BENEFICIARIO_ANOTACOES>();
+            this.CONTATO = new HashSet<CONTATO>();
+            this.EMAIL = new HashSet<EMAIL>();
+            this.ENDERECO = new HashSet<ENDERECO>();
+            this.TELEFONE = new HashSet<TELEFONE>();
+            this.PRECATORIO = new HashSet<PRECATORIO>();
         }
     
         public int BENE_CD_ID { get; set; }
@@ -30,25 +34,37 @@ namespace EntitiesServices.Model
         public Nullable<int> PARE_CD_ID { get; set; }
         public string BENE_NM_NOME { get; set; }
         public string MOME_NM_RAZAO_SOCIAL { get; set; }
+        public string BENE_NR_CPF { get; set; }
+        public string BENE_NR_RG { get; set; }
+        public string BENE_NR_CNPJ { get; set; }
+        public string BENE_NR_TELEFONE { get; set; }
+        public string BENE_NR_TELEFONE2 { get; set; }
+        public string BENE_NR_TELEFONE3 { get; set; }
+        public string BENE_NR_TELEFONE4 { get; set; }
+        public Nullable<System.DateTime> BENE_DT_CADASTRO { get; set; }
+        public string BENE_NR_CELULAR { get; set; }
+        public string BENE_NR_CELULAR2 { get; set; }
+        public string BENE_NR_CELULAR3 { get; set; }
+        public string BENE_NR_CELULAR4 { get; set; }
+        public string BENE_EM_EMAIL { get; set; }
+        public string BENE_NM_PARENTESCO { get; set; }
         public Nullable<System.DateTime> BENE_DT_NASCIMENTO { get; set; }
         public Nullable<decimal> BENE_VL_RENDA { get; set; }
         public Nullable<decimal> BENE_VL_RENDA_ESTIMADA { get; set; }
         public int BENE_IN_ATIVO { get; set; }
-        public Nullable<System.DateTime> BENE_DT_CADASTRO { get; set; }
-        public string BENE_NR_CPF { get; set; }
-        public string BENE_NR_RG { get; set; }
-        public string BENE_NR_TELEFONE { get; set; }
-        public string BENE_NR_CELULAR { get; set; }
-        public string BENE_EM_EMAIL { get; set; }
-        public string BENE_NR_CNPJ { get; set; }
-        public string BENE_NM_PARENTESCO { get; set; }
-        public string BENE_NR_TELEFONE2 { get; set; }
-        public string BENE_NR_TELEFONE3 { get; set; }
-        public string BENE_NR_TELEFONE4 { get; set; }
-        public string BENE_NR_CELULAR2 { get; set; }
-        public string BENE_NR_CELULAR3 { get; set; }
-        public string BENE_NR_CELULAR4 { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BENEFICIARIO_ANEXO> BENEFICIARIO_ANEXO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BENEFICIARIO_ANOTACOES> BENEFICIARIO_ANOTACOES { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CONTATO> CONTATO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<EMAIL> EMAIL { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ENDERECO> ENDERECO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TELEFONE> TELEFONE { get; set; }
         public virtual ESTADO_CIVIL ESTADO_CIVIL { get; set; }
         public virtual PARENTESCO PARENTESCO { get; set; }
         public virtual SEXO SEXO { get; set; }
@@ -56,9 +72,5 @@ namespace EntitiesServices.Model
         public virtual TIPO_PESSOA TIPO_PESSOA { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PRECATORIO> PRECATORIO { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BENEFICIARIO_ANEXO> BENEFICIARIO_ANEXO { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BENEFICIARIO_ANOTACOES> BENEFICIARIO_ANOTACOES { get; set; }
     }
 }

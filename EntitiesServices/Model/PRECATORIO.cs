@@ -18,11 +18,7 @@ namespace EntitiesServices.Model
         public PRECATORIO()
         {
             this.CLIENTE = new HashSet<CLIENTE>();
-            this.CONTATO = new HashSet<CONTATO>();
-            this.EMAIL = new HashSet<EMAIL>();
-            this.ENDERECO = new HashSet<ENDERECO>();
             this.LOAS = new HashSet<LOAS>();
-            this.TELEFONE = new HashSet<TELEFONE>();
         }
     
         public int PREC_CD_ID { get; set; }
@@ -72,19 +68,11 @@ namespace EntitiesServices.Model
         public virtual BENEFICIARIO BENEFICIARIO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CLIENTE> CLIENTE { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CONTATO> CONTATO { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EMAIL> EMAIL { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ENDERECO> ENDERECO { get; set; }
         public virtual HONORARIO HONORARIO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LOAS> LOAS { get; set; }
         public virtual NATUREZA NATUREZA { get; set; }
         public virtual PRECATORIO_ESTADO PRECATORIO_ESTADO { get; set; }
         public virtual TRF TRF { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TELEFONE> TELEFONE { get; set; }
     }
 }

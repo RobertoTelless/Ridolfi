@@ -228,6 +228,10 @@
     <Compile Include="Interfaces\Repositories\IAgendaAnexoRepository.cs" />
     <Compile Include="Interfaces\Repositories\IAgendaRepository.cs" />
     <Compile Include="Interfaces\Repositories\IBancoRepository.cs" />
+    <Compile Include="Interfaces\Repositories\ITelefoneBenefRepository.cs" />
+    <Compile Include="Interfaces\Repositories\IEMailRepository.cs" />
+    <Compile Include="Interfaces\Repositories\IEnderecoRepository.cs" />
+    <Compile Include="Interfaces\Repositories\IContatoRepository.cs" />
     <Compile Include="Interfaces\Repositories\IHonorarioComentarioRepository.cs" />
     <Compile Include="Interfaces\Repositories\IHonorarioAnexoRepository.cs" />
     <Compile Include="Interfaces\Repositories\IBeneficiarioAnexoRepository.cs" />
@@ -273,6 +277,8 @@
     <Compile Include="Interfaces\Repositories\ITemplateRepository.cs" />
     <Compile Include="Interfaces\Repositories\ITemplateSMSRepository.cs" />
     <Compile Include="Interfaces\Repositories\ITipoPessoaRepository.cs" />
+    <Compile Include="Interfaces\Repositories\ITipoTelefoneBaseRepository.cs" />
+    <Compile Include="Interfaces\Repositories\ITipoTelefoneRepository.cs" />
     <Compile Include="Interfaces\Repositories\ITipoTarefaRepository.cs" />
     <Compile Include="Interfaces\Repositories\IUFRepository.cs" />
     <Compile Include="Interfaces\Repositories\IUsuarioAnexoRepository.cs" />
@@ -480,6 +486,9 @@
       <DependentUpon>DB_Ridolfi_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\TIPO_TELEFONE.cs">
+      <DependentUpon>DB_Ridolfi_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\TIPO_TELEFONE_BASE.cs">
       <DependentUpon>DB_Ridolfi_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\TITULARIDADE.cs">

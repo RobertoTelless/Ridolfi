@@ -160,6 +160,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\TelefoneBenefRepository.cs" />
+    <Compile Include="Repositories\EMailRepository.cs" />
+    <Compile Include="Repositories\EnderecoRepository.cs" />
+    <Compile Include="Repositories\ContatoRepository.cs" />
     <Compile Include="Repositories\HonorarioComentarioRepository.cs" />
     <Compile Include="Repositories\HonorarioAnexoRepository.cs" />
     <Compile Include="Repositories\BeneficiarioAnexoRepository.cs" />
@@ -204,6 +208,8 @@
     <Compile Include="Repositories\TemplateRepository.cs" />
     <Compile Include="Repositories\TemplateSMSRepository.cs" />
     <Compile Include="Repositories\TipoPessoaRepository.cs" />
+    <Compile Include="Repositories\TipoTelefoneBaseRepository.cs" />
+    <Compile Include="Repositories\TipoTelefoneRepository.cs" />
     <Compile Include="Repositories\TipoTarefaRepository.cs" />
     <Compile Include="Repositories\UFRepository.cs" />
     <Compile Include="Repositories\UsuarioAnexoRepository.cs" />

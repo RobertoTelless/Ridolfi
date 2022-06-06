@@ -28,9 +28,14 @@ namespace ModelServices.EntitiesServices
         private readonly ISexoRepository _sxRepository;
         private readonly IEscolaridadeRepository _escRepository;
         private readonly IParentescoRepository _parRepository;
+        private readonly IContatoRepository _conRepository;
+        private readonly IEMailRepository _emRepository;
+        private readonly IEnderecoRepository _endRepository;
+        private readonly ITelefoneBenefRepository _telRepository;
+        private readonly ITipoTelefoneBaseRepository _ttRepository;
         protected DB_RidolfiEntities Db = new DB_RidolfiEntities();
 
-        public BeneficiarioService(IBeneficiarioRepository baseRepository, ILogRepository logRepository, IEstadoCivilRepository estRepository, IBeneficiarioAnexoRepository anexoRepository, IBeneficiarioComentarioRepository comRepository, ITipoPessoaRepository pesRepository, IEscolaridadeRepository escRepository, IUFRepository ufRepository, ISexoRepository sxRepository, IParentescoRepository parRepository) : base(baseRepository)
+        public BeneficiarioService(IBeneficiarioRepository baseRepository, ILogRepository logRepository, IEstadoCivilRepository estRepository, IBeneficiarioAnexoRepository anexoRepository, IBeneficiarioComentarioRepository comRepository, ITipoPessoaRepository pesRepository, IEscolaridadeRepository escRepository, IUFRepository ufRepository, ISexoRepository sxRepository, IParentescoRepository parRepository, IContatoRepository conRepository, IEMailRepository emRepository, IEnderecoRepository endRepository, ITelefoneBenefRepository telRepository, ITipoTelefoneBaseRepository ttRepository) : base(baseRepository)
         {
             _baseRepository = baseRepository;
             _logRepository = logRepository;
@@ -42,6 +47,11 @@ namespace ModelServices.EntitiesServices
             _sxRepository = sxRepository;
             _escRepository = escRepository; 
             _parRepository = parRepository;
+            _conRepository = conRepository;
+            _emRepository = emRepository;
+            _endRepository = endRepository;
+            _telRepository = telRepository;
+            _ttRepository = ttRepository;
         }
 
         public BENEFICIARIO CheckExist(BENEFICIARIO conta)
@@ -84,6 +94,11 @@ namespace ModelServices.EntitiesServices
         public List<ESTADO_CIVIL> GetAllEstadoCivil()
         {
             return _estRepository.GetAllItens();
+        }
+
+        public List<TIPO_TELEFONE_BASE> GetAllTipoTelefone()
+        {
+            return _ttRepository.GetAllItens();
         }
 
         public List<TIPO_PESSOA> GetAllTiposPessoa()
@@ -213,5 +228,178 @@ namespace ModelServices.EntitiesServices
                 }
             }
         }
+
+        public CONTATO GetContatoById(Int32 id)
+        {
+            return _conRepository.GetItemById(id);
+        }
+
+        public Int32 EditContato(CONTATO item)
+        {
+            using (DbContextTransaction transaction = Db.Database.BeginTransaction(IsolationLevel.ReadCommitted))
+            {
+                try
+                {
+                    CONTATO obj = _conRepository.GetById(item.CONT_CD_ID);
+                    _conRepository.Detach(obj);
+                    _conRepository.Update(item);
+                    transaction.Commit();
+                    return 0;
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    throw ex;
+                }
+            }
+        }
+
+        public Int32 CreateContato(CONTATO item)
+        {
+            using (DbContextTransaction transaction = Db.Database.BeginTransaction(IsolationLevel.ReadCommitted))
+            {
+                try
+                {
+                    _conRepository.Add(item);
+                    transaction.Commit();
+                    return 0;
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    throw ex;
+                }
+            }
+        }
+
+        public EMAIL GetEMailById(Int32 id)
+        {
+            return _emRepository.GetItemById(id);
+        }
+
+        public Int32 EditEMail(EMAIL item)
+        {
+            using (DbContextTransaction transaction = Db.Database.BeginTransaction(IsolationLevel.ReadCommitted))
+            {
+                try
+                {
+                    EMAIL obj = _emRepository.GetById(item.EMAI_CD_ID);
+                    _emRepository.Detach(obj);
+                    _emRepository.Update(item);
+                    transaction.Commit();
+                    return 0;
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    throw ex;
+                }
+            }
+        }
+
+        public Int32 CreateEMail(EMAIL item)
+        {
+            using (DbContextTransaction transaction = Db.Database.BeginTransaction(IsolationLevel.ReadCommitted))
+            {
+                try
+                {
+                    _emRepository.Add(item);
+                    transaction.Commit();
+                    return 0;
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    throw ex;
+                }
+            }
+        }
+
+        public ENDERECO GetEnderecoById(Int32 id)
+        {
+            return _endRepository.GetItemById(id);
+        }
+
+        public Int32 EditEndereco(ENDERECO item)
+        {
+            using (DbContextTransaction transaction = Db.Database.BeginTransaction(IsolationLevel.ReadCommitted))
+            {
+                try
+                {
+                    ENDERECO obj = _endRepository.GetById(item.ENDE_CD_ID);
+                    _endRepository.Detach(obj);
+                    _endRepository.Update(item);
+                    transaction.Commit();
+                    return 0;
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    throw ex;
+                }
+            }
+        }
+
+        public Int32 CreateEndereco(ENDERECO item)
+        {
+            using (DbContextTransaction transaction = Db.Database.BeginTransaction(IsolationLevel.ReadCommitted))
+            {
+                try
+                {
+                    _endRepository.Add(item);
+                    transaction.Commit();
+                    return 0;
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    throw ex;
+                }
+            }
+        }
+
+        public TELEFONE GetTelefoneById(Int32 id)
+        {
+            return _telRepository.GetItemById(id);
+        }
+
+        public Int32 EditTelefone(TELEFONE item)
+        {
+            using (DbContextTransaction transaction = Db.Database.BeginTransaction(IsolationLevel.ReadCommitted))
+            {
+                try
+                {
+                    TELEFONE obj = _telRepository.GetById(item.TELE_CD_ID);
+                    _telRepository.Detach(obj);
+                    _telRepository.Update(item);
+                    transaction.Commit();
+                    return 0;
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    throw ex;
+                }
+            }
+        }
+
+        public Int32 CreateTelefone(TELEFONE item)
+        {
+            using (DbContextTransaction transaction = Db.Database.BeginTransaction(IsolationLevel.ReadCommitted))
+            {
+                try
+                {
+                    _telRepository.Add(item);
+                    transaction.Commit();
+                    return 0;
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    throw ex;
+                }
+            }
+        }
+
     }
 }

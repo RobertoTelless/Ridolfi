@@ -23,7 +23,7 @@ namespace EntitiesServices.Model
         public string ENDE_NR_CEP { get; set; }
         public int ENDE_IN_ATIVO { get; set; }
     
+        public virtual BENEFICIARIO BENEFICIARIO { get; set; }
         public virtual UF UF { get; set; }
-        public virtual PRECATORIO PRECATORIO { get; set; }
     }
 }

@@ -18,9 +18,11 @@ namespace EntitiesServices.Model
         public int BENE_CD_ID { get; set; }
         public int TITE_CD_ID { get; set; }
         public string TELE_NR_NUMERO { get; set; }
-        public Nullable<int> TELE_IN_ATIVO { get; set; }
+        public int TELE_IN_ATIVO { get; set; }
+        public string TELE_NR_CELULAR { get; set; }
     
-        public virtual PRECATORIO PRECATORIO { get; set; }
+        public virtual BENEFICIARIO BENEFICIARIO { get; set; }
         public virtual TIPO_TELEFONE TIPO_TELEFONE { get; set; }
+        public virtual TIPO_TELEFONE_BASE TIPO_TELEFONE_BASE { get; set; }
     }
 }

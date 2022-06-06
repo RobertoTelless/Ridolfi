@@ -19,6 +19,6 @@ namespace EntitiesServices.Model
         public string EMAI_NM_EMAIL { get; set; }
         public int EMAI_IN_ATIVO { get; set; }
     
-        public virtual PRECATORIO PRECATORIO { get; set; }
+        public virtual BENEFICIARIO BENEFICIARIO { get; set; }
     }
 }

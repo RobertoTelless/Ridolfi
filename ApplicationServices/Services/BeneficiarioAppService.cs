@@ -70,6 +70,12 @@ namespace ApplicationServices.Services
             return lista;
         }
 
+        public List<TIPO_TELEFONE_BASE> GetAllTipoTelefone()
+        {
+            List<TIPO_TELEFONE_BASE> lista = _baseService.GetAllTipoTelefone();
+            return lista;
+        }
+
         public List<ESCOLARIDADE> GetAllEscolaridade()
         {
             List<ESCOLARIDADE> lista = _baseService.GetAllEscolaridade();
@@ -266,6 +272,148 @@ namespace ApplicationServices.Services
                 throw;
             }
         }
+
+        public CONTATO GetContatoById(Int32 id)
+        {
+            CONTATO lista = _baseService.GetContatoById(id);
+            return lista;
+        }
+
+        public Int32 ValidateEditContato(CONTATO item)
+        {
+            try
+            {
+                // Persiste
+                return _baseService.EditContato(item);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public Int32 ValidateCreateContato(CONTATO item)
+        {
+            try
+            {
+                item.CONT_IN_ATIVO = 1;
+
+                // Persiste
+                Int32 volta = _baseService.CreateContato(item);
+                return volta;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public EMAIL GetEMailById(Int32 id)
+        {
+            EMAIL lista = _baseService.GetEMailById(id);
+            return lista;
+        }
+
+        public Int32 ValidateEditEMail(EMAIL item)
+        {
+            try
+            {
+                // Persiste
+                return _baseService.EditEMail(item);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public Int32 ValidateCreateEMail(EMAIL item)
+        {
+            try
+            {
+                item.EMAI_IN_ATIVO = 1;
+
+                // Persiste
+                Int32 volta = _baseService.CreateEMail(item);
+                return volta;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public ENDERECO GetEnderecoById(Int32 id)
+        {
+            ENDERECO lista = _baseService.GetEnderecoById(id);
+            return lista;
+        }
+
+        public Int32 ValidateEditEndereco(ENDERECO item)
+        {
+            try
+            {
+                // Persiste
+                return _baseService.EditEndereco(item);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public Int32 ValidateCreateEndereco(ENDERECO item)
+        {
+            try
+            {
+                item.ENDE_IN_ATIVO = 1;
+
+                // Persiste
+                Int32 volta = _baseService.CreateEndereco(item);
+                return volta;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public TELEFONE GetTelefoneById(Int32 id)
+        {
+            TELEFONE lista = _baseService.GetTelefoneById(id);
+            return lista;
+        }
+
+        public Int32 ValidateEditTelefone(TELEFONE item)
+        {
+            try
+            {
+                // Persiste
+                return _baseService.EditTelefone(item);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public Int32 ValidateCreateTelefone(TELEFONE item)
+        {
+            try
+            {
+                item.TELE_IN_ATIVO = 1;
+
+                // Persiste
+                Int32 volta = _baseService.CreateTelefone(item);
+                return volta;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+
 
     }
 }

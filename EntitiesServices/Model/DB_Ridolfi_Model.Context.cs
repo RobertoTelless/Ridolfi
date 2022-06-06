@@ -30,6 +30,8 @@ namespace EntitiesServices.Model
         public virtual DbSet<AGENDA_VINCULO> AGENDA_VINCULO { get; set; }
         public virtual DbSet<BANCO> BANCO { get; set; }
         public virtual DbSet<BENEFICIARIO> BENEFICIARIO { get; set; }
+        public virtual DbSet<BENEFICIARIO_ANEXO> BENEFICIARIO_ANEXO { get; set; }
+        public virtual DbSet<BENEFICIARIO_ANOTACOES> BENEFICIARIO_ANOTACOES { get; set; }
         public virtual DbSet<CARGO> CARGO { get; set; }
         public virtual DbSet<CATEGORIA_AGENDA> CATEGORIA_AGENDA { get; set; }
         public virtual DbSet<CATEGORIA_CLIENTE> CATEGORIA_CLIENTE { get; set; }
@@ -50,6 +52,8 @@ namespace EntitiesServices.Model
         public virtual DbSet<GRUPO> GRUPO { get; set; }
         public virtual DbSet<GRUPO_CLIENTE> GRUPO_CLIENTE { get; set; }
         public virtual DbSet<HONORARIO> HONORARIO { get; set; }
+        public virtual DbSet<HONORARIO_ANEXO> HONORARIO_ANEXO { get; set; }
+        public virtual DbSet<HONORARIO_ANOTACOES> HONORARIO_ANOTACOES { get; set; }
         public virtual DbSet<LOAS> LOAS { get; set; }
         public virtual DbSet<LOG> LOG { get; set; }
         public virtual DbSet<MENSAGEM_ANEXO> MENSAGEM_ANEXO { get; set; }
@@ -90,9 +94,6 @@ namespace EntitiesServices.Model
         public virtual DbSet<USUARIO> USUARIO { get; set; }
         public virtual DbSet<USUARIO_ANEXO> USUARIO_ANEXO { get; set; }
         public virtual DbSet<VARA> VARA { get; set; }
-        public virtual DbSet<BENEFICIARIO_ANEXO> BENEFICIARIO_ANEXO { get; set; }
-        public virtual DbSet<BENEFICIARIO_ANOTACOES> BENEFICIARIO_ANOTACOES { get; set; }
-        public virtual DbSet<HONORARIO_ANEXO> HONORARIO_ANEXO { get; set; }
-        public virtual DbSet<HONORARIO_ANOTACOES> HONORARIO_ANOTACOES { get; set; }
+        public virtual DbSet<TIPO_TELEFONE_BASE> TIPO_TELEFONE_BASE { get; set; }
     }
 }

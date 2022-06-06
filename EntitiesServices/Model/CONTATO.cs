@@ -26,7 +26,7 @@ namespace EntitiesServices.Model
         public string CONT_NR_PROTOCOLO { get; set; }
         public Nullable<int> CONT_IN_ATIVO { get; set; }
     
-        public virtual PRECATORIO PRECATORIO { get; set; }
+        public virtual BENEFICIARIO BENEFICIARIO { get; set; }
         public virtual QUEM_DESLIGOU QUEM_DESLIGOU { get; set; }
         public virtual QUALIFICACAO QUALIFICACAO { get; set; }
     }

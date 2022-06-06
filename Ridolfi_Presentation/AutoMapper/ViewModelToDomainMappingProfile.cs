@@ -43,6 +43,10 @@ namespace MvcMapping.Mappers
             CreateMap<TabelaIRRFViewModel, TABELA_IRRF>();
             CreateMap<HonorarioComentarioViewModel, HONORARIO_ANOTACOES>();
             CreateMap<HonorarioViewModel, HONORARIO>();
+            CreateMap<ContatoViewModel, CONTATO>();
+            CreateMap<EMailViewModel, EMAIL>();
+            CreateMap<EnderecoViewModel, ENDERECO>();
+            CreateMap<TelefoneBenefViewModel, TELEFONE>();
 
         }
     }
