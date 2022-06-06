@@ -1196,6 +1196,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Imagens\1\Beneficiarios\7\Anexos\medieval-map-of-europe-in-1444.jpg" />
     <Content Include="Imagens\1\Honorarios\2\Anexos\1_17729_02.jpg" />
     <Content Include="Imagens\1\Noticias\1\Fotos\_124820819_dsc01277.jpg" />
     <Content Include="Imagens\1\Usuario\1\Fotos\FotoOficial_2.jpg" />
@@ -2806,6 +2807,8 @@
     <Content Include="Imagens\1\Beneficiarios\2\Anexos\AgendaLista_23052022.pdf" />
     <Content Include="Imagens\1\Honorarios\3\Anexos\NPAG.pdf" />
     <Content Include="Imagens\1\Beneficiarios\4\Anexos\K_C_Agrawal.pdf" />
+    <Content Include="Imagens\1\Beneficiarios\7\Anexos\92.Data+Engineering_2-1614270590423.pdf" />
+    <Content Include="Imagens\1\Beneficiarios\7\Anexos\Medium_voltage_products.pdf" />
     <None Include="Properties\PublishProfiles\DBMasterData - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\ModelosDashboard - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\on-suite-dashboards - FTP.pubxml" />
@@ -3762,6 +3765,8 @@
     <Folder Include="Imagens\1\Agenda\6\Anexos\" />
     <Folder Include="Imagens\1\Beneficiarios\1\Anexos\" />
     <Folder Include="Imagens\1\Beneficiarios\3\Anexos\" />
+    <Folder Include="Imagens\1\Beneficiarios\5\Anexos\" />
+    <Folder Include="Imagens\1\Beneficiarios\6\Anexos\" />
     <Folder Include="Imagens\1\Honorarios\1\Anexos\" />
     <Folder Include="Imagens\1\Notificacao\10\Anexos\" />
     <Folder Include="Imagens\1\Notificacao\11\Anexos\" />
