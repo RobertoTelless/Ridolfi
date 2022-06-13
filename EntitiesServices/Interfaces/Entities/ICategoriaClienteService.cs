@@ -16,9 +16,9 @@ namespace ModelServices.Interfaces.EntitiesServices
         Int32 Edit(CATEGORIA_CLIENTE perfil);
         Int32 Delete(CATEGORIA_CLIENTE perfil, LOG log);
 
-        CATEGORIA_CLIENTE CheckExist(CATEGORIA_CLIENTE item, Int32 idAss);
+        CATEGORIA_CLIENTE CheckExist(CATEGORIA_CLIENTE item);
         CATEGORIA_CLIENTE GetItemById(Int32 id);
-        List<CATEGORIA_CLIENTE> GetAllItens(Int32 idAss);
-        List<CATEGORIA_CLIENTE> GetAllItensAdm(Int32 idAss);
+        List<CATEGORIA_CLIENTE> GetAllItens();
+        List<CATEGORIA_CLIENTE> GetAllItensAdm();
     }
 }

@@ -23,37 +23,31 @@ namespace ModelServices.EntitiesServices
         private readonly ICategoriaClienteRepository _tipoRepository;
         private readonly IClienteAnexoRepository _anexoRepository;
         private readonly IClienteContatoRepository _contRepository;
-        private readonly ITipoPessoaRepository _pesRepository;
-        private readonly IUFRepository _ufRepository;
-        private readonly ISexoRepository _sxRepository;
+        private readonly IPrecatorioRepository _preRepository;
+        private readonly ITRFRepository _trfRepository;
+        private readonly IVaraRepository _varaRepository;
+        private readonly ITitularidadeRepository _titRepository;
+        private readonly IClienteAnotacaoRepository _anoRepository;
         protected DB_RidolfiEntities Db = new DB_RidolfiEntities();
 
-        public ClienteService(IClienteRepository baseRepository, ILogRepository logRepository, ICategoriaClienteRepository tipoRepository, IClienteAnexoRepository anexoRepository, ITipoPessoaRepository pesRepository, IClienteContatoRepository contRepository, IUFRepository ufRepository, ISexoRepository sxRepository) : base(baseRepository)
+        public ClienteService(IClienteRepository baseRepository, ILogRepository logRepository, ICategoriaClienteRepository tipoRepository, IClienteAnexoRepository anexoRepository, IPrecatorioRepository preRepository, IClienteContatoRepository contRepository, ITRFRepository trfRepository, IVaraRepository varaRepository, ITitularidadeRepository titRepository, IClienteAnotacaoRepository anoRepository) : base(baseRepository)
         {
             _baseRepository = baseRepository;
             _logRepository = logRepository;
             _tipoRepository = tipoRepository;
             _anexoRepository = anexoRepository;
             _contRepository = contRepository;
-            _pesRepository = pesRepository;
-            _ufRepository = ufRepository;
-            _sxRepository = sxRepository;
+            _preRepository = preRepository;
+            _trfRepository = trfRepository;
+            _varaRepository = varaRepository;
+            _titRepository = titRepository;
+            _anoRepository = anoRepository;
         }
 
-        public CLIENTE CheckExist(CLIENTE conta, Int32 idAss)
+        public CLIENTE CheckExist(CLIENTE conta)
         {
-            CLIENTE item = _baseRepository.CheckExist(conta, idAss);
+            CLIENTE item = _baseRepository.CheckExist(conta);
             return item;
-        }
-
-        public List<UF> GetAllUF()
-        {
-            return _ufRepository.GetAllItens();
-        }
-
-        public UF GetUFbySigla(String sigla)
-        {
-            return _ufRepository.GetItemBySigla(sigla);
         }
 
         public CLIENTE GetItemById(Int32 id)
@@ -62,35 +56,44 @@ namespace ModelServices.EntitiesServices
             return item;
         }
 
-        public CLIENTE GetByEmail(String email)
+        public CLIENTE_ANOTACAO GetAnotacaoById(Int32 id)
         {
-            CLIENTE item = _baseRepository.GetByEmail(email);
-            return item;
+            return _anoRepository.GetItemById(id);
         }
 
-        public List<CLIENTE> GetAllItens(Int32 idAss)
+        public List<CLIENTE> GetAllItens()
         {
-            return _baseRepository.GetAllItens(idAss);
+            return _baseRepository.GetAllItens();
         }
 
-        public List<CLIENTE> GetAllItensAdm(Int32 idAss)
+        public List<CLIENTE> GetAllItensAdm()
         {
-            return _baseRepository.GetAllItensAdm(idAss);
+            return _baseRepository.GetAllItensAdm();
         }
 
-        public List<SEXO> GetAllSexo()
+        public List<PRECATORIO> GetAllPrecatorios()
         {
-            return _sxRepository.GetAllItens();
+            return _preRepository.GetAllItens();
         }
 
-        public List<CATEGORIA_CLIENTE> GetAllTipos(Int32 idAss)
+        public List<CATEGORIA_CLIENTE> GetAllTipos()
         {
-            return _tipoRepository.GetAllItens(idAss);
+            return _tipoRepository.GetAllItens();
         }
 
-        public List<TIPO_PESSOA> GetAllTiposPessoa()
+        public List<TRF> GetAllTRF()
         {
-            return _pesRepository.GetAllItens();
+            return _trfRepository.GetAllItens();
+        }
+
+        public List<VARA> GetAllVara()
+        {
+            return _varaRepository.GetAllItens();
+        }
+
+        public List<TITULARIDADE> GetAllTitularidade()
+        {
+            return _titRepository.GetAllItens();
         }
 
         public CLIENTE_ANEXO GetAnexoById(Int32 id)
@@ -103,15 +106,10 @@ namespace ModelServices.EntitiesServices
             return _contRepository.GetItemById(id);
         }
 
-        public List<CLIENTE> ExecuteFilter(Int32? id, Int32? catId, String razao, String nome, String cpf, String cnpj, String email, String cidade, Int32? uf, Int32? ativo, Int32 idAss)
+        public List<CLIENTE> ExecuteFilter(Int32? catId, Int32? precatorio, Int32? trf, Int32? vara, Int32? titularidade, String nome, String oficio, String processo)
         {
-            return _baseRepository.ExecuteFilter(id, catId, razao, nome, cpf, cnpj, email, cidade, uf, ativo, idAss);
+            return _baseRepository.ExecuteFilter(catId, precatorio, trf, vara, titularidade, nome, oficio, processo);
         }
-
-        //public List<CLIENTE> ExecuteFilterSemPedido(String nome, String cidade, Int32? uf)
-        //{
-        //    return _baseRepository.ExecuteFilterSemPedido(nome, cidade, uf);
-        //}
 
         public Int32 Create(CLIENTE item, LOG log)
         {

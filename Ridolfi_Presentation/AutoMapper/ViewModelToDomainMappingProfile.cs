@@ -47,6 +47,11 @@ namespace MvcMapping.Mappers
             CreateMap<EMailViewModel, EMAIL>();
             CreateMap<EnderecoViewModel, ENDERECO>();
             CreateMap<TelefoneBenefViewModel, TELEFONE>();
+            CreateMap<TRFViewModel, TRF>();
+            CreateMap<VaraViewModel, VARA>();
+            CreateMap<ClienteViewModel, CLIENTE>();
+            CreateMap<ClienteContatoViewModel, CLIENTE_CONTATO>();
+            CreateMap<ClienteAnotacaoViewModel, CLIENTE_ANOTACAO>();
 
         }
     }

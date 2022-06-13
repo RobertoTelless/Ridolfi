@@ -75,9 +75,7 @@ namespace Presentation.Start
             kernel.Bind<INotificacaoAppService>().To<NotificacaoAppService>();
             kernel.Bind<ITemplateAppService>().To<TemplateAppService>();
             kernel.Bind<IClienteAppService>().To<ClienteAppService>();
-            kernel.Bind<IClienteCnpjAppService>().To<ClienteCnpjAppService>();
             kernel.Bind<IMensagemAppService>().To<MensagemAppService>();
-            kernel.Bind<IGrupoAppService>().To<GrupoAppService>();
             kernel.Bind<ICategoriaClienteAppService>().To<CategoriaClienteAppService>();
             kernel.Bind<IAgendaAppService>().To<AgendaAppService>();
             kernel.Bind<ITemplateSMSAppService>().To<TemplateSMSAppService>();
@@ -97,6 +95,8 @@ namespace Presentation.Start
             kernel.Bind<ITabelaIPCAAppService>().To<TabelaIPCAAppService>();
             kernel.Bind<ITabelaIRRFAppService>().To<TabelaIRRFAppService>();
             kernel.Bind<IHonorarioAppService>().To<HonorarioAppService>();
+            kernel.Bind<ITRFAppService>().To<TRFAppService>();
+            kernel.Bind<IVaraAppService>().To<VaraAppService>();
 
             kernel.Bind(typeof(IServiceBase<>)).To(typeof(ServiceBase<>));
             kernel.Bind<IUsuarioService>().To<UsuarioService>();
@@ -105,9 +105,7 @@ namespace Presentation.Start
             kernel.Bind<INotificacaoService>().To<NotificacaoService>();
             kernel.Bind<ITemplateService>().To<TemplateService>();
             kernel.Bind<IClienteService>().To<ClienteService>();
-            kernel.Bind<IClienteCnpjService>().To<ClienteCnpjService>();
             kernel.Bind<IMensagemService>().To<MensagemService>();
-            kernel.Bind<IGrupoService>().To<GrupoService>();
             kernel.Bind<ICategoriaClienteService>().To<CategoriaClienteService>();
             kernel.Bind<IAgendaService>().To<AgendaService>();
             kernel.Bind<ITemplateSMSService>().To<TemplateSMSService>();
@@ -127,6 +125,8 @@ namespace Presentation.Start
             kernel.Bind<ITabelaIPCAService>().To<TabelaIPCAService>();
             kernel.Bind<ITabelaIRRFService>().To<TabelaIRRFService>();
             kernel.Bind<IHonorarioService>().To<HonorarioService>();
+            kernel.Bind<ITRFService>().To<TRFService>();
+            kernel.Bind<IVaraService>().To<VaraService>();
 
             kernel.Bind(typeof(IRepositoryBase<>)).To(typeof(RepositoryBase<>));
             kernel.Bind<IConfiguracaoRepository>().To<ConfiguracaoRepository>();
@@ -141,10 +141,9 @@ namespace Presentation.Start
             kernel.Bind<IUsuarioAnexoRepository>().To<UsuarioAnexoRepository>();
             kernel.Bind<IUFRepository>().To<UFRepository>();
             kernel.Bind<ICategoriaClienteRepository>().To<CategoriaClienteRepository>();
-            //kernel.Bind<IClienteRepository>().To<ClienteRepository>();
-            //kernel.Bind<IClienteAnexoRepository>().To<ClienteAnexoRepository>();
-            //kernel.Bind<IClienteContatoRepository>().To<ClienteContatoRepository>();
-            //kernel.Bind<IClienteCnpjRepository>().To<ClienteCnpjRepository>();
+            kernel.Bind<IClienteRepository>().To<ClienteRepository>();
+            kernel.Bind<IClienteAnexoRepository>().To<ClienteAnexoRepository>();
+            kernel.Bind<IClienteContatoRepository>().To<ClienteContatoRepository>();
             kernel.Bind<ICargoRepository>().To<CargoRepository>();
             kernel.Bind<IMensagemRepository>().To<MensagemRepository>();
             kernel.Bind<IMensagemDestinoRepository>().To<MensagemDestinoRepository>();
@@ -184,6 +183,9 @@ namespace Presentation.Start
             kernel.Bind<IEMailRepository>().To<EMailRepository>();
             kernel.Bind<ITelefoneBenefRepository>().To<TelefoneBenefRepository>();
             kernel.Bind<ITipoTelefoneBaseRepository>().To<TipoTelefoneBaseRepository>();
+            kernel.Bind<ITRFRepository>().To<TRFRepository>();
+            kernel.Bind<IVaraRepository>().To<VaraRepository>();
+            kernel.Bind<ITitularidadeRepository>().To<ITitularidadeRepository>();
 
         }
     }

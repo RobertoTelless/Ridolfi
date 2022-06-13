@@ -15,24 +15,22 @@ namespace ApplicationServices.Interfaces
         Int32 ValidateDelete(CLIENTE perfil, USUARIO usuario);
         Int32 ValidateReativar(CLIENTE perfil, USUARIO usuario);
 
-        List<CLIENTE> GetAllItens(Int32 idAss);
-        List<CLIENTE> GetAllItensAdm(Int32 idAss);
+        List<CLIENTE> GetAllItens();
+        List<CLIENTE> GetAllItensAdm();
         CLIENTE GetItemById(Int32 id);
-        CLIENTE GetByEmail(String email);
-        CLIENTE CheckExist(CLIENTE conta, Int32 idAss);
-
-        List<CATEGORIA_CLIENTE> GetAllTipos(Int32 idAss);
-        List<TIPO_PESSOA> GetAllTiposPessoa();
+        CLIENTE CheckExist(CLIENTE conta);
+        Int32 ExecuteFilter(Int32? catId, Int32? precatorio, Int32? trf, Int32? vara, Int32? titularidade, String npme, String oficio, String processo, out List<CLIENTE> objeto);
         CLIENTE_ANEXO GetAnexoById(Int32 id);
-        CLIENTE_CONTATO GetContatoById(Int32 id);
-        List<SEXO> GetAllSexo();
+        CLIENTE_ANOTACAO GetAnotacaoById(Int32 id);
 
-        Int32 ExecuteFilter(Int32? id,  Int32? catId, String razao, String nome, String cpf, String cnpj, String email, String cidade, Int32? uf, Int32? ativo, Int32 idAss, out List<CLIENTE> objeto);
-        
+        List<CATEGORIA_CLIENTE> GetAllTipos();
+        List<PRECATORIO> GetAllPrecatorios();
+        List<TRF> GetAllTRF();
+        List<VARA> GetAllVara();
+        List<TITULARIDADE> GetAllTitularidade();
+
+        CLIENTE_CONTATO GetContatoById(Int32 id);
         Int32 ValidateEditContato(CLIENTE_CONTATO item);
         Int32 ValidateCreateContato(CLIENTE_CONTATO item);
-
-        List<UF> GetAllUF();
-        UF GetUFbySigla(String sigla);
     }
 }

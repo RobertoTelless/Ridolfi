@@ -84,7 +84,7 @@ namespace ModelServices.EntitiesServices
 
         public List<CATEGORIA_CLIENTE> GetAllTipos(Int32 idAss)
         {
-            return _tipoRepository.GetAllItens(idAss);
+            return _tipoRepository.GetAllItens();
         }
 
         public List<TEMPLATE> GetAllTemplates(Int32 idAss)

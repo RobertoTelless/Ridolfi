@@ -21,15 +21,15 @@ namespace ApplicationServices.Services
             _baseService = baseService;
         }
 
-        public List<CATEGORIA_CLIENTE> GetAllItens(Int32 idAss)
+        public List<CATEGORIA_CLIENTE> GetAllItens()
         {
-            List<CATEGORIA_CLIENTE> lista = _baseService.GetAllItens(idAss);
+            List<CATEGORIA_CLIENTE> lista = _baseService.GetAllItens();
             return lista;
         }
 
-        public List<CATEGORIA_CLIENTE> GetAllItensAdm(Int32 idAss)
+        public List<CATEGORIA_CLIENTE> GetAllItensAdm()
         {
-            List<CATEGORIA_CLIENTE> lista = _baseService.GetAllItensAdm(idAss);
+            List<CATEGORIA_CLIENTE> lista = _baseService.GetAllItensAdm();
             return lista;
         }
 
@@ -39,9 +39,9 @@ namespace ApplicationServices.Services
             return item;
         }
 
-        public CATEGORIA_CLIENTE CheckExist(CATEGORIA_CLIENTE conta, Int32 idAss)
+        public CATEGORIA_CLIENTE CheckExist(CATEGORIA_CLIENTE conta)
         {
-            CATEGORIA_CLIENTE item = _baseService.CheckExist(conta, idAss);
+            CATEGORIA_CLIENTE item = _baseService.CheckExist(conta);
             return item;
         }
 
@@ -50,7 +50,7 @@ namespace ApplicationServices.Services
             try
             {
                 // Verifica existencia prévia
-                if (_baseService.CheckExist(item, usuario.ASSI_CD_ID.Value) != null)
+                if (_baseService.CheckExist(item) != null)
                 {
                     return 1;
                 }

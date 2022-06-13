@@ -32,6 +32,7 @@ namespace EntitiesServices.Model
             this.TAREFA_NOTIFICACAO = new HashSet<TAREFA_NOTIFICACAO>();
             this.TAREFA_VINCULO = new HashSet<TAREFA_VINCULO>();
             this.USUARIO_ANEXO = new HashSet<USUARIO_ANEXO>();
+            this.CLIENTE_ANOTACAO = new HashSet<CLIENTE_ANOTACAO>();
         }
     
         public int USUA_CD_ID { get; set; }
@@ -111,5 +112,7 @@ namespace EntitiesServices.Model
         public virtual ICollection<TAREFA_VINCULO> TAREFA_VINCULO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<USUARIO_ANEXO> USUARIO_ANEXO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CLIENTE_ANOTACAO> CLIENTE_ANOTACAO { get; set; }
     }
 }

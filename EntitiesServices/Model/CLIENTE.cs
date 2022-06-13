@@ -22,6 +22,7 @@ namespace EntitiesServices.Model
             this.CLIENTE_QUADRO_SOCIETARIO = new HashSet<CLIENTE_QUADRO_SOCIETARIO>();
             this.GRUPO_CLIENTE = new HashSet<GRUPO_CLIENTE>();
             this.MENSAGENS_DESTINOS = new HashSet<MENSAGENS_DESTINOS>();
+            this.CLIENTE_ANOTACAO = new HashSet<CLIENTE_ANOTACAO>();
         }
     
         public int CLIE_CD_ID { get; set; }
@@ -55,5 +56,7 @@ namespace EntitiesServices.Model
         public virtual PRECATORIO PRECATORIO { get; set; }
         public virtual VARA VARA { get; set; }
         public virtual TITULARIDADE TITULARIDADE { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CLIENTE_ANOTACAO> CLIENTE_ANOTACAO { get; set; }
     }
 }

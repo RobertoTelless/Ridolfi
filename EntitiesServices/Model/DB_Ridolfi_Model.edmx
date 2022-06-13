@@ -187,6 +187,17 @@
           <Property Name="CLAN_AQ_ARQUIVO" Type="varchar" MaxLength="250" Nullable="false" />
           <Property Name="CLAN_IN_ATIVO" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="CLIENTE_ANOTACAO">
+          <Key>
+            <PropertyRef Name="CLAN_CD_ID" />
+          </Key>
+          <Property Name="CLAN_CD_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CLIE_CD_ID" Type="int" Nullable="false" />
+          <Property Name="USUA_CD_ID" Type="int" Nullable="false" />
+          <Property Name="CLAN_DT_ANOTACAO" Type="datetime" Nullable="false" />
+          <Property Name="CLAN_TX_ANOTACAO" Type="text" Nullable="false" />
+          <Property Name="CLAN_IN_ATIVO" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="CLIENTE_CONTATO">
           <Key>
             <PropertyRef Name="CLCO_CD_ID" />
@@ -577,6 +588,7 @@
           <Property Name="PREC_DT_EXPEDICAO" Type="date" />
           <Property Name="PREC_NM_PRC_LOA" Type="varchar" MaxLength="2" />
           <Property Name="PREC_TX_OBSERVACAO" Type="text" />
+          <Property Name="PREC_IN_ATIVO" Type="int" />
         </EntityType>
         <EntityType Name="PRECATORIO_ESTADO">
           <Key>
@@ -1008,6 +1020,30 @@
             </Principal>
             <Dependent Role="CLIENTE_ANEXO">
               <PropertyRef Name="CLIE_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CLIENTE_ANOTACAO_CLIENTE">
+          <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="1" />
+          <End Role="CLIENTE_ANOTACAO" Type="Self.CLIENTE_ANOTACAO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTE">
+              <PropertyRef Name="CLIE_CD_ID" />
+            </Principal>
+            <Dependent Role="CLIENTE_ANOTACAO">
+              <PropertyRef Name="CLIE_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CLIENTE_ANOTACAO_USUARIO">
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+          <End Role="CLIENTE_ANOTACAO" Type="Self.CLIENTE_ANOTACAO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="USUA_CD_ID" />
+            </Principal>
+            <Dependent Role="CLIENTE_ANOTACAO">
+              <PropertyRef Name="USUA_CD_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1867,6 +1903,7 @@
           <EntitySet Name="CATEGORIA_USUARIO" EntityType="Self.CATEGORIA_USUARIO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CLIENTE" EntityType="Self.CLIENTE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CLIENTE_ANEXO" EntityType="Self.CLIENTE_ANEXO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CLIENTE_ANOTACAO" EntityType="Self.CLIENTE_ANOTACAO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CLIENTE_CONTATO" EntityType="Self.CLIENTE_CONTATO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CLIENTE_QUADRO_SOCIETARIO" EntityType="Self.CLIENTE_QUADRO_SOCIETARIO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CONFIGURACAO" EntityType="Self.CONFIGURACAO" Schema="dbo" store:Type="Tables" />
@@ -1961,6 +1998,14 @@
           <AssociationSet Name="FK_CLIENTE_ANEXO_CLIENTE" Association="Self.FK_CLIENTE_ANEXO_CLIENTE">
             <End Role="CLIENTE" EntitySet="CLIENTE" />
             <End Role="CLIENTE_ANEXO" EntitySet="CLIENTE_ANEXO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CLIENTE_ANOTACAO_CLIENTE" Association="Self.FK_CLIENTE_ANOTACAO_CLIENTE">
+            <End Role="CLIENTE" EntitySet="CLIENTE" />
+            <End Role="CLIENTE_ANOTACAO" EntitySet="CLIENTE_ANOTACAO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CLIENTE_ANOTACAO_USUARIO" Association="Self.FK_CLIENTE_ANOTACAO_USUARIO">
+            <End Role="USUARIO" EntitySet="USUARIO" />
+            <End Role="CLIENTE_ANOTACAO" EntitySet="CLIENTE_ANOTACAO" />
           </AssociationSet>
           <AssociationSet Name="FK_CLIENTE_CATEGORIA_CLIENTE" Association="Self.FK_CLIENTE_CATEGORIA_CLIENTE">
             <End Role="CATEGORIA_CLIENTE" EntitySet="CATEGORIA_CLIENTE" />
@@ -2456,6 +2501,7 @@
           <NavigationProperty Name="PRECATORIO" Relationship="Self.FKCLIENTE370631" FromRole="CLIENTE" ToRole="PRECATORIO" />
           <NavigationProperty Name="VARA" Relationship="Self.FKCLIENTE745716" FromRole="CLIENTE" ToRole="VARA" />
           <NavigationProperty Name="TITULARIDADE" Relationship="Self.FKCLIENTE824441" FromRole="CLIENTE" ToRole="TITULARIDADE" />
+          <NavigationProperty Name="CLIENTE_ANOTACAO" Relationship="DB_RidolfiModel.FK_CLIENTE_ANOTACAO_CLIENTE" FromRole="CLIENTE" ToRole="CLIENTE_ANOTACAO" />
         </EntityType>
         <EntityType Name="CLIENTE_ANEXO">
           <Key>
@@ -2918,6 +2964,7 @@
           <NavigationProperty Name="NATUREZA" Relationship="Self.FKPRECATORIO832121" FromRole="PRECATORIO" ToRole="NATUREZA" />
           <NavigationProperty Name="PRECATORIO_ESTADO" Relationship="Self.FKPRECATORIO966532" FromRole="PRECATORIO" ToRole="PRECATORIO_ESTADO" />
           <NavigationProperty Name="TRF" Relationship="Self.FKPRECATORIO966598" FromRole="PRECATORIO" ToRole="TRF" />
+          <Property Name="PREC_IN_ATIVO" Type="Int32" />
         </EntityType>
         <EntityType Name="PRECATORIO_ESTADO">
           <Key>
@@ -3262,6 +3309,7 @@
           <NavigationProperty Name="TAREFA_NOTIFICACAO" Relationship="Self.FK_TAREFA_NOTIFICACAO_USUARIO" FromRole="USUARIO" ToRole="TAREFA_NOTIFICACAO" />
           <NavigationProperty Name="TAREFA_VINCULO" Relationship="Self.FK_TAREFA_VINCULO_USUARIO" FromRole="USUARIO" ToRole="TAREFA_VINCULO" />
           <NavigationProperty Name="USUARIO_ANEXO" Relationship="Self.FK_USUARIO_ANEXO_USUARIO" FromRole="USUARIO" ToRole="USUARIO_ANEXO" />
+          <NavigationProperty Name="CLIENTE_ANOTACAO" Relationship="DB_RidolfiModel.FK_CLIENTE_ANOTACAO_USUARIO" FromRole="USUARIO" ToRole="CLIENTE_ANOTACAO" />
         </EntityType>
         <EntityType Name="USUARIO_ANEXO">
           <Key>
@@ -4642,6 +4690,15 @@
             <End Role="TIPO_TELEFONE_BASE" EntitySet="TIPO_TELEFONE_BASE" />
             <End Role="TELEFONE" EntitySet="TELEFONE" />
           </AssociationSet>
+          <EntitySet Name="CLIENTE_ANOTACAO" EntityType="DB_RidolfiModel.CLIENTE_ANOTACAO" />
+          <AssociationSet Name="FK_CLIENTE_ANOTACAO_CLIENTE" Association="DB_RidolfiModel.FK_CLIENTE_ANOTACAO_CLIENTE">
+            <End Role="CLIENTE" EntitySet="CLIENTE" />
+            <End Role="CLIENTE_ANOTACAO" EntitySet="CLIENTE_ANOTACAO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CLIENTE_ANOTACAO_USUARIO" Association="DB_RidolfiModel.FK_CLIENTE_ANOTACAO_USUARIO">
+            <End Role="USUARIO" EntitySet="USUARIO" />
+            <End Role="CLIENTE_ANOTACAO" EntitySet="CLIENTE_ANOTACAO" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="TIPO_TELEFONE_BASE">
           <Key>
@@ -4660,6 +4717,43 @@
             </Principal>
             <Dependent Role="TELEFONE">
               <PropertyRef Name="TITE_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CLIENTE_ANOTACAO">
+          <Key>
+            <PropertyRef Name="CLAN_CD_ID" />
+          </Key>
+          <Property Name="CLAN_CD_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CLIE_CD_ID" Type="Int32" Nullable="false" />
+          <Property Name="USUA_CD_ID" Type="Int32" Nullable="false" />
+          <Property Name="CLAN_DT_ANOTACAO" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CLAN_TX_ANOTACAO" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CLAN_IN_ATIVO" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CLIENTE" Relationship="DB_RidolfiModel.FK_CLIENTE_ANOTACAO_CLIENTE" FromRole="CLIENTE_ANOTACAO" ToRole="CLIENTE" />
+          <NavigationProperty Name="USUARIO" Relationship="DB_RidolfiModel.FK_CLIENTE_ANOTACAO_USUARIO" FromRole="CLIENTE_ANOTACAO" ToRole="USUARIO" />
+        </EntityType>
+        <Association Name="FK_CLIENTE_ANOTACAO_CLIENTE">
+          <End Type="DB_RidolfiModel.CLIENTE" Role="CLIENTE" Multiplicity="1" />
+          <End Type="DB_RidolfiModel.CLIENTE_ANOTACAO" Role="CLIENTE_ANOTACAO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTE">
+              <PropertyRef Name="CLIE_CD_ID" />
+            </Principal>
+            <Dependent Role="CLIENTE_ANOTACAO">
+              <PropertyRef Name="CLIE_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CLIENTE_ANOTACAO_USUARIO">
+          <End Type="DB_RidolfiModel.USUARIO" Role="USUARIO" Multiplicity="1" />
+          <End Type="DB_RidolfiModel.CLIENTE_ANOTACAO" Role="CLIENTE_ANOTACAO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="USUA_CD_ID" />
+            </Principal>
+            <Dependent Role="CLIENTE_ANOTACAO">
+              <PropertyRef Name="USUA_CD_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -5241,6 +5335,7 @@
           <EntitySetMapping Name="PRECATORIO">
             <EntityTypeMapping TypeName="DB_RidolfiModel.PRECATORIO">
               <MappingFragment StoreEntitySet="PRECATORIO">
+                <ScalarProperty Name="PREC_IN_ATIVO" ColumnName="PREC_IN_ATIVO" />
                 <ScalarProperty Name="PREC_CD_ID" ColumnName="PREC_CD_ID" />
                 <ScalarProperty Name="TRF1_CD_ID" ColumnName="TRF1_CD_ID" />
                 <ScalarProperty Name="BENE_CD_ID" ColumnName="BENE_CD_ID" />
@@ -5622,6 +5717,18 @@
               <MappingFragment StoreEntitySet="TIPO_TELEFONE_BASE">
                 <ScalarProperty Name="TITE_NM_NOME" ColumnName="TITE_NM_NOME" />
                 <ScalarProperty Name="TITE_CD_ID" ColumnName="TITE_CD_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CLIENTE_ANOTACAO">
+            <EntityTypeMapping TypeName="DB_RidolfiModel.CLIENTE_ANOTACAO">
+              <MappingFragment StoreEntitySet="CLIENTE_ANOTACAO">
+                <ScalarProperty Name="CLAN_IN_ATIVO" ColumnName="CLAN_IN_ATIVO" />
+                <ScalarProperty Name="CLAN_TX_ANOTACAO" ColumnName="CLAN_TX_ANOTACAO" />
+                <ScalarProperty Name="CLAN_DT_ANOTACAO" ColumnName="CLAN_DT_ANOTACAO" />
+                <ScalarProperty Name="USUA_CD_ID" ColumnName="USUA_CD_ID" />
+                <ScalarProperty Name="CLIE_CD_ID" ColumnName="CLIE_CD_ID" />
+                <ScalarProperty Name="CLAN_CD_ID" ColumnName="CLAN_CD_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

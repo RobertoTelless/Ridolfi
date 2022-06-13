@@ -11,7 +11,7 @@ namespace DataServices.Repositories
 {
     public class CategoriaClienteRepository : RepositoryBase<CATEGORIA_CLIENTE>, ICategoriaClienteRepository
     {
-        public CATEGORIA_CLIENTE CheckExist(CATEGORIA_CLIENTE conta, Int32 idAss)
+        public CATEGORIA_CLIENTE CheckExist(CATEGORIA_CLIENTE conta)
         {
             IQueryable<CATEGORIA_CLIENTE> query = Db.CATEGORIA_CLIENTE;
             query = query.Where(p => p.CACL_NM_NOME == conta.CACL_NM_NOME);
@@ -25,13 +25,13 @@ namespace DataServices.Repositories
             return query.FirstOrDefault();
         }
 
-        public List<CATEGORIA_CLIENTE> GetAllItens(Int32 idAss)
+        public List<CATEGORIA_CLIENTE> GetAllItens()
         {
             IQueryable<CATEGORIA_CLIENTE> query = Db.CATEGORIA_CLIENTE.Where(p => p.CACL_IN_ATIVO == 1);
             return query.ToList();
         }
 
-        public List<CATEGORIA_CLIENTE> GetAllItensAdm(Int32 idAss)
+        public List<CATEGORIA_CLIENTE> GetAllItensAdm()
         {
             IQueryable<CATEGORIA_CLIENTE> query = Db.CATEGORIA_CLIENTE;
             return query.ToList();

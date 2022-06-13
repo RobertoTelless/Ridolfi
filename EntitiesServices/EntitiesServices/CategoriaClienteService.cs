@@ -29,9 +29,9 @@ namespace ModelServices.EntitiesServices
 
         }
 
-        public CATEGORIA_CLIENTE CheckExist(CATEGORIA_CLIENTE conta, Int32 idAss)
+        public CATEGORIA_CLIENTE CheckExist(CATEGORIA_CLIENTE conta)
         {
-            CATEGORIA_CLIENTE item = _baseRepository.CheckExist(conta, idAss);
+            CATEGORIA_CLIENTE item = _baseRepository.CheckExist(conta);
             return item;
         }
 
@@ -41,14 +41,14 @@ namespace ModelServices.EntitiesServices
             return item;
         }
 
-        public List<CATEGORIA_CLIENTE> GetAllItens(Int32 idAss)
+        public List<CATEGORIA_CLIENTE> GetAllItens()
         {
-            return _baseRepository.GetAllItens(idAss);
+            return _baseRepository.GetAllItens();
         }
 
-        public List<CATEGORIA_CLIENTE> GetAllItensAdm(Int32 idAss)
+        public List<CATEGORIA_CLIENTE> GetAllItensAdm()
         {
-            return _baseRepository.GetAllItensAdm(idAss);
+            return _baseRepository.GetAllItensAdm();
         }
 
         public Int32 Create(CATEGORIA_CLIENTE item, LOG log)

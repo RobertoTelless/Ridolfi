@@ -63,6 +63,7 @@ namespace EntitiesServices.Model
         public Nullable<System.DateTime> PREC_DT_EXPEDICAO { get; set; }
         public string PREC_NM_PRC_LOA { get; set; }
         public string PREC_TX_OBSERVACAO { get; set; }
+        public Nullable<int> PREC_IN_ATIVO { get; set; }
     
         public virtual BANCO BANCO { get; set; }
         public virtual BENEFICIARIO BENEFICIARIO { get; set; }

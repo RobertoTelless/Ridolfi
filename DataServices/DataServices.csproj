@@ -160,6 +160,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\ClienteAnotacaoRepository.cs" />
+    <Compile Include="Repositories\PrecatorioRepository.cs" />
+    <Compile Include="Repositories\ClienteAnexoRepository.cs" />
+    <Compile Include="Repositories\ClienteContatoRepository.cs" />
+    <Compile Include="Repositories\ClienteRepository.cs" />
+    <Compile Include="Repositories\VaraRepository.cs" />
+    <Compile Include="Repositories\TRFRepository.cs" />
     <Compile Include="Repositories\TelefoneBenefRepository.cs" />
     <Compile Include="Repositories\EMailRepository.cs" />
     <Compile Include="Repositories\EnderecoRepository.cs" />

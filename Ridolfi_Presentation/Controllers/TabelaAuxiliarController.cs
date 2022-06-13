@@ -114,7 +114,7 @@ namespace ERP_CRM_Solution.Controllers
             // Carrega listas
             if ((List<CATEGORIA_CLIENTE>)Session["ListaCatCliente"] == null)
             {
-                listaMasterCC = ccApp.GetAllItens(idAss);
+                listaMasterCC = ccApp.GetAllItens();
                 Session["ListaCatCliente"] = listaMasterCC;
             }
             ViewBag.Listas = (List<CATEGORIA_CLIENTE>)Session["ListaCatCliente"];
@@ -163,7 +163,7 @@ namespace ERP_CRM_Solution.Controllers
                 return RedirectToAction("Login", "ControleAcesso");
             }
             Int32 idAss = (Int32)Session["IdAssinante"];
-            listaMasterCC = ccApp.GetAllItensAdm(idAss);
+            listaMasterCC = ccApp.GetAllItensAdm();
             Session["ListaCatCliente"] = listaMasterCC;
             return RedirectToAction("MontarTelaCatCliente");
         }

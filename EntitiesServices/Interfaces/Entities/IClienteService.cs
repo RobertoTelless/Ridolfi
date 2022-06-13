@@ -16,19 +16,19 @@ namespace ModelServices.Interfaces.EntitiesServices
         Int32 Edit(CLIENTE perfil);
         Int32 Delete(CLIENTE perfil, LOG log);
 
-        CLIENTE CheckExist(CLIENTE conta, Int32 idAss);
+        CLIENTE CheckExist(CLIENTE conta);
         CLIENTE GetItemById(Int32 id);
-        CLIENTE GetByEmail(String email);
-        List<CLIENTE> GetAllItens(Int32 idAss);
-        List<CLIENTE> GetAllItensAdm(Int32 idAss);
-        List<CATEGORIA_CLIENTE> GetAllTipos(Int32 idAss);
-        List<TIPO_PESSOA> GetAllTiposPessoa();
-        List<UF> GetAllUF();
-        UF GetUFbySigla(String sigla);
-        List<SEXO> GetAllSexo();
-
+        List<CLIENTE> GetAllItens();
+        List<CLIENTE> GetAllItensAdm();
+        List<CLIENTE> ExecuteFilter(Int32? catId, Int32? precatorio, Int32? trf, Int32? vara, Int32? titularidade, String npme, String oficio, String processo);
         CLIENTE_ANEXO GetAnexoById(Int32 id);
-        List<CLIENTE> ExecuteFilter(Int32? id, Int32? catId, String razao, String nome, String cpf, String cnpj, String email, String cidade, Int32? uf, Int32? ativo, Int32 idAss);
+        CLIENTE_ANOTACAO GetAnotacaoById(Int32 id);
+
+        List<CATEGORIA_CLIENTE> GetAllTipos();
+        List<PRECATORIO> GetAllPrecatorios();
+        List<TRF> GetAllTRF();
+        List<VARA> GetAllVara();
+        List<TITULARIDADE> GetAllTitularidade();
 
         CLIENTE_CONTATO GetContatoById(Int32 id);
         Int32 EditContato(CLIENTE_CONTATO item);

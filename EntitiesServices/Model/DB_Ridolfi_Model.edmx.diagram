@@ -156,6 +156,9 @@
         <AssociationConnector Association="DB_RidolfiModel.FK_USUARIO_ANEXO_USUARIO" ManuallyRouted="false" />
         <EntityTypeShape EntityType="DB_RidolfiModel.TIPO_TELEFONE_BASE" Width="1.5" PointX="5.375" PointY="3.875" />
         <AssociationConnector Association="DB_RidolfiModel.FK_TELEFONE_TIPO_TELEFONE_BASE" />
+        <EntityTypeShape EntityType="DB_RidolfiModel.CLIENTE_ANOTACAO" Width="1.5" PointX="11.5" PointY="54.375" />
+        <AssociationConnector Association="DB_RidolfiModel.FK_CLIENTE_ANOTACAO_CLIENTE" />
+        <AssociationConnector Association="DB_RidolfiModel.FK_CLIENTE_ANOTACAO_USUARIO" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -166,6 +166,8 @@
     <Compile Include="Attributes\CustomValidationCPFAttribute.cs" />
     <Compile Include="Attributes\DataAnteriorAttribute.cs" />
     <Compile Include="EntitiesServices\AgendaService.cs" />
+    <Compile Include="EntitiesServices\VaraService.cs" />
+    <Compile Include="EntitiesServices\TRFService.cs" />
     <Compile Include="EntitiesServices\BancoService.cs" />
     <Compile Include="EntitiesServices\HonorarioService.cs" />
     <Compile Include="EntitiesServices\TabelaIRRFService.cs" />
@@ -176,11 +178,9 @@
     <Compile Include="EntitiesServices\EscolaridadeService.cs" />
     <Compile Include="EntitiesServices\CategoriaClienteService.cs" />
     <Compile Include="EntitiesServices\CategoriaTelefoneService.cs" />
-    <Compile Include="EntitiesServices\ClienteCnpjService.cs" />
     <Compile Include="EntitiesServices\ClienteService.cs" />
     <Compile Include="EntitiesServices\ConfiguracaoService.cs" />
     <Compile Include="EntitiesServices\DepartamentoService.cs" />
-    <Compile Include="EntitiesServices\GrupoService.cs" />
     <Compile Include="EntitiesServices\LogService.cs" />
     <Compile Include="EntitiesServices\MensagemService.cs" />
     <Compile Include="EntitiesServices\NoticiaService.cs" />
@@ -196,6 +196,8 @@
     <Compile Include="EntitiesServices\TipoPessoaService.cs" />
     <Compile Include="EntitiesServices\UsuarioService.cs" />
     <Compile Include="Interfaces\Entities\IAgendaService.cs" />
+    <Compile Include="Interfaces\Entities\IVaraService.cs" />
+    <Compile Include="Interfaces\Entities\ITRFService.cs" />
     <Compile Include="Interfaces\Entities\IBancoService.cs" />
     <Compile Include="Interfaces\Entities\IHonorarioService.cs" />
     <Compile Include="Interfaces\Entities\ITabelaIRRFService.cs" />
@@ -206,11 +208,9 @@
     <Compile Include="Interfaces\Entities\IEscolaridadeService.cs" />
     <Compile Include="Interfaces\Entities\ICategoriaClienteService.cs" />
     <Compile Include="Interfaces\Entities\ICategoriaTelefoneService.cs" />
-    <Compile Include="Interfaces\Entities\IClienteCnpjService.cs" />
     <Compile Include="Interfaces\Entities\IClienteService.cs" />
     <Compile Include="Interfaces\Entities\IConfiguracaoService.cs" />
     <Compile Include="Interfaces\Entities\IDepartamentoService.cs" />
-    <Compile Include="Interfaces\Entities\IGrupoService.cs" />
     <Compile Include="Interfaces\Entities\ILogService.cs" />
     <Compile Include="Interfaces\Entities\IMensagemService.cs" />
     <Compile Include="Interfaces\Entities\INoticiaService.cs" />
@@ -227,6 +227,11 @@
     <Compile Include="Interfaces\Entities\IUsuarioService.cs" />
     <Compile Include="Interfaces\Repositories\IAgendaAnexoRepository.cs" />
     <Compile Include="Interfaces\Repositories\IAgendaRepository.cs" />
+    <Compile Include="Interfaces\Repositories\IClienteAnotacaoRepository.cs" />
+    <Compile Include="Interfaces\Repositories\IPrecatorioRepository.cs" />
+    <Compile Include="Interfaces\Repositories\ITitularidadeRepository.cs" />
+    <Compile Include="Interfaces\Repositories\IVaraRepository.cs" />
+    <Compile Include="Interfaces\Repositories\ITRFRepository.cs" />
     <Compile Include="Interfaces\Repositories\IBancoRepository.cs" />
     <Compile Include="Interfaces\Repositories\ITelefoneBenefRepository.cs" />
     <Compile Include="Interfaces\Repositories\IEMailRepository.cs" />
@@ -245,7 +250,6 @@
     <Compile Include="Interfaces\Repositories\ICategoriaTelefoneRepository.cs" />
     <Compile Include="Interfaces\Repositories\ICategoriaUsuarioRepository.cs" />
     <Compile Include="Interfaces\Repositories\IClienteAnexoRepository.cs" />
-    <Compile Include="Interfaces\Repositories\IClienteCnpjRepository.cs" />
     <Compile Include="Interfaces\Repositories\IClienteContatoRepository.cs" />
     <Compile Include="Interfaces\Repositories\IBeneficiarioRepository.cs" />
     <Compile Include="Interfaces\Repositories\IClienteRepository.cs" />
@@ -327,6 +331,9 @@
       <DependentUpon>DB_Ridolfi_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\CLIENTE_ANEXO.cs">
+      <DependentUpon>DB_Ridolfi_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\CLIENTE_ANOTACAO.cs">
       <DependentUpon>DB_Ridolfi_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\CLIENTE_CONTATO.cs">

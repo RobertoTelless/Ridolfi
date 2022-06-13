@@ -23,33 +23,21 @@ namespace ApplicationServices.Services
             _confService = confService;
         }
 
-        public List<CLIENTE> GetAllItens(Int32 idAss)
+        public List<CLIENTE> GetAllItens()
         {
-            List<CLIENTE> lista = _baseService.GetAllItens(idAss);
+            List<CLIENTE> lista = _baseService.GetAllItens();
             return lista;
         }
 
-        public List<UF> GetAllUF()
+        public List<CLIENTE> GetAllItensAdm()
         {
-            List<UF> lista = _baseService.GetAllUF();
+            List<CLIENTE> lista = _baseService.GetAllItensAdm();
             return lista;
         }
 
-        public UF GetUFbySigla(String sigla)
+        public CLIENTE_ANOTACAO GetAnotacaoById(Int32 id)
         {
-            return _baseService.GetUFbySigla(sigla);
-        }
-
-        public List<CLIENTE> GetAllItensAdm(Int32 idAss)
-        {
-            List<CLIENTE> lista = _baseService.GetAllItensAdm(idAss);
-            return lista;
-        }
-
-        public List<SEXO> GetAllSexo()
-        {
-            List<SEXO> lista = _baseService.GetAllSexo();
-            return lista;
+            return _baseService.GetAnotacaoById(id);
         }
 
         public CLIENTE GetItemById(Int32 id)
@@ -58,27 +46,39 @@ namespace ApplicationServices.Services
             return item;
         }
 
-        public CLIENTE GetByEmail(String email)
+        public CLIENTE CheckExist(CLIENTE conta)
         {
-            CLIENTE item = _baseService.GetByEmail(email);
+            CLIENTE item = _baseService.CheckExist(conta);
             return item;
         }
 
-        public CLIENTE CheckExist(CLIENTE conta, Int32 idAss)
+        public List<CATEGORIA_CLIENTE> GetAllTipos()
         {
-            CLIENTE item = _baseService.CheckExist(conta, idAss);
-            return item;
-        }
-
-        public List<CATEGORIA_CLIENTE> GetAllTipos(Int32 idAss)
-        {
-            List<CATEGORIA_CLIENTE> lista = _baseService.GetAllTipos(idAss);
+            List<CATEGORIA_CLIENTE> lista = _baseService.GetAllTipos();
             return lista;
         }
 
-        public List<TIPO_PESSOA> GetAllTiposPessoa()
+        public List<PRECATORIO> GetAllPrecatorios()
         {
-            List<TIPO_PESSOA> lista = _baseService.GetAllTiposPessoa();
+            List<PRECATORIO> lista = _baseService.GetAllPrecatorios();
+            return lista;
+        }
+
+        public List<TRF> GetAllTRF()
+        {
+            List<TRF> lista = _baseService.GetAllTRF();
+            return lista;
+        }
+
+        public List<VARA> GetAllVara()
+        {
+            List<VARA> lista = _baseService.GetAllVara();
+            return lista;
+        }
+
+        public List<TITULARIDADE> GetAllTitularidade()
+        {
+            List<TITULARIDADE> lista = _baseService.GetAllTitularidade();
             return lista;
         }
 
@@ -94,7 +94,7 @@ namespace ApplicationServices.Services
             return lista;
         }
 
-        public Int32 ExecuteFilter(Int32? id, Int32? catId, String razao, String nome, String cpf, String cnpj, String email, String cidade, Int32? uf, Int32? ativo, Int32 idAss, out List<CLIENTE> objeto)
+        public Int32 ExecuteFilter(Int32? catId, Int32? precatorio, Int32? trf, Int32? vara, Int32? titularidade, String nome, String oficio, String processo, out List<CLIENTE> objeto)
         {
             try
             {
@@ -102,7 +102,7 @@ namespace ApplicationServices.Services
                 Int32 volta = 0;
 
                 // Processa filtro
-                objeto = _baseService.ExecuteFilter(id, catId, razao, nome, cpf, cnpj, email, cidade, uf, ativo, idAss);
+                objeto = _baseService.ExecuteFilter(catId, precatorio, trf, vara, titularidade, nome, oficio, processo);
                 if (objeto.Count == 0)
                 {
                     volta = 1;
@@ -119,8 +119,6 @@ namespace ApplicationServices.Services
         {
             try
             {
-                var conf = _confService.GetItemById(usuario.ASSI_CD_ID.Value);
-
                 // Completa objeto
                 item.CLIE_IN_ATIVO = 1;
 
