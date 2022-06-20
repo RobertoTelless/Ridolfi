@@ -105,6 +105,7 @@ namespace ERP_CRM_Solution.Controllers
             ViewBag.Title = "TRF";
             ViewBag.UF = new SelectList(fornApp.GetAllUF(), "UF_CD_ID", "UF_NM_NOME");
             Session["IncluirTRF"] = 0;
+            Session["VoltarVara"] = 1;
 
             // Indicadores
             ViewBag.TRF = ((List<TRF>)Session["ListaTRF"]).Count;
@@ -314,7 +315,6 @@ namespace ERP_CRM_Solution.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult EditarTRF(TRFViewModel vm)
         {
             if ((String)Session["Ativa"] == null)
@@ -406,7 +406,6 @@ namespace ERP_CRM_Solution.Controllers
 
             // Executar
             TRF item = fornApp.GetItemById(id);
-            objetoFornAntes = (TRF)Session["TRF"];
             item.TRF1_IN_ATIVO = 0;
             Int32 volta = fornApp.ValidateDelete(item, usuario);
             if (volta == 1)
@@ -442,7 +441,6 @@ namespace ERP_CRM_Solution.Controllers
 
             // Executar
             TRF item = fornApp.GetItemById(id);
-            objetoFornAntes = (TRF)Session["TRF"];
             item.TRF1_IN_ATIVO = 1;
             Int32 volta = fornApp.ValidateReativar(item, usuario);
             listaMasterForn = new List<TRF>();
@@ -450,5 +448,36 @@ namespace ERP_CRM_Solution.Controllers
             Session["FiltroTRF"] = null;
             return RedirectToAction("MontarTelaTRF");
         }
+
+        public ActionResult EditarVara(Int32 id)
+        {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            Session["VoltarVara"] = 1;
+            return RedirectToAction("EditarVara", "Vara", new { id = id });
+        }
+
+        public ActionResult IncluirVara()
+        {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+            Session["VoltarVara"] = 1;
+            return RedirectToAction("IncluirVara", "Vara");
+        }
+
+        public ActionResult VoltarAnexoTRF()
+        {
+            if ((String)Session["Ativa"] == null)
+            {
+                return RedirectToAction("Login", "ControleAcesso");
+            }
+
+            return RedirectToAction("EditarTRF", new { id = (Int32)Session["IdTRF"] });
+        }
+
     }
 }

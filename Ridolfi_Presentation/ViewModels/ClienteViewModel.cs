@@ -35,6 +35,7 @@ namespace ERP_CRM_Solution.ViewModels
         public string CLIE_NR_VENCIMENTO { get; set; }
         public Nullable<int> CLIE_IN_PART { get; set; }
         public Nullable<int> CLIE_IN_ATIVO { get; set; }
+        public string CLIE_TX_OBSERVACOES { get; set; }
 
         public virtual CATEGORIA_CLIENTE CATEGORIA_CLIENTE { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -51,6 +52,8 @@ namespace ERP_CRM_Solution.ViewModels
         public virtual PRECATORIO PRECATORIO { get; set; }
         public virtual VARA VARA { get; set; }
         public virtual TITULARIDADE TITULARIDADE { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CLIENTE_ANOTACAO> CLIENTE_ANOTACAO { get; set; }
 
     }
 }

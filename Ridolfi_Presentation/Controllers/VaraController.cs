@@ -103,7 +103,8 @@ namespace SMS_Presentation.Controllers
             }
             ViewBag.Listas = (List<VARA>)Session["ListaVara"];
             ViewBag.Title = "Vara";
-            ViewBag.TRF = new SelectList(fornApp.GetAllTRF(), "TRF_CD_ID", "TRF_NM_NOME");
+            ViewBag.TRF = new SelectList(fornApp.GetAllTRF(), "TRF1_CD_ID", "TRF1_NM_NOME");
+            Session["VoltarVara"] = 2;
 
             // Indicadores
             ViewBag.Vara = ((List<VARA>)Session["ListaVara"]).Count;
@@ -195,6 +196,14 @@ namespace SMS_Presentation.Controllers
             {
                 return RedirectToAction("Login", "ControleAcesso");
             }
+            if ((Int32)Session["VoltarVara"] == 2)
+            {
+                return RedirectToAction("MontarTelaVara");
+            }
+            if ((Int32)Session["VoltarVara"] == 1)
+            {
+                return RedirectToAction("VoltarAnexoTRF", "TRF");
+            }
             return RedirectToAction("MontarTelaVara");
         }
 
@@ -220,7 +229,7 @@ namespace SMS_Presentation.Controllers
             Int32 idAss = (Int32)Session["IdAssinante"];
 
             // Prepara listas
-            ViewBag.TRF = new SelectList(fornApp.GetAllTRF(), "TRF_CD_ID", "TRF_NM_NOME");
+            ViewBag.TRF = new SelectList(fornApp.GetAllTRF(), "TRF1_CD_ID", "TRF1_NM_NOME");
 
             // Prepara view
             VARA item = new VARA();
@@ -237,7 +246,7 @@ namespace SMS_Presentation.Controllers
                 return RedirectToAction("Login", "ControleAcesso");
             }
             Int32 idAss = (Int32)Session["IdAssinante"];
-            ViewBag.TRF = new SelectList(fornApp.GetAllTRF(), "TRF_CD_ID", "TRF_NM_NOME");
+            ViewBag.TRF = new SelectList(fornApp.GetAllTRF(), "TRF1_CD_ID", "TRF1_NM_NOME");
             if (ModelState.IsValid)
             {
                 try
@@ -259,6 +268,14 @@ namespace SMS_Presentation.Controllers
                     Session["ListaVara"] = null;
                     Session["Vara"] = fornApp.GetAllItens();
                     Session["IdVolta"] = item.VARA_CD_ID;
+                    if ((Int32)Session["VoltarVara"] == 2)
+                    {
+                        return RedirectToAction("MontarTelaVara");
+                    }
+                    if ((Int32)Session["VoltarVara"] == 1)
+                    {
+                        return RedirectToAction("VoltarAnexoTRF", "TRF");
+                    }
                     return RedirectToAction("MontarTelaVara");
                 }
                 catch (Exception ex)
@@ -300,7 +317,7 @@ namespace SMS_Presentation.Controllers
             Int32 idAss = (Int32)Session["IdAssinante"];
 
             // Prepara view
-            ViewBag.TRF = new SelectList(fornApp.GetAllTRF(), "TRF_CD_ID", "TRF_NM_NOME");
+            ViewBag.TRF = new SelectList(fornApp.GetAllTRF(), "TRF1_CD_ID", "TRF1_NM_NOME");
 
             VARA item = fornApp.GetItemById(id);
             objetoFornAntes = item;
@@ -312,7 +329,6 @@ namespace SMS_Presentation.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult EditarVara(VaraViewModel vm)
         {
             if ((String)Session["Ativa"] == null)
@@ -320,7 +336,7 @@ namespace SMS_Presentation.Controllers
                 return RedirectToAction("Login", "ControleAcesso");
             }
             Int32 idAss = (Int32)Session["IdAssinante"];
-            ViewBag.TRF = new SelectList(fornApp.GetAllTRF(), "TRF_CD_ID", "TRF_NM_NOME");
+            ViewBag.TRF = new SelectList(fornApp.GetAllTRF(), "TRF1_CD_ID", "TRF1_NM_NOME");
             if (ModelState.IsValid)
             {
                 try
@@ -335,6 +351,14 @@ namespace SMS_Presentation.Controllers
                     // Sucesso
                     listaMasterForn = new List<VARA>();
                     Session["ListaVara"] = null;
+                    if ((Int32)Session["VoltarVara"] == 2)
+                    {
+                        return RedirectToAction("MontarTelaVara");
+                    }
+                    if ((Int32)Session["VoltarVara"] == 1)
+                    {
+                        return RedirectToAction("VoltarAnexoTRF", "TRF");
+                    }
                     return RedirectToAction("MontarTelaVara");
                 }
                 catch (Exception ex)
@@ -404,7 +428,6 @@ namespace SMS_Presentation.Controllers
 
             // Executar
             VARA item = fornApp.GetItemById(id);
-            objetoFornAntes = (VARA)Session["Vara"];
             item.VARA_IN_ATIVO = 0;
             Int32 volta = fornApp.ValidateDelete(item, usuario);
             if (volta == 1)
@@ -440,7 +463,6 @@ namespace SMS_Presentation.Controllers
 
             // Executar
             VARA item = fornApp.GetItemById(id);
-            objetoFornAntes = (VARA)Session["Vara"];
             item.VARA_IN_ATIVO = 1;
             Int32 volta = fornApp.ValidateReativar(item, usuario);
             listaMasterForn = new List<VARA>();

@@ -141,6 +141,7 @@ namespace ApplicationServices.Services
 
                 // Acerta campos
                 item.VARA_IN_ATIVO = 0;
+                item.TRF = null;
 
                 // Monta Log
                 LOG log = new LOG
@@ -149,7 +150,7 @@ namespace ApplicationServices.Services
                     USUA_CD_ID = usuario.USUA_CD_ID,
                     LOG_IN_ATIVO = 1,
                     LOG_NM_OPERACAO = "DelVARA",
-                    LOG_TX_REGISTRO = Serialization.SerializeJSON<VARA>(item)
+                    LOG_TX_REGISTRO = item.VARA_NM_NOME
                 };
 
                 // Persiste
@@ -169,6 +170,7 @@ namespace ApplicationServices.Services
 
                 // Acerta campos
                 item.VARA_IN_ATIVO = 1;
+                item.TRF = null;
 
                 // Monta Log
                 LOG log = new LOG
@@ -177,7 +179,7 @@ namespace ApplicationServices.Services
                     USUA_CD_ID = usuario.USUA_CD_ID,
                     LOG_IN_ATIVO = 1,
                     LOG_NM_OPERACAO = "ReatVARA",
-                    LOG_TX_REGISTRO = Serialization.SerializeJSON<VARA>(item)
+                    LOG_TX_REGISTRO = item.VARA_NM_NOME
                 };
 
                 // Persiste

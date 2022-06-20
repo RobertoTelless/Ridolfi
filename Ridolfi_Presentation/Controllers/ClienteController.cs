@@ -662,7 +662,7 @@ namespace ERP_CRM_Solution.Controllers
             {
                 return RedirectToAction("Login", "ControleAcesso");
             }
-            Int32 id = (Int32)Session["IdBeneficiario"];
+            Int32 id = (Int32)Session["IdCliente"];
             CLIENTE item = tranApp.GetItemById(id);
             USUARIO usuarioLogado = (USUARIO)Session["UserCredentials"];
             CLIENTE_ANOTACAO coment = new CLIENTE_ANOTACAO();

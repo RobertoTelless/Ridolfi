@@ -165,6 +165,7 @@
     <Compile Include="Repositories\ClienteAnexoRepository.cs" />
     <Compile Include="Repositories\ClienteContatoRepository.cs" />
     <Compile Include="Repositories\ClienteRepository.cs" />
+    <Compile Include="Repositories\TitularidadeRepository.cs" />
     <Compile Include="Repositories\VaraRepository.cs" />
     <Compile Include="Repositories\TRFRepository.cs" />
     <Compile Include="Repositories\TelefoneBenefRepository.cs" />

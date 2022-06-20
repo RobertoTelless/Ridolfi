@@ -17,6 +17,7 @@ namespace ERP_CRM_Solution.ViewModels
         [StringLength(50, MinimumLength = 3, ErrorMessage = "O NOME deve conter no minimo 3 caracteres e no máximo 50 caracteres.")]
         public string VARA_NM_NOME { get; set; }
         public int VARA_IN_ATIVO { get; set; }
+        public string VARA_TX_OBSERVACOES { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CLIENTE> CLIENTE { get; set; }

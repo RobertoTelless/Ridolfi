@@ -40,6 +40,7 @@ namespace EntitiesServices.Model
         public string CLIE_NR_VENCIMENTO { get; set; }
         public Nullable<int> CLIE_IN_PART { get; set; }
         public Nullable<int> CLIE_IN_ATIVO { get; set; }
+        public string CLIE_TX_OBSERVACOES { get; set; }
     
         public virtual CATEGORIA_CLIENTE CATEGORIA_CLIENTE { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

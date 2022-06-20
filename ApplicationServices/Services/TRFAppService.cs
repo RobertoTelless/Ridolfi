@@ -158,7 +158,7 @@ namespace ApplicationServices.Services
                     USUA_CD_ID = usuario.USUA_CD_ID,
                     LOG_IN_ATIVO = 1,
                     LOG_NM_OPERACAO = "DelTRF",
-                    LOG_TX_REGISTRO = Serialization.SerializeJSON<TRF>(item)
+                    LOG_TX_REGISTRO = item.TRF1_NM_NOME
                 };
 
                 // Persiste
@@ -178,6 +178,7 @@ namespace ApplicationServices.Services
 
                 // Acerta campos
                 item.TRF1_IN_ATIVO = 1;
+                item.UF = null;
 
                 // Monta Log
                 LOG log = new LOG
@@ -186,7 +187,7 @@ namespace ApplicationServices.Services
                     USUA_CD_ID = usuario.USUA_CD_ID,
                     LOG_IN_ATIVO = 1,
                     LOG_NM_OPERACAO = "ReatTRF",
-                    LOG_TX_REGISTRO = Serialization.SerializeJSON<TRF>(item)
+                    LOG_TX_REGISTRO = item.TRF1_NM_NOME
                 };
 
                 // Persiste

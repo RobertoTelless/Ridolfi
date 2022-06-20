@@ -24,6 +24,7 @@ namespace EntitiesServices.Model
         public int TRF1_CD_ID { get; set; }
         public string VARA_NM_NOME { get; set; }
         public int VARA_IN_ATIVO { get; set; }
+        public string VARA_TX_OBSERVACOES { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CLIENTE> CLIENTE { get; set; }

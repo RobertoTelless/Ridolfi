@@ -174,6 +174,7 @@
           <Property Name="CLIE_NR_VENCIMENTO" Type="varchar" MaxLength="4" />
           <Property Name="CLIE_IN_PART" Type="int" />
           <Property Name="CLIE_IN_ATIVO" Type="int" />
+          <Property Name="CLIE_TX_OBSERVACOES" Type="text" />
         </EntityType>
         <EntityType Name="CLIENTE_ANEXO">
           <Key>
@@ -825,6 +826,7 @@
           <Property Name="TRF1_NM_NOME" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="TRF1_TX_OBSERVACOES" Type="image" />
           <Property Name="TRF1_IN_ATIVO" Type="int" Nullable="false" />
+          <Property Name="TRF1_TX_OBSERVACAO" Type="text" />
         </EntityType>
         <EntityType Name="UF">
           <Key>
@@ -902,6 +904,7 @@
           <Property Name="TRF1_CD_ID" Type="int" Nullable="false" />
           <Property Name="VARA_NM_NOME" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="VARA_IN_ATIVO" Type="int" Nullable="false" />
+          <Property Name="VARA_TX_OBSERVACOES" Type="text" />
         </EntityType>
         <Association Name="FK_AGENDA_ANEXO_AGENDA">
           <End Role="AGENDA" Type="Self.AGENDA" Multiplicity="1" />
@@ -2502,6 +2505,7 @@
           <NavigationProperty Name="VARA" Relationship="Self.FKCLIENTE745716" FromRole="CLIENTE" ToRole="VARA" />
           <NavigationProperty Name="TITULARIDADE" Relationship="Self.FKCLIENTE824441" FromRole="CLIENTE" ToRole="TITULARIDADE" />
           <NavigationProperty Name="CLIENTE_ANOTACAO" Relationship="DB_RidolfiModel.FK_CLIENTE_ANOTACAO_CLIENTE" FromRole="CLIENTE" ToRole="CLIENTE_ANOTACAO" />
+          <Property Name="CLIE_TX_OBSERVACOES" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="CLIENTE_ANEXO">
           <Key>
@@ -3231,6 +3235,7 @@
           <NavigationProperty Name="PRECATORIO" Relationship="Self.FKPRECATORIO966598" FromRole="TRF" ToRole="PRECATORIO" />
           <NavigationProperty Name="UF" Relationship="Self.FKTRF126253" FromRole="TRF" ToRole="UF" />
           <NavigationProperty Name="VARA" Relationship="Self.FKVARA689447" FromRole="TRF" ToRole="VARA" />
+          <Property Name="TRF1_TX_OBSERVACAO" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="UF">
           <Key>
@@ -3334,6 +3339,7 @@
           <Property Name="VARA_IN_ATIVO" Type="Int32" Nullable="false" />
           <NavigationProperty Name="CLIENTE" Relationship="Self.FKCLIENTE745716" FromRole="VARA" ToRole="CLIENTE" />
           <NavigationProperty Name="TRF" Relationship="Self.FKVARA689447" FromRole="VARA" ToRole="TRF" />
+          <Property Name="VARA_TX_OBSERVACOES" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_AGENDA_ANEXO_AGENDA">
           <End Role="AGENDA" Type="Self.AGENDA" Multiplicity="1" />
@@ -4929,6 +4935,7 @@
           <EntitySetMapping Name="CLIENTE">
             <EntityTypeMapping TypeName="DB_RidolfiModel.CLIENTE">
               <MappingFragment StoreEntitySet="CLIENTE">
+                <ScalarProperty Name="CLIE_TX_OBSERVACOES" ColumnName="CLIE_TX_OBSERVACOES" />
                 <ScalarProperty Name="CLIE_CD_ID" ColumnName="CLIE_CD_ID" />
                 <ScalarProperty Name="CACL_CD_ID" ColumnName="CACL_CD_ID" />
                 <ScalarProperty Name="PREC_CD_ID" ColumnName="PREC_CD_ID" />
@@ -5623,6 +5630,7 @@
           <EntitySetMapping Name="TRF">
             <EntityTypeMapping TypeName="DB_RidolfiModel.TRF">
               <MappingFragment StoreEntitySet="TRF">
+                <ScalarProperty Name="TRF1_TX_OBSERVACAO" ColumnName="TRF1_TX_OBSERVACAO" />
                 <ScalarProperty Name="TRF1_CD_ID" ColumnName="TRF1_CD_ID" />
                 <ScalarProperty Name="UF_CD_ID" ColumnName="UF_CD_ID" />
                 <ScalarProperty Name="TRF1_NM_NOME" ColumnName="TRF1_NM_NOME" />
@@ -5705,6 +5713,7 @@
           <EntitySetMapping Name="VARA">
             <EntityTypeMapping TypeName="DB_RidolfiModel.VARA">
               <MappingFragment StoreEntitySet="VARA">
+                <ScalarProperty Name="VARA_TX_OBSERVACOES" ColumnName="VARA_TX_OBSERVACOES" />
                 <ScalarProperty Name="VARA_CD_ID" ColumnName="VARA_CD_ID" />
                 <ScalarProperty Name="TRF1_CD_ID" ColumnName="TRF1_CD_ID" />
                 <ScalarProperty Name="VARA_NM_NOME" ColumnName="VARA_NM_NOME" />

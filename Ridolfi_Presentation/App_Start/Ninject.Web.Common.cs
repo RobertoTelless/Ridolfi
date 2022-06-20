@@ -185,7 +185,9 @@ namespace Presentation.Start
             kernel.Bind<ITipoTelefoneBaseRepository>().To<TipoTelefoneBaseRepository>();
             kernel.Bind<ITRFRepository>().To<TRFRepository>();
             kernel.Bind<IVaraRepository>().To<VaraRepository>();
-            kernel.Bind<ITitularidadeRepository>().To<ITitularidadeRepository>();
+            kernel.Bind<ITitularidadeRepository>().To<TitularidadeRepository>();
+            kernel.Bind<IPrecatorioRepository>().To<PrecatorioRepository>();
+            kernel.Bind<IClienteAnotacaoRepository>().To<ClienteAnotacaoRepository>();
 
         }
     }

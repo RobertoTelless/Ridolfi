@@ -28,6 +28,7 @@ namespace EntitiesServices.Model
         public string TRF1_NM_NOME { get; set; }
         public byte[] TRF1_TX_OBSERVACOES { get; set; }
         public int TRF1_IN_ATIVO { get; set; }
+        public string TRF1_TX_OBSERVACAO { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CLIENTE> CLIENTE { get; set; }

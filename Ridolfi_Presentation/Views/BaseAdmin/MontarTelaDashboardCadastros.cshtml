@@ -15,8 +15,9 @@
                     <div class="col-lg-12 col-md-12 col-xs-12">
                         @Html.ButtonLinkIndex(text: "Beneficiários", action: "MontarTelaBeneficiario", controller: "Beneficiario", buttonClass: "success")
                         @Html.ButtonLinkIndex(text: "Advogados", action: "MontarTelaHonorario", controller: "Honorario", buttonClass: "success")
-                        @Html.ButtonLinkIndex(text: "TRFs & Varas", action: "CarregarDesenvolvimento", controller: "BaseAdmin", buttonClass: "success")
-                        @Html.ButtonLinkIndex(text: "Clientes", action: "CarregarDesenvolvimento", controller: "BaseAdmin", buttonClass: "success")
+                        @Html.ButtonLinkIndex(text: "Tribunais Federais", action: "MontarTelaTRF", controller: "TRF", buttonClass: "success")
+                        @Html.ButtonLinkIndex(text: "Varas dos Tribunais Federais", action: "MontarTelaVara", controller: "Vara", buttonClass: "success")
+                        @Html.ButtonLinkIndex(text: "Clientes", action: "MontarTelaCliente", controller: "Cliente", buttonClass: "success")
                         @Html.ButtonLinkIndex(text: "Precatórios", action: "CarregarDesenvolvimento", controller: "BaseAdmin", buttonClass: "success")
                         @Html.ButtonLinkIndex(text: "Dashboard Inicial", action: "CarregarBase", controller: "BaseAdmin", buttonClass: "warning")
                     </div>
