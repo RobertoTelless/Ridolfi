@@ -37,6 +37,7 @@ namespace ERP_CRM_Solution.Controllers
         private readonly ITelefoneAppService telApp;
         private readonly IBeneficiarioAppService benApp;
         private readonly IHonorarioAppService honApp;
+        private readonly ITRFAppService trfApp;
 
         private String msg;
         private Exception exception;
@@ -45,7 +46,7 @@ namespace ERP_CRM_Solution.Controllers
         List<USUARIO> listaMaster = new List<USUARIO>();
         String extensao;
 
-        public BaseAdminController(IUsuarioAppService baseApps, ILogAppService logApps, INoticiaAppService notApps, ITarefaAppService tarApps, INotificacaoAppService notfApps, IUsuarioAppService usuApps, IAgendaAppService ageApps, IConfiguracaoAppService confApps, ITipoPessoaAppService tpApps, ITelefoneAppService telApps, IBeneficiarioAppService benApps, IHonorarioAppService honApps)
+        public BaseAdminController(IUsuarioAppService baseApps, ILogAppService logApps, INoticiaAppService notApps, ITarefaAppService tarApps, INotificacaoAppService notfApps, IUsuarioAppService usuApps, IAgendaAppService ageApps, IConfiguracaoAppService confApps, ITipoPessoaAppService tpApps, ITelefoneAppService telApps, IBeneficiarioAppService benApps, IHonorarioAppService honApps, ITRFAppService trfApps, IClienteAppService cliApps)
         {
             baseApp = baseApps;
             logApp = logApps;
@@ -59,6 +60,8 @@ namespace ERP_CRM_Solution.Controllers
             telApp = telApps;
             benApp = benApps;
             honApp = honApps;
+            trfApp = trfApps;
+            cliApp = cliApps;
         }
 
         public ActionResult CarregarAdmin()
@@ -120,8 +123,10 @@ namespace ERP_CRM_Solution.Controllers
             List<HONORARIO> hono = honApp.GetAllItens();
             Int32 honorarios = hono.Count;
             Int32 precatorios = 0;
-            Int32 clientes = 0;
-            Int32 trf = 0;
+            List<CLIENTE> clie = cliApp.GetAllItens();
+            Int32 clientes = clie.Count;
+            List<TRF> trfs = trfApp.GetAllItens();
+            Int32 trf = trfs.Count;
 
             Session["Beneficiarios"] = beneficiarios;
             Session["Honorarios"] = honorarios;

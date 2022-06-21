@@ -29,7 +29,7 @@
             <div class="row">
                 <div class="col-lg-3 col-md-3 col-sm-12">
                     <div class="ibox-content text-center">
-                        <h1>@Model.USUA_NM_NOME.Substring(0, Model.USUA_NM_NOME.IndexOf(" "))</h1>
+                        <h1>@((String)Session["Nome"])</h1>
                         <div class="m-b-sm">
                             <img alt="image" class="img-circle" src="@Url.Content(Model.USUA_AQ_FOTO)" style="width: auto; height: auto; max-height: 90px; max-width: 90px;">
                         </div>
