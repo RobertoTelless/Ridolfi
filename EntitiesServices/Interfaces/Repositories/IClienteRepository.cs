@@ -14,6 +14,6 @@ namespace ModelServices.Interfaces.Repositories
         CLIENTE GetItemById(Int32 id);
         List<CLIENTE> GetAllItens();
         List<CLIENTE> GetAllItensAdm();
-        List<CLIENTE> ExecuteFilter(Int32? catId, Int32? precatorio, Int32? trf, Int32? vara, Int32? titularidade, String npme, String oficio, String processo);
+        List<CLIENTE> ExecuteFilter(Int32? catId, Int32? precatorio, Int32? trf, Int32? vara, Int32? titularidade, String nome, String oficio, String processo, DateTime? data);
     }
 }

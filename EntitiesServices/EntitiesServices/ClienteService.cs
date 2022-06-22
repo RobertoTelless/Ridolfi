@@ -106,9 +106,9 @@ namespace ModelServices.EntitiesServices
             return _contRepository.GetItemById(id);
         }
 
-        public List<CLIENTE> ExecuteFilter(Int32? catId, Int32? precatorio, Int32? trf, Int32? vara, Int32? titularidade, String nome, String oficio, String processo)
+        public List<CLIENTE> ExecuteFilter(Int32? catId, Int32? precatorio, Int32? trf, Int32? vara, Int32? titularidade, String nome, String oficio, String processo, DateTime? data)
         {
-            return _baseRepository.ExecuteFilter(catId, precatorio, trf, vara, titularidade, nome, oficio, processo);
+            return _baseRepository.ExecuteFilter(catId, precatorio, trf, vara, titularidade, nome, oficio, processo, data);
         }
 
         public Int32 Create(CLIENTE item, LOG log)

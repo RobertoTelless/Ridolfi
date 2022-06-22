@@ -175,6 +175,7 @@
           <Property Name="CLIE_IN_PART" Type="int" />
           <Property Name="CLIE_IN_ATIVO" Type="int" />
           <Property Name="CLIE_TX_OBSERVACOES" Type="text" />
+          <Property Name="CLIE_DT_CADASTRO" Type="date" />
         </EntityType>
         <EntityType Name="CLIENTE_ANEXO">
           <Key>
@@ -2506,6 +2507,7 @@
           <NavigationProperty Name="TITULARIDADE" Relationship="Self.FKCLIENTE824441" FromRole="CLIENTE" ToRole="TITULARIDADE" />
           <NavigationProperty Name="CLIENTE_ANOTACAO" Relationship="DB_RidolfiModel.FK_CLIENTE_ANOTACAO_CLIENTE" FromRole="CLIENTE" ToRole="CLIENTE_ANOTACAO" />
           <Property Name="CLIE_TX_OBSERVACOES" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CLIE_DT_CADASTRO" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="CLIENTE_ANEXO">
           <Key>
@@ -4935,6 +4937,7 @@
           <EntitySetMapping Name="CLIENTE">
             <EntityTypeMapping TypeName="DB_RidolfiModel.CLIENTE">
               <MappingFragment StoreEntitySet="CLIENTE">
+                <ScalarProperty Name="CLIE_DT_CADASTRO" ColumnName="CLIE_DT_CADASTRO" />
                 <ScalarProperty Name="CLIE_TX_OBSERVACOES" ColumnName="CLIE_TX_OBSERVACOES" />
                 <ScalarProperty Name="CLIE_CD_ID" ColumnName="CLIE_CD_ID" />
                 <ScalarProperty Name="CACL_CD_ID" ColumnName="CACL_CD_ID" />

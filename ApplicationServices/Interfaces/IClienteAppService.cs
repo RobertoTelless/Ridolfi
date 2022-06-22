@@ -19,7 +19,7 @@ namespace ApplicationServices.Interfaces
         List<CLIENTE> GetAllItensAdm();
         CLIENTE GetItemById(Int32 id);
         CLIENTE CheckExist(CLIENTE conta);
-        Int32 ExecuteFilter(Int32? catId, Int32? precatorio, Int32? trf, Int32? vara, Int32? titularidade, String npme, String oficio, String processo, out List<CLIENTE> objeto);
+        Int32 ExecuteFilter(Int32? catId, Int32? precatorio, Int32? trf, Int32? vara, Int32? titularidade, String npme, String oficio, String processo, DateTime? data, out List<CLIENTE> objeto);
         CLIENTE_ANEXO GetAnexoById(Int32 id);
         CLIENTE_ANOTACAO GetAnotacaoById(Int32 id);
 

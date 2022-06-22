@@ -44,27 +44,27 @@ namespace DataServices.Repositories
             return query.ToList();
         }
 
-        public List<CLIENTE> ExecuteFilter(Int32? catId, Int32? precatorio, Int32? trf, Int32? vara, Int32? titularidade, String nome, String oficio, String processo)
+        public List<CLIENTE> ExecuteFilter(Int32? catId, Int32? precatorio, Int32? trf, Int32? vara, Int32? titularidade, String nome, String oficio, String processo, DateTime? data)
         {
             List<CLIENTE> lista = new List<CLIENTE>();
             IQueryable<CLIENTE> query = Db.CLIENTE;
-            if (catId != null)
+            if (catId > 0)
             {
                 query = query.Where(p => p.CATEGORIA_CLIENTE.CACL_CD_ID == catId);
             }
-            if (precatorio != null)
+            if (precatorio > 0)
             {
                 query = query.Where(p => p.PREC_CD_ID == precatorio);
             }
-            if (trf != null)
+            if (trf > 0)
             {
                 query = query.Where(p => p.TRF1_CD_ID == trf);
             }
-            if (vara != null)
+            if (vara > 0)
             {
                 query = query.Where(p => p.VARA_CD_ID == vara);
             }
-            if (titularidade != null)
+            if (titularidade > 0)
             {
                 query = query.Where(p => p.TITU_CD_ID == titularidade);
             }
@@ -79,6 +79,10 @@ namespace DataServices.Repositories
             if (!String.IsNullOrEmpty(processo))
             {
                 query = query.Where(p => p.CLIE_NR_PROCESSO == processo);
+            }
+            if (data != null)
+            {
+                query = query.Where(p => DbFunctions.TruncateTime(p.CLIE_DT_CADASTRO) == DbFunctions.TruncateTime(data));
             }
             if (query != null)
             {

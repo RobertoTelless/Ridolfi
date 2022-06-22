@@ -2815,6 +2815,7 @@
     <Content Include="Imagens\1\Beneficiarios\4\Anexos\K_C_Agrawal.pdf" />
     <Content Include="Imagens\1\Beneficiarios\7\Anexos\92.Data+Engineering_2-1614270590423.pdf" />
     <Content Include="Imagens\1\Beneficiarios\7\Anexos\Medium_voltage_products.pdf" />
+    <Content Include="Imagens\1\Cliente\1\Anexos\Targo_01.pdf" />
     <None Include="Properties\PublishProfiles\DBMasterData - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\ModelosDashboard - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\on-suite-dashboards - FTP.pubxml" />

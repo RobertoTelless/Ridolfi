@@ -108,6 +108,10 @@
                                                     Nome do Réu
                                                     @Html.TextBoxFor(m => m.CLIE_NM_REU, new { @class = "form-control", autofocus = true, @readonly="readonly"  })
                                                 </div>
+                                                <div class="col-lg-2 col-md-2 col-xs-12">
+                                                    Data Cadastro
+                                                    @Html.TextBoxFor(m => m.CLIE_DT_CADASTRO, "{0:dd/MM/yyyy}", new { @class = "form-control", autofocus = true, @readonly="readonly", @style = "color:green; font-weight:bold" })
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

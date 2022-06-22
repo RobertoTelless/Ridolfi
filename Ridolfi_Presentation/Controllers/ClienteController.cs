@@ -158,7 +158,7 @@ namespace ERP_CRM_Solution.Controllers
                 // Executa a operação
                 List<CLIENTE> listaObj = new List<CLIENTE>();
                 Session["FiltroCliente"] = item;
-                Int32 volta = tranApp.ExecuteFilter(item.CACL_CD_ID, item.PREC_CD_ID, item.TRF1_CD_ID, item.VARA_CD_ID, item.TITU_CD_ID, item.CLIE_NM_NOME, item.CLIE_NR_OFICIO, item.CLIE_NR_PROCESSO, out listaObj);
+                Int32 volta = tranApp.ExecuteFilter(item.CACL_CD_ID, item.PREC_CD_ID, item.TRF1_CD_ID, item.VARA_CD_ID, item.TITU_CD_ID, item.CLIE_NM_NOME, item.CLIE_NR_OFICIO, item.CLIE_NR_PROCESSO, item.CLIE_DT_CADASTRO, out listaObj);
 
                 // Verifica retorno
                 if (volta == 1)
@@ -225,6 +225,7 @@ namespace ERP_CRM_Solution.Controllers
             vm.CLIE_IN_ATIVO = 1;
             vm.CLIE_VL_VALOR = 0;
             vm.CLIE_VL_VALOR_PAGO = 0;
+            vm.CLIE_DT_CADASTRO = DateTime.Today.Date;
             return View(vm);
         }
 

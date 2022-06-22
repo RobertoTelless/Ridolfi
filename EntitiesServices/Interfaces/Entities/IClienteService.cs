@@ -20,7 +20,7 @@ namespace ModelServices.Interfaces.EntitiesServices
         CLIENTE GetItemById(Int32 id);
         List<CLIENTE> GetAllItens();
         List<CLIENTE> GetAllItensAdm();
-        List<CLIENTE> ExecuteFilter(Int32? catId, Int32? precatorio, Int32? trf, Int32? vara, Int32? titularidade, String npme, String oficio, String processo);
+        List<CLIENTE> ExecuteFilter(Int32? catId, Int32? precatorio, Int32? trf, Int32? vara, Int32? titularidade, String nome, String oficio, String processo, DateTime? data);
         CLIENTE_ANEXO GetAnexoById(Int32 id);
         CLIENTE_ANOTACAO GetAnotacaoById(Int32 id);
 

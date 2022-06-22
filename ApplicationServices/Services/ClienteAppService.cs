@@ -94,7 +94,7 @@ namespace ApplicationServices.Services
             return lista;
         }
 
-        public Int32 ExecuteFilter(Int32? catId, Int32? precatorio, Int32? trf, Int32? vara, Int32? titularidade, String nome, String oficio, String processo, out List<CLIENTE> objeto)
+        public Int32 ExecuteFilter(Int32? catId, Int32? precatorio, Int32? trf, Int32? vara, Int32? titularidade, String nome, String oficio, String processo, DateTime? data, out List<CLIENTE> objeto)
         {
             try
             {
@@ -102,7 +102,7 @@ namespace ApplicationServices.Services
                 Int32 volta = 0;
 
                 // Processa filtro
-                objeto = _baseService.ExecuteFilter(catId, precatorio, trf, vara, titularidade, nome, oficio, processo);
+                objeto = _baseService.ExecuteFilter(catId, precatorio, trf, vara, titularidade, nome, oficio, processo, data);
                 if (objeto.Count == 0)
                 {
                     volta = 1;
