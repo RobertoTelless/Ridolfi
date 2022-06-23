@@ -160,7 +160,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\PrecatorioAnotacaoRepository.cs" />
+    <Compile Include="Repositories\PrecatorioAnexoRepository.cs" />
     <Compile Include="Repositories\ClienteAnotacaoRepository.cs" />
+    <Compile Include="Repositories\PrecatorioEstadoRepository.cs" />
+    <Compile Include="Repositories\NaturezaRepository.cs" />
     <Compile Include="Repositories\PrecatorioRepository.cs" />
     <Compile Include="Repositories\ClienteAnexoRepository.cs" />
     <Compile Include="Repositories\ClienteContatoRepository.cs" />

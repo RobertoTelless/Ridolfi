@@ -582,6 +582,7 @@
           <Property Name="PREC_SG_HON_IR_RRA" Type="varchar" MaxLength="1" />
           <Property Name="PREC_IN_HON_MESES_EXE_ANTERIOR" Type="int" />
           <Property Name="PREC_IN_FOI_PESQUISADO" Type="int" />
+          <Property Name="PREC_IN_SITUACAO_ATUAL" Type="int" />
           <Property Name="PREC_DT_INSERT_BD" Type="date" />
           <Property Name="PREC_IN_FOI_IMPORTADO_PIPE" Type="int" />
           <Property Name="PREC_DT_PROTOCOLO_TRF" Type="date" />
@@ -591,6 +592,29 @@
           <Property Name="PREC_NM_PRC_LOA" Type="varchar" MaxLength="2" />
           <Property Name="PREC_TX_OBSERVACAO" Type="text" />
           <Property Name="PREC_IN_ATIVO" Type="int" />
+        </EntityType>
+        <EntityType Name="PRECATORIO_ANEXO">
+          <Key>
+            <PropertyRef Name="PRAN_CD_ID" />
+          </Key>
+          <Property Name="PRAN_CD_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PREC_CD_ID" Type="int" Nullable="false" />
+          <Property Name="PRAN_NM_TITULO" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="PRAN_DT_ANEXO" Type="date" Nullable="false" />
+          <Property Name="PRAN_IN_TIPO" Type="int" Nullable="false" />
+          <Property Name="PRAN_AQ_ARQUIVO" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="PRAN_IN_ATIVO" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PRECATORIO_ANOTACAO">
+          <Key>
+            <PropertyRef Name="PRAT_CD_ID" />
+          </Key>
+          <Property Name="PRAT_CD_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PREC_CD_ID" Type="int" Nullable="false" />
+          <Property Name="USUA_CD_ID" Type="int" Nullable="false" />
+          <Property Name="PRAT_DT_ANOTACAO" Type="datetime" Nullable="false" />
+          <Property Name="PRAT_TX_ANOTACAO" Type="text" Nullable="false" />
+          <Property Name="PRAT_IN_ATIVO" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="PRECATORIO_ESTADO">
           <Key>
@@ -1375,6 +1399,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PRECATORIO_ANEXO_PRECATORIO">
+          <End Role="PRECATORIO" Type="Self.PRECATORIO" Multiplicity="1" />
+          <End Role="PRECATORIO_ANEXO" Type="Self.PRECATORIO_ANEXO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRECATORIO">
+              <PropertyRef Name="PREC_CD_ID" />
+            </Principal>
+            <Dependent Role="PRECATORIO_ANEXO">
+              <PropertyRef Name="PREC_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRECATORIO_ANOTACAO_PRECATORIO">
+          <End Role="PRECATORIO" Type="Self.PRECATORIO" Multiplicity="1" />
+          <End Role="PRECATORIO_ANOTACAO" Type="Self.PRECATORIO_ANOTACAO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRECATORIO">
+              <PropertyRef Name="PREC_CD_ID" />
+            </Principal>
+            <Dependent Role="PRECATORIO_ANOTACAO">
+              <PropertyRef Name="PREC_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRECATORIO_ANOTACAO_USUARIO">
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+          <End Role="PRECATORIO_ANOTACAO" Type="Self.PRECATORIO_ANOTACAO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="USUA_CD_ID" />
+            </Principal>
+            <Dependent Role="PRECATORIO_ANOTACAO">
+              <PropertyRef Name="USUA_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_TAREFA_ACOMPANHAMENTO_TAREFA">
           <End Role="TAREFA" Type="Self.TAREFA" Multiplicity="1" />
           <End Role="TAREFA_ACOMPANHAMENTO" Type="Self.TAREFA_ACOMPANHAMENTO" Multiplicity="*" />
@@ -1937,6 +1997,8 @@
           <EntitySet Name="PERIODICIDADE" EntityType="Self.PERIODICIDADE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PERIODICIDADE_TAREFA" EntityType="Self.PERIODICIDADE_TAREFA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PRECATORIO" EntityType="Self.PRECATORIO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRECATORIO_ANEXO" EntityType="Self.PRECATORIO_ANEXO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRECATORIO_ANOTACAO" EntityType="Self.PRECATORIO_ANOTACAO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PRECATORIO_ESTADO" EntityType="Self.PRECATORIO_ESTADO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QUALIFICACAO" EntityType="Self.QUALIFICACAO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QUEM_DESLIGOU" EntityType="Self.QUEM_DESLIGOU" Schema="dbo" store:Type="Tables" />
@@ -2118,6 +2180,18 @@
           <AssociationSet Name="FK_NOTIFICACAO_USUARIO" Association="Self.FK_NOTIFICACAO_USUARIO">
             <End Role="USUARIO" EntitySet="USUARIO" />
             <End Role="NOTIFICACAO" EntitySet="NOTIFICACAO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRECATORIO_ANEXO_PRECATORIO" Association="Self.FK_PRECATORIO_ANEXO_PRECATORIO">
+            <End Role="PRECATORIO" EntitySet="PRECATORIO" />
+            <End Role="PRECATORIO_ANEXO" EntitySet="PRECATORIO_ANEXO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRECATORIO_ANOTACAO_PRECATORIO" Association="Self.FK_PRECATORIO_ANOTACAO_PRECATORIO">
+            <End Role="PRECATORIO" EntitySet="PRECATORIO" />
+            <End Role="PRECATORIO_ANOTACAO" EntitySet="PRECATORIO_ANOTACAO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRECATORIO_ANOTACAO_USUARIO" Association="Self.FK_PRECATORIO_ANOTACAO_USUARIO">
+            <End Role="USUARIO" EntitySet="USUARIO" />
+            <End Role="PRECATORIO_ANOTACAO" EntitySet="PRECATORIO_ANOTACAO" />
           </AssociationSet>
           <AssociationSet Name="FK_TAREFA_ACOMPANHAMENTO_TAREFA" Association="Self.FK_TAREFA_ACOMPANHAMENTO_TAREFA">
             <End Role="TAREFA" EntitySet="TAREFA" />
@@ -2971,6 +3045,9 @@
           <NavigationProperty Name="PRECATORIO_ESTADO" Relationship="Self.FKPRECATORIO966532" FromRole="PRECATORIO" ToRole="PRECATORIO_ESTADO" />
           <NavigationProperty Name="TRF" Relationship="Self.FKPRECATORIO966598" FromRole="PRECATORIO" ToRole="TRF" />
           <Property Name="PREC_IN_ATIVO" Type="Int32" />
+          <Property Name="PREC_IN_SITUACAO_ATUAL" Type="Int32" />
+          <NavigationProperty Name="PRECATORIO_ANEXO" Relationship="DB_RidolfiModel.FK_PRECATORIO_ANEXO_PRECATORIO" FromRole="PRECATORIO" ToRole="PRECATORIO_ANEXO" />
+          <NavigationProperty Name="PRECATORIO_ANOTACAO" Relationship="DB_RidolfiModel.FK_PRECATORIO_ANOTACAO_PRECATORIO" FromRole="PRECATORIO" ToRole="PRECATORIO_ANOTACAO" />
         </EntityType>
         <EntityType Name="PRECATORIO_ESTADO">
           <Key>
@@ -3317,6 +3394,7 @@
           <NavigationProperty Name="TAREFA_VINCULO" Relationship="Self.FK_TAREFA_VINCULO_USUARIO" FromRole="USUARIO" ToRole="TAREFA_VINCULO" />
           <NavigationProperty Name="USUARIO_ANEXO" Relationship="Self.FK_USUARIO_ANEXO_USUARIO" FromRole="USUARIO" ToRole="USUARIO_ANEXO" />
           <NavigationProperty Name="CLIENTE_ANOTACAO" Relationship="DB_RidolfiModel.FK_CLIENTE_ANOTACAO_USUARIO" FromRole="USUARIO" ToRole="CLIENTE_ANOTACAO" />
+          <NavigationProperty Name="PRECATORIO_ANOTACAO" Relationship="DB_RidolfiModel.FK_PRECATORIO_ANOTACAO_USUARIO" FromRole="USUARIO" ToRole="PRECATORIO_ANOTACAO" />
         </EntityType>
         <EntityType Name="USUARIO_ANEXO">
           <Key>
@@ -4707,6 +4785,20 @@
             <End Role="USUARIO" EntitySet="USUARIO" />
             <End Role="CLIENTE_ANOTACAO" EntitySet="CLIENTE_ANOTACAO" />
           </AssociationSet>
+          <EntitySet Name="PRECATORIO_ANEXO" EntityType="DB_RidolfiModel.PRECATORIO_ANEXO" />
+          <EntitySet Name="PRECATORIO_ANOTACAO" EntityType="DB_RidolfiModel.PRECATORIO_ANOTACAO" />
+          <AssociationSet Name="FK_PRECATORIO_ANEXO_PRECATORIO" Association="DB_RidolfiModel.FK_PRECATORIO_ANEXO_PRECATORIO">
+            <End Role="PRECATORIO" EntitySet="PRECATORIO" />
+            <End Role="PRECATORIO_ANEXO" EntitySet="PRECATORIO_ANEXO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRECATORIO_ANOTACAO_PRECATORIO" Association="DB_RidolfiModel.FK_PRECATORIO_ANOTACAO_PRECATORIO">
+            <End Role="PRECATORIO" EntitySet="PRECATORIO" />
+            <End Role="PRECATORIO_ANOTACAO" EntitySet="PRECATORIO_ANOTACAO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRECATORIO_ANOTACAO_USUARIO" Association="DB_RidolfiModel.FK_PRECATORIO_ANOTACAO_USUARIO">
+            <End Role="USUARIO" EntitySet="USUARIO" />
+            <End Role="PRECATORIO_ANOTACAO" EntitySet="PRECATORIO_ANOTACAO" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="TIPO_TELEFONE_BASE">
           <Key>
@@ -4761,6 +4853,68 @@
               <PropertyRef Name="USUA_CD_ID" />
             </Principal>
             <Dependent Role="CLIENTE_ANOTACAO">
+              <PropertyRef Name="USUA_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="PRECATORIO_ANEXO">
+          <Key>
+            <PropertyRef Name="PRAN_CD_ID" />
+          </Key>
+          <Property Name="PRAN_CD_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PREC_CD_ID" Type="Int32" Nullable="false" />
+          <Property Name="PRAN_NM_TITULO" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="PRAN_DT_ANEXO" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="PRAN_IN_TIPO" Type="Int32" Nullable="false" />
+          <Property Name="PRAN_AQ_ARQUIVO" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="PRAN_IN_ATIVO" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PRECATORIO" Relationship="DB_RidolfiModel.FK_PRECATORIO_ANEXO_PRECATORIO" FromRole="PRECATORIO_ANEXO" ToRole="PRECATORIO" />
+        </EntityType>
+        <EntityType Name="PRECATORIO_ANOTACAO">
+          <Key>
+            <PropertyRef Name="PRAT_CD_ID" />
+          </Key>
+          <Property Name="PRAT_CD_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PREC_CD_ID" Type="Int32" Nullable="false" />
+          <Property Name="USUA_CD_ID" Type="Int32" Nullable="false" />
+          <Property Name="PRAT_DT_ANOTACAO" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PRAT_TX_ANOTACAO" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PRAT_IN_ATIVO" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PRECATORIO" Relationship="DB_RidolfiModel.FK_PRECATORIO_ANOTACAO_PRECATORIO" FromRole="PRECATORIO_ANOTACAO" ToRole="PRECATORIO" />
+          <NavigationProperty Name="USUARIO" Relationship="DB_RidolfiModel.FK_PRECATORIO_ANOTACAO_USUARIO" FromRole="PRECATORIO_ANOTACAO" ToRole="USUARIO" />
+        </EntityType>
+        <Association Name="FK_PRECATORIO_ANEXO_PRECATORIO">
+          <End Type="DB_RidolfiModel.PRECATORIO" Role="PRECATORIO" Multiplicity="1" />
+          <End Type="DB_RidolfiModel.PRECATORIO_ANEXO" Role="PRECATORIO_ANEXO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRECATORIO">
+              <PropertyRef Name="PREC_CD_ID" />
+            </Principal>
+            <Dependent Role="PRECATORIO_ANEXO">
+              <PropertyRef Name="PREC_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRECATORIO_ANOTACAO_PRECATORIO">
+          <End Type="DB_RidolfiModel.PRECATORIO" Role="PRECATORIO" Multiplicity="1" />
+          <End Type="DB_RidolfiModel.PRECATORIO_ANOTACAO" Role="PRECATORIO_ANOTACAO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRECATORIO">
+              <PropertyRef Name="PREC_CD_ID" />
+            </Principal>
+            <Dependent Role="PRECATORIO_ANOTACAO">
+              <PropertyRef Name="PREC_CD_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRECATORIO_ANOTACAO_USUARIO">
+          <End Type="DB_RidolfiModel.USUARIO" Role="USUARIO" Multiplicity="1" />
+          <End Type="DB_RidolfiModel.PRECATORIO_ANOTACAO" Role="PRECATORIO_ANOTACAO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="USUA_CD_ID" />
+            </Principal>
+            <Dependent Role="PRECATORIO_ANOTACAO">
               <PropertyRef Name="USUA_CD_ID" />
             </Dependent>
           </ReferentialConstraint>
@@ -5345,6 +5499,7 @@
           <EntitySetMapping Name="PRECATORIO">
             <EntityTypeMapping TypeName="DB_RidolfiModel.PRECATORIO">
               <MappingFragment StoreEntitySet="PRECATORIO">
+                <ScalarProperty Name="PREC_IN_SITUACAO_ATUAL" ColumnName="PREC_IN_SITUACAO_ATUAL" />
                 <ScalarProperty Name="PREC_IN_ATIVO" ColumnName="PREC_IN_ATIVO" />
                 <ScalarProperty Name="PREC_CD_ID" ColumnName="PREC_CD_ID" />
                 <ScalarProperty Name="TRF1_CD_ID" ColumnName="TRF1_CD_ID" />
@@ -5741,6 +5896,31 @@
                 <ScalarProperty Name="USUA_CD_ID" ColumnName="USUA_CD_ID" />
                 <ScalarProperty Name="CLIE_CD_ID" ColumnName="CLIE_CD_ID" />
                 <ScalarProperty Name="CLAN_CD_ID" ColumnName="CLAN_CD_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRECATORIO_ANEXO">
+            <EntityTypeMapping TypeName="DB_RidolfiModel.PRECATORIO_ANEXO">
+              <MappingFragment StoreEntitySet="PRECATORIO_ANEXO">
+                <ScalarProperty Name="PRAN_IN_ATIVO" ColumnName="PRAN_IN_ATIVO" />
+                <ScalarProperty Name="PRAN_AQ_ARQUIVO" ColumnName="PRAN_AQ_ARQUIVO" />
+                <ScalarProperty Name="PRAN_IN_TIPO" ColumnName="PRAN_IN_TIPO" />
+                <ScalarProperty Name="PRAN_DT_ANEXO" ColumnName="PRAN_DT_ANEXO" />
+                <ScalarProperty Name="PRAN_NM_TITULO" ColumnName="PRAN_NM_TITULO" />
+                <ScalarProperty Name="PREC_CD_ID" ColumnName="PREC_CD_ID" />
+                <ScalarProperty Name="PRAN_CD_ID" ColumnName="PRAN_CD_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRECATORIO_ANOTACAO">
+            <EntityTypeMapping TypeName="DB_RidolfiModel.PRECATORIO_ANOTACAO">
+              <MappingFragment StoreEntitySet="PRECATORIO_ANOTACAO">
+                <ScalarProperty Name="PRAT_IN_ATIVO" ColumnName="PRAT_IN_ATIVO" />
+                <ScalarProperty Name="PRAT_TX_ANOTACAO" ColumnName="PRAT_TX_ANOTACAO" />
+                <ScalarProperty Name="PRAT_DT_ANOTACAO" ColumnName="PRAT_DT_ANOTACAO" />
+                <ScalarProperty Name="USUA_CD_ID" ColumnName="USUA_CD_ID" />
+                <ScalarProperty Name="PREC_CD_ID" ColumnName="PREC_CD_ID" />
+                <ScalarProperty Name="PRAT_CD_ID" ColumnName="PRAT_CD_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -8,31 +8,31 @@ using System.Data.Entity;
 
 namespace DataServices.Repositories
 {
-    public class NaturezaRepository : RepositoryBase<TITULARIDADE>, I
+    public class NaturezaRepository : RepositoryBase<NATUREZA>, INaturezaRepository
     {
-        public TITULARIDADE GetItemById(Int32 id)
+        public NATUREZA GetItemById(Int32 id)
         {
-            IQueryable<TITULARIDADE> query = Db.TITULARIDADE;
-            query = query.Where(p => p.TITU_CD_ID == id);
+            IQueryable<NATUREZA> query = Db.NATUREZA;
+            query = query.Where(p => p.NATU_CD_ID == id);
             return query.FirstOrDefault();
         }
 
-        public List<TITULARIDADE> GetAllItens()
+        public List<NATUREZA> GetAllItens()
         {
-            IQueryable<TITULARIDADE> query = Db.TITULARIDADE;
+            IQueryable<NATUREZA> query = Db.NATUREZA;
             return query.ToList();
         }
 
-        public TITULARIDADE CheckExist(TITULARIDADE conta)
+        public NATUREZA CheckExist(NATUREZA natureza)
         {
-            IQueryable<TITULARIDADE> query = Db.TITULARIDADE;
-            query = query.Where(p => p.TITU_NM_NOME == conta.TITU_NM_NOME);
+            IQueryable<NATUREZA> query = Db.NATUREZA;
+            query = query.Where(p => p.NATU_NM_NOME == natureza.NATU_NM_NOME);
             return query.FirstOrDefault();
         }
 
-        public List<TITULARIDADE> GetAllItensAdm()
+        public List<NATUREZA> GetAllItensAdm()
         {
-            IQueryable<TITULARIDADE> query = Db.TITULARIDADE;
+            IQueryable<NATUREZA> query = Db.NATUREZA;
             return query.ToList();
         }
 

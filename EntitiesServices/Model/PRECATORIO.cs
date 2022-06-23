@@ -19,6 +19,8 @@ namespace EntitiesServices.Model
         {
             this.CLIENTE = new HashSet<CLIENTE>();
             this.LOAS = new HashSet<LOAS>();
+            this.PRECATORIO_ANEXO = new HashSet<PRECATORIO_ANEXO>();
+            this.PRECATORIO_ANOTACAO = new HashSet<PRECATORIO_ANOTACAO>();
         }
     
         public int PREC_CD_ID { get; set; }
@@ -64,6 +66,7 @@ namespace EntitiesServices.Model
         public string PREC_NM_PRC_LOA { get; set; }
         public string PREC_TX_OBSERVACAO { get; set; }
         public Nullable<int> PREC_IN_ATIVO { get; set; }
+        public Nullable<int> PREC_IN_SITUACAO_ATUAL { get; set; }
     
         public virtual BANCO BANCO { get; set; }
         public virtual BENEFICIARIO BENEFICIARIO { get; set; }
@@ -75,5 +78,9 @@ namespace EntitiesServices.Model
         public virtual NATUREZA NATUREZA { get; set; }
         public virtual PRECATORIO_ESTADO PRECATORIO_ESTADO { get; set; }
         public virtual TRF TRF { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PRECATORIO_ANEXO> PRECATORIO_ANEXO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PRECATORIO_ANOTACAO> PRECATORIO_ANOTACAO { get; set; }
     }
 }

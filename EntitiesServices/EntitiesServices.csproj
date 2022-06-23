@@ -166,6 +166,7 @@
     <Compile Include="Attributes\CustomValidationCPFAttribute.cs" />
     <Compile Include="Attributes\DataAnteriorAttribute.cs" />
     <Compile Include="EntitiesServices\AgendaService.cs" />
+    <Compile Include="EntitiesServices\PrecatorioService.cs" />
     <Compile Include="EntitiesServices\VaraService.cs" />
     <Compile Include="EntitiesServices\TRFService.cs" />
     <Compile Include="EntitiesServices\BancoService.cs" />
@@ -196,6 +197,7 @@
     <Compile Include="EntitiesServices\TipoPessoaService.cs" />
     <Compile Include="EntitiesServices\UsuarioService.cs" />
     <Compile Include="Interfaces\Entities\IAgendaService.cs" />
+    <Compile Include="Interfaces\Entities\IPrecatorioService.cs" />
     <Compile Include="Interfaces\Entities\IVaraService.cs" />
     <Compile Include="Interfaces\Entities\ITRFService.cs" />
     <Compile Include="Interfaces\Entities\IBancoService.cs" />
@@ -227,6 +229,10 @@
     <Compile Include="Interfaces\Entities\IUsuarioService.cs" />
     <Compile Include="Interfaces\Repositories\IAgendaAnexoRepository.cs" />
     <Compile Include="Interfaces\Repositories\IAgendaRepository.cs" />
+    <Compile Include="Interfaces\Repositories\IPrecatorioAnexoRepository.cs" />
+    <Compile Include="Interfaces\Repositories\IPrecatorioAnotacaoRepository.cs" />
+    <Compile Include="Interfaces\Repositories\IPrecatorioEstadoRepository.cs" />
+    <Compile Include="Interfaces\Repositories\INaturezaRepository.cs" />
     <Compile Include="Interfaces\Repositories\IClienteAnotacaoRepository.cs" />
     <Compile Include="Interfaces\Repositories\IPrecatorioRepository.cs" />
     <Compile Include="Interfaces\Repositories\ITitularidadeRepository.cs" />
@@ -436,6 +442,12 @@
       <DependentUpon>DB_Ridolfi_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\PRECATORIO.cs">
+      <DependentUpon>DB_Ridolfi_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\PRECATORIO_ANEXO.cs">
+      <DependentUpon>DB_Ridolfi_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\PRECATORIO_ANOTACAO.cs">
       <DependentUpon>DB_Ridolfi_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\PRECATORIO_ESTADO.cs">
