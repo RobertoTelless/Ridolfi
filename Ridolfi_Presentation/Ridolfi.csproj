@@ -288,6 +288,7 @@
     <Compile Include="Controllers\HonorarioController.cs" />
     <Compile Include="Controllers\NoticiaController.cs" />
     <Compile Include="Controllers\NotificacaoController.cs" />
+    <Compile Include="Controllers\PrecatorioController.cs" />
     <Compile Include="Controllers\TabelaAuxiliarController.cs" />
     <Compile Include="Controllers\TarefaController.cs" />
     <Compile Include="Controllers\TelefoneController.cs" />
@@ -303,6 +304,8 @@
     <Compile Include="Helpers\HMTLHelperExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\AgendaViewModel.cs" />
+    <Compile Include="ViewModels\PrecatorioComentarioViewModel.cs" />
+    <Compile Include="ViewModels\PrecatorioViewModel.cs" />
     <Compile Include="ViewModels\ClienteAnotacaoViewModel.cs" />
     <Compile Include="ViewModels\VaraViewModel.cs" />
     <Compile Include="ViewModels\TRFViewModel.cs" />
@@ -3778,6 +3781,12 @@
     <Content Include="Views\Beneficiario\IncluirContato.cshtml" />
     <Content Include="Views\Cliente\EditarContato.cshtml" />
     <Content Include="Views\Cliente\IncluirContato.cshtml" />
+    <Content Include="Views\Precatorio\MontarTelaPrecatorio.cshtml" />
+    <Content Include="Views\Precatorio\IncluirPrecatorio.cshtml" />
+    <Content Include="Views\Precatorio\VerPrecatorio.cshtml" />
+    <Content Include="Views\Precatorio\EditarPrecatorio.cshtml" />
+    <Content Include="Views\Precatorio\VerAnexoPrecatorio.cshtml" />
+    <Content Include="Views\Precatorio\IncluirComentario.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

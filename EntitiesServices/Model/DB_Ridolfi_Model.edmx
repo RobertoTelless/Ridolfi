@@ -592,6 +592,7 @@
           <Property Name="PREC_NM_PRC_LOA" Type="varchar" MaxLength="2" />
           <Property Name="PREC_TX_OBSERVACAO" Type="text" />
           <Property Name="PREC_IN_ATIVO" Type="int" />
+          <Property Name="PREC_DT_CADASTRO" Type="date" />
         </EntityType>
         <EntityType Name="PRECATORIO_ANEXO">
           <Key>
@@ -3048,6 +3049,7 @@
           <Property Name="PREC_IN_SITUACAO_ATUAL" Type="Int32" />
           <NavigationProperty Name="PRECATORIO_ANEXO" Relationship="DB_RidolfiModel.FK_PRECATORIO_ANEXO_PRECATORIO" FromRole="PRECATORIO" ToRole="PRECATORIO_ANEXO" />
           <NavigationProperty Name="PRECATORIO_ANOTACAO" Relationship="DB_RidolfiModel.FK_PRECATORIO_ANOTACAO_PRECATORIO" FromRole="PRECATORIO" ToRole="PRECATORIO_ANOTACAO" />
+          <Property Name="PREC_DT_CADASTRO" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="PRECATORIO_ESTADO">
           <Key>
@@ -5499,6 +5501,7 @@
           <EntitySetMapping Name="PRECATORIO">
             <EntityTypeMapping TypeName="DB_RidolfiModel.PRECATORIO">
               <MappingFragment StoreEntitySet="PRECATORIO">
+                <ScalarProperty Name="PREC_DT_CADASTRO" ColumnName="PREC_DT_CADASTRO" />
                 <ScalarProperty Name="PREC_IN_SITUACAO_ATUAL" ColumnName="PREC_IN_SITUACAO_ATUAL" />
                 <ScalarProperty Name="PREC_IN_ATIVO" ColumnName="PREC_IN_ATIVO" />
                 <ScalarProperty Name="PREC_CD_ID" ColumnName="PREC_CD_ID" />

@@ -97,6 +97,7 @@ namespace Presentation.Start
             kernel.Bind<IHonorarioAppService>().To<HonorarioAppService>();
             kernel.Bind<ITRFAppService>().To<TRFAppService>();
             kernel.Bind<IVaraAppService>().To<VaraAppService>();
+            kernel.Bind<IPrecatorioAppService>().To<PrecatorioAppService>();
 
             kernel.Bind(typeof(IServiceBase<>)).To(typeof(ServiceBase<>));
             kernel.Bind<IUsuarioService>().To<UsuarioService>();
@@ -127,6 +128,7 @@ namespace Presentation.Start
             kernel.Bind<IHonorarioService>().To<HonorarioService>();
             kernel.Bind<ITRFService>().To<TRFService>();
             kernel.Bind<IVaraService>().To<VaraService>();
+            kernel.Bind<IPrecatorioService>().To<PrecatorioService>();
 
             kernel.Bind(typeof(IRepositoryBase<>)).To(typeof(RepositoryBase<>));
             kernel.Bind<IConfiguracaoRepository>().To<ConfiguracaoRepository>();
@@ -188,6 +190,11 @@ namespace Presentation.Start
             kernel.Bind<ITitularidadeRepository>().To<TitularidadeRepository>();
             kernel.Bind<IPrecatorioRepository>().To<PrecatorioRepository>();
             kernel.Bind<IClienteAnotacaoRepository>().To<ClienteAnotacaoRepository>();
+            kernel.Bind<IPrecatorioRepository>().To<PrecatorioRepository>();
+            kernel.Bind<IPrecatorioAnexoRepository>().To<PrecatorioAnexoRepository>();
+            kernel.Bind<IPrecatorioAnotacaoRepository>().To<PrecatorioAnotacaoRepository>();
+            kernel.Bind<IPrecatorioEstadoRepository>().To<PrecatorioEstadoRepository>();
+            kernel.Bind<INaturezaRepository>().To<NaturezaRepository>();
 
         }
     }
