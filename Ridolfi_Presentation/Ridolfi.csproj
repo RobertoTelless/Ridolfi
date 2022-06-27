@@ -2819,6 +2819,9 @@
     <Content Include="Imagens\1\Beneficiarios\7\Anexos\92.Data+Engineering_2-1614270590423.pdf" />
     <Content Include="Imagens\1\Beneficiarios\7\Anexos\Medium_voltage_products.pdf" />
     <Content Include="Imagens\1\Cliente\1\Anexos\Targo_01.pdf" />
+    <Content Include="Imagens\1\Precatorios\4\Anexos\Power_System_Engineering.pdf" />
+    <Content Include="Imagens\1\Precatorios\5\Anexos\Modern_Control_Systems_ThirTeenTh_ediTio.pdf" />
+    <Content Include="Imagens\1\Precatorios\6\Anexos\Modern_Control_Systems_ThirTeenTh_ediTio.pdf" />
     <None Include="Properties\PublishProfiles\DBMasterData - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\ModelosDashboard - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\on-suite-dashboards - FTP.pubxml" />
@@ -3800,6 +3803,7 @@
     <Folder Include="Imagens\1\Beneficiarios\3\Anexos\" />
     <Folder Include="Imagens\1\Beneficiarios\5\Anexos\" />
     <Folder Include="Imagens\1\Beneficiarios\6\Anexos\" />
+    <Folder Include="Imagens\1\Cliente\2\Anexos\" />
     <Folder Include="Imagens\1\Honorarios\1\Anexos\" />
     <Folder Include="Imagens\1\Notificacao\10\Anexos\" />
     <Folder Include="Imagens\1\Notificacao\11\Anexos\" />
