@@ -69,7 +69,7 @@ namespace DataServices.Repositories
             }
             if (!String.IsNullOrEmpty(nome))
             {
-                query = query.Where(p => p.PREC_NM_PRECATORIO.Contains(nome));
+                query = query.Where(p => p.PREC_NM_REQUERENTE.Contains(nome));
             }
             if (!String.IsNullOrEmpty(ano))
             {

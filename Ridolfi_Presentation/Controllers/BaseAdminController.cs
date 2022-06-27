@@ -38,6 +38,7 @@ namespace ERP_CRM_Solution.Controllers
         private readonly IBeneficiarioAppService benApp;
         private readonly IHonorarioAppService honApp;
         private readonly ITRFAppService trfApp;
+        private readonly IPrecatorioAppService preApp;
 
         private String msg;
         private Exception exception;
@@ -46,7 +47,7 @@ namespace ERP_CRM_Solution.Controllers
         List<USUARIO> listaMaster = new List<USUARIO>();
         String extensao;
 
-        public BaseAdminController(IUsuarioAppService baseApps, ILogAppService logApps, INoticiaAppService notApps, ITarefaAppService tarApps, INotificacaoAppService notfApps, IUsuarioAppService usuApps, IAgendaAppService ageApps, IConfiguracaoAppService confApps, ITipoPessoaAppService tpApps, ITelefoneAppService telApps, IBeneficiarioAppService benApps, IHonorarioAppService honApps, ITRFAppService trfApps, IClienteAppService cliApps)
+        public BaseAdminController(IUsuarioAppService baseApps, ILogAppService logApps, INoticiaAppService notApps, ITarefaAppService tarApps, INotificacaoAppService notfApps, IUsuarioAppService usuApps, IAgendaAppService ageApps, IConfiguracaoAppService confApps, ITipoPessoaAppService tpApps, ITelefoneAppService telApps, IBeneficiarioAppService benApps, IHonorarioAppService honApps, ITRFAppService trfApps, IClienteAppService cliApps, IPrecatorioAppService preApps)
         {
             baseApp = baseApps;
             logApp = logApps;
@@ -62,6 +63,7 @@ namespace ERP_CRM_Solution.Controllers
             honApp = honApps;
             trfApp = trfApps;
             cliApp = cliApps;
+            preApp = preApps;
         }
 
         public ActionResult CarregarAdmin()
@@ -122,7 +124,8 @@ namespace ERP_CRM_Solution.Controllers
             Int32 beneficiarios = bene.Count;
             List<HONORARIO> hono = honApp.GetAllItens();
             Int32 honorarios = hono.Count;
-            Int32 precatorios = 0;
+            List<PRECATORIO> prec = preApp.GetAllItens();
+            Int32 precatorios = prec.Count;
             List<CLIENTE> clie = cliApp.GetAllItens();
             Int32 clientes = clie.Count;
             List<TRF> trfs = trfApp.GetAllItens();

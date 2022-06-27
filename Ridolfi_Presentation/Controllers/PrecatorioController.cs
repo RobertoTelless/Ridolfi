@@ -64,7 +64,7 @@ namespace ERP_CRM_Solution.Controllers
         }
 
         [HttpGet]
-        public ActionResult MontarTelaPrecatorio()
+        public ActionResult     MontarTelaPrecatorio()
         {
             // Verifica se tem usuario logado
             USUARIO usuario = new USUARIO();
@@ -159,7 +159,7 @@ namespace ERP_CRM_Solution.Controllers
                 // Executa a operação
                 List<PRECATORIO> listaObj = new List<PRECATORIO>();
                 Session["FiltroPrecatorio"] = item;
-                Int32 volta = tranApp.ExecuteFilter(item.TRF1_CD_ID, item.BENE_CD_ID, item.HONO_CD_ID, item.NATU_CD_ID, item.PRES_CD_ID, item.PREC_NM_PRECATORIO, item.PREC_NR_ANO, out listaObj);
+                Int32 volta = tranApp.ExecuteFilter(item.TRF1_CD_ID, item.BENE_CD_ID, item.HONO_CD_ID, item.NATU_CD_ID, item.PRES_CD_ID, item.PREC_NM_REQUERENTE, item.PREC_NR_ANO, out listaObj);
 
                 // Verifica retorno
                 if (volta == 1)
@@ -244,7 +244,14 @@ namespace ERP_CRM_Solution.Controllers
             sit.Add(new SelectListItem() { Text = "Não Pago", Value = "2" });
             sit.Add(new SelectListItem() { Text = "Pago Parcial", Value = "3" });
             ViewBag.Situacao = new SelectList(sit, "Value", "Text");
-
+            List<SelectListItem> bloc = new List<SelectListItem>();
+            bloc.Add(new SelectListItem() { Text = "Sim", Value = "1" });
+            bloc.Add(new SelectListItem() { Text = "Não", Value = "2" });
+            ViewBag.Bloqueada = new SelectList(bloc, "Value", "Text");
+            List<SelectListItem> loa = new List<SelectListItem>();
+            loa.Add(new SelectListItem() { Text = "Bot", Value = "1" });
+            loa.Add(new SelectListItem() { Text = "LOA", Value = "2" });
+            ViewBag.LOA = new SelectList(loa, "Value", "Text");
             // Prepara view
             PRECATORIO item = new PRECATORIO();
             PrecatorioViewModel vm = Mapper.Map<PRECATORIO, PrecatorioViewModel>(item);
@@ -300,6 +307,14 @@ namespace ERP_CRM_Solution.Controllers
             sit.Add(new SelectListItem() { Text = "Não Pago", Value = "2" });
             sit.Add(new SelectListItem() { Text = "Pago Parcial", Value = "3" });
             ViewBag.Situacao = new SelectList(sit, "Value", "Text");
+            List<SelectListItem> bloc = new List<SelectListItem>();
+            bloc.Add(new SelectListItem() { Text = "Sim", Value = "1" });
+            bloc.Add(new SelectListItem() { Text = "Não", Value = "2" });
+            ViewBag.Bloqueada = new SelectList(bloc, "Value", "Text");
+            List<SelectListItem> loa = new List<SelectListItem>();
+            loa.Add(new SelectListItem() { Text = "Bot", Value = "1" });
+            loa.Add(new SelectListItem() { Text = "LOA", Value = "2" });
+            ViewBag.LOA = new SelectList(loa, "Value", "Text");
             if (ModelState.IsValid)
             {
                 try
@@ -332,7 +347,7 @@ namespace ERP_CRM_Solution.Controllers
                         }
                         Session["FileQueueTrans"] = null;
                     }
-                    return RedirectToAction("VoltarAnexoPrecatorio");
+                    return RedirectToAction("IncluirPrecatorio");
                 }
                 catch (Exception ex)
                 {
@@ -360,7 +375,46 @@ namespace ERP_CRM_Solution.Controllers
             Session["Precatorio"] = item;
             Session["IdPrecatorio"] = id;
             Session["VoltaComent"] = 2;
-            PrecatorioViewModel vm = Mapper.Map<PRECATORIO, PrecatorioViewModel>(item);
+
+            ViewBag.Natureza = new SelectList(tranApp.GetAllNaturezas().OrderBy(p => p.NATU_NM_NOME), "NATU_CD_ID", "NATU_NM_NOME");
+            ViewBag.TRF = new SelectList(tranApp.GetAllTRF().OrderBy(p => p.TRF1_NM_NOME), "TRF1_CD_ID", "TRF1_NM_NOME");
+            ViewBag.Estado = new SelectList(tranApp.GetAllEstados().OrderBy(p => p.PRES_NM_NOME), "PRES_CD_ID", "PRES_NM_NOME");
+            ViewBag.Beneficiario = new SelectList(tranApp.GetAllBeneficiarios().OrderBy(p => p.BENE_NM_NOME), "BENE_CD_ID", "BENE_NM_NOME");
+            ViewBag.Advogado = new SelectList(tranApp.GetAllAdvogados().OrderBy(p => p.HONO_NM_NOME), "HONO_CD_ID", "HONO_NM_NOME");
+            List<SelectListItem> proc = new List<SelectListItem>();
+            proc.Add(new SelectListItem() { Text = "PRC", Value = "1" });
+            proc.Add(new SelectListItem() { Text = "RPV", Value = "2" });
+            ViewBag.Procedimento = new SelectList(proc, "Value", "Text");
+            List<SelectListItem> IRBen = new List<SelectListItem>();
+            IRBen.Add(new SelectListItem() { Text = "Sim", Value = "1" });
+            IRBen.Add(new SelectListItem() { Text = "Não", Value = "2" });
+            ViewBag.IRBeneficiario = new SelectList(IRBen, "Value", "Text");
+            List<SelectListItem> IRHon = new List<SelectListItem>();
+            IRHon.Add(new SelectListItem() { Text = "Sim", Value = "1" });
+            IRHon.Add(new SelectListItem() { Text = "Não", Value = "2" });
+            ViewBag.IRAdvogado = new SelectList(IRHon, "Value", "Text");
+            List<SelectListItem> pesq = new List<SelectListItem>();
+            pesq.Add(new SelectListItem() { Text = "Sim", Value = "1" });
+            pesq.Add(new SelectListItem() { Text = "Não", Value = "2" });
+            ViewBag.Pesquisado = new SelectList(pesq, "Value", "Text");
+            List<SelectListItem> crm = new List<SelectListItem>();
+            crm.Add(new SelectListItem() { Text = "Sim", Value = "1" });
+            crm.Add(new SelectListItem() { Text = "Não", Value = "2" });
+            ViewBag.CRM = new SelectList(crm, "Value", "Text");
+            List<SelectListItem> sit = new List<SelectListItem>();
+            sit.Add(new SelectListItem() { Text = "Pago", Value = "1" });
+            sit.Add(new SelectListItem() { Text = "Não Pago", Value = "2" });
+            sit.Add(new SelectListItem() { Text = "Pago Parcial", Value = "3" });
+            ViewBag.Situacao = new SelectList(sit, "Value", "Text");
+            List<SelectListItem> bloc = new List<SelectListItem>();
+            bloc.Add(new SelectListItem() { Text = "Sim", Value = "1" });
+            bloc.Add(new SelectListItem() { Text = "Não", Value = "2" });
+            ViewBag.Bloqueada = new SelectList(bloc, "Value", "Text");
+            List<SelectListItem> loa = new List<SelectListItem>();
+            loa.Add(new SelectListItem() { Text = "Bot", Value = "1" });
+            loa.Add(new SelectListItem() { Text = "LOA", Value = "2" });
+            ViewBag.LOA = new SelectList(loa, "Value", "Text");
+                PrecatorioViewModel vm = Mapper.Map<PRECATORIO, PrecatorioViewModel>(item);
             return View(vm);
         }
 
@@ -420,6 +474,14 @@ namespace ERP_CRM_Solution.Controllers
             sit.Add(new SelectListItem() { Text = "Não Pago", Value = "2" });
             sit.Add(new SelectListItem() { Text = "Pago Parcial", Value = "3" });
             ViewBag.Situacao = new SelectList(sit, "Value", "Text");
+            List<SelectListItem> bloc = new List<SelectListItem>();
+            bloc.Add(new SelectListItem() { Text = "Sim", Value = "1" });
+            bloc.Add(new SelectListItem() { Text = "Não", Value = "2" });
+            ViewBag.Bloqueada = new SelectList(bloc, "Value", "Text");
+            List<SelectListItem> loa = new List<SelectListItem>();
+            loa.Add(new SelectListItem() { Text = "Bot", Value = "1" });
+            loa.Add(new SelectListItem() { Text = "LOA", Value = "2" });
+            ViewBag.LOA = new SelectList(loa, "Value", "Text");
 
             PRECATORIO item = tranApp.GetItemById(id);
             objetoTranAntes = item;
@@ -469,6 +531,14 @@ namespace ERP_CRM_Solution.Controllers
             sit.Add(new SelectListItem() { Text = "Não Pago", Value = "2" });
             sit.Add(new SelectListItem() { Text = "Pago Parcial", Value = "3" });
             ViewBag.Situacao = new SelectList(sit, "Value", "Text");
+            List<SelectListItem> bloc = new List<SelectListItem>();
+            bloc.Add(new SelectListItem() { Text = "Sim", Value = "1" });
+            bloc.Add(new SelectListItem() { Text = "Não", Value = "2" });
+            ViewBag.Bloqueada = new SelectList(bloc, "Value", "Text");
+            List<SelectListItem> loa = new List<SelectListItem>();
+            loa.Add(new SelectListItem() { Text = "Bot", Value = "1" });
+            loa.Add(new SelectListItem() { Text = "LOA", Value = "2" });
+            ViewBag.LOA = new SelectList(loa, "Value", "Text");
             if (ModelState.IsValid)
             {
                 try
@@ -834,9 +904,9 @@ namespace ERP_CRM_Solution.Controllers
             // Prepara geração
             String data = DateTime.Today.Date.ToShortDateString();
             data = data.Substring(0, 2) + data.Substring(3, 2) + data.Substring(6, 4);
-            String nomeRel = "BeneficiarioLista" + "_" + data + ".pdf";
-            List<BENEFICIARIO> lista = (List<BENEFICIARIO>)Session["ListaBeneficiario"];
-            BENEFICIARIO filtro = (BENEFICIARIO)Session["FiltroBeneficiario"];
+            String nomeRel = "PrecatorioLista" + "_" + data + ".pdf";
+            List<PRECATORIO> lista = (List<PRECATORIO>)Session["ListaPrecatorio"];
+            PRECATORIO filtro = (PRECATORIO)Session["FiltroPrecatorio"];
             Font meuFont = FontFactory.GetFont("Arial", 8, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
             Font meuFont1 = FontFactory.GetFont("Arial", 9, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
             Font meuFont2 = FontFactory.GetFont("Arial", 12, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
@@ -864,7 +934,7 @@ namespace ERP_CRM_Solution.Controllers
             cell.AddElement(image);
             table.AddCell(cell);
 
-            cell = new PdfPCell(new Paragraph("Baneficiários - Listagem", meuFont2))
+            cell = new PdfPCell(new Paragraph("Precatórios - Listagem", meuFont2))
             {
                 VerticalAlignment = Element.ALIGN_MIDDLE,
                 HorizontalAlignment = Element.ALIGN_CENTER
@@ -881,13 +951,13 @@ namespace ERP_CRM_Solution.Controllers
             pdfDoc.Add(line1);
 
             // Grid
-            table = new PdfPTable(new float[] { 70f, 120f, 120f, 70f, 80f});
+            table = new PdfPTable(new float[] { 80f, 100f, 50f, 100f, 100f, 100f, 70f, 50f});
             table.WidthPercentage = 100;
             table.HorizontalAlignment = 0;
             table.SpacingBefore = 1f;
             table.SpacingAfter = 1f;
 
-            cell = new PdfPCell(new Paragraph("Beneficiários selecionados pelos parametros de filtro abaixo", meuFont1))
+            cell = new PdfPCell(new Paragraph("Precatórios selecionados pelos parametros de filtro abaixo", meuFont1))
             {
                 VerticalAlignment = Element.ALIGN_MIDDLE, HorizontalAlignment = Element.ALIGN_LEFT
             };
@@ -895,35 +965,56 @@ namespace ERP_CRM_Solution.Controllers
             cell.BackgroundColor = BaseColor.LIGHT_GRAY;
             table.AddCell(cell);
 
-            cell = new PdfPCell(new Paragraph("Tipo", meuFont))
+            cell = new PdfPCell(new Paragraph("Tribunal", meuFont))
             {
                 VerticalAlignment = Element.ALIGN_MIDDLE,
                 HorizontalAlignment = Element.ALIGN_LEFT
             };
             cell.BackgroundColor = BaseColor.LIGHT_GRAY;
             table.AddCell(cell);
-            cell = new PdfPCell(new Paragraph("Nome", meuFont))
+            cell = new PdfPCell(new Paragraph("Beneficiário", meuFont))
             {
                 VerticalAlignment = Element.ALIGN_MIDDLE,
                 HorizontalAlignment = Element.ALIGN_LEFT
             };
             cell.BackgroundColor = BaseColor.LIGHT_GRAY;
             table.AddCell(cell);
-            cell = new PdfPCell(new Paragraph("Razão Social", meuFont))
+            cell = new PdfPCell(new Paragraph("Processo Origem", meuFont))
             {
                 VerticalAlignment = Element.ALIGN_MIDDLE,
                 HorizontalAlignment = Element.ALIGN_LEFT
             };
             cell.BackgroundColor = BaseColor.LIGHT_GRAY;
             table.AddCell(cell);
-            cell = new PdfPCell(new Paragraph("Data Nasc.", meuFont))
+            cell = new PdfPCell(new Paragraph("Requerente", meuFont))
             {
                 VerticalAlignment = Element.ALIGN_MIDDLE,
                 HorizontalAlignment = Element.ALIGN_LEFT
             };
             cell.BackgroundColor = BaseColor.LIGHT_GRAY;
             table.AddCell(cell);
-            cell = new PdfPCell(new Paragraph("Renda", meuFont))
+            cell = new PdfPCell(new Paragraph("Deprecante", meuFont))
+            {
+                VerticalAlignment = Element.ALIGN_MIDDLE,
+                HorizontalAlignment = Element.ALIGN_LEFT
+            };
+            cell.BackgroundColor = BaseColor.LIGHT_GRAY;
+            table.AddCell(cell);
+            cell = new PdfPCell(new Paragraph("Natureza", meuFont))
+            {
+                VerticalAlignment = Element.ALIGN_MIDDLE,
+                HorizontalAlignment = Element.ALIGN_LEFT
+            };
+            cell.BackgroundColor = BaseColor.LIGHT_GRAY;
+            table.AddCell(cell);
+            cell = new PdfPCell(new Paragraph("Estado", meuFont))
+            {
+                VerticalAlignment = Element.ALIGN_MIDDLE,
+                HorizontalAlignment = Element.ALIGN_LEFT
+            };
+            cell.BackgroundColor = BaseColor.LIGHT_GRAY;
+            table.AddCell(cell);
+            cell = new PdfPCell(new Paragraph("Ano", meuFont))
             {
                 VerticalAlignment = Element.ALIGN_MIDDLE,
                 HorizontalAlignment = Element.ALIGN_LEFT
@@ -931,57 +1022,53 @@ namespace ERP_CRM_Solution.Controllers
             cell.BackgroundColor = BaseColor.LIGHT_GRAY;
             table.AddCell(cell);
 
-            foreach (BENEFICIARIO item in lista)
+            foreach (PRECATORIO item in lista)
             {
-                cell = new PdfPCell(new Paragraph(item.TIPO_PESSOA.TIPE_NM_NOME, meuFont))
+                cell = new PdfPCell(new Paragraph(item.TRF.TRF1_NM_NOME, meuFont))
                 {
                     VerticalAlignment = Element.ALIGN_MIDDLE, HorizontalAlignment = Element.ALIGN_LEFT
                 };
                 table.AddCell(cell);
-                cell = new PdfPCell(new Paragraph(item.BENE_NM_NOME, meuFont))
+                cell = new PdfPCell(new Paragraph(item.BENEFICIARIO.BENE_NM_NOME, meuFont))
                 {
                     VerticalAlignment = Element.ALIGN_MIDDLE, HorizontalAlignment = Element.ALIGN_LEFT
                 };
                 table.AddCell(cell);
-                cell = new PdfPCell(new Paragraph(item.MOME_NM_RAZAO_SOCIAL, meuFont))
+                cell = new PdfPCell(new Paragraph(item.PREC_NM_PROCESSO_ORIGEM, meuFont))
                 {
                     VerticalAlignment = Element.ALIGN_MIDDLE,
                     HorizontalAlignment = Element.ALIGN_LEFT
                 };
                 table.AddCell(cell);
-                if (item.BENE_DT_NASCIMENTO != null)
+                cell = new PdfPCell(new Paragraph(item.PREC_NM_REQUERENTE, meuFont))
                 {
-                    cell = new PdfPCell(new Paragraph(item.BENE_DT_NASCIMENTO.Value.ToShortDateString(), meuFont))
-                    {
-                        VerticalAlignment = Element.ALIGN_MIDDLE,
-                        HorizontalAlignment = Element.ALIGN_LEFT
-                    };
-                }
-                else
-                {
-                    cell = new PdfPCell(new Paragraph("-", meuFont))
-                    {
-                        VerticalAlignment = Element.ALIGN_MIDDLE,
-                        HorizontalAlignment = Element.ALIGN_LEFT
-                    };
-                }
+                    VerticalAlignment = Element.ALIGN_MIDDLE,
+                    HorizontalAlignment = Element.ALIGN_LEFT
+                };
                 table.AddCell(cell);
-                if (item.BENE_VL_RENDA != null)
+                cell = new PdfPCell(new Paragraph(item.PREC_NM_DEPRECANTE, meuFont))
                 {
-                    cell = new PdfPCell(new Paragraph(CrossCutting.Formatters.DecimalFormatter(item.BENE_VL_RENDA.Value), meuFont))
-                    {
-                        VerticalAlignment = Element.ALIGN_MIDDLE,
-                        HorizontalAlignment = Element.ALIGN_LEFT
-                    };
-                }
-                else
+                    VerticalAlignment = Element.ALIGN_MIDDLE,
+                    HorizontalAlignment = Element.ALIGN_LEFT
+                };
+                table.AddCell(cell);
+                cell = new PdfPCell(new Paragraph(item.NATUREZA.NATU_NM_NOME, meuFont))
                 {
-                    cell = new PdfPCell(new Paragraph("-", meuFont))
-                    {
-                        VerticalAlignment = Element.ALIGN_MIDDLE,
-                        HorizontalAlignment = Element.ALIGN_LEFT
-                    };
-                }
+                    VerticalAlignment = Element.ALIGN_MIDDLE,
+                    HorizontalAlignment = Element.ALIGN_LEFT
+                };
+                table.AddCell(cell);
+                cell = new PdfPCell(new Paragraph(item.PRECATORIO_ESTADO.PRES_NM_NOME, meuFont))
+                {
+                    VerticalAlignment = Element.ALIGN_MIDDLE,
+                    HorizontalAlignment = Element.ALIGN_LEFT
+                };
+                table.AddCell(cell);
+                cell = new PdfPCell(new Paragraph(item.PREC_NR_ANO, meuFont))
+                {
+                    VerticalAlignment = Element.ALIGN_MIDDLE,
+                    HorizontalAlignment = Element.ALIGN_LEFT
+                };
                 table.AddCell(cell);
             }
             pdfDoc.Add(table);
@@ -998,93 +1085,81 @@ namespace ERP_CRM_Solution.Controllers
             Int32 ja = 0;
             if (filtro != null)
             {
-                if (filtro.TIPE_CD_ID != null)
+                if (filtro.TRF1_CD_ID != null)
                 {
-                    parametros += "Tipo de Pessoa: " + filtro.TIPE_CD_ID;
+                    parametros += "Tribunal: " + filtro.TRF1_CD_ID;
                     ja = 1;
                 }
-                if (filtro.SEXO_CD_ID != null)
+                if (filtro.BENE_CD_ID != null)
                 {
                     if (ja == 0)
                     {
-                        parametros += "Sexo: " + filtro.SEXO_CD_ID;
+                        parametros += "Beneficiário: " + filtro.BENE_CD_ID;
                         ja = 1;
                     }
                     else
                     {
-                        parametros +=  " e Sexo: " + filtro.SEXO_CD_ID;
+                        parametros +=  " e Beneficiário: " + filtro.BENE_CD_ID;
                     }
                 }
-                if (filtro.ESCI_CD_ID != null)
+                if (filtro.HONO_CD_ID != null)
                 {
                     if (ja == 0)
                     {
-                        parametros += "Estado Civil: " + filtro.ESCI_CD_ID;
+                        parametros += "Advogado: " + filtro.HONO_CD_ID;
                         ja = 1;
                     }
                     else
                     {
-                        parametros += " e Estado Civil: " + filtro.ESCI_CD_ID;
+                        parametros += " e Advogado: " + filtro.HONO_CD_ID;
                     }
                 }
-                if (filtro.ESCO_CD_ID != null)
+                if (filtro.NATU_CD_ID != null)
                 {
                     if (ja == 0)
                     {
-                        parametros += "Escolaridade: " + filtro.ESCO_CD_ID;
+                        parametros += "Natureza: " + filtro.NATU_CD_ID;
                         ja = 1;
                     }
                     else
                     {
-                        parametros += " e Escolaridade: " + filtro.ESCO_CD_ID;
+                        parametros += " e Natureza: " + filtro.NATU_CD_ID;
                     }
                 }
-                if (filtro.PARE_CD_ID != null)
+                if (filtro.PRES_CD_ID != null)
                 {
                     if (ja == 0)
                     {
-                        parametros += "Parentesco: " + filtro.PARE_CD_ID;
+                        parametros += "Estado: " + filtro.PRES_CD_ID;
                         ja = 1;
                     }
                     else
                     {
-                        parametros += " e Parentesco: " + filtro.PARE_CD_ID;
+                        parametros += " e Estado: " + filtro.PRES_CD_ID;
                     }
                 }
-                if (filtro.BENE_NM_NOME != null)
+                if (filtro.PREC_NM_REQUERENTE != null)
                 {
                     if (ja == 0)
                     {
-                        parametros += "Nome: " + filtro.BENE_NM_NOME;
+                        parametros += "Requerente: " + filtro.PREC_NM_REQUERENTE;
                         ja = 1;
                     }
                     else
                     {
-                        parametros += " e Nome: " + filtro.BENE_NM_NOME;
+                        parametros += " e Requerente: " + filtro.PREC_NM_REQUERENTE;
                     }
                 }
-                if (filtro.MOME_NM_RAZAO_SOCIAL != null)
+                if (filtro.PREC_NR_ANO != null)
                 {
                     if (ja == 0)
                     {
-                        parametros += "Razão Social: " + filtro.MOME_NM_RAZAO_SOCIAL;
+                        parametros += "Ano: " + filtro.PREC_NR_ANO;
                         ja = 1;
                     }
                     else
                     {
-                        parametros += " e Razão Social: " + filtro.MOME_NM_RAZAO_SOCIAL;
-                    }
-                }
-                if (filtro.BENE_DT_NASCIMENTO != null)
-                {
-                    if (ja == 0)
-                    {
-                        parametros += "Data Nasc: " + filtro.BENE_DT_NASCIMENTO.Value.ToShortDateString();
-                        ja = 1;
-                    }
-                    else
-                    {
-                        parametros += " e Data Nasc: " + filtro.BENE_DT_NASCIMENTO.Value.ToShortDateString();
+                        parametros += " e Ano: " + filtro.PREC_NR_ANO;
                     }
                 }
                 if (ja == 0)
@@ -1113,864 +1188,192 @@ namespace ERP_CRM_Solution.Controllers
             Response.Write(pdfDoc);
             Response.End();
 
-            return RedirectToAction("MontarTelaBeneficiario");
+            return RedirectToAction("MontarTelaPrecatorio");
         }
 
-        public ActionResult GerarRelatorioDetalhe()
-        {
+        //public ActionResult GerarRelatorioDetalhe()
+        //{
             
-            // Prepara geração
-            BENEFICIARIO tran = tranApp.GetById((Int32)Session["IdBeneficiario"]);
-            String data = DateTime.Today.Date.ToShortDateString();
-            data = data.Substring(0, 2) + data.Substring(3, 2) + data.Substring(6, 4);
-            String nomeRel = "Beneficiario_" + tran.BENE_CD_ID.ToString() + "_" + data + ".pdf";
-            Font meuFont = FontFactory.GetFont("Arial", 8, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
-            Font meuFont1 = FontFactory.GetFont("Arial", 9, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
-            Font meuFont2 = FontFactory.GetFont("Arial", 12, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
-            Font meuFontBold = FontFactory.GetFont("Arial", 8, iTextSharp.text.Font.BOLD, BaseColor.BLACK);
+        //    // Prepara geração
+        //    BENEFICIARIO tran = tranApp.GetById((Int32)Session["IdBeneficiario"]);
+        //    String data = DateTime.Today.Date.ToShortDateString();
+        //    data = data.Substring(0, 2) + data.Substring(3, 2) + data.Substring(6, 4);
+        //    String nomeRel = "Beneficiario_" + tran.BENE_CD_ID.ToString() + "_" + data + ".pdf";
+        //    Font meuFont = FontFactory.GetFont("Arial", 8, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
+        //    Font meuFont1 = FontFactory.GetFont("Arial", 9, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
+        //    Font meuFont2 = FontFactory.GetFont("Arial", 12, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
+        //    Font meuFontBold = FontFactory.GetFont("Arial", 8, iTextSharp.text.Font.BOLD, BaseColor.BLACK);
+
+        //    // Cria documento
+        //    Document pdfDoc = new Document(PageSize.A4, 10, 10, 10, 10);
+        //    PdfWriter pdfWriter = PdfWriter.GetInstance(pdfDoc, Response.OutputStream);
+        //    pdfDoc.Open();
+
+        //    // Linha horizontal
+        //    Paragraph line1 = new Paragraph(new Chunk(new iTextSharp.text.pdf.draw.LineSeparator(0.0F, 100.0F, BaseColor.BLUE, Element.ALIGN_LEFT, 1)));
+        //    pdfDoc.Add(line1);
+
+        //    // Cabeçalho
+        //    PdfPTable table = new PdfPTable(5);
+        //    table.WidthPercentage = 100;
+        //    table.HorizontalAlignment = 1; //0=Left, 1=Centre, 2=Right
+        //    table.SpacingBefore = 1f;
+        //    table.SpacingAfter = 1f;
+
+        //    PdfPCell cell = new PdfPCell();
+        //    cell.Border = 0;
+        //    Image image = Image.GetInstance(Server.MapPath("~/Imagens/Base/LogoRidolfi.jpg"));
+        //    image.ScaleAbsolute(50, 50);
+        //    cell.AddElement(image);
+        //    table.AddCell(cell);
+
+        //    cell = new PdfPCell(new Paragraph("Beneficiario - Detalhes", meuFont2))
+        //    {
+        //        VerticalAlignment = Element.ALIGN_MIDDLE,
+        //        HorizontalAlignment = Element.ALIGN_CENTER
+        //    };
+        //    cell.Border = 0;
+        //    cell.Colspan = 4;
+        //    table.AddCell(cell);
+
+        //    pdfDoc.Add(table);
+
+        //    // Linha Horizontal
+        //    line1 = new Paragraph(new Chunk(new iTextSharp.text.pdf.draw.LineSeparator(0.0F, 100.0F, BaseColor.BLUE, Element.ALIGN_LEFT, 1)));
+        //    pdfDoc.Add(line1);
+        //    line1 = new Paragraph("  ");
+        //    pdfDoc.Add(line1);
+
+        //    // Dados Gerais
+        //    table = new PdfPTable(new float[] { 120f, 120f, 120f, 120f, 120f });
+        //    table.WidthPercentage = 100;
+        //    table.HorizontalAlignment = 0;
+        //    table.SpacingBefore = 1f;
+        //    table.SpacingAfter = 1f;
+
+        //    cell = new PdfPCell(new Paragraph("Dados Gerais", meuFontBold));
+        //    cell.Border = 0;
+        //    cell.Colspan = 5;
+        //    cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+        //    cell.HorizontalAlignment = Element.ALIGN_LEFT;
+        //    table.AddCell(cell);
+
+        //    cell = new PdfPCell(new Paragraph("Nome: " + tran.BENE_NM_NOME, meuFont));
+        //    cell.Border = 0;
+        //    cell.Colspan = 2;
+        //    cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+        //    cell.HorizontalAlignment = Element.ALIGN_LEFT;
+        //    table.AddCell(cell);
+        //    cell = new PdfPCell(new Paragraph("Razão Social: " + tran.MOME_NM_RAZAO_SOCIAL, meuFont));
+        //    cell.Border = 0;
+        //    cell.Colspan = 3;
+        //    cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+        //    cell.HorizontalAlignment = Element.ALIGN_LEFT;
+        //    table.AddCell(cell);
+
+        //    cell = new PdfPCell(new Paragraph("Tipo Pessoa: " + tran.TIPO_PESSOA.TIPE_NM_NOME, meuFont));
+        //    cell.Border = 0;
+        //    cell.Colspan = 1;
+        //    cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+        //    cell.HorizontalAlignment = Element.ALIGN_LEFT;
+        //    table.AddCell(cell);
+        //    cell = new PdfPCell(new Paragraph("Sexo: " + tran.SEXO.SEXO_NM_NOME, meuFont));
+        //    cell.Border = 0;
+        //    cell.Colspan = 1;
+        //    cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+        //    cell.HorizontalAlignment = Element.ALIGN_LEFT;
+        //    table.AddCell(cell);
+        //    cell = new PdfPCell(new Paragraph("Estado Civil: " + tran.ESTADO_CIVIL.ESCI_NM_NOME, meuFont));
+        //    cell.Border = 0;
+        //    cell.Colspan = 1;
+        //    cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+        //    cell.HorizontalAlignment = Element.ALIGN_LEFT;
+        //    table.AddCell(cell);
+        //    cell = new PdfPCell(new Paragraph("Escolaridade: " + tran.ESCOLARIDADE.ESCO_NM_NOME, meuFont));
+        //    cell.Border = 0;
+        //    cell.Colspan = 1;
+        //    cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+        //    cell.HorizontalAlignment = Element.ALIGN_LEFT;
+        //    table.AddCell(cell);
+        //    cell = new PdfPCell(new Paragraph("Parentesco: " + tran.PARENTESCO.PARE_NM_NOME, meuFont));
+        //    cell.Border = 0;
+        //    cell.Colspan = 1;
+        //    cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+        //    cell.HorizontalAlignment = Element.ALIGN_LEFT;
+        //    table.AddCell(cell);
+
+        //    if (tran.BENE_DT_NASCIMENTO != null)
+        //    {
+        //        cell = new PdfPCell(new Paragraph("Data Nasc.: " + tran.BENE_DT_NASCIMENTO.Value.ToShortDateString(), meuFont));
+        //        cell.Border = 0;
+        //        cell.Colspan = 1;
+        //        cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+        //        cell.HorizontalAlignment = Element.ALIGN_LEFT;
+        //    }
+        //    else
+        //    {
+        //        cell = new PdfPCell(new Paragraph("Data Nasc.: - ", meuFont));
+        //        cell.Border = 0;
+        //        cell.Colspan = 1;
+        //        cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+        //        cell.HorizontalAlignment = Element.ALIGN_LEFT;
+        //    }
+        //    table.AddCell(cell);
+        //    if (tran.BENE_VL_RENDA != null)
+        //    {
+        //        cell = new PdfPCell(new Paragraph("Renda: R$ " + CrossCutting.Formatters.DecimalFormatter(tran.BENE_VL_RENDA.Value), meuFont));
+        //        cell.Border = 0;
+        //        cell.Colspan = 1;
+        //        cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+        //        cell.HorizontalAlignment = Element.ALIGN_LEFT;
+        //    }
+        //    else
+        //    {
+        //        cell = new PdfPCell(new Paragraph("Renda: - ", meuFont));
+        //        cell.Border = 0;
+        //        cell.Colspan = 1;
+        //        cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+        //        cell.HorizontalAlignment = Element.ALIGN_LEFT;
+        //    }
+        //    table.AddCell(cell);
+        //    if (tran.BENE_VL_RENDA_ESTIMADA != null)
+        //    {
+        //        cell = new PdfPCell(new Paragraph("Renda Estimada: R$ " + CrossCutting.Formatters.DecimalFormatter(tran.BENE_VL_RENDA_ESTIMADA.Value), meuFont));
+        //        cell.Border = 0;
+        //        cell.Colspan = 3;
+        //        cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+        //        cell.HorizontalAlignment = Element.ALIGN_LEFT;
+        //    }
+        //    else
+        //    {
+        //        cell = new PdfPCell(new Paragraph("Renda Estimada: - ", meuFont));
+        //        cell.Border = 0;
+        //        cell.Colspan = 3;
+        //        cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+        //        cell.HorizontalAlignment = Element.ALIGN_LEFT;
+        //    }
+        //    table.AddCell(cell);
+        //    pdfDoc.Add(table);
+
+        //    // Linha Horizontal
+        //    line1 = new Paragraph(new Chunk(new iTextSharp.text.pdf.draw.LineSeparator(0.0F, 100.0F, BaseColor.BLUE, Element.ALIGN_LEFT, 1)));
+        //    pdfDoc.Add(line1);
+
+        //    // Finaliza
+        //    pdfWriter.CloseStream = false;
+        //    pdfDoc.Close();
+        //    Response.Buffer = true;
+        //    Response.ContentType = "application/pdf";
+        //    Response.AddHeader("content-disposition", "attachment;filename=" + nomeRel);
+        //    Response.Cache.SetCacheability(HttpCacheability.NoCache);
+        //    Response.Write(pdfDoc);
+        //    Response.End();
+
+        //    return RedirectToAction("VoltarAnexoBeneficiario");
+        //}
 
-            // Cria documento
-            Document pdfDoc = new Document(PageSize.A4, 10, 10, 10, 10);
-            PdfWriter pdfWriter = PdfWriter.GetInstance(pdfDoc, Response.OutputStream);
-            pdfDoc.Open();
 
-            // Linha horizontal
-            Paragraph line1 = new Paragraph(new Chunk(new iTextSharp.text.pdf.draw.LineSeparator(0.0F, 100.0F, BaseColor.BLUE, Element.ALIGN_LEFT, 1)));
-            pdfDoc.Add(line1);
 
-            // Cabeçalho
-            PdfPTable table = new PdfPTable(5);
-            table.WidthPercentage = 100;
-            table.HorizontalAlignment = 1; //0=Left, 1=Centre, 2=Right
-            table.SpacingBefore = 1f;
-            table.SpacingAfter = 1f;
-
-            PdfPCell cell = new PdfPCell();
-            cell.Border = 0;
-            Image image = Image.GetInstance(Server.MapPath("~/Imagens/Base/LogoRidolfi.jpg"));
-            image.ScaleAbsolute(50, 50);
-            cell.AddElement(image);
-            table.AddCell(cell);
-
-            cell = new PdfPCell(new Paragraph("Beneficiario - Detalhes", meuFont2))
-            {
-                VerticalAlignment = Element.ALIGN_MIDDLE,
-                HorizontalAlignment = Element.ALIGN_CENTER
-            };
-            cell.Border = 0;
-            cell.Colspan = 4;
-            table.AddCell(cell);
-
-            pdfDoc.Add(table);
-
-            // Linha Horizontal
-            line1 = new Paragraph(new Chunk(new iTextSharp.text.pdf.draw.LineSeparator(0.0F, 100.0F, BaseColor.BLUE, Element.ALIGN_LEFT, 1)));
-            pdfDoc.Add(line1);
-            line1 = new Paragraph("  ");
-            pdfDoc.Add(line1);
-
-            // Dados Gerais
-            table = new PdfPTable(new float[] { 120f, 120f, 120f, 120f, 120f });
-            table.WidthPercentage = 100;
-            table.HorizontalAlignment = 0;
-            table.SpacingBefore = 1f;
-            table.SpacingAfter = 1f;
-
-            cell = new PdfPCell(new Paragraph("Dados Gerais", meuFontBold));
-            cell.Border = 0;
-            cell.Colspan = 5;
-            cell.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cell.HorizontalAlignment = Element.ALIGN_LEFT;
-            table.AddCell(cell);
-
-            cell = new PdfPCell(new Paragraph("Nome: " + tran.BENE_NM_NOME, meuFont));
-            cell.Border = 0;
-            cell.Colspan = 2;
-            cell.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cell.HorizontalAlignment = Element.ALIGN_LEFT;
-            table.AddCell(cell);
-            cell = new PdfPCell(new Paragraph("Razão Social: " + tran.MOME_NM_RAZAO_SOCIAL, meuFont));
-            cell.Border = 0;
-            cell.Colspan = 3;
-            cell.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cell.HorizontalAlignment = Element.ALIGN_LEFT;
-            table.AddCell(cell);
-
-            cell = new PdfPCell(new Paragraph("Tipo Pessoa: " + tran.TIPO_PESSOA.TIPE_NM_NOME, meuFont));
-            cell.Border = 0;
-            cell.Colspan = 1;
-            cell.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cell.HorizontalAlignment = Element.ALIGN_LEFT;
-            table.AddCell(cell);
-            cell = new PdfPCell(new Paragraph("Sexo: " + tran.SEXO.SEXO_NM_NOME, meuFont));
-            cell.Border = 0;
-            cell.Colspan = 1;
-            cell.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cell.HorizontalAlignment = Element.ALIGN_LEFT;
-            table.AddCell(cell);
-            cell = new PdfPCell(new Paragraph("Estado Civil: " + tran.ESTADO_CIVIL.ESCI_NM_NOME, meuFont));
-            cell.Border = 0;
-            cell.Colspan = 1;
-            cell.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cell.HorizontalAlignment = Element.ALIGN_LEFT;
-            table.AddCell(cell);
-            cell = new PdfPCell(new Paragraph("Escolaridade: " + tran.ESCOLARIDADE.ESCO_NM_NOME, meuFont));
-            cell.Border = 0;
-            cell.Colspan = 1;
-            cell.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cell.HorizontalAlignment = Element.ALIGN_LEFT;
-            table.AddCell(cell);
-            cell = new PdfPCell(new Paragraph("Parentesco: " + tran.PARENTESCO.PARE_NM_NOME, meuFont));
-            cell.Border = 0;
-            cell.Colspan = 1;
-            cell.VerticalAlignment = Element.ALIGN_MIDDLE;
-            cell.HorizontalAlignment = Element.ALIGN_LEFT;
-            table.AddCell(cell);
-
-            if (tran.BENE_DT_NASCIMENTO != null)
-            {
-                cell = new PdfPCell(new Paragraph("Data Nasc.: " + tran.BENE_DT_NASCIMENTO.Value.ToShortDateString(), meuFont));
-                cell.Border = 0;
-                cell.Colspan = 1;
-                cell.VerticalAlignment = Element.ALIGN_MIDDLE;
-                cell.HorizontalAlignment = Element.ALIGN_LEFT;
-            }
-            else
-            {
-                cell = new PdfPCell(new Paragraph("Data Nasc.: - ", meuFont));
-                cell.Border = 0;
-                cell.Colspan = 1;
-                cell.VerticalAlignment = Element.ALIGN_MIDDLE;
-                cell.HorizontalAlignment = Element.ALIGN_LEFT;
-            }
-            table.AddCell(cell);
-            if (tran.BENE_VL_RENDA != null)
-            {
-                cell = new PdfPCell(new Paragraph("Renda: R$ " + CrossCutting.Formatters.DecimalFormatter(tran.BENE_VL_RENDA.Value), meuFont));
-                cell.Border = 0;
-                cell.Colspan = 1;
-                cell.VerticalAlignment = Element.ALIGN_MIDDLE;
-                cell.HorizontalAlignment = Element.ALIGN_LEFT;
-            }
-            else
-            {
-                cell = new PdfPCell(new Paragraph("Renda: - ", meuFont));
-                cell.Border = 0;
-                cell.Colspan = 1;
-                cell.VerticalAlignment = Element.ALIGN_MIDDLE;
-                cell.HorizontalAlignment = Element.ALIGN_LEFT;
-            }
-            table.AddCell(cell);
-            if (tran.BENE_VL_RENDA_ESTIMADA != null)
-            {
-                cell = new PdfPCell(new Paragraph("Renda Estimada: R$ " + CrossCutting.Formatters.DecimalFormatter(tran.BENE_VL_RENDA_ESTIMADA.Value), meuFont));
-                cell.Border = 0;
-                cell.Colspan = 3;
-                cell.VerticalAlignment = Element.ALIGN_MIDDLE;
-                cell.HorizontalAlignment = Element.ALIGN_LEFT;
-            }
-            else
-            {
-                cell = new PdfPCell(new Paragraph("Renda Estimada: - ", meuFont));
-                cell.Border = 0;
-                cell.Colspan = 3;
-                cell.VerticalAlignment = Element.ALIGN_MIDDLE;
-                cell.HorizontalAlignment = Element.ALIGN_LEFT;
-            }
-            table.AddCell(cell);
-            pdfDoc.Add(table);
-
-            // Linha Horizontal
-            line1 = new Paragraph(new Chunk(new iTextSharp.text.pdf.draw.LineSeparator(0.0F, 100.0F, BaseColor.BLUE, Element.ALIGN_LEFT, 1)));
-            pdfDoc.Add(line1);
-
-            // Finaliza
-            pdfWriter.CloseStream = false;
-            pdfDoc.Close();
-            Response.Buffer = true;
-            Response.ContentType = "application/pdf";
-            Response.AddHeader("content-disposition", "attachment;filename=" + nomeRel);
-            Response.Cache.SetCacheability(HttpCacheability.NoCache);
-            Response.Write(pdfDoc);
-            Response.End();
-
-            return RedirectToAction("VoltarAnexoBeneficiario");
-        }
-
-        [HttpGet]
-        [ValidateInput(false)]
-        public ActionResult EnviarEMailBeneficiario()
-        {
-            if ((String)Session["Ativa"] == null)
-            {
-                return RedirectToAction("Login", "ControleAcesso");
-            }
-            Int32 idAss = (Int32)Session["IdAssinante"];
-            USUARIO usuario = (USUARIO)Session["UserCredentials"];
-
-            if (Session["MensMensagem"] != null)
-            {
-                if ((Int32)Session["MensMensagem"] == 66)
-                {
-                    ModelState.AddModelError("", PlatMensagens_Resources.ResourceManager.GetString("M0026", CultureInfo.CurrentCulture));
-                }
-            }
-
-            // recupera beneficiario
-            BENEFICIARIO cli = tranApp.GetItemById((Int32)Session["IdBeneficiario"]);
-            Session["Beneficiario"] = cli;
-
-            // Prepara mensagem
-            String header = "Prezado <b>" + cli.BENE_NM_NOME + "</b>";
-            String body = String.Empty;
-            String footer = "<b>" + "Atenciosamente" + "</b>";
-
-            // Monta vm
-            MensagemViewModel vm = new MensagemViewModel();
-            vm.MENS_DT_CRIACAO = DateTime.Now;
-            vm.MENS_IN_ATIVO = 1;
-            vm.NOME = cli.BENE_NM_NOME;
-            vm.ID = (Int32)Session["IdBeneficiario"];
-            vm.MODELO = cli.BENE_EM_EMAIL;
-            vm.USUA_CD_ID = usuario.USUA_CD_ID;
-            vm.MENS_NM_CABECALHO = header;
-            vm.MENS_NM_RODAPE = footer;
-            vm.MENS_IN_TIPO = 1;
-            vm.ID = cli.BENE_CD_ID;
-            return View(vm);
-        }
-
-        [HttpPost]
-        [ValidateInput(false)]
-        public ActionResult EnviarEMailBeneficiario(MensagemViewModel vm)
-        {
-            if ((String)Session["Ativa"] == null)
-            {
-                return RedirectToAction("Login", "ControleAcesso");
-            }
-            Int32 idAss = (Int32)Session["IdAssinante"];
-
-            if (ModelState.IsValid)
-            {
-                Int32 idNot = (Int32)Session["IdBeneficiario"];
-                try
-                {
-                    // Checa corpo da mensagem
-                    if (String.IsNullOrEmpty(vm.MENS_TX_TEXTO))
-                    {
-                        Session["MensMensagem"] = 66;
-                        return RedirectToAction("EnviarEMailCliente");
-                    }
-
-                    // Executa a operação
-                    USUARIO usuarioLogado = (USUARIO)Session["UserCredentials"];
-                    Int32 volta = ProcessaEnvioEMailBeneficiario(vm, usuarioLogado);
-
-                    // Verifica retorno
-                    if (volta == 1)
-                    {
-
-                    }
-
-                    // Sucesso
-                    return RedirectToAction("VoltarAnexoBeneficiario");
-                }
-                catch (Exception ex)
-                {
-                    ViewBag.Message = ex.Message;
-                    return View(vm);
-                }
-            }
-            else
-            {
-                return View(vm);
-            }
-        }
-
-        [ValidateInput(false)]
-        public Int32 ProcessaEnvioEMailBeneficiario(MensagemViewModel vm, USUARIO usuario)
-        {
-            // Recupera cliente
-            Int32 idAss = (Int32)Session["IdAssinante"];
-            BENEFICIARIO cont = (BENEFICIARIO)Session["Beneficiario"];
-
-            // Processa e-mail
-            CONFIGURACAO conf = confApp.GetItemById(1);
-
-            // Prepara cabeçalho
-            String cab = "Prezado Sr(a). <b>" + cont.BENE_NM_NOME + "</b>";
-
-            // Prepara rodape
-            String rod = "<b>" + "Atenciosamente"+ "</b>";
-
-            // Prepara corpo do e-mail e trata link
-            String corpo = vm.MENS_TX_TEXTO + "<br /><br />";
-            StringBuilder str = new StringBuilder();
-            str.AppendLine(corpo);
-            if (!String.IsNullOrEmpty(vm.MENS_NM_LINK))
-            {
-                if (!vm.MENS_NM_LINK.Contains("www."))
-                {
-                    vm.MENS_NM_LINK = "www." + vm.MENS_NM_LINK;
-                }
-                if (!vm.MENS_NM_LINK.Contains("http://"))
-                {
-                    vm.MENS_NM_LINK = "http://" + vm.MENS_NM_LINK;
-                }
-                str.AppendLine("<a href='" + vm.MENS_NM_LINK + "'>Clique aqui para maiores informações</a>");
-            }
-            String body = str.ToString();
-            String emailBody = cab + "<br /><br />" + body + "<br /><br />" + rod;
-
-            // Monta e-mail
-            NetworkCredential net = new NetworkCredential(conf.CONF_NM_EMAIL_EMISSOO, conf.CONF_NM_SENHA_EMISSOR);
-            Email mensagem = new Email();
-            mensagem.ASSUNTO = "Contato";
-            mensagem.CORPO = emailBody;
-            mensagem.DEFAULT_CREDENTIALS = false;
-            mensagem.EMAIL_DESTINO = cont.BENE_EM_EMAIL;
-            mensagem.EMAIL_EMISSOR = conf.CONF_NM_EMAIL_EMISSOO;
-            mensagem.ENABLE_SSL = true;
-            mensagem.NOME_EMISSOR = "Ridolfi";
-            mensagem.PORTA = conf.CONF_NM_PORTA_SMTP;
-            mensagem.PRIORIDADE = System.Net.Mail.MailPriority.High;
-            mensagem.SENHA_EMISSOR = conf.CONF_NM_SENHA_EMISSOR;
-            mensagem.SMTP = conf.CONF_NM_HOST_SMTP;
-            mensagem.IS_HTML = true;
-            mensagem.NETWORK_CREDENTIAL = net;
-
-            // Envia mensagem
-            try
-            {
-                Int32 voltaMail = CommunicationPackage.SendEmail(mensagem);
-            }
-            catch (Exception ex)
-            {
-                String erro = ex.Message;
-            }
-            return 0;
-        }
-
-        [HttpGet]
-        public ActionResult EnviarSMSBeneficiario()
-        {
-            if ((String)Session["Ativa"] == null)
-            {
-                return RedirectToAction("Login", "ControleAcesso");
-            }
-            BENEFICIARIO cont = tranApp.GetItemById((Int32)Session["IdBeneficiario"]);
-            Session["Beneficiario"] = cont;
-            ViewBag.Beneficiario = cont;
-            MensagemViewModel mens = new MensagemViewModel();
-            mens.NOME = cont.BENE_NM_NOME;
-            mens.ID = (Int32)Session["IdBeneficiario"];
-            mens.MODELO = cont.BENE_NR_CELULAR;
-            mens.MENS_DT_CRIACAO = DateTime.Today.Date;
-            mens.MENS_IN_TIPO = 2;
-            return View(mens);
-        }
-
-        [HttpPost]
-        public ActionResult EnviarSMSBeneficiario(MensagemViewModel vm)
-        {
-            if ((String)Session["Ativa"] == null)
-            {
-                return RedirectToAction("Login", "ControleAcesso");
-            }
-            Int32 idNot = (Int32)Session["IdBeneficiario"];
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    // Executa a operação
-                    USUARIO usuarioLogado = (USUARIO)Session["UserCredentials"];
-                    Int32 volta = ProcessaEnvioSMSBeneficiario(vm, usuarioLogado);
-
-                    // Verifica retorno
-                    if (volta == 1)
-                    {
-
-                    }
-
-                    // Sucesso
-                    return RedirectToAction("VoltarAnexoBeneficiario");
-                }
-                catch (Exception ex)
-                {
-                    ViewBag.Message = ex.Message;
-                    return View(vm);
-                }
-            }
-            else
-            {
-                return View(vm);
-            }
-        }
-
-        [ValidateInput(false)]
-        public Int32 ProcessaEnvioSMSBeneficiario(MensagemViewModel vm, USUARIO usuario)
-        {
-            // Recupera contatos
-            Int32 idAss = (Int32)Session["IdAssinante"];
-            BENEFICIARIO cont = (BENEFICIARIO)Session["Beneficiario"];
-
-            // Processa SMS
-            CONFIGURACAO conf = confApp.GetItemById(1);
-
-            // Monta token
-            String text = conf.CONF_SG_LOGIN_SMS + ":" + conf.CONF_SG_SENHA_SMS;
-            byte[] textBytes = Encoding.UTF8.GetBytes(text);
-            String token = Convert.ToBase64String(textBytes);
-            String auth = "Basic " + token;
-
-            // Prepara texto
-            String texto = vm.MENS_TX_SMS;
-
-            // Prepara corpo do SMS e trata link
-            StringBuilder str = new StringBuilder();
-            str.AppendLine(vm.MENS_TX_SMS);
-            if (!String.IsNullOrEmpty(vm.LINK))
-            {
-                if (!vm.LINK.Contains("www."))
-                {
-                    vm.LINK = "www." + vm.LINK;
-                }
-                if (!vm.LINK.Contains("http://"))
-                {
-                    vm.LINK = "http://" + vm.LINK;
-                }
-                str.AppendLine("<a href='" + vm.LINK + "'>Clique aqui para maiores informações</a>");
-                texto += "  " + vm.LINK;
-            }
-            String body = str.ToString();
-            String smsBody = body;
-            String erro = null;
-
-            // inicia processo
-            String resposta = String.Empty;
-
-            // Monta destinatarios
-            try
-            {
-                String listaDest = "55" + Regex.Replace(cont.BENE_NR_CELULAR, "[^a-zA-Z0-9_.]+", "", RegexOptions.Compiled).ToString();
-                var httpWebRequest = (HttpWebRequest)WebRequest.Create("https://api-v2.smsfire.com.br/sms/send/bulk");
-                httpWebRequest.Headers["Authorization"] = auth;
-                httpWebRequest.ContentType = "application/json";
-                httpWebRequest.Method = "POST";
-                String customId = Cryptography.GenerateRandomPassword(8);
-                String data = String.Empty;
-                String json = String.Empty;
-
-                using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
-                {
-                    json = String.Concat("{\"destinations\": [{\"to\": \"", listaDest, "\", \"text\": \"", texto, "\", \"customId\": \"" + customId + "\", \"from\": \"Ridolfi\"}]}");
-                    streamWriter.Write(json);
-                }
-
-                var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-                using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
-                {
-                    var result = streamReader.ReadToEnd();
-                    resposta = result;
-                }
-            }
-            catch (Exception ex)
-            {
-                erro = ex.Message;
-            }
-            return 0;
-        }
-
-
-        [HttpGet]
-        public ActionResult EditarEndereco(Int32 id)
-        {
-            if ((String)Session["Ativa"] == null)
-            {
-                return RedirectToAction("Login", "ControleAcesso");
-            }
-            // Prepara view
-            ViewBag.UF = new SelectList(tranApp.GetAllUF(), "UF_CD_ID", "UF_NM_NOME");
-
-            ENDERECO item = tranApp.GetEnderecoById(id);
-            EnderecoViewModel vm = Mapper.Map<ENDERECO, EnderecoViewModel>(item);
-            return View(vm);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult EditarEndereco(EnderecoViewModel vm)
-        {
-            ViewBag.UF = new SelectList(tranApp.GetAllUF(), "UF_CD_ID", "UF_NM_NOME");
-            if ((String)Session["Ativa"] == null)
-            {
-                return RedirectToAction("Login", "ControleAcesso");
-            }
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    // Executa a operação
-                    USUARIO usuarioLogado = (USUARIO)Session["UserCredentials"];
-                    ENDERECO item = Mapper.Map<EnderecoViewModel, ENDERECO>(vm);
-                    Int32 volta = tranApp.ValidateEditEndereco(item);
-
-                    // Verifica retorno
-                    return RedirectToAction("VoltarAnexoBeneficiario");
-                }
-                catch (Exception ex)
-                {
-                    ViewBag.Message = ex.Message;
-                    return View(vm);
-                }
-            }
-            else
-            {
-                return View(vm);
-            }
-        }
-
-        [HttpGet]
-        public ActionResult ExcluirEndereco(Int32 id)
-        {
-            if ((String)Session["Ativa"] == null)
-            {
-                return RedirectToAction("Login", "ControleAcesso");
-            }
-            ENDERECO item = tranApp.GetEnderecoById(id);
-            item.ENDE_IN_ATIVO = 0;
-            Int32 volta = tranApp.ValidateEditEndereco(item);
-            return RedirectToAction("VoltarAnexoBeneficiario");
-        }
-
-        [HttpGet]
-        public ActionResult ReativarEndereco(Int32 id)
-        {
-            if ((String)Session["Ativa"] == null)
-            {
-                return RedirectToAction("Login", "ControleAcesso");
-            }
-            ENDERECO item = tranApp.GetEnderecoById(id);
-            item.ENDE_IN_ATIVO = 1;
-            Int32 volta = tranApp.ValidateEditEndereco(item);
-            return RedirectToAction("VoltarAnexoBeneficiario");
-        }
-
-        [HttpGet]
-        public ActionResult IncluirEndereco()
-        {
-            if ((String)Session["Ativa"] == null)
-            {
-                return RedirectToAction("Login", "ControleAcesso");
-            }
-
-            // Prepara view
-            ViewBag.UF = new SelectList(tranApp.GetAllUF(), "UF_CD_ID", "UF_NM_NOME");
-
-            ENDERECO item = new ENDERECO();
-            EnderecoViewModel vm = Mapper.Map<ENDERECO, EnderecoViewModel>(item);
-            vm.BENE_CD_ID = (Int32)Session["IdBeneficiario"];
-            vm.ENDE_IN_ATIVO = 1;
-            return View(vm);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult IncluirEndereco(EnderecoViewModel vm)
-        {
-            ViewBag.UF = new SelectList(tranApp.GetAllUF(), "UF_CD_ID", "UF_NM_NOME");
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    // Executa a operação
-                    ENDERECO item = Mapper.Map<EnderecoViewModel, ENDERECO>(vm);
-                    Int32 volta = tranApp.ValidateCreateEndereco(item);
-                    // Verifica retorno
-                    return RedirectToAction("VoltarAnexoBeneficiario");
-                }
-                catch (Exception ex)
-                {
-                    ViewBag.Message = ex.Message;
-                    return View(vm);
-                }
-            }
-            else
-            {
-                return View(vm);
-            }
-        }
-
-        [HttpGet]
-        public ActionResult EditarEMail(Int32 id)
-        {
-            if ((String)Session["Ativa"] == null)
-            {
-                return RedirectToAction("Login", "ControleAcesso");
-            }
-            // Prepara view
-
-            EMAIL item = tranApp.GetEMailById(id);
-            EMailViewModel vm = Mapper.Map<EMAIL, EMailViewModel>(item);
-            return View(vm);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult EditarEMail(EMailViewModel vm)
-        {
-            if ((String)Session["Ativa"] == null)
-            {
-                return RedirectToAction("Login", "ControleAcesso");
-            }
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    // Executa a operação
-                    USUARIO usuarioLogado = (USUARIO)Session["UserCredentials"];
-                    EMAIL item = Mapper.Map<EMailViewModel, EMAIL>(vm);
-                    Int32 volta = tranApp.ValidateEditEMail(item);
-
-                    // Verifica retorno
-                    return RedirectToAction("VoltarAnexoBeneficiario");
-                }
-                catch (Exception ex)
-                {
-                    ViewBag.Message = ex.Message;
-                    return View(vm);
-                }
-            }
-            else
-            {
-                return View(vm);
-            }
-        }
-
-        [HttpGet]
-        public ActionResult ExcluirEMail(Int32 id)
-        {
-            if ((String)Session["Ativa"] == null)
-            {
-                return RedirectToAction("Login", "ControleAcesso");
-            }
-            EMAIL item = tranApp.GetEMailById(id);
-            item.EMAI_IN_ATIVO = 0;
-            Int32 volta = tranApp.ValidateEditEMail(item);
-            return RedirectToAction("VoltarAnexoBeneficiario");
-        }
-
-        [HttpGet]
-        public ActionResult ReativarEMail(Int32 id)
-        {
-            if ((String)Session["Ativa"] == null)
-            {
-                return RedirectToAction("Login", "ControleAcesso");
-            }
-            EMAIL item = tranApp.GetEMailById(id);
-            item.EMAI_IN_ATIVO = 1;
-            Int32 volta = tranApp.ValidateEditEMail(item);
-            return RedirectToAction("VoltarAnexoBeneficiario");
-        }
-
-        [HttpGet]
-        public ActionResult IncluirEMail()
-        {
-            if ((String)Session["Ativa"] == null)
-            {
-                return RedirectToAction("Login", "ControleAcesso");
-            }
-
-            // Prepara view
-            EMAIL item = new EMAIL();
-            EMailViewModel vm = Mapper.Map<EMAIL, EMailViewModel>(item);
-            vm.BENE_CD_ID = (Int32)Session["IdBeneficiario"];
-            vm.EMAI_IN_ATIVO = 1;
-            return View(vm);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult IncluirEMail(EMailViewModel vm)
-        {
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    // Executa a operação
-                    EMAIL item = Mapper.Map<EMailViewModel, EMAIL>(vm);
-                    Int32 volta = tranApp.ValidateCreateEMail(item);
-                    // Verifica retorno
-                    return RedirectToAction("VoltarAnexoBeneficiario");
-                }
-                catch (Exception ex)
-                {
-                    ViewBag.Message = ex.Message;
-                    return View(vm);
-                }
-            }
-            else
-            {
-                return View(vm);
-            }
-        }
-
-        [HttpPost]
-        public JsonResult PesquisaCEP_Javascript(String cep, int tipoEnd)
-        {
-            // Chama servico ECT
-            ZipCodeLoad zipLoad = new ZipCodeLoad();
-            ZipCodeInfo end = new ZipCodeInfo();
-            ZipCode zipCode = null;
-            cep = CrossCutting.ValidarNumerosDocumentos.RemoveNaoNumericos(cep);
-            if (ZipCode.TryParse(cep, out zipCode))
-            {
-                end = zipLoad.Find(zipCode);
-            }
-
-            // Atualiza
-            var hash = new Hashtable();
-            hash.Add("ENDE_NM_ENDERECO", end.Address);
-            hash.Add("ENDE_NM_BAIRRO", end.District);
-            hash.Add("ENDE_NM_CIDADE", end.City);
-            hash.Add("UF_CD_ID", tranApp.GetUFbySigla(end.Uf).UF_CD_ID);
-            hash.Add("ENDE_NR_CEP", cep);
-
-            // Retorna
-            Session["VoltaCEP"] = 2;
-            return Json(hash);
-        }
-
-        [HttpGet]
-        public ActionResult VerContato(Int32 id)
-        {
-            if ((String)Session["Ativa"] == null)
-            {
-                return RedirectToAction("Login", "ControleAcesso");
-            }
-            // Prepara view
-            CONTATO item = tranApp.GetContatoById(id);
-            ContatoViewModel vm = Mapper.Map<CONTATO, ContatoViewModel>(item);
-            return View(vm);
-        }
-
-        [HttpGet]
-        public ActionResult EditarTelefone(Int32 id)
-        {
-            if ((String)Session["Ativa"] == null)
-            {
-                return RedirectToAction("Login", "ControleAcesso");
-            }
-            // Prepara view
-            ViewBag.Tipo = new SelectList(tranApp.GetAllTipoTelefone(), "TITE_CD_ID", "TITE_NM_NOME");
-
-            TELEFONE item = tranApp.GetTelefoneById(id);
-            TelefoneBenefViewModel vm = Mapper.Map<TELEFONE, TelefoneBenefViewModel>(item);
-            return View(vm);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult EditarTelefone(TelefoneBenefViewModel vm)
-        {
-            if ((String)Session["Ativa"] == null)
-            {
-                return RedirectToAction("Login", "ControleAcesso");
-            }
-            ViewBag.Tipo = new SelectList(tranApp.GetAllTipoTelefone(), "TITE_CD_ID", "TITE_NM_NOME");
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    // Executa a operação
-                    USUARIO usuarioLogado = (USUARIO)Session["UserCredentials"];
-                    TELEFONE item = Mapper.Map<TelefoneBenefViewModel, TELEFONE>(vm);
-                    Int32 volta = tranApp.ValidateEditTelefone(item);
-
-                    // Verifica retorno
-                    return RedirectToAction("VoltarAnexoBeneficiario");
-                }
-                catch (Exception ex)
-                {
-                    ViewBag.Message = ex.Message;
-                    return View(vm);
-                }
-            }
-            else
-            {
-                return View(vm);
-            }
-        }
-
-        [HttpGet]
-        public ActionResult ExcluirTelefone(Int32 id)
-        {
-            if ((String)Session["Ativa"] == null)
-            {
-                return RedirectToAction("Login", "ControleAcesso");
-            }
-            TELEFONE item = tranApp.GetTelefoneById(id);
-            item.TELE_IN_ATIVO = 0;
-            Int32 volta = tranApp.ValidateEditTelefone(item);
-            return RedirectToAction("VoltarAnexoBeneficiario");
-        }
-
-        [HttpGet]
-        public ActionResult ReativarTelefone(Int32 id)
-        {
-            if ((String)Session["Ativa"] == null)
-            {
-                return RedirectToAction("Login", "ControleAcesso");
-            }
-            TELEFONE item = tranApp.GetTelefoneById(id);
-            item.TELE_IN_ATIVO = 1;
-            Int32 volta = tranApp.ValidateEditTelefone(item);
-            return RedirectToAction("VoltarAnexoBeneficiario");
-        }
-
-        [HttpGet]
-        public ActionResult IncluirTelefone()
-        {
-            if ((String)Session["Ativa"] == null)
-            {
-                return RedirectToAction("Login", "ControleAcesso");
-            }
-
-            // Prepara view
-            ViewBag.Tipo = new SelectList(tranApp.GetAllTipoTelefone(), "TITE_CD_ID", "TITE_NM_NOME");
-            TELEFONE item = new TELEFONE();
-            TelefoneBenefViewModel vm = Mapper.Map<TELEFONE, TelefoneBenefViewModel>(item);
-            vm.BENE_CD_ID = (Int32)Session["IdBeneficiario"];
-            vm.TELE_IN_ATIVO = 1;
-            return View(vm);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult IncluirTelefone(TelefoneBenefViewModel vm)
-        {
-            ViewBag.Tipo = new SelectList(tranApp.GetAllTipoTelefone(), "TITE_CD_ID", "TITE_NM_NOME");
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    // Executa a operação
-                    TELEFONE item = Mapper.Map<TelefoneBenefViewModel, TELEFONE>(vm);
-                    Int32 volta = tranApp.ValidateCreateTelefone(item);
-                    // Verifica retorno
-                    return RedirectToAction("VoltarAnexoBeneficiario");
-                }
-                catch (Exception ex)
-                {
-                    ViewBag.Message = ex.Message;
-                    return View(vm);
-                }
-            }
-            else
-            {
-                return View(vm);
-            }
-        }
 
 
     }

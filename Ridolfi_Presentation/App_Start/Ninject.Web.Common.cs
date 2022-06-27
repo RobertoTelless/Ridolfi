@@ -190,7 +190,6 @@ namespace Presentation.Start
             kernel.Bind<ITitularidadeRepository>().To<TitularidadeRepository>();
             kernel.Bind<IPrecatorioRepository>().To<PrecatorioRepository>();
             kernel.Bind<IClienteAnotacaoRepository>().To<ClienteAnotacaoRepository>();
-            kernel.Bind<IPrecatorioRepository>().To<PrecatorioRepository>();
             kernel.Bind<IPrecatorioAnexoRepository>().To<PrecatorioAnexoRepository>();
             kernel.Bind<IPrecatorioAnotacaoRepository>().To<PrecatorioAnotacaoRepository>();
             kernel.Bind<IPrecatorioEstadoRepository>().To<PrecatorioEstadoRepository>();
