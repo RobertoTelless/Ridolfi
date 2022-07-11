@@ -14,6 +14,6 @@ namespace ModelServices.Interfaces.Repositories
         PRECATORIO GetItemById(Int32 id);
         List<PRECATORIO> GetAllItens();
         List<PRECATORIO> GetAllItensAdm();
-        List<PRECATORIO> ExecuteFilter(Int32? trf, Int32? beneficiario, Int32? advogado, Int32? natureza, Int32? estado, String nome, String ano);
+        List<PRECATORIO> ExecuteFilter(Int32? trf, Int32? beneficiario, Int32? advogado, Int32? natureza, Int32? estado, String nome, String ano, Int32? crm, Int32? pesquisa, Decimal? valor1, Decimal? valor2, Int32? situacao);
     }
 }

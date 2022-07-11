@@ -77,9 +77,29 @@
                                 Requerente
                                 @Html.TextBoxFor(m => m.PREC_NM_REQUERENTE, new { @class = "form-control", autofocus = true })
                             </div>
-                            <div class="col-lg-2 col-md-2 col-xs-12">
+                            <div class="col-lg-1 col-md-1 col-xs-12">
                                 Ano
                                 @Html.TextBoxFor(m => m.PREC_NR_ANO, new { @class = "form-control", autofocus = true, @id="ano" })
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-xs-5ths">
+                                Incluído CRM
+                                @Html.DropDownListFor(m => m.PREC_IN_FOI_IMPORTADO_PIPE, (SelectList)ViewBag.CRM, "Selecionar", new { @class = "form-control" })                            
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-xs-5ths">
+                                Pesquisado
+                                @Html.DropDownListFor(m => m.PREC_IN_FOI_PESQUISADO, (SelectList)ViewBag.Pesquisa, "Selecionar", new { @class = "form-control" })                            
+                            </div>
+                            <div class="col-lg-1 col-md-1 col-xs-12">
+                                Valor Inicial (R$)
+                                @Html.TextBoxFor(m => m.PREC_VL_BEN_VALOR_REQUISITADO, new { @class = "form-control", autofocus = true })
+                            </div>
+                            <div class="col-lg-1 col-md-1 col-xs-12">
+                                Valor Final (R$)
+                                @Html.TextBoxFor(m => m.PREC_VL_HON_VALOR_REQUISITADO, new { @class = "form-control", autofocus = true })
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-xs-5ths">
+                                Situação
+                                @Html.DropDownListFor(m => m.PREC_IN_SITUACAO_ATUAL, (SelectList)ViewBag.Situacao, "Selecionar", new { @class = "form-control" })                            
                             </div>
                         </div>
                         <div class="form-group" style=" margin-left: -15px; margin-right: -15px;">
@@ -125,6 +145,7 @@
                                         <th>Estado</th>
                                         <th>Requerente</th>
                                         <th>Ano</th>
+                                        <th>Valor (R$)</th>
                                         <th class="td-one-action">Ações</th>
                                     </tr>
                                 </thead>
@@ -146,6 +167,14 @@
                                             }
                                             <td>@cond.PREC_NM_REQUERENTE</td>
                                             <td>@cond.PREC_NR_ANO</td>
+                                            @if (cond.PREC_VL_BEN_VALOR_REQUISITADO != null)
+                                            {
+                                                <td>@CrossCutting.Formatters.DecimalFormatter(cond.PREC_VL_BEN_VALOR_REQUISITADO.Value)</td>
+                                            }
+                                            else
+                                            {
+                                                <td>-</td>
+                                            }
                                             <td class="td-one-action">
                                                 @if (ViewBag.Perfil != "VIS")
                                                 {

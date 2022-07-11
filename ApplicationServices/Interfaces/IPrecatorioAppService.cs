@@ -19,7 +19,7 @@ namespace ApplicationServices.Interfaces
         PRECATORIO GetItemById(Int32 id);
         List<PRECATORIO> GetAllItens();
         List<PRECATORIO> GetAllItensAdm();
-        Int32 ExecuteFilter(Int32? trf, Int32? beneficiario, Int32? advogado, Int32? natureza, Int32? estado, String nome, String ano, out List<PRECATORIO> objeto);
+        Int32 ExecuteFilter(Int32? trf, Int32? beneficiario, Int32? advogado, Int32? natureza, Int32? estado, String nome, String ano, Int32? crm, Int32? pesquisa, Decimal? valor1, Decimal? valor2, Int32? situacao, out List<PRECATORIO> objeto);
 
         List<TRF> GetAllTRF();
         List<BENEFICIARIO> GetAllBeneficiarios();

@@ -43,11 +43,11 @@ namespace DataServices.Repositories
             return query.ToList();
         }
 
-        public List<PRECATORIO> ExecuteFilter(Int32? trf, Int32? beneficiario, Int32? advogado, Int32? natureza, Int32? estado, String nome, String ano)
+        public List<PRECATORIO> ExecuteFilter(Int32? trf, Int32? beneficiario, Int32? advogado, Int32? natureza, Int32? estado, String nome, String ano, Int32? crm, Int32? pesquisa, Decimal? valor1, Decimal? valor2, Int32? situacao)
         {
             List<PRECATORIO> lista = new List<PRECATORIO>();
             IQueryable<PRECATORIO> query = Db.PRECATORIO;
-            if (trf != null)
+            if (trf > 0)
             {
                 query = query.Where(p => p.TRF1_CD_ID == trf);
             }
@@ -74,6 +74,30 @@ namespace DataServices.Repositories
             if (!String.IsNullOrEmpty(ano))
             {
                 query = query.Where(p => p.PREC_NR_ANO.Contains(ano));
+            }
+            if (crm != null)
+            {
+                query = query.Where(p => p.PREC_IN_FOI_IMPORTADO_PIPE == crm);
+            }
+            if (situacao != null)
+            {
+                query = query.Where(p => p.PREC_IN_SITUACAO_ATUAL == situacao);
+            }
+            if (pesquisa != null)
+            {
+                query = query.Where(p => p.PREC_IN_FOI_PESQUISADO == pesquisa);
+            }
+            if (valor1 != null & valor2 == null)
+            {
+                query = query.Where(p => p.PREC_VL_BEN_VALOR_REQUISITADO == valor1);
+            }
+            else if (valor1 != null & valor2 != null)
+            {
+                query = query.Where(p => p.PREC_VL_BEN_VALOR_REQUISITADO > valor1 & p.PREC_VL_BEN_VALOR_REQUISITADO < valor2);
+            }
+            else if (valor1 == null & valor2 != null)
+            {
+                query = query.Where(p => p.PREC_VL_BEN_VALOR_REQUISITADO == valor2);
             }
             if (query != null)
             {

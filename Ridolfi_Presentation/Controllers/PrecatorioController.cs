@@ -103,6 +103,19 @@ namespace ERP_CRM_Solution.Controllers
             ViewBag.Beneficiario = new SelectList(tranApp.GetAllBeneficiarios().OrderBy(p => p.BENE_NM_NOME), "BENE_CD_ID", "BENE_NM_NOME");
             ViewBag.Advogado = new SelectList(tranApp.GetAllAdvogados().OrderBy(p => p.HONO_NM_NOME), "HONO_CD_ID", "HONO_NM_NOME");
             ViewBag.Perfil = usuario.PERFIL.PERF_SG_SIGLA;
+            List<SelectListItem> crm = new List<SelectListItem>();
+            crm.Add(new SelectListItem() { Text = "Sim", Value = "1" });
+            crm.Add(new SelectListItem() { Text = "Não", Value = "2" });
+            ViewBag.CRM = new SelectList(crm, "Value", "Text");
+            List<SelectListItem> pesquisa = new List<SelectListItem>();
+            pesquisa.Add(new SelectListItem() { Text = "Sim", Value = "1" });
+            pesquisa.Add(new SelectListItem() { Text = "Não", Value = "2" });
+            ViewBag.Pesquisa = new SelectList(pesquisa, "Value", "Text");
+            List<SelectListItem> sit = new List<SelectListItem>();
+            sit.Add(new SelectListItem() { Text = "Pago", Value = "1" });
+            sit.Add(new SelectListItem() { Text = "Não Pago", Value = "2" });
+            sit.Add(new SelectListItem() { Text = "Pago Parcial", Value = "3" });
+            ViewBag.Situacao = new SelectList(sit, "Value", "Text");
 
             if (Session["MensPrecatorio"] != null)
             {
@@ -159,7 +172,7 @@ namespace ERP_CRM_Solution.Controllers
                 // Executa a operação
                 List<PRECATORIO> listaObj = new List<PRECATORIO>();
                 Session["FiltroPrecatorio"] = item;
-                Int32 volta = tranApp.ExecuteFilter(item.TRF1_CD_ID, item.BENE_CD_ID, item.HONO_CD_ID, item.NATU_CD_ID, item.PRES_CD_ID, item.PREC_NM_REQUERENTE, item.PREC_NR_ANO, out listaObj);
+                Int32 volta = tranApp.ExecuteFilter(item.TRF1_CD_ID, item.BENE_CD_ID, item.HONO_CD_ID, item.NATU_CD_ID, item.PRES_CD_ID, item.PREC_NM_REQUERENTE, item.PREC_NR_ANO, item.PREC_IN_FOI_IMPORTADO_PIPE, item.PREC_IN_FOI_PESQUISADO, item.PREC_VL_BEN_VALOR_REQUISITADO, item.PREC_VL_HON_VALOR_REQUISITADO, item.PREC_IN_SITUACAO_ATUAL, out listaObj);
 
                 // Verifica retorno
                 if (volta == 1)
@@ -219,6 +232,7 @@ namespace ERP_CRM_Solution.Controllers
             ViewBag.Estado = new SelectList(tranApp.GetAllEstados().OrderBy(p => p.PRES_NM_NOME), "PRES_CD_ID", "PRES_NM_NOME");
             ViewBag.Beneficiario = new SelectList(tranApp.GetAllBeneficiarios().OrderBy(p => p.BENE_NM_NOME), "BENE_CD_ID", "BENE_NM_NOME");
             ViewBag.Advogado = new SelectList(tranApp.GetAllAdvogados().OrderBy(p => p.HONO_NM_NOME), "HONO_CD_ID", "HONO_NM_NOME");
+           
             List<SelectListItem> proc = new List<SelectListItem>();
             proc.Add(new SelectListItem() { Text = "PRC", Value = "1" });
             proc.Add(new SelectListItem() { Text = "RPV", Value = "2" });
@@ -951,7 +965,7 @@ namespace ERP_CRM_Solution.Controllers
             pdfDoc.Add(line1);
 
             // Grid
-            table = new PdfPTable(new float[] { 80f, 100f, 50f, 100f, 100f, 100f, 70f, 50f});
+            table = new PdfPTable(new float[] { 70f, 100f, 80f, 50f, 50f, 100f, 70f, 40f, 60f});
             table.WidthPercentage = 100;
             table.HorizontalAlignment = 0;
             table.SpacingBefore = 1f;
@@ -961,7 +975,7 @@ namespace ERP_CRM_Solution.Controllers
             {
                 VerticalAlignment = Element.ALIGN_MIDDLE, HorizontalAlignment = Element.ALIGN_LEFT
             };
-            cell.Colspan = 5;
+            cell.Colspan = 9;
             cell.BackgroundColor = BaseColor.LIGHT_GRAY;
             table.AddCell(cell);
 
@@ -979,21 +993,7 @@ namespace ERP_CRM_Solution.Controllers
             };
             cell.BackgroundColor = BaseColor.LIGHT_GRAY;
             table.AddCell(cell);
-            cell = new PdfPCell(new Paragraph("Processo Origem", meuFont))
-            {
-                VerticalAlignment = Element.ALIGN_MIDDLE,
-                HorizontalAlignment = Element.ALIGN_LEFT
-            };
-            cell.BackgroundColor = BaseColor.LIGHT_GRAY;
-            table.AddCell(cell);
-            cell = new PdfPCell(new Paragraph("Requerente", meuFont))
-            {
-                VerticalAlignment = Element.ALIGN_MIDDLE,
-                HorizontalAlignment = Element.ALIGN_LEFT
-            };
-            cell.BackgroundColor = BaseColor.LIGHT_GRAY;
-            table.AddCell(cell);
-            cell = new PdfPCell(new Paragraph("Deprecante", meuFont))
+            cell = new PdfPCell(new Paragraph("Advogado", meuFont))
             {
                 VerticalAlignment = Element.ALIGN_MIDDLE,
                 HorizontalAlignment = Element.ALIGN_LEFT
@@ -1014,7 +1014,28 @@ namespace ERP_CRM_Solution.Controllers
             };
             cell.BackgroundColor = BaseColor.LIGHT_GRAY;
             table.AddCell(cell);
+            cell = new PdfPCell(new Paragraph("Requerente", meuFont))
+            {
+                VerticalAlignment = Element.ALIGN_MIDDLE,
+                HorizontalAlignment = Element.ALIGN_LEFT
+            };
+            cell.BackgroundColor = BaseColor.LIGHT_GRAY;
+            table.AddCell(cell);
+            cell = new PdfPCell(new Paragraph("Situação", meuFont))
+            {
+                VerticalAlignment = Element.ALIGN_MIDDLE,
+                HorizontalAlignment = Element.ALIGN_LEFT
+            };
+            cell.BackgroundColor = BaseColor.LIGHT_GRAY;
+            table.AddCell(cell);
             cell = new PdfPCell(new Paragraph("Ano", meuFont))
+            {
+                VerticalAlignment = Element.ALIGN_MIDDLE,
+                HorizontalAlignment = Element.ALIGN_LEFT
+            };
+            cell.BackgroundColor = BaseColor.LIGHT_GRAY;
+            table.AddCell(cell);
+            cell = new PdfPCell(new Paragraph("Valor (R$)", meuFont))
             {
                 VerticalAlignment = Element.ALIGN_MIDDLE,
                 HorizontalAlignment = Element.ALIGN_LEFT
@@ -1034,19 +1055,7 @@ namespace ERP_CRM_Solution.Controllers
                     VerticalAlignment = Element.ALIGN_MIDDLE, HorizontalAlignment = Element.ALIGN_LEFT
                 };
                 table.AddCell(cell);
-                cell = new PdfPCell(new Paragraph(item.PREC_NM_PROCESSO_ORIGEM, meuFont))
-                {
-                    VerticalAlignment = Element.ALIGN_MIDDLE,
-                    HorizontalAlignment = Element.ALIGN_LEFT
-                };
-                table.AddCell(cell);
-                cell = new PdfPCell(new Paragraph(item.PREC_NM_REQUERENTE, meuFont))
-                {
-                    VerticalAlignment = Element.ALIGN_MIDDLE,
-                    HorizontalAlignment = Element.ALIGN_LEFT
-                };
-                table.AddCell(cell);
-                cell = new PdfPCell(new Paragraph(item.PREC_NM_DEPRECANTE, meuFont))
+                cell = new PdfPCell(new Paragraph(item.HONORARIO.HONO_NM_NOME, meuFont))
                 {
                     VerticalAlignment = Element.ALIGN_MIDDLE,
                     HorizontalAlignment = Element.ALIGN_LEFT
@@ -1058,11 +1067,61 @@ namespace ERP_CRM_Solution.Controllers
                     HorizontalAlignment = Element.ALIGN_LEFT
                 };
                 table.AddCell(cell);
-                cell = new PdfPCell(new Paragraph(item.PRECATORIO_ESTADO.PRES_NM_NOME, meuFont))
+                if (item.PRECATORIO_ESTADO != null)
+                {
+                    cell = new PdfPCell(new Paragraph(item.PRECATORIO_ESTADO.PRES_NM_NOME, meuFont))
+                    {
+                        VerticalAlignment = Element.ALIGN_MIDDLE,
+                        HorizontalAlignment = Element.ALIGN_LEFT
+                    };
+                }
+                else
+                {
+                    cell = new PdfPCell(new Paragraph("-", meuFont))
+                    {
+                        VerticalAlignment = Element.ALIGN_MIDDLE,
+                        HorizontalAlignment = Element.ALIGN_LEFT
+                    };
+                }
+                table.AddCell(cell);
+                cell = new PdfPCell(new Paragraph(item.PREC_NM_REQUERENTE, meuFont))
                 {
                     VerticalAlignment = Element.ALIGN_MIDDLE,
                     HorizontalAlignment = Element.ALIGN_LEFT
                 };
+                table.AddCell(cell);
+                if (item.PREC_IN_SITUACAO_ATUAL == 1)
+                {
+                    cell = new PdfPCell(new Paragraph("Pago", meuFont))
+                    {
+                        VerticalAlignment = Element.ALIGN_MIDDLE,
+                        HorizontalAlignment = Element.ALIGN_LEFT
+                    };
+                }
+                else if (item.PREC_IN_SITUACAO_ATUAL == 2)
+                {
+                    cell = new PdfPCell(new Paragraph("Não Pago", meuFont))
+                    {
+                        VerticalAlignment = Element.ALIGN_MIDDLE,
+                        HorizontalAlignment = Element.ALIGN_LEFT
+                    };
+                }
+                else if (item.PREC_IN_SITUACAO_ATUAL == 3)
+                {
+                    cell = new PdfPCell(new Paragraph("Pago Parcial", meuFont))
+                    {
+                        VerticalAlignment = Element.ALIGN_MIDDLE,
+                        HorizontalAlignment = Element.ALIGN_LEFT
+                    };
+                }
+                else
+                {
+                    cell = new PdfPCell(new Paragraph("-", meuFont))
+                    {
+                        VerticalAlignment = Element.ALIGN_MIDDLE,
+                        HorizontalAlignment = Element.ALIGN_LEFT
+                    };
+                }
                 table.AddCell(cell);
                 cell = new PdfPCell(new Paragraph(item.PREC_NR_ANO, meuFont))
                 {
@@ -1070,6 +1129,24 @@ namespace ERP_CRM_Solution.Controllers
                     HorizontalAlignment = Element.ALIGN_LEFT
                 };
                 table.AddCell(cell);
+                if (item.PREC_VL_BEN_VALOR_REQUISITADO != null)
+                {
+                    cell = new PdfPCell(new Paragraph(CrossCutting.Formatters.DecimalFormatter(item.PREC_VL_BEN_VALOR_REQUISITADO.Value), meuFont))
+                    {
+                        VerticalAlignment = Element.ALIGN_MIDDLE,
+                        HorizontalAlignment = Element.ALIGN_LEFT
+                    };
+                }
+                else
+                {
+                    cell = new PdfPCell(new Paragraph("-", meuFont))
+                    {
+                        VerticalAlignment = Element.ALIGN_MIDDLE,
+                        HorizontalAlignment = Element.ALIGN_LEFT
+                    };
+                }
+                table.AddCell(cell);
+
             }
             pdfDoc.Add(table);
 
